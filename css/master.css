@@ -1,0 +1,36 @@
+:root {
+
+}
+
+/* general */
+
+/* container */
+#container {
+  height: 100vh;
+  width: 100vw;
+  background-color: #222;
+}
+
+/* gameScreen */
+#gameScreen {
+  height: 667px;
+  width: 375px;
+  font-family: 'Hanalei Fill', cursive;
+  background-color: #aa5039;
+}
+
+p {
+  font-size: 6em;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#playBtn {
+  text-align: center;
+  font-size: 4em;
+  border: 0.4rem solid;
+  border-radius: 1em;
+  width: 3em;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.8);
+}

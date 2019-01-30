@@ -1,0 +1,336 @@
+:root {
+  --cubeHeightWidth: 8em;
+  --negCubeHeightWidth: -8em;
+  --translate: 4em;
+  --negativeTranslate: -4em;
+}
+
+/* general */
+* {
+  box-sizing: border-box;
+}
+
+.bg {
+  position: absolute;
+  z-index: -1;
+  background-size: auto 100%;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+.animation {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: auto;
+  height: 10em;
+  width: 10em;
+}
+
+/* helps */
+#helpers {
+  height: 10em;
+}
+
+#boardBackground {
+  opacity: 0.4;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  height: 110%;
+  width: 110%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+ }
+
+.helper {
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+  background-color: #5c6d86;
+  margin: 0 1em;
+}
+
+.helper i {
+  font-size: 2em;
+  color: #fff;
+}
+
+.mediumExplosionImage {
+  background-image: url("../img/mediumBomb.png")
+}
+
+.largeExplosionImage {
+  background-image: url("../img/largeBomb.png")
+}
+
+.verticalExplosionImage {
+  background-image: url("../img/small.png")
+}
+
+.horizontalExplosionImage {
+  background-image: url("../img/small.png")
+}
+
+.veryLargeExplosionImage {
+  background-image: url("../img/veryLarge.png")
+}
+
+/* board */
+#board {
+  flex-wrap: wrap;
+  width: 375px;
+  position: relative;
+  top: 11em;
+  top: 11em;
+  /* background-color: #ffa790; */
+  padding: 1em 0;
+}
+
+.box {
+  user-select: none;
+  position: relative;
+  border: 0.04em solid #ffa790;
+  background-size: 62%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* .box::before {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1em;
+  left: -1.2em;
+  background-color: #222;
+  border-radius: 50%;
+}
+
+.box::after {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1em;
+  right: -1.2em;
+  background-color: #222;
+  border-radius: 50%;
+} */
+
+.box .explosionBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  overflow: auto;
+
+  top: -30%;
+  left: -30%;
+  height: 160%;
+  width: 160%;
+  z-index: 10;
+
+  pointer-events: none;
+}
+
+.box .explosionBox.hideExplosion {
+  display: none;
+}
+
+.box p {
+  font-size: 6em;
+  color: #fff;
+}
+
+.borderTop {
+  border-top-color: #371006;
+}
+
+.borderRight {
+  border-right-color: #371006;
+}
+
+.borderBottom {
+  border-bottom-color: #371006;
+}
+
+.borderLeft {
+  border-left-color: #371006;
+}
+
+.topLineClicked {
+  border-top-color: #d5e4ff;
+}
+
+.rightLineClicked {
+  border-right-color: #d5e4ff;
+}
+
+.bottomLineClicked {
+  border-bottom-color: #d5e4ff;
+}
+
+.leftLineClicked {
+  border-left-color: #d5e4ff;
+}
+
+.firstPlayerScored {
+  background-color: #e38066;
+  opacity: 0.8;
+}
+
+.secondPlayerScored {
+  background-color: #712b18;
+  opacity: 0.8;
+}
+
+.firstPlayerScored p,
+.secondPlayerScored p {
+  opacity: 0.74;
+}
+
+/* cube style */
+.cubeContainer {
+  perspective: 800px;
+}
+
+.cube {
+  width: var(--cubeHeightWidth);
+  transform-style: preserve-3d;
+  animation: rotate 15s linear infinite;
+  transition: transform 0.5s;
+  transform: rotateY();
+}
+
+.cube > div {
+  width: 8em;
+  height: 8em;
+  position: absolute;
+  opacity: 0.8;
+  color: #fff;
+  border: 0.2em solid #222;
+}
+
+.front {
+  transform: translateZ(4em);
+  background-color: #888;
+}
+
+.back {
+  background-color: #888;
+  transform: rotateY(180deg) translateZ(4em);
+}
+
+.left {
+  background-color: #888;
+  transform: rotateY(-90deg) translateX(-4em);
+  transform-origin: left;
+}
+
+.right {
+  background-color: #888;
+  transform: rotateY(90deg) translateX(4em);
+  transform-origin: right;
+}
+
+.top {
+  background-color: #888;
+  transform: rotateX(-90deg) translateY(-4em);
+  transform-origin: top;
+}
+
+.bottom {
+  background-color: #888;
+  transform: rotateX(90deg) translateY(4em);
+  transform-origin: bottom;
+}
+
+.timer {
+  position: absolute;
+}
+
+#time {
+  margin-left: 4em;
+}
+
+.isTopSideRow {
+  border-top-width: 0.1em;
+}
+
+.isRightSideRow {
+  border-right-width: 0.1em;
+}
+
+.isBottomSideRow {
+  border-bottom-width: 0.1em;
+}
+
+.isLeftSideRow {
+  border-left-width: 0.1em;
+}
+
+.isTopRightCornerBox {
+  /* border-top-right-radius: 1em; */
+  border-top-width: 0.1em;
+  border-right-width: 0.1em;
+}
+
+.isTopLeftCornerBox {
+  /* border-top-left-radius: 1em; */
+  border-top-width: 0.1em;
+  border-left-width: 0.1em;
+}
+
+.isBottomRightCornerBox {
+  /* border-bottom-right-radius: 1em; */
+  border-bottom-width: 0.1em;
+  border-right-width: 0.1em;
+}
+
+.isBottomLeftCornerBox {
+  /* border-bottom-left-radius: 1em; */
+  border-bottom-width: 0.1em;
+  border-left-width: 0.1em;
+}
+
+.isNoBorderBox {
+  width: 8em;
+  user-select: none;
+  position: relative;
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.isNoBorderBox::before {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1.2em;
+  left: -1em;
+  background-color: #222;
+  border-radius: 50%;
+}
+
+.isNoBorderBox::after {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1.2em;
+  right: -1em;
+  background-color: #222;
+  border-radius: 50%;
+}

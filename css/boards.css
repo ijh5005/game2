@@ -85,8 +85,9 @@
   position: relative;
   top: 11em;
   top: 11em;
-  /* background-color: #ffa790; */
   padding: 1em 0;
+  zoom: 96%;
+  margin: 0 auto;
 }
 
 .box {

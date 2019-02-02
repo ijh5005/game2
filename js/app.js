@@ -4,26 +4,16 @@ const noBorders = [];
 const oneBorderBoxes = [];
 const twoBorderBoxes = [];
 const threeBorderBoxes = [];
-const extendedPathBoxes = [];
 const complementBorder = {
   top: "bottom",
   right: "left",
   bottom: "top",
   left: "right"
 }
-const totalPointsToScore = {
-  nine: 9,
-  thirtysix: 36,
-  onehundred: 100
-}
-const setHelper = (helper) => {
-  helperButtonSelected = helper;
-}
 const gameBoardMapperObj = {
-  nine,
-  thirtysix,
-  onehundred
+  thirtysix
 }
+
 const debugMode = () => {
   disableComputer = !disableComputer;
 }
@@ -39,13 +29,11 @@ let gameBoard = gameBoardMapperObj[gameBoardSize]; // map the selected gameBoard
 let hasScored = false;
 let isFirstPlayerTurn = true;
 let isPlayingComputer = true; // indicates if you are playing the computer
-let helperButtonSelected = null;
 let count = 400;
 let counter;
 let disableComputer = false;
 let totalPointsScored = 0;
 let turnNumber = 0;
-let calculatedTotalTurns = totalPointsToScore[gameBoardSize] * 4;
 let conserveMoveUsed = false;
 
 let chanceToGiveAWayPoint;
@@ -61,4 +49,4 @@ if (isEasyDifficulty) {
 }
 
 ui.populateBoard(); // populate the gameboard into the UI
-gameTimer.startTimer();
+bomb.fillPopulationData();

@@ -31,7 +31,6 @@ const thirtysix = {
     isTopLeftCornerBox: true
   },
   box1: {
-    isMediumExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -140,7 +139,6 @@ const thirtysix = {
     isTopSideRow: true
   },
   box5: {
-    isLargeExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -338,7 +336,6 @@ const thirtysix = {
     isRightSideRow: true
   },
   box12: {
-    isLargeExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -396,7 +393,6 @@ const thirtysix = {
     }
   },
   box14: {
-    isVeryLargeExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -427,7 +423,6 @@ const thirtysix = {
     }
   },
   box15: {
-    isMediumExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -488,7 +483,6 @@ const thirtysix = {
     }
   },
   box17: {
-    isMediumExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -573,7 +567,6 @@ const thirtysix = {
     }
   },
   box20: {
-    isLargeExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -634,7 +627,6 @@ const thirtysix = {
     }
   },
   box22: {
-    isHorizontalExplosion: true,
     borders: {
       top: null,
       right: null,
@@ -779,7 +771,6 @@ const thirtysix = {
     }
   },
   box27: {
-    isVerticalExplosion: true,
     borders: {
       top: null,
       right: null,

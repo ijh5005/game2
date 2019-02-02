@@ -67,11 +67,11 @@
 }
 
 .verticalExplosionImage {
-  background-image: url("../img/small.png")
+  background-image: url("../img/verticalBomb.png")
 }
 
 .horizontalExplosionImage {
-  background-image: url("../img/small.png")
+  background-image: url("../img/horizontalBomb.png")
 }
 
 .veryLargeExplosionImage {
@@ -83,7 +83,7 @@
   flex-wrap: wrap;
   width: 375px;
   position: relative;
-  top: 11em;
+  top: 9em;
   top: 11em;
   padding: 1em 0;
   zoom: 96%;

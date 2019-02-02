@@ -5,8 +5,7 @@ const computerMove = {
     setTimeout(() => { // makes the computer delay before making a move
       const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
       const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
-      const at20percentMark = (turnNumber / calculatedTotalTurns) > 0.2;
-      if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox() && at20percentMark) {
+      if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
         computerMove.clickInATwoBorderBox();
         ui.populateBoard();
       } else {

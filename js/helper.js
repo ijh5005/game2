@@ -1,23 +1,4 @@
 const helper = {
-  useHelper: (box) => {
-    if (helperButtonSelected === "minus") {
-      // does the box have at least one line highlighted
-      if (boxInfo.getBorderCount(box) > 0) {
-        // choose a random line in the box to fill in
-        helper.subtractOneBorderFrom(box);
-      } else {
-        console.log("can't select box to minus");
-      }
-    } else if (helperButtonSelected === "plus") {
-      // does the box have less than four lines highlighted
-      if (boxInfo.getBorderCount(box) < 4) {
-        // choose a random line in the box to remove
-        helper.addOneBorderTo(box);
-      } else {
-        console.log("can't select box to add");
-      }
-    }
-  },
   subtractOneBorderFrom: (box) => {
     const clickedBorders = boxInfo.getClickedBorders(box);
     const borderToRemove = task.getRandomIndexInArray(clickedBorders);
@@ -46,12 +27,6 @@ const helper = {
     })
     return noDublicates;
   },
-  showExplosionInBox: (box, type) => {
-    $(`.${box}Explosion`).removeClass("hideExplosion").attr("src", `./gifs/${type}.gif`);
-    setTimeout(() => {
-      $(`.${box}Explosion`).addClass("hideExplosion");
-    }, 80 * 8);
-  },
   mediumExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
     gameBoard[box].isMediumExplosion = false;
@@ -64,7 +39,8 @@ const helper = {
 
     // make boxes explode
     const explodingBoxes = [box, ...boxInfo.getSurroundingBoxes(box)];
-    explodingBoxes.forEach(explodingBox => helper.showExplosionInBox(explodingBox, "smoke"));
+    explodingBoxes.forEach(explodingBox => bomb.showExplosionInBox(explodingBox, "explosion", 80 * 8));
+    bomb.checkForChainReactions(boxInfo.getSurroundingBoxes(box));
   },
   largerExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
@@ -84,9 +60,10 @@ const helper = {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.borders);
         ui.removeScoreColorIfRemovingBorder(item.box, true);
-        helper.showExplosionInBox(item.box, "largeExplosion");
+        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
+    bomb.checkForChainReactions(Object.entries(allBorders).map(data => data[1]));
   },
   verticalExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
@@ -113,9 +90,10 @@ const helper = {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
         ui.removeScoreColorIfRemovingBorder(item.box, true);
-        helper.showExplosionInBox(item.box, "smallExplosion");
+        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
+    bomb.checkForChainReactions([boxInfo.getTopBox(boxNumber), boxInfo.getBottomBox(boxNumber)]);
   },
   horizontalExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
@@ -142,14 +120,21 @@ const helper = {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
         ui.removeScoreColorIfRemovingBorder(item.box, true);
-        helper.showExplosionInBox(item.box, "smallExplosion");
+        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
+    bomb.checkForChainReactions([boxInfo.getRightBox(boxNumber), boxInfo.getLeftBox(boxNumber)])
   },
   isVeryLargeExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
     gameBoard[box].isVeryLargeExplosion = false;
-
+    const allClasses = [
+      "mediumExplosionImage",
+      "largeExplosionImage",
+      "verticalExplosionImage",
+      "horizontalExplosionImage",
+      "veryLargeExplosionImage"
+    ];
     for (let item in gameBoard) {
       gameBoard[item].borders = {
         top: null,
@@ -157,10 +142,16 @@ const helper = {
         bottom: null,
         left: null
       }
+      delete gameBoard[item].isVerticalExplosion;
+      delete gameBoard[item].isHorizontalExplosion;
+      delete gameBoard[item].isMediumExplosion;
+      delete gameBoard[item].isLargeExplosion;
+      delete gameBoard[item].isVeryLargeExplosion;
+      allClasses.forEach(cl => document.getElementsByClassName(item)[0].classList.remove(cl));
       ui.removeScoreColorIfRemovingBorder(item, true);
     }
     for (let item in gameBoard) {
-      helper.showExplosionInBox(item, "veryLargeExplosion");
+      bomb.showExplosionInBox(item, "explosion", 80 * 8);
     }
     ui.populateBoard();
   }

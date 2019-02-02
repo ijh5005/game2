@@ -12,30 +12,26 @@ const gameScore = {
     }
   },
   adjustScore: (boxNumber, adjacentBoxNumber) => {
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    for(let box in gameBoard){
+      const personToScore = gameBoard[box].whoScored;
+      if( personToScore === "firstPlayerScored"){
+        playerOneScore++;
+      } else if(personToScore === "secondPlayerScored"){
+        playerTwoScore++;
+      }
+    }
+
+    document.getElementsByClassName("playerOneScore")[0].innerText = playerOneScore;
+    document.getElementsByClassName("playerTwoScore")[0].innerText = playerTwoScore;
+
     const score = (box) => {
       if (!gameScore.hasScored(box)) return null; // check to see if player scored a point
-      (isFirstPlayerTurn) ? playerOneScore++ : playerTwoScore++;
-      if (gameBoard[box].isMediumExplosion) {
-        helper.mediumExplosion(box);
-      } else if (gameBoard[box].isLargeExplosion) {
-        setTimeout(() => {
-          helper.largerExplosion(box);
-        })
-      } else if (gameBoard[box].isVerticalExplosion) {
-        setTimeout(() => {
-          helper.verticalExplosion(box);
-        })
-      } else if (gameBoard[box].isHorizontalExplosion) {
-        setTimeout(() => {
-          helper.horizontalExplosion(box);
-        })
-      } else if (gameBoard[box].isVeryLargeExplosion) {
-        setTimeout(() => {
-          helper.isVeryLargeExplosion(box);
-        })
-      }
+      bomb.explodeBoxes(box);
       hasScored = true;
     }
+
     if (boxNumber) score(boxNumber);
     if (adjacentBoxNumber) score(adjacentBoxNumber);
   },

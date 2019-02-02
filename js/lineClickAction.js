@@ -9,13 +9,13 @@ const lineClickAction = {
       if (!hasClickBorderPreviously) { // prevent multiple click to the same border
         lineClickAction.clickOnBorder(boxNumber, lineClicked);
       }
-    } else if (helperButtonSelected) {
-      helper.useHelper(boxNumber);
-      helperButtonSelected = null;
     }
   },
   clickOnBorder: (boxNumber, lineClicked, helpUser = false, subtractBorder = false) => {
+    soundEffects.playLineClickSound();
+    bomb.bombPopulation();
     turnNumber++;
+    track.incrementTurn();
     if (isFirstPlayerTurn) {
       gameTimer.incrementTimer();
     }

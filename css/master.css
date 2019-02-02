@@ -16,6 +16,7 @@
   height: 667px;
   width: 375px;
   font-family: 'Hanalei Fill', cursive;
+  font-family: 'Raleway', sans-serif;
   background-color: #aa5039;
 }
 
@@ -33,4 +34,14 @@ p {
   width: 3em;
   margin: 0 auto;
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.topBar {
+  justify-content: space-between;
+}
+
+.playerOneScore,
+.playerTwoScore {
+  font-size: 2em;
+  margin: 0.5em;
 }

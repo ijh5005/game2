@@ -18,7 +18,7 @@ const debugMode = () => {
   disableComputer = !disableComputer;
 }
 const tryFunction = () => {
-  helper.isVeryLargeExplosion();
+  bomb.isVeryLargeExplosion();
 }
 
 let playerOneScore = 0;

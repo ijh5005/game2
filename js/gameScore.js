@@ -3,15 +3,6 @@ const gameScore = {
     console.log("you lose")
   },
   setScores: () => {
-    // document.getElementById("playerOneScore").innerText = playerOneScore;
-    // document.getElementById("playerTwoScore").innerText = playerTwoScore;
-  },
-  highlightBoxIfScored: (boxNumber) => {
-    if (boxInfo.getBorderCount(boxNumber) === 4) {
-      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
-    }
-  },
-  adjustScore: (boxNumber, adjacentBoxNumber) => {
     playerOneScore = 0;
     playerTwoScore = 0;
     for(let box in gameBoard){
@@ -22,6 +13,14 @@ const gameScore = {
         playerTwoScore++;
       }
     }
+  },
+  highlightBoxIfScored: (boxNumber) => {
+    if (boxInfo.getBorderCount(boxNumber) === 4) {
+      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
+    }
+  },
+  adjustScore: (boxNumber, adjacentBoxNumber) => {
+    gameScore.setScores();
 
     document.getElementsByClassName("playerOneScore")[0].innerText = playerOneScore;
     document.getElementsByClassName("playerTwoScore")[0].innerText = playerTwoScore;

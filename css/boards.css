@@ -58,26 +58,6 @@
   color: #fff;
 }
 
-.mediumExplosionImage {
-  background-image: url("../img/mediumBomb.png")
-}
-
-.largeExplosionImage {
-  background-image: url("../img/largeBomb.png")
-}
-
-.verticalExplosionImage {
-  background-image: url("../img/verticalBomb.png")
-}
-
-.horizontalExplosionImage {
-  background-image: url("../img/horizontalBomb.png")
-}
-
-.veryLargeExplosionImage {
-  background-image: url("../img/veryLarge.png")
-}
-
 /* board */
 #board {
   flex-wrap: wrap;
@@ -94,12 +74,37 @@
   user-select: none;
   position: relative;
   border: 0.04em solid #ffa790;
-  background-size: 62%;
+  background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
   width: 60px;
   height: 60px;
+}
+
+
+.mediumExplosionImage {
+  background-image: url("../img/mediumBomb.png");
+  background-size: 82%;
+}
+
+.largeExplosionImage {
+  background-image: url("../img/largeBomb.png");
+  background-size: 86%;
+}
+
+.verticalExplosionImage {
+  background-image: url("../img/verticalBomb.png");
+}
+
+.horizontalExplosionImage {
+  background-image: url("../img/horizontalBomb.png");
+  background-size: 118%;
+}
+
+.veryLargeExplosionImage {
+  background-image: url("../img/veryLarge.png");
+  background-size: 65%;
 }
 
 /* .box::before {

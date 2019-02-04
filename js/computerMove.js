@@ -6,6 +6,7 @@ const computerMove = {
       const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
       const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
       if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
+        console.table({giveAWayABox: true})
         computerMove.clickInATwoBorderBox();
         ui.populateBoard();
       } else {

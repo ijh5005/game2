@@ -12,6 +12,7 @@ const lineClickAction = {
     }
   },
   clickOnBorder: (boxNumber, lineClicked, helpUser = false, subtractBorder = false) => {
+    console.table({boxNumber, lineClicked, helpUser, subtractBorder})
     soundEffects.playLineClickSound();
     bomb.bombPopulation();
     turnNumber++;

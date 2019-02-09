@@ -102,6 +102,10 @@ const boxInfo = {
     if(boxInfo.isALockBox(box)) return false;
     return (borderCount === 3);
   },
+  isAdjBoxALockBox: (box, side) => {
+    const adjBox = boxInfo.getAdjBoxBySide(box, side);
+    return boxInfo.isALockBox(adjBox);
+  },
   getAdjBoxBySide: (box, side) => {
     const boxNumber = parseInt(box.replace("box", ""))
     let adjBox;

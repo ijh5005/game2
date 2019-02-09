@@ -23,15 +23,21 @@ const computerMove = {
   },
   getAFreeBox: () => {
     const clickBox = task.getRandomIndexInArray(threeBorderBoxes);
-    const smartClickBoxInfo = computerMove.shouldLetHaveBox();
+    // this was taken out to fix the locked boxes functionality
+    // const smartClickBoxInfo = computerMove.shouldLetHaveBox();
     Object.keys(gameboardMapper.getGameBoardClickBox(clickBox).borders).forEach(data => {
       if (!gameboardMapper.getGameBoardClickBox(clickBox).borders[data]) {
-        if (smartClickBoxInfo && smartClickBoxInfo.sideToClick && !conserveMoveUsed) {
-          conserveMoveUsed = true;
-          lineClickAction.clickOnBorder(smartClickBoxInfo.boxToClick, smartClickBoxInfo.sideToClick)
-        } else {
-          lineClickAction.clickOnBorder(clickBox, data);
-        }
+        // if (smartClickBoxInfo && smartClickBoxInfo.sideToClick && !conserveMoveUsed) {
+        //   conserveMoveUsed = true;
+        //   lineClickAction.clickOnBorder(smartClickBoxInfo.boxToClick, smartClickBoxInfo.sideToClick)
+        // } else {
+          if(boxInfo.isAdjBoxALockBox(clickBox, data)){
+            threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
+            computerMove.makeMoveInSafeBox();
+          } else {
+            lineClickAction.clickOnBorder(clickBox, data);
+          }
+        // }
       }
     })
   },
@@ -54,8 +60,13 @@ const computerMove = {
       if (noBorders.length === 0) {
         keepGoing = false;
       }
-      // if we found a safe box to click move the move
-      if (selectedBox && lineBetweenBoxes) {
+      
+      // if the clicked box or the box that shares the line is a locked box make computer move again
+      if(boxInfo.isALockBox(clickBox) || boxInfo.isAdjBoxALockBox(clickBox, lineBetweenBoxes.replace("Box", ""))){
+        keepGoing = false;
+        computerMove.makeMoveInSafeBox();
+      } else if (selectedBox && lineBetweenBoxes) {
+        // if we found a safe box to click move the move
         keepGoing = false;
         const line = lineBetweenBoxes.replace("Box", "");
         lineClickAction.clickOnBorder(clickBox, line);

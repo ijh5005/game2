@@ -99,11 +99,8 @@ const boxInfo = {
     return (borderCount === 2);
   },
   countsAsThreeBorders: (box, borderCount) => {
-    if(boxInfo.isALockBox(box) || (borderCount !== 3)) return false;
-    const openBorder = boxInfo.getUnclickedBorders(box)[0];
-    const adjBox = boxInfo.getAdjBoxBySide(box, openBorder);
-    const isNextToLockBox = adjBox ? boxInfo.isALockBox(adjBox) : true;
-    return !isNextToLockBox;
+    if(boxInfo.isALockBox(box)) return false;
+    return (borderCount === 3);
   },
   getAdjBoxBySide: (box, side) => {
     const boxNumber = parseInt(box.replace("box", ""))

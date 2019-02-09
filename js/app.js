@@ -33,7 +33,6 @@ let count = 400;
 let counter;
 let disableComputer = false;
 let totalPointsScored = 0;
-let turnNumber = 0;
 let conserveMoveUsed = false;
 
 // game controls

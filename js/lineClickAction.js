@@ -17,7 +17,6 @@ const lineClickAction = {
     console.table({boxNumber, lineClicked, helpUser, subtractBorder})
     soundEffects.playLineClickSound();
     bomb.bombPopulation();
-    turnNumber++;
     track.incrementTurn();
     if (isFirstPlayerTurn) {
       gameTimer.incrementTimer();

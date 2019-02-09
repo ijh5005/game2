@@ -20,7 +20,7 @@ const bomb = {
   populationData: [],
   fillPopulationData: () => {
     let useTurns = [];
-    for(let i = 0; i < 15; i++){
+    for(let i = 0; i < bombsToLay; i++){
       const randomNumber = Math.floor(Math.random()*60);
       const boxNumber = `box${Math.floor(Math.random()*34)}`;
       if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
@@ -51,9 +51,10 @@ const bomb = {
   placeBomb: (boxNumber) => {
     let explosion = bomb.types[0];
     const number = Math.floor(Math.random() * 71);
-    if(number > 65){
-      explosion = bomb.types[4];
-    } else if(number > 55){
+    // if(number > 65){
+    //   explosion = bomb.types[4];
+    // } else
+    if(number > 55){
       explosion = bomb.types[3];
     } else if(number > 40){
       explosion = bomb.types[2];
@@ -234,7 +235,7 @@ const bomb = {
       }
     });
 
-    const boxesToExplode = [boxInfo.getRightBox(boxNumber), boxInfo.getLeftBox(boxNumber)];
+    const boxesToExplode = [boxInfo.getRightBox(boxNumber), boxInfo.getLeftBox(boxNumber), twoBoxesLeft, twoBoxesRight];
 
     bomb.checkForChainReactions(boxesToExplode)
   },

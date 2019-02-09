@@ -36,6 +36,7 @@ let totalPointsScored = 0;
 let turnNumber = 0;
 let conserveMoveUsed = false;
 
+// game controls
 let chanceToGiveAWayPoint;
 let isEasyDifficulty = false;
 let isMediumDifficulty = false;
@@ -47,6 +48,9 @@ if (isEasyDifficulty) {
 } else if (isHardDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
+let hasMuted = true;
+let bombsToLay = 15;
+let lockBombLocations = ["box0", "box1", "box6", "box7", "box15"];
 
 ui.populateBoard(); // populate the gameboard into the UI
 bomb.fillPopulationData();

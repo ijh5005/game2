@@ -5,9 +5,11 @@ const lineClickAction = {
     const lowerOutOfBoundsNumber = 10;
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
-      const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
-      if (!hasClickBorderPreviously) { // prevent multiple click to the same border
-        lineClickAction.clickOnBorder(boxNumber, lineClicked);
+      if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
+        const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
+        if (!hasClickBorderPreviously) { // prevent multiple click to the same border
+          lineClickAction.clickOnBorder(boxNumber, lineClicked);
+        }
       }
     }
   },
@@ -60,6 +62,11 @@ const lineClickAction = {
         $(".box").removeClass("leftLineClicked");
       }, 800)
     })
+  },
+  isNotALockedBoxClick: (box, lineClicked) => {
+    const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
+    const includesLocked = (boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox));
+    return !includesLocked;
   },
   isALineClick: (offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) => {
     const inUpperOutOfBounds = (offsetX > upperOutOfBoundsNumber) || (offsetY > upperOutOfBoundsNumber);

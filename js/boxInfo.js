@@ -44,6 +44,10 @@ const boxInfo = {
       classesToAdd.push("isLeftSideRow");
     }
 
+    if(gameBoard[box].isLocked === true){
+      classesToAdd.push("locked");
+    }
+
     classesToAdd.push("flexRow");
     classesToAdd.push(box);
     return classesToAdd;
@@ -76,11 +80,47 @@ const boxInfo = {
     boxInfo.clearBorderArrays();
     for (let box in gameBoard) {
       const borderCount = boxInfo.getBorderCount(box);
-      if (borderCount === 0) noBorders.push(box);
-      else if (borderCount === 1) oneBorderBoxes.push(box);
-      else if (borderCount === 2) twoBorderBoxes.push(box)
-      else if (borderCount === 3) threeBorderBoxes.push(box);
+      if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);
+      else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);
+      else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box)
+      else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
     }
+  },
+  countsAsNoBorders: (box, borderCount) => {
+    if(boxInfo.isALockBox(box)) return false;
+    return (borderCount === 0);
+  },
+  countsAsOneBorders: (box, borderCount) => {
+    if(boxInfo.isALockBox(box)) return false;
+    return (borderCount === 1);
+  },
+  countsAsTwoBorders: (box, borderCount) => {
+    if(boxInfo.isALockBox(box)) return false;
+    return (borderCount === 2);
+  },
+  countsAsThreeBorders: (box, borderCount) => {
+    if(boxInfo.isALockBox(box) || (borderCount !== 3)) return false;
+    const openBorder = boxInfo.getUnclickedBorders(box)[0];
+    const adjBox = boxInfo.getAdjBoxBySide(box, openBorder);
+    const isNextToLockBox = adjBox ? boxInfo.isALockBox(adjBox) : true;
+    return !isNextToLockBox;
+  },
+  getAdjBoxBySide: (box, side) => {
+    const boxNumber = parseInt(box.replace("box", ""))
+    let adjBox;
+    if(side === "top"){
+      adjBox = boxInfo.getTopBox(boxNumber);
+    } else if(side === "left"){
+      adjBox = boxInfo.getLeftBox(boxNumber);
+    } else if(side === "bottom"){
+      adjBox = boxInfo.getBottomBox(boxNumber);
+    } else if(side === "right"){
+      adjBox = boxInfo.getRightBox(boxNumber);
+    }
+    return adjBox;
+  },
+  isALockBox: (box) => {
+    return lockBombLocations.includes(box);
   },
   clearBorderArrays: () => {
     noBorders.length = 0;

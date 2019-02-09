@@ -5,12 +5,14 @@ const ui = {
     if (document.getElementsByClassName("box").length > 0) {
       const boxes = document.getElementsByClassName("box");
       for (let i = 0; i < boxes.length; i++) {
+        ui.addLockBox(`box${i}`);
         const gridBox = boxes[i];
         gridBox.className = "";
         gridBox.classList.add(...boxInfo.getAllBoxClasses(`box${i}`));
       }
     } else {
       for (let box in gameBoard) {
+        ui.addLockBox(box);
         const gridBox = document.createElement("div");
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
         // boxInfo.getNumberText(box, gridBox);
@@ -24,6 +26,11 @@ const ui = {
     }
     gameScore.setScores();
     boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
+  },
+  addLockBox: (box) => {
+    if(lockBombLocations.includes(box)){
+      gameBoard[box].isLocked = true;
+    }
   },
   removeScoreColorIfRemovingBorder: (box, subtractBorder) => {
     if (subtractBorder) {

@@ -49,7 +49,8 @@ if (isEasyDifficulty) {
 }
 let hasMuted = true;
 let bombsToLay = 15;
-let lockBombLocations = ["box0", "box1", "box6", "box7", "box15"];
+// let lockBombLocations = ["box0", "box1", "box6", "box7", "box15"];
+let lockBombLocations = [];
 
 ui.populateBoard(); // populate the gameboard into the UI
 bomb.fillPopulationData();

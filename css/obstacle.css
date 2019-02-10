@@ -3,3 +3,29 @@
   background-size: 200%;
   background-position: center;
 }
+
+.locked3 {
+  background-image: url(../img/brick.jpg);
+  background-size: 300%;
+  background-position: center;
+}
+
+.locked2 {
+  background-image: url(../img/gold4.jpg);
+  background-size: 400%;
+  background-position: center;
+}
+
+.firstPlayerScored {
+  background-image: url(../img/gold4.jpg);
+  background-size: 400%;
+  background-position: center;
+  opacity: 1;
+}
+
+.secondPlayerScored {
+  background-image: url(../img/lock.jpeg);
+  background-size: 200%;
+  background-position: center;
+  opacity: 1;
+}

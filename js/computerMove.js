@@ -62,7 +62,7 @@ const computerMove = {
       }
       
       // if the clicked box or the box that shares the line is a locked box make computer move again
-      if(boxInfo.isALockBox(clickBox) || boxInfo.isAdjBoxALockBox(clickBox, lineBetweenBoxes.replace("Box", ""))){
+      if(boxInfo.isALockBox(clickBox) || lineBetweenBoxes ? boxInfo.isAdjBoxALockBox(clickBox, lineBetweenBoxes.replace("Box", "")) : false){
         keepGoing = false;
         computerMove.makeMoveInSafeBox();
       } else if (selectedBox && lineBetweenBoxes) {

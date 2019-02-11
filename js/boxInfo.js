@@ -121,7 +121,9 @@ const boxInfo = {
     return adjBox;
   },
   isALockBox: (box) => {
-    return lockBombLocations.includes(box);
+    const allBombs = [];
+    lockBombLocations.forEach(data => allBombs.push(data.box));
+    return allBombs.includes(box);
   },
   clearBorderArrays: () => {
     noBorders.length = 0;

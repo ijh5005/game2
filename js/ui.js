@@ -28,7 +28,7 @@ const ui = {
     boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
   },
   addLockBox: (box) => {
-    if(lockBombLocations.includes(box)){
+    if(boxInfo.isALockBox(box)){
       gameBoard[box].isLocked = true;
     }
   },

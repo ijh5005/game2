@@ -1,10 +1,4 @@
 .locked {
-  background-image: url(../img/lock.jpeg);
-  background-size: 200%;
-  background-position: center;
-}
-
-.locked3 {
   background-image: url(../img/brick.jpg);
   background-size: 300%;
   background-position: center;

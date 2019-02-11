@@ -60,9 +60,11 @@ const computerMove = {
       if (noBorders.length === 0) {
         keepGoing = false;
       }
-      
+
+      const isClickBoxALockBox = boxInfo.isALockBox(clickBox);
+      const isAdjBoxALockBox = lineBetweenBoxes ? boxInfo.isAdjBoxALockBox(clickBox, lineBetweenBoxes.replace("Box", "")) : false;
       // if the clicked box or the box that shares the line is a locked box make computer move again
-      if(boxInfo.isALockBox(clickBox) || lineBetweenBoxes ? boxInfo.isAdjBoxALockBox(clickBox, lineBetweenBoxes.replace("Box", "")) : false){
+      if(isClickBoxALockBox || isAdjBoxALockBox){
         keepGoing = false;
         computerMove.makeMoveInSafeBox();
       } else if (selectedBox && lineBetweenBoxes) {
@@ -195,15 +197,35 @@ const computerMove = {
     return replacements;
   },
   chooseBoxToClickInEndGame: (multiScoreBoxPaths) => {
+    let keepGoing = true;
+    let arrayIndex = 0;
+    const length = multiScoreBoxPaths.length;
     const pathsToClickABox = multiScoreBoxPaths.sort((a, b) => a.length - b.length);
-    const boxToClick = task.getRandomIndexInArray(pathsToClickABox[0]);
-    let lineClick;
-    Object.keys(gameboardMapper.getGameBoardClickBox(boxToClick).borders).forEach(data => {
-      if (gameboardMapper.getGameBoardClickBox(boxToClick).borders[data] === null) {
-        lineClick = data;
+    while(keepGoing){
+      const boxToClick = task.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
+      let lineClick;
+      const borders = gameboardMapper.getGameBoardClickBox(boxToClick).borders;
+      Object.keys(borders).forEach((data, index) => {
+        const noBorderClicked = borders[data] === null;
+        const isClickBoxALockBox = boxInfo.isALockBox(boxToClick);
+        const isAdjBoxALockBox = boxInfo.isAdjBoxALockBox(boxToClick, data);
+        if (noBorderClicked && !isClickBoxALockBox && !isAdjBoxALockBox) {
+          lineClick = data;
+        }
+      });
+      if((lineClick === null) || (lineClick === undefined)){
+        const atLastPath = (arrayIndex - 1) === length;
+        if(atLastPath){
+          debugger
+          keepGoing = false;
+          console.log("game over")
+        }
+        arrayIndex++;
+      } else {
+        keepGoing = false;
+        lineClickAction.clickOnBorder(boxToClick, lineClick);
       }
-    });
-    lineClickAction.clickOnBorder(boxToClick, lineClick);
+    }
   },
   shouldLetHaveBox: () => {
     let onePathHasTwoBoxes = false;

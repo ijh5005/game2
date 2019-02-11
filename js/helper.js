@@ -2,7 +2,9 @@ const helper = {
   subtractOneBorderFrom: (box) => {
     const clickedBorders = boxInfo.getClickedBorders(box);
     const borderToRemove = task.getRandomIndexInArray(clickedBorders);
-    lineClickAction.clickOnBorder(box, borderToRemove, true, true);
+    if(borderToRemove){
+      lineClickAction.clickOnBorder(box, borderToRemove, true, true);
+    }
   },
   addOneBorderTo: (box) => {
     const unclickedBorders = boxInfo.getUnclickedBorders(box);

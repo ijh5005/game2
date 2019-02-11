@@ -1,5 +1,14 @@
 const task = {
   setTurnPlayer: () => {
+    setTimeout(() => {
+      const lockBoxesWasNotCleared = (twoBorderBoxes.length === 0)
+                                  && (noBorders.length === 0)
+                                  && (oneBorderBoxes.length === 0)
+                                  && (threeBorderBoxes.length !== 0);
+      if(lockBoxesWasNotCleared){
+        console.log("game over");
+      }
+    })
     isFirstPlayerTurn = (hasScored || disableComputer) ? isFirstPlayerTurn : !isFirstPlayerTurn;
     hasScored = false;
     if (isPlayingComputer && !isFirstPlayerTurn) { // make the computer move

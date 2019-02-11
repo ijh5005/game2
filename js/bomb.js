@@ -62,8 +62,10 @@ const bomb = {
       explosion = bomb.types[1];
     }
     console.table({explosion, boxNumber});
-    document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class)
-    gameBoard[boxNumber][explosion.key] = true;
+    document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
+    if(!gameBoard[boxNumber].isLocked){
+      gameBoard[boxNumber][explosion.key] = true;
+    }
   },
   explodeBoxes: (box) => {
     if (gameBoard[box].isMediumExplosion) {

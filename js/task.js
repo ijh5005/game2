@@ -5,7 +5,8 @@ const task = {
                                   && (noBorders.length === 0)
                                   && (oneBorderBoxes.length === 0)
                                   && (threeBorderBoxes.length !== 0);
-      if(lockBoxesWasNotCleared){
+      const hasLockedBoxes = (lockBombLocations.length > 0);
+      if(lockBoxesWasNotCleared && hasLockedBoxes){
         console.log("game over");
       }
     })

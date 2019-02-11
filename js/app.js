@@ -48,25 +48,25 @@ if (isEasyDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
 let hasMuted = true;
-let bombsToLay = 20;
-// let lockBombLocations = [{
-//   box: "box0",
-//   toughness: 1
-// }, {
-//   box: "box1",
-//   toughness: 1
-// }, {
-//   box: "box6",
-//   toughness: 1
-// }, {
-//   box: "box7",
-//   toughness: 1
-// }, {
-//   box: "box15",
-//   toughness: 1
-// }];
+let bombsToLay = 40;
 
 let lockBombLocations = [];
+const possibleBombs = [];
+let lockedBoxLimit = 10;
+for(let i = 0; i < 36; i++){
+  possibleBombs.push(`box${i}`)
+}
+possibleBombs.forEach((data, index) => {
+  if(index < lockedBoxLimit){
+    const box = task.getRandomIndexInArray(possibleBombs);
+    const index = possibleBombs.indexOf(box);
+    possibleBombs.splice(index, 1);
+    lockBombLocations.push({
+      box,
+      toughness: 1
+    })
+  }
+})
 
 ui.populateBoard(); // populate the gameboard into the UI
 bomb.fillPopulationData();

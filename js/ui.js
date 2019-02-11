@@ -31,7 +31,6 @@ const ui = {
   removeAllLockBoxes: () => {
     $(".box").removeClass("locked");
     for(let data in gameBoard){
-      debugger
       gameBoard[data].isLocked = false;
     }
   },

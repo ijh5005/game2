@@ -216,7 +216,6 @@ const computerMove = {
       if((lineClick === null) || (lineClick === undefined)){
         const atLastPath = (arrayIndex - 1) === length;
         if(atLastPath){
-          debugger
           keepGoing = false;
           console.log("game over")
         }

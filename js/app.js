@@ -48,23 +48,25 @@ if (isEasyDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
 let hasMuted = true;
-let bombsToLay = 15;
-let lockBombLocations = [{
-  box: "box0",
-  toughness: 1
-}, {
-  box: "box1",
-  toughness: 1
-}, {
-  box: "box6",
-  toughness: 1
-}, {
-  box: "box7",
-  toughness: 1
-}, {
-  box: "box15",
-  toughness: 1
-}];
+let bombsToLay = 20;
+// let lockBombLocations = [{
+//   box: "box0",
+//   toughness: 1
+// }, {
+//   box: "box1",
+//   toughness: 1
+// }, {
+//   box: "box6",
+//   toughness: 1
+// }, {
+//   box: "box7",
+//   toughness: 1
+// }, {
+//   box: "box15",
+//   toughness: 1
+// }];
+
+let lockBombLocations = [];
 
 ui.populateBoard(); // populate the gameboard into the UI
 bomb.fillPopulationData();

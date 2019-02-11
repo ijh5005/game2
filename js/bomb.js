@@ -17,6 +17,17 @@ const bomb = {
       class: "veryLargeExplosionImage",
     }
   ],
+  isExplosionBox: (box) => {
+    let isBombBox = false;
+    bomb.types.forEach(data => {
+      const className = data.class;
+      const isBomb = document.getElementsByClassName(box)[0]
+                   ? document.getElementsByClassName(box)[0].classList.contains(className)
+                   : false;
+      if(isBomb) isBombBox = true;
+    });
+    return isBombBox;
+  },
   populationData: [],
   fillPopulationData: () => {
     let useTurns = [];
@@ -37,16 +48,35 @@ const bomb = {
       return data.randomNumber === track.turn
     });
     if(boxNumber && (boxInfo.getBorderCount(boxNumber) !== 4)){
-      bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
       soundEffects.playShowBombSound();
       bomb.placeBomb(boxNumber);
     }
   },
   showExplosionInBox: (box, type, seconds) => {
+    if(type !== "smoke") bomb.explodeLockBoxIfHit(box);
     $(`.${box}Explosion`).removeClass("hideExplosion").attr("src", `./gifs/${type}.gif`);
     setTimeout(() => {
       $(`.${box}Explosion`).addClass("hideExplosion");
     }, seconds);
+  },
+  explodeLockBoxIfHit: (box) => {
+    if(boxInfo.isALockBox(box)){
+      bomb.hitLockBox(box)
+    }
+  },
+  hitLockBox: (box) => {
+    let hitInfo;
+    lockBombLocations.forEach((data, index) => {
+      if(data.box === box){
+        hitInfo = { index }
+      }
+    })
+    if(hitInfo){
+      lockBombLocations[hitInfo.index].toughness--;
+      if(lockBombLocations[hitInfo.index].toughness === 0){
+        lockBombLocations.splice(hitInfo.index, 1);
+      }
+    }
   },
   placeBomb: (boxNumber) => {
     let explosion = bomb.types[0];
@@ -62,8 +92,9 @@ const bomb = {
       explosion = bomb.types[1];
     }
     console.table({explosion, boxNumber});
-    document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
-    if(!gameBoard[boxNumber].isLocked){
+    if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
+      document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
+      bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
       gameBoard[boxNumber][explosion.key] = true;
     }
   },

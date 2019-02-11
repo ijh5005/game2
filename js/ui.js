@@ -4,6 +4,7 @@ const ui = {
 
     if (document.getElementsByClassName("box").length > 0) {
       const boxes = document.getElementsByClassName("box");
+      ui.removeAllLockBoxes();
       for (let i = 0; i < boxes.length; i++) {
         ui.addLockBox(`box${i}`);
         const gridBox = boxes[i];
@@ -26,6 +27,13 @@ const ui = {
     }
     gameScore.setScores();
     boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
+  },
+  removeAllLockBoxes: () => {
+    $(".box").removeClass("locked");
+    for(let data in gameBoard){
+      debugger
+      gameBoard[data].isLocked = false;
+    }
   },
   addLockBox: (box) => {
     if(boxInfo.isALockBox(box)){

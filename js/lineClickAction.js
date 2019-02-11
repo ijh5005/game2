@@ -65,7 +65,9 @@ const lineClickAction = {
   isNotALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
     const includesLocked = (boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox));
-    return !includesLocked;
+    const doesBoxIncludeABomb = bomb.isExplosionBox(box);
+    const doesAdjBoxIncludeABomb = bomb.isExplosionBox(adjBox);
+    return (!includesLocked || doesBoxIncludeABomb || doesAdjBoxIncludeABomb);
   },
   isALineClick: (offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) => {
     const inUpperOutOfBounds = (offsetX > upperOutOfBoundsNumber) || (offsetY > upperOutOfBoundsNumber);

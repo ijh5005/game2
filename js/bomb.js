@@ -62,8 +62,6 @@ const bomb = {
   explodeLockBoxIfHit: (box) => {
     if(boxInfo.isALockBox(box)){
       bomb.hitLockBox(box)
-      bomb.largerExplosion(box);
-      soundEffects.playExplosionSound();
     }
   },
   hitLockBox: (box) => {

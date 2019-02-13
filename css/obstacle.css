@@ -1,25 +1,22 @@
 .locked {
-  background-image: url(../img/brick.jpg);
+  /* background-image: url(../img/brick.jpg);
   background-size: 300%;
-  background-position: center;
-}
-
-.locked2 {
-  background-image: url(../img/gold4.jpg);
-  background-size: 400%;
-  background-position: center;
+  background-position: center; */
+  background-color: #84635a;
 }
 
 .firstPlayerScored {
-  background-image: url(../img/gold4.jpg);
+  /* background-image: url(../img/gold4.jpg);
   background-size: 400%;
   background-position: center;
-  opacity: 1;
+  opacity: 1; */
+  background-color: rgba(89, 92, 105, 0.8);
 }
 
 .secondPlayerScored {
-  background-image: url(../img/lock.jpeg);
+  /* background-image: url(../img/lock.jpeg);
   background-size: 200%;
   background-position: center;
-  opacity: 1;
+  opacity: 1; */
+  background-color: rgba(34, 31, 39, 0.8);
 }

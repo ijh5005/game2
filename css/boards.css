@@ -74,6 +74,8 @@
   user-select: none;
   position: relative;
   border: 0.04em solid #ffa790;
+  border: 0.04em solid #777676;
+  border: 0.04em solid #545454;
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
@@ -160,18 +162,22 @@
 
 .borderTop {
   border-top-color: #371006;
+  border-top-color: #ff957a;
 }
 
 .borderRight {
   border-right-color: #371006;
+  border-right-color: #ff957a;
 }
 
 .borderBottom {
   border-bottom-color: #371006;
+  border-bottom-color: #ff957a;
 }
 
 .borderLeft {
   border-left-color: #371006;
+  border-left-color: #ff957a;
 }
 
 .topLineClicked {

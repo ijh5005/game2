@@ -11,6 +11,10 @@ const lineClickAction = {
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
       }
+    } else if(bomb.isExplosionBox(boxNumber)){
+      bomb.explodeBoxes(boxNumber);
+      isFirstPlayerTurn = !isFirstPlayerTurn;
+      computerMove.makeComputerMove();
     }
   },
   clickOnBorder: (boxNumber, lineClicked, helpUser = false, subtractBorder = false) => {
@@ -59,15 +63,15 @@ const lineClickAction = {
         $(".box").removeClass("rightLineClicked");
         $(".box").removeClass("bottomLineClicked");
         $(".box").removeClass("leftLineClicked");
-      }, 800)
+      }, 2000)
     })
   },
   isNotALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
     const includesLocked = (boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox));
-    const doesBoxIncludeABomb = bomb.isExplosionBox(box);
-    const doesAdjBoxIncludeABomb = bomb.isExplosionBox(adjBox);
-    return (!includesLocked || doesBoxIncludeABomb || doesAdjBoxIncludeABomb);
+    // const doesBoxIncludeABomb = bomb.isExplosionBox(box);
+    // const doesAdjBoxIncludeABomb = bomb.isExplosionBox(adjBox);
+    return !includesLocked; //(!includesLocked || doesBoxIncludeABomb || doesAdjBoxIncludeABomb);
   },
   isALineClick: (offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) => {
     const inUpperOutOfBounds = (offsetX > upperOutOfBoundsNumber) || (offsetY > upperOutOfBoundsNumber);

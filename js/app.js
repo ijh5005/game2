@@ -47,12 +47,12 @@ if (isEasyDifficulty) {
 } else if (isHardDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
-let hasMuted = true;
+let hasMuted = false;
 let bombsToLay = 40;
 
 let lockBombLocations = [];
 const possibleBombs = [];
-let lockedBoxLimit = 10;
+let lockedBoxLimit = 5;
 for(let i = 0; i < 36; i++){
   possibleBombs.push(`box${i}`)
 }

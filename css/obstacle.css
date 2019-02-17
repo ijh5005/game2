@@ -2,7 +2,9 @@
   /* background-image: url(../img/brick.jpg);
   background-size: 300%;
   background-position: center; */
-  background-color: #84635a;
+  /* background-color: #84635a; */
+  background-image: url(../img/block.png);
+  background-size: 158%;
 }
 
 .firstPlayerScored {

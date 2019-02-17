@@ -30,16 +30,20 @@ const bomb = {
   },
   populationData: [],
   fillPopulationData: () => {
+    bomb.populationData = [];
     let useTurns = [];
-    while(useTurns.length < bombsToLay){
-      const randomNumber = Math.floor(Math.random()*60);
-      const boxNumber = `box${Math.floor(Math.random()*34)}`;
-      if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
-        useTurns = [...useTurns, boxNumber];
-        bomb.populationData.push({randomNumber, boxNumber});
+    if(bombsToLay > 0){
+      while(useTurns.length < bombsToLay){
+        const randomNumber = Math.floor(Math.random()*60) + track.turn;
+        const boxNumber = `box${Math.floor(Math.random()*34)}`;
+        if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
+          useTurns = [...useTurns, boxNumber];
+          bomb.populationData.push({randomNumber, boxNumber});
+        }
       }
+      bombsToLay-=5;
+      console.table(bomb.populationData);
     }
-    console.table(bomb.populationData);
   },
   bombPopulation: () => {
     let boxNumber;
@@ -134,6 +138,7 @@ const bomb = {
       setTimeout(() => {
         bomb.isVeryLargeExplosion(box);
         soundEffects.playExplosionSound();
+        bomb.fillPopulationData();
       })
     }
     lineClickAction.removeLineClickHighlights();

@@ -358,6 +358,12 @@
 
 .tool img {
   height: 4em;
+  transform: rotateY(0deg);
+}
+
+.tool img.animate {
+  transition: transform 1s;
+  transform: rotateY(360deg);
 }
 
 .tool p {

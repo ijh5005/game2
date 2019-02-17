@@ -80,7 +80,7 @@ possibleBombs.forEach((data, index) => {
 })
 
 let waterRemoval = 0;
-const waterRemovalIndex = [2, 5, 7, 10, 15, 18];
+const waterRemovalIndex = [3, 5, 10, 30];
 const tools = [
   {
     name: "bombEraser",

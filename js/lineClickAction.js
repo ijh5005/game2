@@ -32,6 +32,7 @@ const lineClickAction = {
           });
           soundEffects.playEraseBombSound();
           ui.populateBoard();
+          $(".tool.selected").removeClass("selected");
         }
       }
     } else if(bomb.isExplosionBox(boxNumber)){
@@ -77,6 +78,7 @@ const lineClickAction = {
     ui.populateBoard(board);
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, complementBorder[`${lineClicked}`]): null;
+    track.winner();
   },
   removeLineClickHighlights: () => {
     $(".box").removeClass("topLineClicked");

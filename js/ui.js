@@ -30,14 +30,19 @@ const ui = {
     ui.populateHelpers();
   },
   populateHelpers: () => {
-    $(".bombToolsBar").html("");
     tools.forEach(data => {
-      if(data.count !== 0){
+      const tool = $(`.tool.${data.name}`);
+      const toolExists = tool.length > 0;
+      if(data.count !== 0 && !toolExists){
         const tool = $(`<div class="tool flexCol ${data.name}" onclick="selectHelper('${data.name}')">
           <img src=${data.src} alt="">
-          <p>${data.count}</p>
+          <p class="${data.name}p">${data.count}</p>
         </div>`);
         $(".bombToolsBar").append(tool);
+      } else if (data.count !== 0) {
+        $(`.${data.name}p`).text(data.count);
+      } else if (data.count === 0 && toolExists) {
+        $(tool).remove();
       }
     })
   },

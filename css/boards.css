@@ -74,6 +74,7 @@
   border: 0.04em solid #ffa790;
   border: 0.04em solid #777676;
   border: 0.04em solid #545454;
+  border: 0.04em solid #21183e;
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
@@ -373,6 +374,6 @@
 }
 
 .tool.selected {
-  background-color: #30323a;
+  background-color: #1a103a;
   border-radius: 0.4em;
 }

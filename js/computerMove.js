@@ -1,12 +1,13 @@
 const computerMove = {
   makeComputerMove: () => {
-    const timeToWaitForMove = (explodingBoxes.length > 0) ? 800 : 400;
+    const timeToWaitForMove = (explodingBoxes.length > 0) ? 1500 : 400;
     explodingBoxes = [];
     gameTimer.stopTimer();
     // logic to make computer move
     setTimeout(() => { // makes the computer delay before making a move
       const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
       const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
+      console.table({secondPlayerTurn: true});
       if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
         console.table({giveAWayABox: true})
         computerMove.clickInATwoBorderBox();

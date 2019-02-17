@@ -78,11 +78,14 @@ const lineClickAction = {
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, complementBorder[`${lineClicked}`]): null;
   },
-  changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
+  removeLineClickHighlights: () => {
     $(".box").removeClass("topLineClicked");
     $(".box").removeClass("rightLineClicked");
     $(".box").removeClass("bottomLineClicked");
     $(".box").removeClass("leftLineClicked");
+  },
+  changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
+    lineClickAction.removeLineClickHighlights();
     setTimeout(() => {
       $(`.${boxNumber}`).addClass(`${lineClicked}LineClicked`);
     })

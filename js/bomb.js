@@ -136,6 +136,7 @@ const bomb = {
         soundEffects.playExplosionSound();
       })
     }
+    lineClickAction.removeLineClickHighlights();
   },
   checkForChainReactions: (boxesToCheck) => {
     console.table({method: "checkForChainReactions", boxes: [...boxesToCheck]});

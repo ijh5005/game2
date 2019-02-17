@@ -16,6 +16,7 @@ const soundEffects = {
   },
   playEraseBombSound: () => {
     const audio = new Audio('./soundEffects/eraseBomb.mp3');
+    audio.volume = hasMuted ? 0 : 0.4;
     audio.play();
   }
 }

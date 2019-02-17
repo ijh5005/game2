@@ -11,6 +11,29 @@ const lineClickAction = {
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
       }
+    } else if(helper.isSelected()){
+      if(selectedBombFunction === "bombEraser"){
+        let hasBomb = false;
+        const box = $(`.box.${boxNumber}`);
+        bomb.types.forEach(data => {
+          if(box.hasClass(data.class)){
+            hasBomb = true;
+          }
+        })
+        if(hasBomb){
+          bomb.types.forEach(data => {
+            delete gameBoard[boxNumber][`${data.key}`];
+            bomb.showExplosionInBox(boxNumber, "eraseBomb", 80 * 8);
+          })
+          tools.forEach(data => {
+            if(data.name === selectedBombFunction){
+              data.count--;
+            }
+          });
+          soundEffects.playEraseBombSound();
+          ui.populateBoard();
+        }
+      }
     } else if(bomb.isExplosionBox(boxNumber)){
       bomb.explodeBoxes(boxNumber);
       isFirstPlayerTurn = !isFirstPlayerTurn;

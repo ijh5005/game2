@@ -27,6 +27,19 @@ const ui = {
     }
     gameScore.setScores();
     boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
+    ui.populateHelpers();
+  },
+  populateHelpers: () => {
+    $(".bombToolsBar").html("");
+    tools.forEach(data => {
+      if(data.count !== 0){
+        const tool = $(`<div class="tool flexCol ${data.name}" onclick="selectHelper('${data.name}')">
+          <img src=${data.src} alt="">
+          <p>${data.count}</p>
+        </div>`);
+        $(".bombToolsBar").append(tool);
+      }
+    })
   },
   removeAllLockBoxes: () => {
     $(".box").removeClass("locked");

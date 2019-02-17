@@ -11,6 +11,10 @@
 }
 
 .blur {
+  z-index: -1;
+}
+
+.blur {
   /* All the background image supports */
   transform: translate(0px, 0px, 0px);
   background-image: -webkit-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);

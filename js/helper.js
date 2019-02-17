@@ -28,5 +28,8 @@ const helper = {
       }
     })
     return noDublicates;
+  },
+  isSelected: () => {
+    return $(".tool.selected").length === 1;
   }
 }

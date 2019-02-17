@@ -107,27 +107,30 @@ const bomb = {
     }
   },
   explodeBoxes: (box) => {
-    explodingBoxes.push(box);
-    // console.table(explodingBoxes);
     if (gameBoard[box].isMediumExplosion) {
+      explodingBoxes.push(box);
       bomb.mediumExplosion(box);
       soundEffects.playExplosionSound();
     } else if (gameBoard[box].isLargeExplosion) {
+      explodingBoxes.push(box);
       setTimeout(() => {
         bomb.largerExplosion(box);
         soundEffects.playExplosionSound();
       })
     } else if (gameBoard[box].isVerticalExplosion) {
+      explodingBoxes.push(box);
       setTimeout(() => {
         bomb.verticalExplosion(box);
         soundEffects.playExplosionSound();
       })
     } else if (gameBoard[box].isHorizontalExplosion) {
+      explodingBoxes.push(box);
       setTimeout(() => {
         bomb.horizontalExplosion(box);
         soundEffects.playExplosionSound();
       })
     } else if (gameBoard[box].isVeryLargeExplosion) {
+      explodingBoxes.push(box);
       setTimeout(() => {
         bomb.isVeryLargeExplosion(box);
         soundEffects.playExplosionSound();
@@ -148,16 +151,49 @@ const bomb = {
     // removes the bomb image from the box after the ui is populated
     gameBoard[box].isMediumExplosion = false;
 
-    // removes all 4 borders from the bomb for
-    const numberOfBorders = 4;
-    for (let i = 0; i < numberOfBorders; i++) {
-      setTimeout(() => helper.subtractOneBorderFrom(box))
-    }
+    // cache box number
+    const boxNumber = parseInt(box.replace("box", ""));
+    const topBox = boxInfo.getTopBox(boxNumber);
+    const rightBox = boxInfo.getRightBox(boxNumber);
+    const bottomBox = boxInfo.getBottomBox(boxNumber);
+    const leftBox = boxInfo.getLeftBox(boxNumber);
+
+    // cache boxes to target
+    const linesToRemove = [
+      {
+        box: topBox,
+        lines: ["bottom"]
+      },
+      {
+        box: rightBox,
+        lines: ["left"]
+      },
+      {
+        box: bottomBox,
+        lines: ["top"]
+      },
+      {
+        box: leftBox,
+        lines: ["right"]
+      },
+      {
+        box: box,
+        lines: ["top", "right", "bottom", "left"]
+      }
+    ];
 
     // make boxes explode
-    const explodingBoxes = [box, ...boxInfo.getSurroundingBoxes(box)];
-    explodingBoxes.forEach(explodingBox => bomb.showExplosionInBox(explodingBox, "explosion", 80 * 8));
-    bomb.checkForChainReactions(boxInfo.getSurroundingBoxes(box));
+    linesToRemove.forEach(item => {
+      if (item.box) {
+        lineClickAction.removeBorders(item.box, item.lines);
+        ui.removeScoreColorIfRemovingBorder(item.box, true);
+        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
+      }
+    });
+
+    const boxesToExplode = [topBox, bottomBox, leftBox, rightBox];
+
+    bomb.checkForChainReactions(boxesToExplode)
   },
   largerExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated

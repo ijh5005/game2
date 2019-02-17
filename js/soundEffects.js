@@ -13,5 +13,9 @@ const soundEffects = {
     const audio = new Audio('./soundEffects/lineClick.mp3');
     audio.volume = hasMuted ? 0 : 0.1;
     audio.play();
+  },
+  playEraseBombSound: () => {
+    const audio = new Audio('./soundEffects/eraseBomb.mp3');
+    audio.play();
   }
 }

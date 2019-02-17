@@ -20,7 +20,17 @@ const debugMode = () => {
 const tryFunction = () => {
   bomb.isVeryLargeExplosion();
 }
+const selectHelper = (bombFunction) => {
+  if($(`.tool[class*=${bombFunction}]`).hasClass("selected")){
+    $(".tool").removeClass("selected");
+  } else {
+    $(".tool").removeClass("selected");
+    $(`.tool[class*=${bombFunction}]`).addClass("selected");
+    selectedBombFunction = bombFunction;
+  }
+}
 
+let selectedBombFunction;
 let playerOneScore = 0;
 let playerTwoScore = 0;
 let gameBoardSize = "thirtysix"; // this will be a variable for the user to select
@@ -68,6 +78,41 @@ possibleBombs.forEach((data, index) => {
     })
   }
 })
+
+let waterRemoval = 0;
+const waterRemovalIndex = [2, 5, 7, 10, 15, 18];
+const tools = [
+  {
+    name: "bombEraser",
+    src: "./img/bombEraser.png",
+    count: 0
+  },
+  {
+    name: "mediumBomb",
+    src: "./img/mediumBomb.png",
+    count: 0
+  },
+  {
+    name: "largeBomb",
+    src: "./img/largeBomb.png",
+    count: 0
+  },
+  {
+    name: "verticalBomb",
+    src: "./img/verticalBomb.png",
+    count: 0
+  },
+  {
+    name: "horizontalBomb",
+    src: "./img/horizontalBomb.png",
+    count: 0
+  },
+  {
+    name: "veryLarge",
+    src: "./img/veryLarge.png",
+    count: 0
+  },
+]
 
 ui.populateBoard(); // populate the gameboard into the UI
 bomb.fillPopulationData();

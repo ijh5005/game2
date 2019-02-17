@@ -63,9 +63,7 @@
   flex-wrap: wrap;
   width: 375px;
   position: relative;
-  top: 9em;
-  top: 11em;
-  padding: 1em 0;
+  padding: 2em 0;
   zoom: 96%;
   margin: 0 auto;
 }
@@ -345,4 +343,30 @@
   right: -1em;
   background-color: #222;
   border-radius: 50%;
+}
+
+.bombToolsBar {
+  height: 6em;
+  padding: 0 1em;
+  justify-content: flex-start;
+}
+
+.tool {
+  width: 4em;
+  height: 100%;
+}
+
+.tool img {
+  height: 4em;
+}
+
+.tool p {
+  margin: 0;
+  font-size: 2em;
+  color: #ffa790;
+}
+
+.tool.selected {
+  background-color: #30323a;
+  border-radius: 0.4em;
 }

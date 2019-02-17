@@ -31,11 +31,11 @@ const bomb = {
   populationData: [],
   fillPopulationData: () => {
     let useTurns = [];
-    for(let i = 0; i < bombsToLay; i++){
+    while(useTurns.length < bombsToLay){
       const randomNumber = Math.floor(Math.random()*60);
       const boxNumber = `box${Math.floor(Math.random()*34)}`;
       if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
-        useTurns = [...useTurns, randomNumber, boxNumber];
+        useTurns = [...useTurns, boxNumber];
         bomb.populationData.push({randomNumber, boxNumber});
       }
     }
@@ -48,7 +48,6 @@ const bomb = {
       return data.randomNumber === track.turn
     });
     if(boxNumber && (boxInfo.getBorderCount(boxNumber) !== 4)){
-      soundEffects.playShowBombSound();
       bomb.placeBomb(boxNumber);
     }
   },
@@ -56,6 +55,8 @@ const bomb = {
     if(type !== "smoke") bomb.explodeLockBoxIfHit(box);
     $(`.${box}Explosion`).removeClass("hideExplosion").attr("src", `./gifs/${type}.gif`);
     setTimeout(() => {
+      explodingBoxes.pop();
+      console.table({remainingExplodingBoxes: explodingBoxes})
       $(`.${box}Explosion`).addClass("hideExplosion");
     }, seconds);
   },
@@ -81,9 +82,9 @@ const bomb = {
   placeBomb: (boxNumber) => {
     let explosion = bomb.types[0];
     const number = Math.floor(Math.random() * 71);
-    // if(number > 65){
-    //   explosion = bomb.types[4];
-    // } else
+    if(number > 68){
+      explosion = bomb.types[4];
+    } else
     if(number > 55){
       explosion = bomb.types[3];
     } else if(number > 40){
@@ -93,12 +94,21 @@ const bomb = {
     }
     console.table({explosion, boxNumber});
     if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
+      soundEffects.playShowBombSound();
       document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
       bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
       gameBoard[boxNumber][explosion.key] = true;
+    } else {
+      const missedBox = {
+        missedBox: true,
+        box: boxNumber
+      }
+      console.table({missedBox});
     }
   },
   explodeBoxes: (box) => {
+    explodingBoxes.push(box);
+    // console.table(explodingBoxes);
     if (gameBoard[box].isMediumExplosion) {
       bomb.mediumExplosion(box);
       soundEffects.playExplosionSound();

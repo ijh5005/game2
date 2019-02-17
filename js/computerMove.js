@@ -1,5 +1,7 @@
 const computerMove = {
   makeComputerMove: () => {
+    const timeToWaitForMove = (explodingBoxes.length > 0) ? 800 : 400;
+    explodingBoxes = [];
     gameTimer.stopTimer();
     // logic to make computer move
     setTimeout(() => { // makes the computer delay before making a move
@@ -12,7 +14,7 @@ const computerMove = {
       } else {
         computerMove.makeMoveInSafeBox();
       }
-    }, 400);
+    }, timeToWaitForMove);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
     if (threeBorderBoxes.length !== 0) computerMove.getAFreeBox();

@@ -53,17 +53,15 @@ const lineClickAction = {
     task.isGameOver();
     ui.populateBoard(board);
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
-    (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, complementBorder[`${lineClicked}`], hasAdjacentBox): null;
+    (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, complementBorder[`${lineClicked}`]): null;
   },
-  changeLineColorOfLastClickedBox: (boxNumber, lineClicked, isAdjacentBox) => {
+  changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
+    $(".box").removeClass("topLineClicked");
+    $(".box").removeClass("rightLineClicked");
+    $(".box").removeClass("bottomLineClicked");
+    $(".box").removeClass("leftLineClicked");
     setTimeout(() => {
       $(`.${boxNumber}`).addClass(`${lineClicked}LineClicked`);
-      setTimeout(() => {
-        $(".box").removeClass("topLineClicked");
-        $(".box").removeClass("rightLineClicked");
-        $(".box").removeClass("bottomLineClicked");
-        $(".box").removeClass("leftLineClicked");
-      }, 2000)
     })
   },
   isNotALockedBoxClick: (box, lineClicked) => {

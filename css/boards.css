@@ -87,12 +87,12 @@
 
 .mediumExplosionImage {
   background-image: url("../img/mediumBomb.png");
-  background-size: 82%;
+  /* background-size: 82%; */
 }
 
 .largeExplosionImage {
   background-image: url("../img/largeBomb.png");
-  background-size: 86%;
+  /* background-size: 86%; */
 }
 
 .verticalExplosionImage {
@@ -101,12 +101,12 @@
 
 .horizontalExplosionImage {
   background-image: url("../img/horizontalBomb.png");
-  background-size: 118%;
+  /* background-size: 118%; */
 }
 
 .veryLargeExplosionImage {
   background-image: url("../img/veryLarge.png");
-  background-size: 65%;
+  /* background-size: 65%; */
 }
 
 /* .box::before {

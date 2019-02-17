@@ -34,6 +34,7 @@ let counter;
 let disableComputer = false;
 let totalPointsScored = 0;
 let conserveMoveUsed = false;
+let explodingBoxes = [];
 
 // game controls
 let chanceToGiveAWayPoint;
@@ -48,7 +49,7 @@ if (isEasyDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
 let hasMuted = false;
-let bombsToLay = 40;
+let bombsToLay = 30;
 
 let lockBombLocations = [];
 const possibleBombs = [];

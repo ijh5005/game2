@@ -1,0 +1,48 @@
+.homePage {
+  height: 100%;
+}
+
+.titleSection {
+  height: 40%;
+}
+
+.title {
+  color: #1a103a;
+  font-weight: bold;
+  color: #544D6B;
+}
+
+.title img {
+  height: 1em;
+}
+
+.titleSubText {
+  color: #1a103a;
+  font-size: 2em;
+  margin: 0;
+  position: relative;
+  left: -2em;
+  font-weight: bold;
+}
+
+.settings {
+  background-color: #1a103a;
+  margin-top: 1em;
+  width: 100%;
+  height: 60%;
+}
+
+.setting {
+  color: #ffa790;
+  font-size: 1.4em;
+  margin: 1em;
+  align-self: flex-end;
+}
+
+.homePage.hide,
+.topBar.hide,
+.bombToolsBar.hide,
+#board.hide,
+.levelsPage.hide {
+  display: none;
+}

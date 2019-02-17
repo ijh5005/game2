@@ -1,5 +1,10 @@
 'use strict';
 
+// homepage btn functions
+const chooseBoard = () => {
+  ui.chooseBoard();
+}
+
 const noBorders = [];
 const oneBorderBoxes = [];
 const twoBorderBoxes = [];
@@ -13,7 +18,6 @@ const complementBorder = {
 const gameBoardMapperObj = {
   thirtysix
 }
-
 const debugMode = () => {
   disableComputer = !disableComputer;
 }
@@ -45,6 +49,7 @@ let disableComputer = false;
 let totalPointsScored = 0;
 let conserveMoveUsed = false;
 let explodingBoxes = [];
+let gameMode = true;
 
 // game controls
 let chanceToGiveAWayPoint;
@@ -67,17 +72,6 @@ let lockedBoxLimit = 5;
 for(let i = 0; i < 36; i++){
   possibleBombs.push(`box${i}`)
 }
-possibleBombs.forEach((data, index) => {
-  if(index < lockedBoxLimit){
-    const box = task.getRandomIndexInArray(possibleBombs);
-    const index = possibleBombs.indexOf(box);
-    possibleBombs.splice(index, 1);
-    lockBombLocations.push({
-      box,
-      toughness: 1
-    })
-  }
-})
 
 let waterRemoval = 0;
 const waterRemovalIndex = [3, 5, 10, 30];
@@ -114,5 +108,23 @@ const tools = [
   },
 ]
 
-ui.populateBoard(); // populate the gameboard into the UI
-bomb.fillPopulationData();
+const startGame = (level) => {
+  const lockBoxesAmount = lockBoxes[level];
+  possibleBombs.forEach((data, index) => {
+    if(index < lockBoxesAmount){
+      const box = task.getRandomIndexInArray(possibleBombs);
+      const index = possibleBombs.indexOf(box);
+      possibleBombs.splice(index, 1);
+      lockBombLocations.push({
+        box,
+        toughness: 1
+      })
+    }
+  })
+  $(".levelsPage").addClass("hide");
+  $(".topBar").removeClass("hide");
+  $(".bombToolsBar").removeClass("hide");
+  $("#board").removeClass("hide");
+  ui.populateBoard();
+  bomb.fillPopulationData()
+};

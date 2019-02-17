@@ -1,4 +1,22 @@
 const ui = {
+  chooseBoard: () => {
+    $(".homePage").addClass("hide");
+    $(".levelsPage").removeClass("hide");
+    levels.levelInformation.forEach(data => {
+      let stars = "";
+      for(let i = 0; i < data.stars; i++){
+        stars += `<img src="./img/star.png" alt="">`;
+      }
+      $(".levelsHolder").append(`
+        <div class="level flexCol" onclick="startGame(${data.levelNumber})">
+          <p>${data.levelNumber}</p>
+          <div class="stars flexRow">
+            ${stars}
+          </div>
+        </div>
+      `);
+    })
+  },
   populateBoard: () => { // populate the gameboard into the UI
     // document.getElementById("board").innerHTML = ""; // clear the board before rendering it
 

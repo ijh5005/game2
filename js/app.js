@@ -17,7 +17,10 @@ const complementBorder = {
 }
 const gameBoardMapperObj = {
   thirtysix,
-  level1
+  level1,
+  level2,
+  level3,
+  level4
 }
 const debugMode = () => {
   disableComputer = !disableComputer;
@@ -79,6 +82,7 @@ for(let i = 0; i < 36; i++){
 
 let waterRemoval = 0;
 let waterRemovalIndex;
+let initialBombs;
 const tools = [
   {
     name: "bombEraser",
@@ -113,6 +117,7 @@ const tools = [
 ]
 
 const startGame = (level) => {
+  gameBoard = gameBoardMapperObj[`level${level}`];
   gameBoardLength = ui.getGameBoardLength();
   const lockBoxesAmount = lockBoxes[level];
   possibleBombs.forEach((data, index) => {
@@ -126,9 +131,11 @@ const startGame = (level) => {
   $(".topBar").removeClass("hide");
   $(".bombToolsBar").removeClass("hide");
   $("#board").removeClass("hide");
+  initialBombs = levels.levelInformation[level - 1].initialBombs;
   waterRemovalIndex = levels.levelInformation[level - 1].waterRemovalIndex;
   bombsToLay = levels.levelInformation[level - 1].bombsToLay;
   lockBombLocations = levels.levelInformation[level - 1].lockBoxes;
+  ui.addInitialBombs();
   ui.populateBoard();
   bomb.fillPopulationData()
 };

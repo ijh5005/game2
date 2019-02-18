@@ -1,4 +1,9 @@
 const ui = {
+  addInitialBombs: () => {
+    initialBombs.forEach(data => {
+      gameBoard[data.box][data.bombType] = true;
+    })
+  },
   getGameBoardLength: () => {
     let length = 0;
     for(let box in gameBoard){
@@ -28,7 +33,6 @@ const ui = {
   },
   populateBoard: () => { // populate the gameboard into the UI
     // document.getElementById("board").innerHTML = ""; // clear the board before rendering it
-
     if (document.getElementsByClassName("box").length > 0) {
       const boxes = document.getElementsByClassName("box");
       ui.removeAllLockBoxes();

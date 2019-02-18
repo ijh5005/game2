@@ -4,17 +4,17 @@ const obj = {};
 const size = 36;
 const difference = 6;
 
-const topRightCorner = 10;
-const topLeftCorner = 7;
-const bottomRightCorner = 28;
-const bottomLeftCorner = 25;
+const topRightCorner = [3, 10, 17];
+const topLeftCorner = [2, 7, 12];
+const bottomRightCorner = [23, 28, 33];
+const bottomLeftCorner = [18, 25, 32];
 
-const topSideRow = [8, 9];
-const rightSideRow = [16, 22];
-const bottomSideRow = [26, 27];
-const leftSideRow = [13, 19];
+const topSideRow = [];
+const rightSideRow = [];
+const bottomSideRow = [];
+const leftSideRow = [];
 
-const disabled = [0, 1, 2, 3, 4, 5, 6, 12, 18, 24, 30, 11, 17, 23, 29, 35, 31, 32, 33, 34];
+const disabled = [0, 1, 6, 4, 5, 11, 24, 30, 31, 29, 34, 35];
 
 for (let i = 0; i < size; i++) {
   let addition = {
@@ -48,36 +48,42 @@ for (let i = 0; i < size; i++) {
     }
   };
 
-  if (i === topRightCorner) {
+  if (topRightCorner.includes(i)) {
     addition.surroundingBoxes.topBox = null;
     addition.surroundingBoxes.rightBox = null;
     addition.isTopRightCornerBox = true;
-  } else if (i === topLeftCorner) {
+  }
+  if (topLeftCorner.includes(i)) {
     addition.surroundingBoxes.topBox = null;
     addition.surroundingBoxes.leftBox = null;
     addition.isTopLeftCornerBox = true;
-  } else if (i === bottomRightCorner) {
+  }
+  if (bottomRightCorner.includes(i)) {
     addition.surroundingBoxes.bottomBox = null;
     addition.surroundingBoxes.rightBox = null;
     addition.isBottomRightCornerBox = true;
-  } else if (i === bottomLeftCorner) {
+  }
+  if (bottomLeftCorner.includes(i)) {
     addition.surroundingBoxes.bottomBox = null;
     addition.surroundingBoxes.leftBox = null;
     addition.isBottomLeftCornerBox = true;
-  } else if (topSideRow.includes(i)) {
+  }
+  if (topSideRow.includes(i)) {
     addition.surroundingBoxes.topBox = null;
     addition.isTopSideRow = true;
-  } else if (rightSideRow.includes(i)) {
+  }
+  if (rightSideRow.includes(i)) {
     addition.surroundingBoxes.rightBox = null;
     addition.isRightSideRow = true;
-  } else if (bottomSideRow.includes(i)) {
+  }
+  if (bottomSideRow.includes(i)) {
     addition.surroundingBoxes.bottomBox = null;
     addition.isBottomSideRow = true;
-  } else if (leftSideRow.includes(i)) {
+  }
+  if (leftSideRow.includes(i)) {
     addition.surroundingBoxes.leftBox = null;
     addition.isLeftSideRow = true;
   }
-
   if(disabled.includes(i)){
     addition.disabled = true;
   }

@@ -31,19 +31,26 @@ const boxInfo = {
 
     if (gameBoard[box].isTopRightCornerBox) {
       classesToAdd.push("isTopRightCornerBox");
-    } else if (gameBoard[box].isTopLeftCornerBox) {
+    }
+    if (gameBoard[box].isTopLeftCornerBox) {
       classesToAdd.push("isTopLeftCornerBox");
-    } else if (gameBoard[box].isBottomRightCornerBox) {
+    }
+    if (gameBoard[box].isBottomRightCornerBox) {
       classesToAdd.push("isBottomRightCornerBox");
-    } else if (gameBoard[box].isBottomLeftCornerBox) {
+    }
+    if (gameBoard[box].isBottomLeftCornerBox) {
       classesToAdd.push("isBottomLeftCornerBox");
-    } else if (gameBoard[box].isTopSideRow) {
+    }
+    if (gameBoard[box].isTopSideRow) {
       classesToAdd.push("isTopSideRow");
-    } else if (gameBoard[box].isRightSideRow) {
+    }
+    if (gameBoard[box].isRightSideRow) {
       classesToAdd.push("isRightSideRow");
-    } else if (gameBoard[box].isBottomSideRow) {
+    }
+    if (gameBoard[box].isBottomSideRow) {
       classesToAdd.push("isBottomSideRow");
-    } else if (gameBoard[box].isLeftSideRow) {
+    }
+    if (gameBoard[box].isLeftSideRow) {
       classesToAdd.push("isLeftSideRow");
     }
 

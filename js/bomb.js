@@ -34,8 +34,14 @@ const bomb = {
     let useTurns = [];
     if(bombsToLay > 0){
       while(useTurns.length < bombsToLay){
-        const randomNumber = Math.floor(Math.random()*60) + track.turn;
-        const boxNumber = `box${Math.floor(Math.random()*34)}`;
+        const randomNumber = Math.floor(Math.random()*30) + track.turn;
+        const filtered = [];
+        for(let box in gameBoard){
+          if(!gameBoard[box].disabled){
+            filtered.push(box)
+          }
+        }
+        const boxNumber = filtered[Math.floor(Math.random()*(gameBoardLength - 1))];
         if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
           useTurns = [...useTurns, boxNumber];
           bomb.populationData.push({randomNumber, boxNumber});

@@ -6,7 +6,7 @@
 }
 
 .levelsPage::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
 .levelsHolder {
@@ -29,4 +29,10 @@
 
 .stars img {
   height: 1.4em;
+}
+
+.boardLock {
+  color: #fff;
+  opacity: 0.3;
+  font-size: 3em;
 }

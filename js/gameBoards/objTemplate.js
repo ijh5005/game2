@@ -4,17 +4,19 @@ const obj = {};
 const size = 36;
 const difference = 6;
 
-const topRightCorner = 5;
-const topLeftCorner = 0;
-const bottomRightCorner = 35;
-const bottomLeftCorner = 30;
+const topRightCorner = 10;
+const topLeftCorner = 7;
+const bottomRightCorner = 28;
+const bottomLeftCorner = 25;
 
-const topSideRow = [1, 2, 3, 4];
-const rightSideRow = [11, 17, 23, 29];
-const bottomSideRow = [31, 32, 33, 34];
-const leftSideRow = [6, 12, 18, 24];
+const topSideRow = [8, 9];
+const rightSideRow = [16, 22];
+const bottomSideRow = [26, 27];
+const leftSideRow = [13, 19];
 
-for (let i = 0; i < size + (difference - 1); i++) {
+const disabled = [0, 1, 2, 3, 4, 5, 6, 12, 18, 24, 30, 11, 17, 23, 29, 35, 31, 32, 33, 34];
+
+for (let i = 0; i < size; i++) {
   let addition = {
     borders: {
       top: null,
@@ -74,12 +76,10 @@ for (let i = 0; i < size + (difference - 1); i++) {
   } else if (leftSideRow.includes(i)) {
     addition.surroundingBoxes.leftBox = null;
     addition.isLeftSideRow = true;
-  } else if (i >= size) {
-    addition.isNoBorderBox = true;
-    addition.surroundingBoxes.leftBox = null;
-    addition.surroundingBoxes.topBox = null;
-    addition.surroundingBoxes.rightBox = null;
-    addition.surroundingBoxes.bottomBox = null;
+  }
+
+  if(disabled.includes(i)){
+    addition.disabled = true;
   }
 
   obj[`box${i}`] = addition;

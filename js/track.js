@@ -20,7 +20,7 @@ const track = {
     firstPlayerPoints = $(".firstPlayerScored").length;
     secondPlayerPoints = $(".secondPlayerScored").length;
     totalPoints = firstPlayerPoints + secondPlayerPoints;
-    if(totalPoints === 36){
+    if(totalPoints === gameBoardLength){
       if(firstPlayerPoints > secondPlayerPoints){
         console.log("first player wins");
       } else {

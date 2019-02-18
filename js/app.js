@@ -16,7 +16,8 @@ const complementBorder = {
   left: "right"
 }
 const gameBoardMapperObj = {
-  thirtysix
+  thirtysix,
+  level1
 }
 const debugMode = () => {
   disableComputer = !disableComputer;
@@ -37,7 +38,8 @@ const selectHelper = (bombFunction) => {
 let selectedBombFunction;
 let playerOneScore = 0;
 let playerTwoScore = 0;
-let gameBoardSize = "thirtysix"; // this will be a variable for the user to select
+let gameBoardLength;
+let gameBoardSize = "level1"; // this will be a variable for the user to select
 let rowLength = 6;
 let gameBoard = gameBoardMapperObj[gameBoardSize]; // map the selected gameBoard with its corresponding object
 let hasScored = false;
@@ -64,17 +66,19 @@ if (isEasyDifficulty) {
   chanceToGiveAWayPoint = 0.01;
 }
 let hasMuted = false;
-let bombsToLay = 30;
+let bombsToLay = 0;
 
 let lockBombLocations = [];
 const possibleBombs = [];
 let lockedBoxLimit = 5;
 for(let i = 0; i < 36; i++){
-  possibleBombs.push(`box${i}`)
+  if(!boxInfo.isBoxDisabled(`box${i}`)){
+    possibleBombs.push(`box${i}`);
+  }
 }
 
 let waterRemoval = 0;
-const waterRemovalIndex = [3, 5, 10, 30];
+let waterRemovalIndex;
 const tools = [
   {
     name: "bombEraser",
@@ -109,22 +113,22 @@ const tools = [
 ]
 
 const startGame = (level) => {
+  gameBoardLength = ui.getGameBoardLength();
   const lockBoxesAmount = lockBoxes[level];
   possibleBombs.forEach((data, index) => {
     if(index < lockBoxesAmount){
       const box = task.getRandomIndexInArray(possibleBombs);
       const index = possibleBombs.indexOf(box);
       possibleBombs.splice(index, 1);
-      lockBombLocations.push({
-        box,
-        toughness: 1
-      })
     }
   })
   $(".levelsPage").addClass("hide");
   $(".topBar").removeClass("hide");
   $(".bombToolsBar").removeClass("hide");
   $("#board").removeClass("hide");
+  waterRemovalIndex = levels.levelInformation[level - 1].waterRemovalIndex;
+  bombsToLay = levels.levelInformation[level - 1].bombsToLay;
+  lockBombLocations = levels.levelInformation[level - 1].lockBoxes;
   ui.populateBoard();
   bomb.fillPopulationData()
 };

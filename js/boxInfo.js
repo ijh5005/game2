@@ -1,4 +1,7 @@
 const boxInfo = {
+  isBoxDisabled: (box) => {
+    return gameBoard[box].disabled === true;
+  },
   getBorderCount: (box) => {
     const borders = gameBoard[box].borders;
     let count = 0;
@@ -48,6 +51,10 @@ const boxInfo = {
       classesToAdd.push("locked");
     }
 
+    if(boxInfo.isBoxDisabled(box)){
+      classesToAdd.push("disabled");
+    }
+
     classesToAdd.push("flexRow");
     classesToAdd.push(box);
     return classesToAdd;
@@ -79,11 +86,13 @@ const boxInfo = {
   adjustBorderCountArrays: () => {
     boxInfo.clearBorderArrays();
     for (let box in gameBoard) {
-      const borderCount = boxInfo.getBorderCount(box);
-      if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);
-      else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);
-      else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box)
-      else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
+      if(!boxInfo.isBoxDisabled(box)){
+        const borderCount = boxInfo.getBorderCount(box);
+        if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);
+        else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);
+        else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box)
+        else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
+      }
     }
   },
   countsAsNoBorders: (box, borderCount) => {

@@ -24,3 +24,7 @@
   background-color: rgba(34, 31, 39, 0.8);
   background-color: #4e4179;
 }
+
+.disabled {
+  border: none;
+}

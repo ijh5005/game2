@@ -1,4 +1,13 @@
 const ui = {
+  getGameBoardLength: () => {
+    let length = 0;
+    for(let box in gameBoard){
+      if(!gameBoard[box].disabled){
+        length++;
+      }
+    }
+    return length;
+  },
   chooseBoard: () => {
     $(".homePage").addClass("hide");
     $(".levelsPage").removeClass("hide");
@@ -37,7 +46,7 @@ const ui = {
         // boxInfo.getNumberText(box, gridBox);
         $(gridBox).html(`<img class="explosionBox ${box}Explosion hideExplosion">`)
         gridBox.addEventListener("click", (e) => { // add a click event to the box click on borders
-          if (!isFirstPlayerTurn) return null; // prevent out of turn clicks
+          if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
           lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
         });
         $("#board").append(gridBox); // add the box to the game board
@@ -71,7 +80,7 @@ const ui = {
     }
   },
   addLockBox: (box) => {
-    if(boxInfo.isALockBox(box)){
+    if(boxInfo.isALockBox(box) && !boxInfo.isBoxDisabled(box)){
       gameBoard[box].isLocked = true;
     }
   },

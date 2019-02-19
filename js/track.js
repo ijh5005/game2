@@ -21,11 +21,7 @@ const track = {
     secondPlayerPoints = $(".secondPlayerScored").length;
     totalPoints = firstPlayerPoints + secondPlayerPoints;
     if(totalPoints === gameBoardLength){
-      if(firstPlayerPoints > secondPlayerPoints){
-        console.log("first player wins");
-      } else {
-        console.log("second player wins");
-      }
+      task.setStarsForWinner(firstPlayerPoints);
       ui.showFinishScreen();
     }
   }

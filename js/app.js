@@ -55,6 +55,8 @@ let totalPointsScored = 0;
 let conserveMoveUsed = false;
 let explodingBoxes = [];
 let gameMode = true;
+let gameLevel;
+let starsEarned;
 
 // game controls
 let chanceToGiveAWayPoint;
@@ -131,10 +133,11 @@ const startGame = (level) => {
   $(".topBar").removeClass("hide");
   $(".bombToolsBar").removeClass("hide");
   $("#board").removeClass("hide");
-  initialBombs = levels.levelInformation[level - 1].initialBombs;
-  waterRemovalIndex = levels.levelInformation[level - 1].waterRemovalIndex;
-  bombsToLay = levels.levelInformation[level - 1].bombsToLay;
-  lockBombLocations = levels.levelInformation[level - 1].lockBoxes;
+  task.setGameLevel(level)
+  initialBombs = levels.levelInformation[gameLevel].initialBombs;
+  waterRemovalIndex = levels.levelInformation[gameLevel].waterRemovalIndex;
+  bombsToLay = levels.levelInformation[gameLevel].bombsToLay;
+  lockBombLocations = levels.levelInformation[gameLevel].lockBoxes;
   ui.addInitialBombs();
   ui.populateBoard();
   bomb.fillPopulationData()

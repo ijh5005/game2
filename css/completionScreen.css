@@ -39,6 +39,13 @@
 .completeStar2,
 .completeStar3 {
   position: relative;
+  opacity: 1;
+}
+
+.completeStar1.hide,
+.completeStar2.hide,
+.completeStar3.hide {
+  opacity: 0;
 }
 
 .completeStar2 {

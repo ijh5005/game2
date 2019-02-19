@@ -32,5 +32,38 @@ const task = {
   removeClassWithClassName: (className, classToRemove) => {
     const ele = document.getElementsByClassName(className)[0];
     ele.classList.remove(classToRemove);
+  },
+  setGameLevel: (level) => {
+    gameLevel = level - 1;
+  },
+  setStarsForWinner: (score) => {
+    const starRubric = levels.levelInformation[gameLevel].starRating;
+    if(score >= starRubric[2].score){
+      starsEarned = starRubric[2].stars;
+      task.animateStarCount(["completeStar1", "completeStar2", "completeStar3"])
+    } else if(score >= starRubric[1].score){
+      starsEarned = starRubric[1].stars;
+      task.animateStarCount(["completeStar1", "completeStar2", false])
+    } else if(score >= starRubric[0].score){
+      starsEarned = starRubric[0].stars;
+      task.animateStarCount(["completeStar1", false, false])
+    }
+  },
+  animateStarCount: (score) => {
+    setTimeout(() => {
+      if(score[0]){
+        task.removeClassWithClassName(score[0], "hide");
+        setTimeout(() => {
+          if(score[1]){
+            task.removeClassWithClassName(score[1], "hide");
+            setTimeout(() => {
+              if(score[2]){
+                task.removeClassWithClassName(score[2], "hide");
+              }
+            }, 200)
+          }
+        }, 200)
+      }
+    }, 500)
   }
 }

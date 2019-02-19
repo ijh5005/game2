@@ -1,6 +1,8 @@
 .completionScreen {
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+  transition: opacity 1s;
   position: absolute;
   top: 0;
   left: 0;
@@ -16,6 +18,11 @@
 .ribbonHolder {
   position: relative;
   top: -8em;
+  transition: top 1s;
+}
+
+.ribbonHolder.down {
+  top: -2em;
 }
 
 .completeStars {
@@ -59,6 +66,11 @@
   position: relative;
   top: 8em;
   z-index: -1;
+}
+
+.finishPageBtns {
+  position: relative;
+  top: -8em;
 }
 
 .finishBtn {

@@ -111,5 +111,9 @@ const ui = {
     } = closeTheBoxConnectionParams;
     if (gameBoard[boxNumber].surroundingBoxes[`${boxNumberClosedBorder}Box`]) gameBoard[boxNumber].surroundingBoxes[`${boxNumberClosedBorder}Box`].isConnected = false;
     if (adjacentBox && gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`]) gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`].isConnected = false;
+  },
+  showFinishScreen: () => {
+    task.removeClassWithClassName("completionScreen", "hide");
+    task.removeClassWithClassName("ribbonHolder", "down");
   }
 }

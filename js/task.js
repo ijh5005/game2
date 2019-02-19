@@ -29,4 +29,8 @@ const task = {
   getRandomIndexInArray: (boxArray) => {
     return boxArray[Math.floor(Math.random() * boxArray.length)];
   },
+  removeClassWithClassName: (className, classToRemove) => {
+    const ele = document.getElementsByClassName(className)[0];
+    ele.classList.remove(classToRemove);
+  }
 }

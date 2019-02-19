@@ -26,6 +26,7 @@ const track = {
       } else {
         console.log("second player wins");
       }
+      ui.showFinishScreen();
     }
   }
 }

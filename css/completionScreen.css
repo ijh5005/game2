@@ -1,0 +1,86 @@
+.completionScreen {
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.completionScreen.hide {
+  z-index: -100;
+  opacity: 0;
+}
+
+.ribbonHolder {
+  position: relative;
+  top: -8em;
+}
+
+.completeStars {
+  height: 6em;
+  position: relative;
+  top: -6em;
+}
+
+.completeStars img {
+  height: 6em;
+}
+
+.completeStar1,
+.completeStar2,
+.completeStar3 {
+  position: relative;
+}
+
+.completeStar2 {
+  top: -2em;
+}
+
+.completeStar1 {
+  left: 2em;
+}
+
+.completeStar3 {
+  left: -2em;
+}
+
+.ribbon {
+  width: 100%;
+}
+
+.ribbon img {
+  width: 100%;
+}
+
+.characterOnFinish {
+  height: 16em;
+  position: relative;
+  top: 8em;
+  z-index: -1;
+}
+
+.finishBtn {
+  height: 4em;
+  width: 4em;
+  border-radius: 50%;
+  background-color: #FCD32E;
+  margin: 0 0.2em;
+}
+
+.finishBtn i {
+  color: #000;
+  font-size: 2em;
+  opacity: 0.8;
+}
+
+.finishBtn1,
+.finishBtn3 {
+  position: relative;
+}
+
+.finishBtn1,
+.finishBtn3 {
+  top: 4em;
+}

@@ -15,7 +15,7 @@ const levels = {
       ]
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 2,
       stars: 2,
       lockBoxes: [{

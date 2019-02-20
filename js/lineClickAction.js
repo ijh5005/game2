@@ -42,27 +42,24 @@ const lineClickAction = {
       computerMove.makeComputerMove();
     }
   },
-  clickOnBorder: (boxNumber, lineClicked, helpUser = false, subtractBorder = false) => {
-    console.table({boxNumber, lineClicked, helpUser, subtractBorder})
+  clickOnBorder: (boxNumber, lineClicked) => {
+    console.table({boxNumber, lineClicked})
     soundEffects.playLineClickSound();
     bomb.bombPopulation();
     track.incrementTurn();
     if (isFirstPlayerTurn) {
       gameTimer.incrementTimer();
     }
-    const action = subtractBorder ? null : true;
-    ui.removeScoreColorIfRemovingBorder(boxNumber, subtractBorder)
-    gameBoard[boxNumber].borders[lineClicked] = action;
+    gameBoard[boxNumber].borders[lineClicked] = true;
     gameScore.highlightBoxIfScored(boxNumber);
     let adjacentBox = null;
     let adjBoxNumber = null;
     const hasAdjacentBox = ((gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== null) && (gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== undefined));
     if (hasAdjacentBox) {
       adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
-      gameBoard[`box${adjacentBox}`].borders[complementBorder[`${lineClicked}`]] = action;
+      gameBoard[`box${adjacentBox}`].borders[complementBorder[`${lineClicked}`]] = true;
       gameScore.highlightBoxIfScored(`box${adjacentBox}`);
       adjBoxNumber = `box${adjacentBox}`;
-      ui.removeScoreColorIfRemovingBorder(`box${adjacentBox}`, subtractBorder);
     }
     ui.closeTheBoxConnection({
       boxNumber,
@@ -72,9 +69,7 @@ const lineClickAction = {
     });
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     gameScore.adjustScore(...scoreParams); // adjust the score
-    if (!helpUser) {
-      task.setTurnPlayer(); // set the turn player
-    }
+    task.setTurnPlayer(); // set the turn player
     task.isGameOver();
     ui.populateBoard(board);
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);

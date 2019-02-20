@@ -74,11 +74,9 @@ const ui = {
       gameBoard[box].isLocked = true;
     }
   },
-  removeScoreColorIfRemovingBorder: (box, subtractBorder) => {
-    if (subtractBorder) {
-      gameBoard[box].whoScored = null;
-      $(`.${box}`).removeClass("firstPlayerScored").removeClass("secondPlayerScored");
-    }
+  removeScoreColorIfRemovingBorder: (box) => {
+    gameBoard[box].whoScored = null;
+    $(`.${box}`).removeClass("firstPlayerScored").removeClass("secondPlayerScored");
   },
   closeTheBoxConnection: (closeTheBoxConnectionParams) => {
     const {

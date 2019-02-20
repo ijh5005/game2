@@ -19,7 +19,16 @@ const levels = {
       levelNumber: 2,
       stars: 2,
       lockBoxes: [{
+        box: "box8",
+        toughness: 1
+      },{
+        box: "box10",
+        toughness: 1
+      },{
         box: "box14",
+        toughness: 1
+      },{
+        box: "box21",
         toughness: 1
       }],
       initialBombs: [{
@@ -35,7 +44,7 @@ const levels = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 3,
       stars: 2,
       lockBoxes: [{
@@ -55,13 +64,13 @@ const levels = {
       bombsToLay: 0,
       waterRemovalIndex: [],
       starRating: [
-        { stars: 1, score: 10 },
-        { stars: 2, score: 11 },
-        { stars: 3, score: 12 }
+        { stars: 1, score: 11 },
+        { stars: 2, score: 12 },
+        { stars: 3, score: 13 }
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 4,
       stars: 1,
       lockBoxes: [{

@@ -198,7 +198,7 @@ const bomb = {
     linesToRemove.forEach(item => {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box, true);
+        ui.removeScoreColorIfRemovingBorder(item.box);
         bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
@@ -224,7 +224,7 @@ const bomb = {
     bordersToRemove.forEach(item => {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.borders);
-        ui.removeScoreColorIfRemovingBorder(item.box, true);
+        ui.removeScoreColorIfRemovingBorder(item.box);
         bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
@@ -271,7 +271,7 @@ const bomb = {
     linesToRemove.forEach(item => {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box, true);
+        ui.removeScoreColorIfRemovingBorder(item.box);
         bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
@@ -321,7 +321,7 @@ const bomb = {
     linesToRemove.forEach(item => {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box, true);
+        ui.removeScoreColorIfRemovingBorder(item.box);
         bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
@@ -353,7 +353,7 @@ const bomb = {
       delete gameBoard[item].isLargeExplosion;
       delete gameBoard[item].isVeryLargeExplosion;
       allClasses.forEach(cl => document.getElementsByClassName(item)[0].classList.remove(cl));
-      ui.removeScoreColorIfRemovingBorder(item, true);
+      ui.removeScoreColorIfRemovingBorder(item);
     }
     for (let item in gameBoard) {
       bomb.showExplosionInBox(item, "explosion", 80 * 8);

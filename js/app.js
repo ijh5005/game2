@@ -16,7 +16,7 @@ const startGame = (level) => {
   lockBombLocations = levels.levelInformation[gameLevel].lockBoxes;
 
 
-  gameBoard = gameBoardMapperObj[`level${level}`];
+  gameBoard = JSON.parse(JSON.stringify(gameBoardMapperObj[`level${level}`]));
   gameBoardLength = ui.getGameBoardLength();
 
   const lockBoxesAmount = lockBoxes[level];
@@ -38,6 +38,11 @@ const startGame = (level) => {
   ui.populateBoard();
   bomb.fillPopulationData()
 };
+const redo = () => {
+  task.clearBoard();
+  track.goToPage('gameBoardPage');
+}
+
 const noBorders = [];
 const oneBorderBoxes = [];
 const twoBorderBoxes = [];
@@ -71,7 +76,7 @@ let playerTwoScore = 0;
 let gameBoardLength;
 let gameBoardSize = "level1"; // this will be a variable for the user to select
 let rowLength = 6;
-let gameBoard = gameBoardMapperObj[gameBoardSize]; // map the selected gameBoard with its corresponding object
+let gameBoard; // map the selected gameBoard with its corresponding object
 let hasScored = false;
 let isFirstPlayerTurn = true;
 let isPlayingComputer = true; // indicates if you are playing the computer

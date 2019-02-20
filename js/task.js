@@ -74,5 +74,8 @@ const task = {
     } else if (difficulty === "hard") {
       chanceToGiveAWayPoint = 0.01;
     }
+  },
+  clearBoard: () => {
+    startGame(gameLevel);
   }
 }

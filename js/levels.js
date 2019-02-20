@@ -15,7 +15,7 @@ const levels = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 2,
       stars: 2,
       lockBoxes: [{
@@ -29,9 +29,9 @@ const levels = {
       bombsToLay: 0,
       waterRemovalIndex: [],
       starRating: [
-        { stars: 1, score: 10 },
-        { stars: 2, score: 11 },
-        { stars: 3, score: 12 }
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
       ]
     },
     {

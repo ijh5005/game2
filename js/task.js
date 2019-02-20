@@ -76,6 +76,10 @@ const task = {
     }
   },
   clearBoard: () => {
-    startGame(gameLevel);
+    $(".box").remove();
+    startGame(gameLevel + 1); // add one for the index
+  },
+  breakRefAndCopy: (obj) => {
+    return JSON.parse(JSON.stringify(obj));
   }
 }

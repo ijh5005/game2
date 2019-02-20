@@ -4,19 +4,16 @@ const chooseBoard = () => {
   ui.chooseBoard();
 };
 const startGame = (level) => {
-
   track.goToPage("gameBoardPage");
   task.setDifficulty("hard");
 
-
   task.setGameLevel(level)
-  initialBombs = levels.levelInformation[gameLevel].initialBombs;
-  waterRemovalIndex = levels.levelInformation[gameLevel].waterRemovalIndex;
-  bombsToLay = levels.levelInformation[gameLevel].bombsToLay;
-  lockBombLocations = levels.levelInformation[gameLevel].lockBoxes;
+  initialBombs = task.breakRefAndCopy(levels.levelInformation[gameLevel].initialBombs);
+  waterRemovalIndex = task.breakRefAndCopy(levels.levelInformation[gameLevel].waterRemovalIndex);
+  bombsToLay = task.breakRefAndCopy(levels.levelInformation[gameLevel].bombsToLay);
+  lockBombLocations = task.breakRefAndCopy(levels.levelInformation[gameLevel].lockBoxes);
 
-
-  gameBoard = JSON.parse(JSON.stringify(gameBoardMapperObj[`level${level}`]));
+  gameBoard = task.breakRefAndCopy(gameBoardMapperObj[`level${level}`]);
   gameBoardLength = ui.getGameBoardLength();
 
   const lockBoxesAmount = lockBoxes[level];

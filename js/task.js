@@ -65,5 +65,14 @@ const task = {
         }, 200)
       }
     }, 500)
+  },
+  setDifficulty: (difficulty) => {
+    if (difficulty === "easy") {
+      chanceToGiveAWayPoint = 0.4;
+    } else if (difficulty === "medium") {
+      chanceToGiveAWayPoint = 0.2;
+    } else if (difficulty === "hard") {
+      chanceToGiveAWayPoint = 0.01;
+    }
   }
 }

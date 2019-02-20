@@ -38,11 +38,3 @@
   margin: 1em;
   align-self: flex-end;
 }
-
-.homePage.hide,
-.topBar.hide,
-.bombToolsBar.hide,
-#board.hide,
-.levelsPage.hide {
-  display: none;
-}

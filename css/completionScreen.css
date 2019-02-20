@@ -10,11 +10,6 @@
   width: 100%;
 }
 
-.completionScreen.hide {
-  z-index: -100;
-  opacity: 0;
-}
-
 .ribbonHolder {
   position: relative;
   top: -8em;

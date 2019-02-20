@@ -24,5 +24,13 @@ const track = {
       task.setStarsForWinner(firstPlayerPoints);
       ui.showFinishScreen();
     }
+  },
+  goToPage: (page) => {
+    const allPages = document.getElementsByClassName("page");
+    for(let i = 0; i < allPages.length; i++){
+      allPages[i].classList.add("removePage");
+    }
+    const currentPage = document.getElementsByClassName(page)[0];
+    currentPage.classList.remove("removePage");
   }
 }

@@ -1,10 +1,43 @@
 'use strict';
-
 // homepage btn functions
 const chooseBoard = () => {
   ui.chooseBoard();
-}
+};
+const startGame = (level) => {
 
+  track.goToPage("gameBoardPage");
+  task.setDifficulty("hard");
+
+
+  task.setGameLevel(level)
+  initialBombs = levels.levelInformation[gameLevel].initialBombs;
+  waterRemovalIndex = levels.levelInformation[gameLevel].waterRemovalIndex;
+  bombsToLay = levels.levelInformation[gameLevel].bombsToLay;
+  lockBombLocations = levels.levelInformation[gameLevel].lockBoxes;
+
+
+  gameBoard = gameBoardMapperObj[`level${level}`];
+  gameBoardLength = ui.getGameBoardLength();
+
+  const lockBoxesAmount = lockBoxes[level];
+  for(let i = 0; i < 36; i++){
+    if(!boxInfo.isBoxDisabled(`box${i}`)){
+      possibleBombs.push(`box${i}`);
+    }
+  }
+
+  possibleBombs.forEach((data, index) => {
+    if(index < lockBoxesAmount){
+      const box = task.getRandomIndexInArray(possibleBombs);
+      const index = possibleBombs.indexOf(box);
+      possibleBombs.splice(index, 1);
+    }
+  })
+
+  ui.addInitialBombs();
+  ui.populateBoard();
+  bomb.fillPopulationData()
+};
 const noBorders = [];
 const oneBorderBoxes = [];
 const twoBorderBoxes = [];
@@ -21,12 +54,6 @@ const gameBoardMapperObj = {
   level2,
   level3,
   level4
-}
-const debugMode = () => {
-  disableComputer = !disableComputer;
-}
-const tryFunction = () => {
-  bomb.isVeryLargeExplosion();
 }
 const selectHelper = (bombFunction) => {
   if($(`.tool[class*=${bombFunction}]`).hasClass("selected")){
@@ -60,27 +87,11 @@ let starsEarned;
 
 // game controls
 let chanceToGiveAWayPoint;
-let isEasyDifficulty = false;
-let isMediumDifficulty = false;
-let isHardDifficulty = true;
-if (isEasyDifficulty) {
-  chanceToGiveAWayPoint = 0.4;
-} else if (isMediumDifficulty) {
-  chanceToGiveAWayPoint = 0.2;
-} else if (isHardDifficulty) {
-  chanceToGiveAWayPoint = 0.01;
-}
 let hasMuted = false;
 let bombsToLay = 0;
-
 let lockBombLocations = [];
 const possibleBombs = [];
 let lockedBoxLimit = 5;
-for(let i = 0; i < 36; i++){
-  if(!boxInfo.isBoxDisabled(`box${i}`)){
-    possibleBombs.push(`box${i}`);
-  }
-}
 
 let waterRemoval = 0;
 let waterRemovalIndex;
@@ -118,27 +129,4 @@ const tools = [
   },
 ]
 
-const startGame = (level) => {
-  gameBoard = gameBoardMapperObj[`level${level}`];
-  gameBoardLength = ui.getGameBoardLength();
-  const lockBoxesAmount = lockBoxes[level];
-  possibleBombs.forEach((data, index) => {
-    if(index < lockBoxesAmount){
-      const box = task.getRandomIndexInArray(possibleBombs);
-      const index = possibleBombs.indexOf(box);
-      possibleBombs.splice(index, 1);
-    }
-  })
-  $(".levelsPage").addClass("hide");
-  $(".topBar").removeClass("hide");
-  $(".bombToolsBar").removeClass("hide");
-  $("#board").removeClass("hide");
-  task.setGameLevel(level)
-  initialBombs = levels.levelInformation[gameLevel].initialBombs;
-  waterRemovalIndex = levels.levelInformation[gameLevel].waterRemovalIndex;
-  bombsToLay = levels.levelInformation[gameLevel].bombsToLay;
-  lockBombLocations = levels.levelInformation[gameLevel].lockBoxes;
-  ui.addInitialBombs();
-  ui.populateBoard();
-  bomb.fillPopulationData()
-};
+track.goToPage("homePage");

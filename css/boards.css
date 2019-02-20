@@ -377,3 +377,9 @@
   background-color: #1a103a;
   border-radius: 0.4em;
 }
+
+.removePage {
+  display: none;
+  opacity: 0;
+  z-index: -100;
+}

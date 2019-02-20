@@ -31,7 +31,7 @@
         <div class="blur"></div>
 
         <!-- home page -->
-        <div class="homePage flexCol">
+        <div class="homePage flexCol page">
           <div class="titleSection">
             <p class="title">b<img src="./img/mediumBomb.png" alt="">xes</p>
             <p class="titleSubText">and lines</p>
@@ -46,21 +46,23 @@
         </div>
 
         <!-- level page -->
-        <div class="levelsPage hide">
+        <div class="levelsPage hide page levelPage">
           <p class="title">level</p>
           <div class="levelsHolder flexRow"></div>
         </div>
 
         <!-- game board pages -->
-        <div class="topBar flexRow hide">
-          <p class="playerOneScore">0</p>
-          <p class="playerTwoScore">0</p>
+        <div class="page gameBoardPage">
+          <div class="topBar flexRow hide">
+            <p class="playerOneScore">0</p>
+            <p class="playerTwoScore">0</p>
+          </div>
+          <div class="bombToolsBar flexRow hide"></div>
+          <div id="board" class="flexRow hide"></div>
         </div>
-        <div class="bombToolsBar flexRow hide"></div>
-        <div id="board" class="flexRow hide"></div>
 
         <!-- completion screen screen -->
-        <div class="completionScreen flexCol hide">
+        <div class="completionScreen flexCol hide page removePage">
           <div class="flexCol ribbonHolder down">
             <img class="characterOnFinish" src="./img/mediumBomb.png" alt="">
             <div class="ribbon">

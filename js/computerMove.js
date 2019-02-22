@@ -2,7 +2,6 @@ const computerMove = {
   makeComputerMove: () => {
     const timeToWaitForMove = (explodingBoxes.length > 0) ? 1500 : 400;
     explodingBoxes = [];
-    gameTimer.stopTimer();
     // logic to make computer move
     setTimeout(() => { // makes the computer delay before making a move
       const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
@@ -28,8 +27,8 @@ const computerMove = {
     const clickBox = task.getRandomIndexInArray(threeBorderBoxes);
     // this was taken out to fix the locked boxes functionality
     // const smartClickBoxInfo = computerMove.shouldLetHaveBox();
-    Object.keys(gameboardMapper.getGameBoardClickBox(clickBox).borders).forEach(data => {
-      if (!gameboardMapper.getGameBoardClickBox(clickBox).borders[data]) {
+    Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(data => {
+      if (!boxInfo.getGameBoardClickBox(clickBox).borders[data]) {
         // if (smartClickBoxInfo && smartClickBoxInfo.sideToClick && !conserveMoveUsed) {
         //   conserveMoveUsed = true;
         //   lineClickAction.clickOnBorder(smartClickBoxInfo.boxToClick, smartClickBoxInfo.sideToClick)
@@ -179,7 +178,7 @@ const computerMove = {
       oneBorderBoxes.forEach(box => {
         const connectedBoxes = boxInfo.getConnectedBoxes(box);
         connectedBoxCombinations.forEach((paths, index) => {
-          if (helper.hasTwoInArray(connectedBoxes, paths)) {
+          if (task.hasTwoInArray(connectedBoxes, paths)) {
             let allPathsHere = [];
             connectedBoxes.forEach(eachBox => {
               connectedBoxCombinations.forEach(pathsToGetPathsFrom => {
@@ -188,7 +187,7 @@ const computerMove = {
                 }
               })
             })
-            const withRemovedDoubles = helper.removedDoublesFromArray(allPathsHere);
+            const withRemovedDoubles = task.removedDoublesFromArray(allPathsHere);
             replacements.push({
               array: withRemovedDoubles,
               index
@@ -207,7 +206,7 @@ const computerMove = {
     while(keepGoing){
       const boxToClick = task.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
       let lineClick;
-      const borders = gameboardMapper.getGameBoardClickBox(boxToClick).borders;
+      const borders = boxInfo.getGameBoardClickBox(boxToClick).borders;
       Object.keys(borders).forEach((data, index) => {
         const noBorderClicked = borders[data] === null;
         const isClickBoxALockBox = boxInfo.isALockBox(boxToClick);

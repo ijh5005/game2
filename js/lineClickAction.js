@@ -12,7 +12,7 @@ const lineClickAction = {
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
       }
-    } else if(helper.isSelected()){
+    } else if(task.isSelected()){
       if(selectedBombFunction === "bombEraser"){
         let hasBomb = false;
         const box = $(`.box.${boxNumber}`);
@@ -47,18 +47,15 @@ const lineClickAction = {
     soundEffects.playLineClickSound();
     bomb.bombPopulation();
     track.incrementTurn();
-    if (isFirstPlayerTurn) {
-      gameTimer.incrementTimer();
-    }
     gameBoard[boxNumber].borders[lineClicked] = true;
-    gameScore.highlightBoxIfScored(boxNumber);
+    track.highlightBoxIfScored(boxNumber);
     let adjacentBox = null;
     let adjBoxNumber = null;
     const hasAdjacentBox = ((gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== null) && (gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== undefined));
     if (hasAdjacentBox) {
       adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
       gameBoard[`box${adjacentBox}`].borders[complementBorder[`${lineClicked}`]] = true;
-      gameScore.highlightBoxIfScored(`box${adjacentBox}`);
+      track.highlightBoxIfScored(`box${adjacentBox}`);
       adjBoxNumber = `box${adjacentBox}`;
     }
     ui.closeTheBoxConnection({
@@ -68,7 +65,7 @@ const lineClickAction = {
       adjacentBoxClosedBorder: complementBorder[`${lineClicked}`]
     });
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
-    gameScore.adjustScore(...scoreParams); // adjust the score
+    track.adjustScore(...scoreParams); // adjust the score
     task.setTurnPlayer(); // set the turn player
     task.isGameOver();
     ui.populateBoard(board);

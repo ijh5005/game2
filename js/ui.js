@@ -45,7 +45,7 @@ const ui = {
         $("#board").append(gridBox); // add the box to the game board
       }
     }
-    gameScore.setScores();
+    track.setScores();
     boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
     ui.populateHelpers();
   },

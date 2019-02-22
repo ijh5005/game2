@@ -59,11 +59,15 @@
 }
 
 /* board */
+#boardHolder {
+  width: 375px;
+  height: 375px;
+}
+
 #board {
   flex-wrap: wrap;
   width: 375px;
   position: relative;
-  padding: 2em 0;
   zoom: 96%;
   margin: 0 auto;
 }

@@ -1,4 +1,13 @@
 const boxInfo = {
+  getGameBoardClickBox: (clickBox) => {
+    return gameBoard[clickBox];
+  },
+  getSurroundingBoxesInfo: (clickBox, boxSide) => {
+    return gameBoard[clickBox].surroundingBoxes[boxSide]
+  },
+  getSurroundingBoxesKeys: (clickBox) => {
+    return Object.keys(boxInfo.getGameBoardClickBox(clickBox).surroundingBoxes);
+  },
   isBoxDisabled: (box) => {
     return gameBoard[box].disabled === true;
   },
@@ -151,9 +160,9 @@ const boxInfo = {
     const adjObj = {
       isConnected: false
     }
-    const bordersBox2 = gameboardMapper.getGameBoardClickBox(box2).borders;
-    const surroundingBoxes = gameboardMapper.getGameBoardClickBox(box1).surroundingBoxes;
-    gameboardMapper.getSurroundingBoxesKeys(box1).forEach(data => {
+    const bordersBox2 = boxInfo.getGameBoardClickBox(box2).borders;
+    const surroundingBoxes = boxInfo.getGameBoardClickBox(box1).surroundingBoxes;
+    boxInfo.getSurroundingBoxesKeys(box1).forEach(data => {
       const complement = complementBorder[data.replace("Box", "")];
       if (surroundingBoxes[data] && (`box${surroundingBoxes[data].boxNumber}` === box2) && (bordersBox2[complement] === null)) {
         adjObj.isConnected = true;
@@ -167,8 +176,8 @@ const boxInfo = {
       hasEdgeBox: false,
       clickSide: null
     };
-    const surroundingBoxesKeys = gameboardMapper.getSurroundingBoxesKeys(clickBox);
-    const clickBoxObj = gameboardMapper.getGameBoardClickBox(clickBox);
+    const surroundingBoxesKeys = boxInfo.getSurroundingBoxesKeys(clickBox);
+    const clickBoxObj = boxInfo.getGameBoardClickBox(clickBox);
     surroundingBoxesKeys.forEach(data => {
       if ((clickBoxObj.surroundingBoxes[data] === null) && (clickBoxObj.borders[data.replace("Box", "")] === null)) {
         edgeBox.hasEdgeBox = true;
@@ -177,10 +186,18 @@ const boxInfo = {
     })
     return edgeBox;
   },
+  isEdgeBox: (box) => {
+    let isAnEdgeBox = gameBoard[box].disabled != true &&
+                     (gameBoard[box].topBox === null ||
+                      gameBoard[box].rightBox === null ||
+                      gameBoard[box].bottomBox === null ||
+                      gameBoard[box].leftBox === null);
+    return isAnEdgeBox;
+  },
   getLineBetweenBoxes: (clickBox, selectedBox) => {
     let selectedSide = null;
-    gameboardMapper.getSurroundingBoxesKeys(clickBox).forEach(data => {
-      const number = (gameboardMapper.getSurroundingBoxesInfo(clickBox, data)) ? gameboardMapper.getSurroundingBoxesInfo(clickBox, data).boxNumber : null;
+    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(data => {
+      const number = (boxInfo.getSurroundingBoxesInfo(clickBox, data)) ? boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber : null;
       if (selectedBox === `box${number}`) {
         selectedSide = data
       }
@@ -198,8 +215,8 @@ const boxInfo = {
   },
   getSurroundingBoxes: (clickBox) => {
     const surroundingBoxes = [];
-    gameboardMapper.getSurroundingBoxesKeys(clickBox).forEach(data => {
-      if (gameboardMapper.getSurroundingBoxesInfo(clickBox, data)) surroundingBoxes.push(gameboardMapper.getSurroundingBoxesInfo(clickBox, data).boxNumber);
+    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(data => {
+      if (boxInfo.getSurroundingBoxesInfo(clickBox, data)) surroundingBoxes.push(boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber);
     })
     return surroundingBoxes.filter(data => data).map(box => `box${box}`);
   },

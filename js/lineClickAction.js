@@ -55,6 +55,11 @@ const lineClickAction = {
         const rowInformation = boxInfo.getEdgeBoxClickPoistion(positionFromTopOfGameBoard, heightOfBoxes);
         const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
         if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
+          console.table({
+            edgeBox: true,
+            edgeBoxClicked: edgeBoxClicked.boxClicked,
+            edgeBoxClicked: edgeBoxClicked.sideClicked
+          });
           lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
         }
       }

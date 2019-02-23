@@ -26,12 +26,13 @@ const track = {
     }
   },
   goToPage: (page) => {
+    currentPage = page;
     const allPages = document.getElementsByClassName("page");
     for(let i = 0; i < allPages.length; i++){
       allPages[i].classList.add("removePage");
     }
-    const currentPage = document.getElementsByClassName(page)[0];
-    currentPage.classList.remove("removePage");
+    const pageToShow = document.getElementsByClassName(page)[0];
+    pageToShow.classList.remove("removePage");
   },
   youLose: () => {
     console.log("you lose")

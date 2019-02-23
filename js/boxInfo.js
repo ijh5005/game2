@@ -187,12 +187,21 @@ const boxInfo = {
     return edgeBox;
   },
   isEdgeBox: (box) => {
-    let isAnEdgeBox = gameBoard[box].disabled != true &&
-                     (gameBoard[box].topBox === null ||
-                      gameBoard[box].rightBox === null ||
-                      gameBoard[box].bottomBox === null ||
-                      gameBoard[box].leftBox === null);
-    return isAnEdgeBox;
+    const boxInfo = gameBoard[box];
+    if(boxInfo.disabled) return false;
+
+    if(boxInfo.isTopRightCornerBox
+    || boxInfo.isTopLeftCornerBox
+    || boxInfo.isBottomRightCornerBox
+    || boxInfo.isBottomLeftCornerBox
+    || boxInfo.isTopSideRow
+    || boxInfo.isRightSideRow
+    || boxInfo.isBottomSideRow
+    || boxInfo.isLeftSideRow) {
+      return true;
+    }
+
+    return false;
   },
   getLineBetweenBoxes: (clickBox, selectedBox) => {
     let selectedSide = null;
@@ -404,5 +413,124 @@ const boxInfo = {
         borders: ["top", "bottom", "left"]
       }
     ];
+  },
+  getEdgeBoxClickPoistion: (positionFromTopOfGameBoard, heightOfBoxes) => {
+    const row = getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
+    const rowInformation = {
+      row0: [], row1: [], row2: [],
+      row3: [], row4: [], row5: []
+    };
+    for(let i = 0; i < 36; i++){
+      const box = `box${i}`;
+      if(!boxInfo.isEdgeBox(box)) continue;
+      if(i < 6){rowInformation.row0.push(box)}
+      else if (i < 12) {rowInformation.row1.push(box)}
+      else if (i < 18) {rowInformation.row2.push(box)}
+      else if (i < 24) {rowInformation.row3.push(box)}
+      else if (i < 30) {rowInformation.row4.push(box)}
+      else if (i < 36) {rowInformation.row5.push(box)}
+    }
+    const rowInfoWithEdgePositions = [];
+    for(let fullRow in rowInformation){
+      if(rowInformation[fullRow].length === 0) continue;
+      rowInformation[fullRow].forEach(thisBox => {
+        const positionClickInfo = {};
+        positionClickInfo.box = thisBox;
+        const box = document.getElementsByClassName(thisBox);
+        const zoom = 0.96;
+        const gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
+        const gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
+        const height = $(`.${thisBox}`).height();
+        const width = $(`.${thisBox}`).width();
+        const boardHolderWidth = $("#boardHolder").width();
+        const offset = 10;
+
+        const topClickOffset = {
+          xRange: {min: gameBoardPositionX, max: gameBoardPositionX + width},
+          yRange: {min: gameBoardPositionY - offset, max: gameBoardPositionY}
+        };
+        const rightClickOffset = {
+          xRange: {min: gameBoardPositionX + width, max: gameBoardPositionX + width + offset},
+          yRange: {min: gameBoardPositionY, max: gameBoardPositionY + height}
+        };
+        const bottomClickOffset = {
+          xRange: {min: gameBoardPositionX, max: gameBoardPositionX + width},
+          yRange: {min: gameBoardPositionY + height, max: gameBoardPositionY + height + offset}
+        };
+        const leftClickOffset = {
+          xRange: {min: gameBoardPositionX - offset, max: gameBoardPositionX},
+          yRange: {min: gameBoardPositionY, max: gameBoardPositionY + height}
+        };
+
+        const boxInfo = gameBoard[thisBox];
+
+        if(boxInfo.isTopRightCornerBox) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.xSide = "right";
+          positionClickInfo.outsideClickRange = [rightClickOffset, topClickOffset];
+        }
+        if(boxInfo.isTopLeftCornerBox) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, topClickOffset];
+        }
+        if(boxInfo.isBottomRightCornerBox) {
+          positionClickInfo.xSide = "right";
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.outsideClickRange = [rightClickOffset, bottomClickOffset];
+        }
+        if(boxInfo.isBottomLeftCornerBox) {
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, bottomClickOffset];
+        }
+        if(boxInfo.isTopSideRow) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.outsideClickRange = [null, topClickOffset];
+        }
+        if(boxInfo.isRightSideRow) {
+          positionClickInfo.xSide = "right";
+          positionClickInfo.outsideClickRange = [rightClickOffset, null];
+        }
+        if(boxInfo.isBottomSideRow) {
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.outsideClickRange = [null, bottomClickOffset];
+        }
+        if(boxInfo.isLeftSideRow) {
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, null];
+        }
+
+        rowInfoWithEdgePositions.push(positionClickInfo);
+      })
+    }
+    return rowInfoWithEdgePositions;
+  },
+  getEdgeBoxClicked: (rowInfoWithEdgePositions, pageClickPositionX, pageClickPositionY) => {
+    let boxClicked = false;
+    let sideClicked = false;
+    const length = rowInfoWithEdgePositions.length;
+    for(let i = 0; i < length; i++){
+      const edgeBoxObject = rowInfoWithEdgePositions[i];
+      const outsideClickRange = edgeBoxObject.outsideClickRange;
+      const len = outsideClickRange.length;
+      for(let j = 0; j < len; j++){
+        if(outsideClickRange[j]){
+          const {xRange, yRange} = outsideClickRange[j];
+          const isInXRange = (xRange.min < pageClickPositionX && xRange.max > pageClickPositionX);
+          const isInYRange = (yRange.min < pageClickPositionY && yRange.max > pageClickPositionY);
+          if(isInXRange && isInYRange){
+            boxClicked = rowInfoWithEdgePositions[i].box;
+            sideClicked = (j === 0) ?
+                          rowInfoWithEdgePositions[i].xSide :
+                          rowInfoWithEdgePositions[i].ySide;
+          }
+        }
+      }
+    }
+    return {
+      boxClicked,
+      sideClicked
+    }
   }
 }

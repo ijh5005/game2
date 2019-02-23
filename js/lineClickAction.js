@@ -42,6 +42,24 @@ const lineClickAction = {
       computerMove.makeComputerMove();
     }
   },
+  setEdgeBoxClickEvent: () => {
+    document.getElementById("gameBoardPage").addEventListener("click", (e) => {
+      const board = document.getElementById("board");
+      const gameBoardPosition = board.getBoundingClientRect();
+      const pageClickPositionY = e.pageY;
+      const pageClickPositionX = e.pageX;
+      const clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
+      if(clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn){
+        const heightOfBoxes = $(".box13").height();
+        const positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
+        const rowInformation = boxInfo.getEdgeBoxClickPoistion(positionFromTopOfGameBoard, heightOfBoxes);
+        const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
+        if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
+          lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
+        }
+      }
+    });
+  },
   clickOnBorder: (boxNumber, lineClicked) => {
     console.table({boxNumber, lineClicked})
     soundEffects.playLineClickSound();

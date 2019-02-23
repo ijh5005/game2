@@ -143,30 +143,6 @@ const getRowClick = (positionFromTopOfGameBoard, heightOfBoxes) => {
   return Math.floor(row);
 }
 
-const getRowInformation = (positionFromTopOfGameBoard, heightOfBoxes) => {
-  const row = getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
-  const rowInformation = {
-    row0: [], row1: [], row2: [],
-    row3: [], row4: [], row5: []
-  };
-  for(let i = 0; i < 36; i++){
-    if(i < 6){
-      rowInformation.row0.push(`box${i}`);
-    } else if (i < 12) {
-      rowInformation.row1.push(`box${i}`);
-    } else if (i < 18) {
-      rowInformation.row2.push(`box${i}`);
-    } else if (i < 24) {
-      rowInformation.row3.push(`box${i}`);
-    } else if (i < 30) {
-      rowInformation.row4.push(`box${i}`);
-    } else if (i < 36) {
-      rowInformation.row5.push(`box${i}`);
-    }
-  }
-  return rowInformation[`row${row}`];
-}
-
 const getEdgePositions = (rowInformation) => {
   const edgeBoxes = rowInformation.filter(box => {
     const boxInfo = gameBoard[box];
@@ -182,23 +158,8 @@ const getEdgePositions = (rowInformation) => {
       && !boxInfo.disabled
     );
   });
-  debugger
+  return edgeBoxes;
 }
 
-document.getElementById("gameScreen").addEventListener("click", (e) => {
-  const board = document.getElementById("board");
-  const gameBoardPosition = board.getBoundingClientRect();
-  const pageClickPositionY = e.pageY;
-  const pageClickPositionX = e.pageX;
-  // const yposition = e.pageY - viewPosition.top;
-  const clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
-  if(clickedGameBoard){
-    const heightOfBoxes = $(".box13").height();
-    const positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
-    const rowInformation = getRowInformation(positionFromTopOfGameBoard, heightOfBoxes);
-    const edgePositions = getEdgePositions(rowInformation);
-    console.table({rowInformation, pageClickPositionX});
-  }
-});
-
+lineClickAction.setEdgeBoxClickEvent();
 track.goToPage("homePage");

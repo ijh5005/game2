@@ -132,8 +132,10 @@ const ui = {
     if (adjacentBox && gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`]) gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`].isConnected = false;
   },
   showFinishScreen: () => {
-    task.removeClassWithClassName("completionScreen", "removePage");
-    task.removeClassWithClassName("ribbonHolder", "down");
+    setTimeout(() => {
+      task.removeClassWithClassName("completionScreen", "removePage");
+      task.removeClassWithClassName("ribbonHolder", "down");
+    }, 1000)
   },
   selectHelper: (bombFunction) => {
     if($(`.tool[class*=${bombFunction}]`).hasClass("selected")){

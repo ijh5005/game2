@@ -80,14 +80,6 @@ const task = {
   breakRefAndCopy: (obj) => {
     return JSON.parse(JSON.stringify(obj));
   },
-  setEdgeClickLocations: () => {
-    // boardHolder
-    // for(let box in gameBoard){
-    //   if(boxInfo.isEdgeBox(box)){
-    //     con
-    //   }
-    // }
-  },
   hasTwoInArray: (array, arrayToCheckIn) => {
     let numberInside = 0;
     array.forEach(arr => {
@@ -108,5 +100,11 @@ const task = {
   },
   isSelected: () => {
     return $(".tool.selected").length === 1;
+  },
+  resetScore: () => {
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    $(".playerOneScore").text(playerOneScore);
+    $(".playerTwoScore").text(playerTwoScore);
   }
 }

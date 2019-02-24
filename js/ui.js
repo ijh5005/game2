@@ -1,8 +1,8 @@
 const ui = {
   startGame: (level) => {
+    task.resetScore();
     track.goToPage(settings.startUpPage);
     task.setDifficulty(settings.difficulty);
-
     task.setGameLevel(level)
     initialBombs = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].initialBombs);
     waterRemovalIndex = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].waterRemovalIndex);

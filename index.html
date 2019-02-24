@@ -38,10 +38,45 @@
           </div>
           <div class="settings flexCol">
             <p class="setting" onclick="ui.chooseBoard()">play</p>
-            <p class="setting">settings</p>
+            <p class="setting" onclick="track.goToPage('settingsPage')">settings</p>
             <p class="setting">how to</p>
             <p class="setting">store</p>
             <p class="setting">achievements</p>
+          </div>
+        </div>
+
+        <!-- settins page -->
+        <div class="settingsPage flexCol page">
+          <div class="titleSection">
+            <p class="title">b<img src="./img/mediumBomb.png" alt="">xes</p>
+            <p class="titleSubText">and lines</p>
+          </div>
+          <div class="settings flexCol">
+            <div class="flexRow settingsOptionField">
+              <p class="settingsPageSettings">difficulty</p>
+              <div class="flexRow onOff">
+                <p class="settingsPageSettings sOptions">easy</p>
+                <p class="settingsPageSettings sOptions">med</p>
+                <p class="settingsPageSettings sOptions selectedSetting">hard</p>
+              </div>
+            </div>
+            <div class="flexRow settingsOptionField">
+              <p class="settingsPageSettings">sounds</p>
+              <div class="flexRow onOff">
+                <p class="settingsPageSettings sOptions selectedSetting">on</p>
+                <p class="settingsPageSettings sOptions">off</p>
+              </div>
+            </div>
+            <div class="flexRow settingsOptionField">
+              <p class="settingsPageSettings">music</p>
+              <div class="flexRow onOff">
+                <p class="settingsPageSettings sOptions selectedSetting">on</p>
+                <p class="settingsPageSettings sOptions">off</p>
+              </div>
+            </div>
+          </div>
+          <div class="backBtn settingsPageBackBtn flexRow" onclick="track.goToPage('homePage')">
+            <i class="fas fa-angle-left"></i>
           </div>
         </div>
 

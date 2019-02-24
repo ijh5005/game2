@@ -47,6 +47,10 @@
   width: 1.8em;
 }
 
+.settingsPageBackBtn {
+  background-color: #1a103a;
+}
+
 .backBtn i {
   color: #fff;
   opacity: 0.3;

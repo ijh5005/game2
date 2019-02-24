@@ -1,4 +1,5 @@
-.homePage {
+.homePage,
+.settingsPage {
   height: 100%;
 }
 
@@ -37,4 +38,33 @@
   font-size: 1.4em;
   margin: 1em;
   align-self: flex-end;
+}
+
+.settingsPageSettings {
+  color: #ffa790;
+  font-size: 1.4em;
+  margin: 1em;
+  align-self: flex-start;
+}
+
+.settingsOptionField {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.onOff {
+  width: 50%;
+}
+
+.sOptions {
+  margin: 0;
+  margin-right: 0.5em;
+  color: #fff;
+  opacity: 0.3;
+  font-size: 1.4em;
+}
+
+.sOptions.selectedSetting {
+  color: #ffa790;
+  opacity: 1;
 }

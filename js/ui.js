@@ -223,9 +223,9 @@ const ui = {
   setSound: () => {
     $(".sound").removeClass("selectedSetting");
     if(settings.hasMutedSound){
-      $(".sound.sOptions.on").addClass("selectedSetting");
-    } else {
       $(".sound.sOptions.off").addClass("selectedSetting");
+    } else {
+      $(".sound.sOptions.on").addClass("selectedSetting");
     }
   },
   toggleMusic: () => {
@@ -235,9 +235,17 @@ const ui = {
   setMusic: () => {
     $(".music").removeClass("selectedSetting");
     if(settings.hasMutedMusic){
-      $(".music.mOptions.on").addClass("selectedSetting");
-    } else {
       $(".music.mOptions.off").addClass("selectedSetting");
+    } else {
+      $(".music.mOptions.on").addClass("selectedSetting");
     }
+  },
+  showHint: () => {
+    const index = task.getRandomIndexInArray(noBorders);
+    const box = noBorders[index];
+    $(`.${box}`).addClass("hint");
+    setTimeout(() => {
+      $(`.${box}`).removeClass("hint");
+    }, 600);
   }
 }

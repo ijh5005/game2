@@ -58,6 +58,7 @@ const ui = {
   },
   chooseBoard: () => {
     track.goToPage("levelsPage");
+    $(".levelsHolder").html("");
     settings.levels.levelInformation.forEach(data => {
       (data.isLocked) ?
       $(".levelsHolder").append(ui.uiComponents.lockedBoardBox()) :

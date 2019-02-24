@@ -49,6 +49,9 @@
         <div class="levelsPage hide page levelPage">
           <p class="title">level</p>
           <div class="levelsHolder flexRow"></div>
+          <div class="backBtn flexRow" onclick="track.goToPage('homePage')">
+            <i class="fas fa-angle-left"></i>
+          </div>
         </div>
 
         <!-- game board pages -->
@@ -66,6 +69,9 @@
           <div class="bombToolsBar flexRow hide"></div>
           <div id="boardHolder">
             <div id="board" class="flexRow hide"></div>
+          </div>
+          <div class="backBtn flexRow" onclick="ui.chooseBoard()">
+            <i class="fas fa-angle-left"></i>
           </div>
         </div>
 

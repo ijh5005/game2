@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <!-- settins page -->
+        <!-- settings page -->
         <div class="settingsPage flexCol page">
           <div class="titleSection">
             <p class="title">b<img src="./img/mediumBomb.png" alt="">xes</p>
@@ -55,23 +55,23 @@
             <div class="flexRow settingsOptionField">
               <p class="settingsPageSettings">difficulty</p>
               <div class="flexRow onOff">
-                <p class="settingsPageSettings sOptions">easy</p>
-                <p class="settingsPageSettings sOptions">med</p>
-                <p class="settingsPageSettings sOptions selectedSetting">hard</p>
+                <p class="settingsPageSettings sOptions diff easy" onclick="ui.changeDifficulty('easy')">easy</p>
+                <p class="settingsPageSettings sOptions diff medium" onclick="ui.changeDifficulty('medium')">med</p>
+                <p class="settingsPageSettings sOptions selectedSetting diff hard" onclick="ui.changeDifficulty('hard')">hard</p>
               </div>
             </div>
             <div class="flexRow settingsOptionField">
               <p class="settingsPageSettings">sounds</p>
               <div class="flexRow onOff">
-                <p class="settingsPageSettings sOptions selectedSetting">on</p>
-                <p class="settingsPageSettings sOptions">off</p>
+                <p class="settingsPageSettings sOptions selectedSetting on sound" onclick="ui.toggleSound()">on</p>
+                <p class="settingsPageSettings sOptions off sound" onclick="ui.toggleSound()">off</p>
               </div>
             </div>
             <div class="flexRow settingsOptionField">
               <p class="settingsPageSettings">music</p>
               <div class="flexRow onOff">
-                <p class="settingsPageSettings sOptions selectedSetting">on</p>
-                <p class="settingsPageSettings sOptions">off</p>
+                <p class="settingsPageSettings mOptions selectedSetting on music" onclick="ui.toggleMusic()">on</p>
+                <p class="settingsPageSettings mOptions off music" onclick="ui.toggleMusic()">off</p>
               </div>
             </div>
           </div>

@@ -207,5 +207,37 @@ const ui = {
       src: "./img/veryLarge.png",
       count: 0
     },
-  ]
+  ],
+  changeDifficulty: (diff) => {
+    settings.difficulty = diff;
+    ui.setDifficulty();
+  },
+  setDifficulty: () => {
+    $(".diff").removeClass("selectedSetting");
+    $(`.${settings.difficulty}`).addClass("selectedSetting");
+  },
+  toggleSound: () => {
+    settings.hasMutedSound = !settings.hasMutedSound;
+    ui.setSound();
+  },
+  setSound: () => {
+    $(".sound").removeClass("selectedSetting");
+    if(settings.hasMutedSound){
+      $(".sound.sOptions.on").addClass("selectedSetting");
+    } else {
+      $(".sound.sOptions.off").addClass("selectedSetting");
+    }
+  },
+  toggleMusic: () => {
+    settings.hasMutedMusic = !settings.hasMutedMusic;
+    ui.setMusic();
+  },
+  setMusic: () => {
+    $(".music").removeClass("selectedSetting");
+    if(settings.hasMutedMusic){
+      $(".music.mOptions.on").addClass("selectedSetting");
+    } else {
+      $(".music.mOptions.off").addClass("selectedSetting");
+    }
+  }
 }

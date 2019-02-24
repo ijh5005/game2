@@ -28,7 +28,6 @@ let currentPage = "homePage";
 
 // game controls
 let chanceToGiveAWayPoint;
-let hasMuted = false;
 let bombsToLay = 0;
 let lockBombLocations = [];
 const possibleBombs = [];

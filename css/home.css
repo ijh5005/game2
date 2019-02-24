@@ -56,7 +56,8 @@
   width: 50%;
 }
 
-.sOptions {
+.sOptions,
+.mOptions {
   margin: 0;
   margin-right: 0.5em;
   color: #fff;
@@ -64,7 +65,8 @@
   font-size: 1.4em;
 }
 
-.sOptions.selectedSetting {
+.sOptions.selectedSetting,
+.mOptions.selectedSetting {
   color: #ffa790;
   opacity: 1;
 }

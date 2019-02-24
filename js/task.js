@@ -35,7 +35,7 @@ const task = {
     gameLevel = level - 1;
   },
   setStarsForWinner: (score) => {
-    const starRubric = levels.levelInformation[gameLevel].starRating;
+    const starRubric = settings.levels.levelInformation[gameLevel].starRating;
     if(score >= starRubric[2].score){
       starsEarned = starRubric[2].stars;
       task.animateStarCount(["completeStar1", "completeStar2", "completeStar3"])

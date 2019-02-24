@@ -163,7 +163,7 @@ const boxInfo = {
     const bordersBox2 = boxInfo.getGameBoardClickBox(box2).borders;
     const surroundingBoxes = boxInfo.getGameBoardClickBox(box1).surroundingBoxes;
     boxInfo.getSurroundingBoxesKeys(box1).forEach(data => {
-      const complement = complementBorder[data.replace("Box", "")];
+      const complement = boxInfo.complementBorder[data.replace("Box", "")];
       if (surroundingBoxes[data] && (`box${surroundingBoxes[data].boxNumber}` === box2) && (bordersBox2[complement] === null)) {
         adjObj.isConnected = true;
         adjObj.side = data.replace("Box", "");
@@ -414,8 +414,18 @@ const boxInfo = {
       }
     ];
   },
+  getRowClick: (positionFromTopOfGameBoard, heightOfBoxes) => {
+    let row = (positionFromTopOfGameBoard/heightOfBoxes);
+    // collaboration of row
+    if(row < 0.9){ row = 0; }
+    else if(row < 1 && row > 0.9){ row = 1; }
+    else if(row < 2 && row > 1.88){ row = 2; }
+    else if(row < 3 && row > 2.85){ row = 3; }
+    else if(row < 4 && row > 3.76){ row = 4; }
+    return Math.floor(row);
+  },
   getEdgeBoxClickPoistion: (positionFromTopOfGameBoard, heightOfBoxes) => {
-    const row = getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
+    const row = boxInfo.getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
     const rowInformation = {
       row0: [], row1: [], row2: [],
       row3: [], row4: [], row5: []
@@ -532,5 +542,11 @@ const boxInfo = {
       boxClicked,
       sideClicked
     }
-  }
+  },
+  complementBorder: {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right"
+  },
 }

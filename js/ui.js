@@ -1,4 +1,47 @@
 const ui = {
+  startGame: (level) => {
+    track.goToPage(settings.startUpPage);
+    task.setDifficulty(settings.difficulty);
+
+    task.setGameLevel(level)
+    initialBombs = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].initialBombs);
+    waterRemovalIndex = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].waterRemovalIndex);
+    bombsToLay = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].bombsToLay);
+    lockBombLocations = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].lockBoxes);
+
+    gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${level}`]);
+    gameBoardLength = ui.getGameBoardLength();
+
+    const lockBoxesAmount = lockBoxes[level];
+    for(let i = 0; i < 36; i++){
+      if(!boxInfo.isBoxDisabled(`box${i}`)){
+        possibleBombs.push(`box${i}`);
+      }
+    }
+
+    possibleBombs.forEach((data, index) => {
+      if(index < lockBoxesAmount){
+        const box = task.getRandomIndexInArray(possibleBombs);
+        const index = possibleBombs.indexOf(box);
+        possibleBombs.splice(index, 1);
+      }
+    })
+
+    ui.addInitialBombs();
+    ui.populateBoard();
+    bomb.fillPopulationData()
+  },
+  redo: () => {
+    task.clearBoard();
+    track.goToPage('gameBoardPage');
+  },
+  gameBoardMapperObj: {
+    thirtysix,
+    level1,
+    level2,
+    level3,
+    level4
+  },
   addInitialBombs: () => {
     initialBombs.forEach(data => {
       gameBoard[data.box][data.bombType] = true;
@@ -15,7 +58,7 @@ const ui = {
   },
   chooseBoard: () => {
     track.goToPage("levelsPage");
-    levels.levelInformation.forEach(data => {
+    settings.levels.levelInformation.forEach(data => {
       (data.isLocked) ?
       $(".levelsHolder").append(ui.uiComponents.lockedBoardBox()) :
       $(".levelsHolder").append(ui.uiComponents.boardBox(data));
@@ -50,7 +93,7 @@ const ui = {
     ui.populateHelpers();
   },
   populateHelpers: () => {
-    tools.forEach(data => {
+    ui.tools.forEach(data => {
       const tool = $(`.tool.${data.name}`);
       const toolExists = tool.length > 0;
       if(data.count !== 0 && !toolExists){
@@ -92,6 +135,15 @@ const ui = {
     task.removeClassWithClassName("completionScreen", "removePage");
     task.removeClassWithClassName("ribbonHolder", "down");
   },
+  selectHelper: (bombFunction) => {
+    if($(`.tool[class*=${bombFunction}]`).hasClass("selected")){
+      $(".tool").removeClass("selected");
+    } else {
+      $(".tool").removeClass("selected");
+      $(`.tool[class*=${bombFunction}]`).addClass("selected");
+      selectedBombFunction = bombFunction;
+    }
+  },
   uiComponents: {
     boardBox: (data) => {
       let stars = "";
@@ -99,7 +151,7 @@ const ui = {
         stars += `<img src="./img/star.png" alt="">`;
       }
       return (`
-        <div class="level flexCol" onclick="startGame(${data.levelNumber})">
+        <div class="level flexCol" onclick="ui.startGame(${data.levelNumber})">
           <p>${data.levelNumber}</p>
           <div class="stars flexRow">
             ${stars}
@@ -120,5 +172,37 @@ const ui = {
         <p class="${data.name}p">${data.count}</p>
       </div>`)
     }
-  }
+  },
+  tools: [
+    {
+      name: "bombEraser",
+      src: "./img/bombEraser.png",
+      count: 0
+    },
+    {
+      name: "mediumBomb",
+      src: "./img/mediumBomb.png",
+      count: 0
+    },
+    {
+      name: "largeBomb",
+      src: "./img/largeBomb.png",
+      count: 0
+    },
+    {
+      name: "verticalBomb",
+      src: "./img/verticalBomb.png",
+      count: 0
+    },
+    {
+      name: "horizontalBomb",
+      src: "./img/horizontalBomb.png",
+      count: 0
+    },
+    {
+      name: "veryLarge",
+      src: "./img/veryLarge.png",
+      count: 0
+    },
+  ]
 }

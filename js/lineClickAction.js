@@ -26,7 +26,7 @@ const lineClickAction = {
             delete gameBoard[boxNumber][`${data.key}`];
             bomb.showExplosionInBox(boxNumber, "eraseBomb", 80 * 8);
           })
-          tools.forEach(data => {
+          ui.tools.forEach(data => {
             if(data.name === selectedBombFunction){
               data.count--;
             }
@@ -55,12 +55,15 @@ const lineClickAction = {
         const rowInformation = boxInfo.getEdgeBoxClickPoistion(positionFromTopOfGameBoard, heightOfBoxes);
         const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
         if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
-          console.table({
-            edgeBox: true,
-            edgeBoxClicked: edgeBoxClicked.boxClicked,
-            edgeBoxClicked: edgeBoxClicked.sideClicked
-          });
-          lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
+          const hasClickBorderPreviously = (gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true);
+          if(!hasClickBorderPreviously){
+            console.table({
+              edgeBox: true,
+              edgeBoxClicked: edgeBoxClicked.boxClicked,
+              edgeBoxClicked: edgeBoxClicked.sideClicked
+            });
+            lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
+          }
         }
       }
     });
@@ -77,7 +80,7 @@ const lineClickAction = {
     const hasAdjacentBox = ((gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== null) && (gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== undefined));
     if (hasAdjacentBox) {
       adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
-      gameBoard[`box${adjacentBox}`].borders[complementBorder[`${lineClicked}`]] = true;
+      gameBoard[`box${adjacentBox}`].borders[boxInfo.complementBorder[`${lineClicked}`]] = true;
       track.highlightBoxIfScored(`box${adjacentBox}`);
       adjBoxNumber = `box${adjacentBox}`;
     }
@@ -85,7 +88,7 @@ const lineClickAction = {
       boxNumber,
       adjacentBox: adjBoxNumber,
       boxNumberClosedBorder: lineClicked,
-      adjacentBoxClosedBorder: complementBorder[`${lineClicked}`]
+      adjacentBoxClosedBorder: boxInfo.complementBorder[`${lineClicked}`]
     });
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
@@ -93,7 +96,7 @@ const lineClickAction = {
     task.isGameOver();
     ui.populateBoard(board);
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
-    (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, complementBorder[`${lineClicked}`]): null;
+    (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
     track.winner();
   },
   removeLineClickHighlights: () => {

@@ -40,9 +40,21 @@ p {
   justify-content: space-between;
 }
 
+.scoreHolder {
+  width: 50%;
+  padding: 0.4em;
+}
+
+.playerScoreHeading {
+  font-size: 1em;
+  margin: 1em;
+  color: #6e658d;
+  margin-bottom: 0;
+}
+
 .playerOneScore,
 .playerTwoScore {
   font-size: 2em;
-  margin: 0.5em;
   color: #ffa790;
+  margin: 0;
 }

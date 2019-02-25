@@ -85,6 +85,11 @@
   position: relative;
   width: 60px;
   height: 60px;
+  transition: border 0.5s;
+}
+
+.box.hint {
+  border-right-color: #d5e4ff;
 }
 
 

@@ -33,7 +33,7 @@ const bomb = {
     bomb.populationData = [];
     let useTurns = [];
     if(bombsToLay > 0){
-      while(useTurns.length < bombsToLay){
+      while(useTurns.length < bombsToLay * 2){
         const randomNumber = Math.floor(Math.random()*30) + track.turn;
         const filtered = [];
         for(let box in gameBoard){
@@ -43,11 +43,10 @@ const bomb = {
         }
         const boxNumber = filtered[Math.floor(Math.random()*(gameBoardLength - 1))];
         if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
-          useTurns = [...useTurns, boxNumber];
+          useTurns = [...useTurns, boxNumber, randomNumber];
           bomb.populationData.push({randomNumber, boxNumber});
         }
       }
-      bombsToLay-=5;
       console.table(bomb.populationData);
     }
   },
@@ -104,11 +103,13 @@ const bomb = {
     }
     console.table({explosion, boxNumber});
     if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
+      track.decrementBombCount();
       soundEffects.playShowBombSound();
       document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
       bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
       gameBoard[boxNumber][explosion.key] = true;
     } else {
+      track.incrementMissedBombCount();
       const missedBox = {
         missedBox: true,
         box: boxNumber

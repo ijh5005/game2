@@ -22,7 +22,7 @@ const track = {
     totalPoints = firstPlayerPoints + secondPlayerPoints;
     if(totalPoints === gameBoardLength){
       task.setStarsForWinner(firstPlayerPoints);
-      ui.showFinishScreen();
+      // ui.showFinishScreen();
     }
   },
   goToPage: (page) => {
@@ -76,4 +76,17 @@ const track = {
     const isLeftClicked = gameBoard[boxNumber].borders.left;
     return (isTopClicked && isRightClicked && isBottomClicked && isLeftClicked);
   },
+  decrementBombCount: () => {
+    bombsToLay--;
+    track.setRemainingBombs();
+  },
+  setRemainingBombs: () => {
+    $(".remainingBombs").text(bombsToLay);
+  },
+  incrementMissedBombCount: () => {
+    let missedBombs = parseInt($(".missedBombs").text());
+    missedBombs++;
+    $(".missedBombs").text(missedBombs);
+    track.decrementBombCount();
+  }
 }

@@ -45,6 +45,10 @@ p {
   padding: 0.4em;
 }
 
+.bombCount {
+  width: 100%;
+}
+
 .playerScoreHeading {
   font-size: 1em;
   margin: 1em;

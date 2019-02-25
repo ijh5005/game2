@@ -105,6 +105,14 @@
           <div id="boardHolder">
             <div id="board" class="flexRow hide"></div>
           </div>
+          <div class="scoreHolder bombCount flexRow thisPlayerTurn">
+            <p class="playerScoreHeading">remaining bombs:</p>
+            <p class="playerOneScore remainingBombs">0</p>
+          </div>
+          <div class="scoreHolder bombCount flexRow thisPlayerTurn">
+            <p class="playerScoreHeading">missed bombs:</p>
+            <p class="playerOneScore missedBombs">0</p>
+          </div>
           <div class="backBtn flexRow" onclick="ui.chooseBoard()">
             <i class="fas fa-angle-left"></i>
           </div>
@@ -148,6 +156,7 @@
     <script type="text/javascript" src="./js/gameBoards/level2.js"></script>
     <script type="text/javascript" src="./js/gameBoards/level3.js"></script>
     <script type="text/javascript" src="./js/gameBoards/level4.js"></script>
+    <script type="text/javascript" src="./js/gameBoards/level5.js"></script>
     <script type="text/javascript" src="./js/gameBoards/thirtysix.js"></script>
 
     <script type="text/javascript" src="./js/soundEffects.js"></script>

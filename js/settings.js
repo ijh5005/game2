@@ -101,14 +101,30 @@ const settings = {
         ]
       },
       {
-        isLocked: true,
+        isLocked: false,
         levelNumber: 5,
-        stars: 2,
-        lockBoxes: [],
+        stars: 0,
+        lockBoxes: [{
+          box: "box14",
+          toughness: 1
+        }, {
+          box: "box15",
+          toughness: 1
+        }, {
+          box: "box20",
+          toughness: 1
+        }, {
+          box: "box21",
+          toughness: 1
+        }],
         initialBombs: [],
-        bombsToLay: 0,
+        bombsToLay: 20,
         waterRemovalIndex: [],
-        starRating: []
+        starRating: [
+          { stars: 1, score: 8 },
+          { stars: 2, score: 9 },
+          { stars: 3, score: 10 }
+        ]
       },
       {
         isLocked: true,

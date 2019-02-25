@@ -4,17 +4,17 @@ const obj = {};
 const size = 36;
 const difference = 6;
 
-const topRightCorner = [3, 10, 17];
-const topLeftCorner = [2, 7, 12];
-const bottomRightCorner = [23, 28, 33];
-const bottomLeftCorner = [18, 25, 32];
+const topRightCorner = [5];
+const topLeftCorner = [0];
+const bottomRightCorner = [35];
+const bottomLeftCorner = [30];
 
-const topSideRow = [];
-const rightSideRow = [];
-const bottomSideRow = [];
-const leftSideRow = [];
+const topSideRow = [1, 2, 3, 4];
+const rightSideRow = [11, 17, 23, 29];
+const bottomSideRow = [31, 32, 33, 34];
+const leftSideRow = [6, 12, 18, 24];
 
-const disabled = [0, 1, 6, 4, 5, 11, 24, 30, 31, 29, 34, 35];
+const disabled = [];
 
 for (let i = 0; i < size; i++) {
   let addition = {

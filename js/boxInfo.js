@@ -20,12 +20,13 @@ const boxInfo = {
     return count;
   },
   getAllBoxClasses: (box) => {
-    const classesToAdd = ["box"];
+    const classesToAdd = ["box", "flexRow", box];
     if (gameBoard[box].borders.top) classesToAdd.push("borderTop");
     if (gameBoard[box].borders.right) classesToAdd.push("borderRight");
     if (gameBoard[box].borders.bottom) classesToAdd.push("borderBottom");
     if (gameBoard[box].borders.left) classesToAdd.push("borderLeft");
     if (gameBoard[box].whoScored) classesToAdd.push(gameBoard[box].whoScored);
+
     if (gameBoard[box].isMediumExplosion) {
       classesToAdd.push("mediumExplosionImage");
     } else if (gameBoard[box].isLargeExplosion) {
@@ -38,30 +39,18 @@ const boxInfo = {
       classesToAdd.push("veryLargeExplosionImage");
     }
 
-    if (gameBoard[box].isTopRightCornerBox) {
-      classesToAdd.push("isTopRightCornerBox");
-    }
-    if (gameBoard[box].isTopLeftCornerBox) {
-      classesToAdd.push("isTopLeftCornerBox");
-    }
-    if (gameBoard[box].isBottomRightCornerBox) {
-      classesToAdd.push("isBottomRightCornerBox");
-    }
-    if (gameBoard[box].isBottomLeftCornerBox) {
-      classesToAdd.push("isBottomLeftCornerBox");
-    }
-    if (gameBoard[box].isTopSideRow) {
-      classesToAdd.push("isTopSideRow");
-    }
-    if (gameBoard[box].isRightSideRow) {
-      classesToAdd.push("isRightSideRow");
-    }
-    if (gameBoard[box].isBottomSideRow) {
-      classesToAdd.push("isBottomSideRow");
-    }
-    if (gameBoard[box].isLeftSideRow) {
-      classesToAdd.push("isLeftSideRow");
-    }
+    const sideClasses = [
+      "isTopRightCornerBox", "isTopLeftCornerBox",
+      "isBottomRightCornerBox", "isBottomLeftCornerBox",
+      "isTopSideRow", "isRightSideRow",
+      "isBottomSideRow", "isLeftSideRow"
+    ];
+
+    sideClasses.forEach(className => {
+      if(gameBoard[box][className]){
+        classesToAdd.push(className);
+      }
+    })
 
     if(gameBoard[box].isLocked === true){
       classesToAdd.push("locked");
@@ -71,8 +60,6 @@ const boxInfo = {
       classesToAdd.push("disabled");
     }
 
-    classesToAdd.push("flexRow");
-    classesToAdd.push(box);
     return classesToAdd;
   },
   getNumberText: (box, div) => {
@@ -549,4 +536,7 @@ const boxInfo = {
     bottom: "top",
     left: "right"
   },
+  getBoxNumberFromBoxX: (box) => {
+    return parseInt(box.replace("box", ""));
+  }
 }

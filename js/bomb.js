@@ -165,7 +165,7 @@ const bomb = {
     gameBoard[box].isMediumExplosion = false;
 
     // cache box number
-    const boxNumber = parseInt(box.replace("box", ""));
+    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
     const topBox = boxInfo.getTopBox(boxNumber);
     const rightBox = boxInfo.getRightBox(boxNumber);
     const bottomBox = boxInfo.getBottomBox(boxNumber);
@@ -184,7 +184,6 @@ const bomb = {
     bomb.explodeBoxesFromArray(linesToRemove);
 
     const boxesToExplode = [topBox, bottomBox, leftBox, rightBox];
-
     bomb.checkForChainReactions(boxesToExplode)
   },
   explodeBoxesFromArray: (linesToRemove) => {
@@ -199,19 +198,14 @@ const bomb = {
   largerExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
     gameBoard[box].isLargeExplosion = false;
-
     // cache box number
-    const boxNumber = parseInt(box.replace("box", ""));
-
+    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
     // get all boxes surrounding boxes
     const allBorders = boxInfo.getAllBorders(boxNumber);
-
     // get borders to remove according to the largerExplosion rules
     const bordersToRemove = boxInfo.getBordersToRemove(box, allBorders);
-
     // make boxes explode
     bomb.explodeBoxesFromArray(bordersToRemove);
-
     bomb.checkForChainReactions(Object.entries(allBorders).map(data => data[1]));
   },
   verticalExplosion: (box) => {
@@ -219,13 +213,13 @@ const bomb = {
     gameBoard[box].isVerticalExplosion = false;
 
     // cache box number
-    const boxNumber = parseInt(box.replace("box", ""));
+    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
 
     const topBox = boxInfo.getTopBox(boxNumber);
     const bottomBox = boxInfo.getBottomBox(boxNumber);
 
-    const twoBoxesUp = topBox ? boxInfo.getTopBox(parseInt(topBox.replace("box", ""))) : false;
-    let twoBoxesDown = bottomBox ? boxInfo.getBottomBox(parseInt(bottomBox.replace("box", ""))) : false;
+    const twoBoxesUp = topBox ? boxInfo.getTopBox(boxInfo.getBoxNumberFromBoxX(topBox)) : false;
+    let twoBoxesDown = bottomBox ? boxInfo.getBottomBox(boxInfo.getBoxNumberFromBoxX(bottomBox)) : false;
 
     // cache boxes to target
     const linesToRemove = [
@@ -248,13 +242,11 @@ const bomb = {
     gameBoard[box].isHorizontalExplosion = false;
 
     // cache box number
-    const boxNumber = parseInt(box.replace("box", ""));
-
-
+    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
     const rightBox = boxInfo.getRightBox(boxNumber);
-    const twoBoxesRight = rightBox ? boxInfo.getRightBox(parseInt(rightBox.replace("box", ""))) : false;
+    const twoBoxesRight = rightBox ? boxInfo.getRightBox(boxInfo.getBoxNumberFromBoxX(rightBox)) : false;
     const leftBox = boxInfo.getLeftBox(boxNumber);
-    const twoBoxesLeft = leftBox ? boxInfo.getLeftBox(parseInt(leftBox.replace("box", ""))) : false;
+    const twoBoxesLeft = leftBox ? boxInfo.getLeftBox(boxInfo.getBoxNumberFromBoxX(leftBox)) : false;
 
     // cache boxes to target
     const linesToRemove = [
@@ -275,29 +267,16 @@ const bomb = {
   isVeryLargeExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
     gameBoard[box].isVeryLargeExplosion = false;
-    const allClasses = [
-      "mediumExplosionImage",
-      "largeExplosionImage",
-      "verticalExplosionImage",
-      "horizontalExplosionImage",
-      "veryLargeExplosionImage"
-    ];
     for (let item in gameBoard) {
       gameBoard[item].borders = {
-        top: null,
-        right: null,
-        bottom: null,
-        left: null
+        top: null, right: null,
+        bottom: null, left: null
       }
-      delete gameBoard[item].isVerticalExplosion;
-      delete gameBoard[item].isHorizontalExplosion;
-      delete gameBoard[item].isMediumExplosion;
-      delete gameBoard[item].isLargeExplosion;
-      delete gameBoard[item].isVeryLargeExplosion;
-      allClasses.forEach(cl => document.getElementsByClassName(item)[0].classList.remove(cl));
+      bomb.types.forEach(data => {
+        delete gameBoard[item][data.key];
+        document.getElementsByClassName(item)[0].classList.remove(data.class)
+      });
       ui.removeScoreColorIfRemovingBorder(item);
-    }
-    for (let item in gameBoard) {
       bomb.showExplosionInBox(item, "explosion", 80 * 8);
     }
     ui.populateBoard();

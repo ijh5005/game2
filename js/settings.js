@@ -1,7 +1,7 @@
 const settings = {
   difficulty: "hard", // options: easy, medium, hard
   hasMutedMusic: false,
-  hasMutedSound: false,
+  hasMutedSound: true,
   startUpPage: "gameBoardPage",
   levels: {
     levelInformation: [

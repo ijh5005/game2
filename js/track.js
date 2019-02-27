@@ -33,6 +33,7 @@ const track = {
     }
     const pageToShow = document.getElementsByClassName(page)[0];
     pageToShow.classList.remove("removePage");
+    ui.setSettingsIfOnSettingsPage(page);
   },
   youLose: () => {
     console.log("you lose")

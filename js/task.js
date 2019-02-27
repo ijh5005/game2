@@ -106,5 +106,8 @@ const task = {
     playerTwoScore = 0;
     $(".playerOneScore").text(playerOneScore);
     $(".playerTwoScore").text(playerTwoScore);
+  },
+  resetPlayerTurn: () => {
+    isFirstPlayerTurn = true;
   }
 }

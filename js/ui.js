@@ -1,5 +1,6 @@
 const ui = {
   startGame: (level) => {
+    task.resetPlayerTurn();
     task.resetScore();
     track.goToPage(settings.startUpPage);
     task.setDifficulty(settings.difficulty);
@@ -249,5 +250,12 @@ const ui = {
     setTimeout(() => {
       $(`.${box}`).removeClass("hint");
     }, 600);
+  },
+  setSettingsIfOnSettingsPage: (page) => {
+    if(page === "settingsPage"){
+      ui.setDifficulty();
+      ui.setSound();
+      ui.setMusic();
+    }
   }
 }

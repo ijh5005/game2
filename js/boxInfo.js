@@ -378,39 +378,39 @@ const boxInfo = {
     }) => {
     return [{
         box: box,
-        borders: ["top", "right", "bottom", "left"]
+        lines: ["top", "right", "bottom", "left"]
       },
       {
         box: topRightBoxNumber,
-        borders: ["bottom", "left"]
+        lines: ["bottom", "left"]
       },
       {
         box: topLeftBoxNumber,
-        borders: ["right", "bottom"]
+        lines: ["right", "bottom"]
       },
       {
         box: bottomRightBoxNumber,
-        borders: ["top", "left"]
+        lines: ["top", "left"]
       },
       {
         box: bottomLeftBoxNumber,
-        borders: ["top", "right"]
+        lines: ["top", "right"]
       },
       {
         box: topBox,
-        borders: ["right", "bottom", "left"]
+        lines: ["right", "bottom", "left"]
       },
       {
         box: leftBox,
-        borders: ["top", "right", "bottom"]
+        lines: ["top", "right", "bottom"]
       },
       {
         box: bottomBox,
-        borders: ["top", "right", "left"]
+        lines: ["top", "right", "left"]
       },
       {
         box: rightBox,
-        borders: ["top", "bottom", "left"]
+        lines: ["top", "bottom", "left"]
       }
     ];
   },

@@ -173,29 +173,21 @@ const bomb = {
 
     // cache boxes to target
     const linesToRemove = [
-      {
-        box: topBox,
-        lines: ["bottom"]
-      },
-      {
-        box: rightBox,
-        lines: ["left"]
-      },
-      {
-        box: bottomBox,
-        lines: ["top"]
-      },
-      {
-        box: leftBox,
-        lines: ["right"]
-      },
-      {
-        box: box,
-        lines: ["top", "right", "bottom", "left"]
-      }
+      { box: topBox, lines: ["bottom"] },
+      { box: rightBox, lines: ["left"] },
+      { box: bottomBox, lines: ["top"] },
+      { box: leftBox, lines: ["right"] },
+      { box: box, lines: ["top", "right", "bottom", "left"] }
     ];
 
     // make boxes explode
+    bomb.explodeBoxesFromArray(linesToRemove);
+
+    const boxesToExplode = [topBox, bottomBox, leftBox, rightBox];
+
+    bomb.checkForChainReactions(boxesToExplode)
+  },
+  explodeBoxesFromArray: (linesToRemove) => {
     linesToRemove.forEach(item => {
       if (item.box) {
         lineClickAction.removeBorders(item.box, item.lines);
@@ -203,10 +195,6 @@ const bomb = {
         bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
-
-    const boxesToExplode = [topBox, bottomBox, leftBox, rightBox];
-
-    bomb.checkForChainReactions(boxesToExplode)
   },
   largerExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
@@ -222,13 +210,8 @@ const bomb = {
     const bordersToRemove = boxInfo.getBordersToRemove(box, allBorders);
 
     // make boxes explode
-    bordersToRemove.forEach(item => {
-      if (item.box) {
-        lineClickAction.removeBorders(item.box, item.borders);
-        ui.removeScoreColorIfRemovingBorder(item.box);
-        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
-      }
-    });
+    bomb.explodeBoxesFromArray(bordersToRemove);
+
     bomb.checkForChainReactions(Object.entries(allBorders).map(data => data[1]));
   },
   verticalExplosion: (box) => {
@@ -246,36 +229,15 @@ const bomb = {
 
     // cache boxes to target
     const linesToRemove = [
-      {
-        box: twoBoxesDown,
-        lines: ["top"]
-      },
-      {
-        box: twoBoxesUp,
-        lines: ["bottom"]
-      },
-      {
-        box: boxInfo.getTopBox(boxNumber),
-        lines: ["top", "bottom"]
-      },
-      {
-        box: boxInfo.getBottomBox(boxNumber),
-        lines: ["top", "bottom"]
-      },
-      {
-        box: box,
-        lines: ["top", "bottom"]
-      }
+      { box: twoBoxesDown, lines: ["top"] },
+      { box: twoBoxesUp, lines: ["bottom"] },
+      { box: boxInfo.getTopBox(boxNumber), lines: ["top", "bottom"] },
+      { box: boxInfo.getBottomBox(boxNumber), lines: ["top", "bottom"] },
+      { box: box, lines: ["top", "bottom"] }
     ];
 
     // make boxes explode
-    linesToRemove.forEach(item => {
-      if (item.box) {
-        lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box);
-        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
-      }
-    });
+    bomb.explodeBoxesFromArray(linesToRemove);
 
     const boxesToExplode = [topBox, bottomBox, twoBoxesUp, twoBoxesDown];
 
@@ -296,36 +258,15 @@ const bomb = {
 
     // cache boxes to target
     const linesToRemove = [
-      {
-        box: twoBoxesLeft,
-        lines: ["right"]
-      },
-      {
-        box: twoBoxesRight,
-        lines: ["left"]
-      },
-      {
-        box: boxInfo.getRightBox(boxNumber),
-        lines: ["right", "left"]
-      },
-      {
-        box: boxInfo.getLeftBox(boxNumber),
-        lines: ["right", "left"]
-      },
-      {
-        box: box,
-        lines: ["right", "left"]
-      },
+      { box: twoBoxesLeft, lines: ["right"] },
+      { box: twoBoxesRight, lines: ["left"] },
+      { box: boxInfo.getRightBox(boxNumber), lines: ["right", "left"] },
+      { box: boxInfo.getLeftBox(boxNumber), lines: ["right", "left"] },
+      { box: box, lines: ["right", "left"] },
     ];
 
     // make boxes explode
-    linesToRemove.forEach(item => {
-      if (item.box) {
-        lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box);
-        bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
-      }
-    });
+    bomb.explodeBoxesFromArray(linesToRemove);
 
     const boxesToExplode = [boxInfo.getRightBox(boxNumber), boxInfo.getLeftBox(boxNumber), twoBoxesLeft, twoBoxesRight];
 

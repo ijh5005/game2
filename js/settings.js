@@ -20,7 +20,7 @@ const settings = {
         ]
       },
       {
-        isLocked: false,
+        isLocked: true,
         levelNumber: 2,
         stars: 2,
         lockBoxes: [{
@@ -49,7 +49,7 @@ const settings = {
         ]
       },
       {
-        isLocked: false,
+        isLocked: true,
         levelNumber: 3,
         stars: 2,
         lockBoxes: [{
@@ -75,7 +75,7 @@ const settings = {
         ]
       },
       {
-        isLocked: false,
+        isLocked: true,
         levelNumber: 4,
         stars: 1,
         lockBoxes: [{
@@ -101,7 +101,7 @@ const settings = {
         ]
       },
       {
-        isLocked: false,
+        isLocked: true,
         levelNumber: 5,
         stars: 0,
         lockBoxes: [{

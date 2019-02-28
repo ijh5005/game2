@@ -1,21 +1,10 @@
 const bomb = {
   types: [
-    {
-      key: "isVerticalExplosion",
-      class: "verticalExplosionImage"
-    }, {
-      key: "isHorizontalExplosion",
-      class: "horizontalExplosionImage"
-    }, {
-      key: "isMediumExplosion",
-      class: "mediumExplosionImage"
-    }, {
-      key: "isLargeExplosion",
-      class: "largeExplosionImage"
-    }, {
-      key: "isVeryLargeExplosion",
-      class: "veryLargeExplosionImage",
-    }
+    { key: "isVerticalExplosion", class: "verticalExplosionImage" },
+    { key: "isHorizontalExplosion", class: "horizontalExplosionImage" },
+    { key: "isMediumExplosion", class: "mediumExplosionImage" },
+    { key: "isLargeExplosion", class: "largeExplosionImage" },
+    { key: "isVeryLargeExplosion", class: "veryLargeExplosionImage", }
   ],
   isExplosionBox: (box) => {
     let isBombBox = false;
@@ -37,9 +26,7 @@ const bomb = {
         const randomNumber = Math.floor(Math.random()*30) + track.turn;
         const filtered = [];
         for(let box in gameBoard){
-          if(!gameBoard[box].disabled){
-            filtered.push(box)
-          }
+          if(!gameBoard[box].disabled) filtered.push(box);
         }
         const boxNumber = filtered[Math.floor(Math.random()*(gameBoardLength - 1))];
         if(!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)){
@@ -70,9 +57,7 @@ const bomb = {
     }, seconds);
   },
   explodeLockBoxIfHit: (box) => {
-    if(boxInfo.isALockBox(box)){
-      bomb.hitLockBox(box)
-    }
+    if(boxInfo.isALockBox(box)) bomb.hitLockBox(box);
   },
   hitLockBox: (box) => {
     let hitInfo;
@@ -91,16 +76,10 @@ const bomb = {
   placeBomb: (boxNumber) => {
     let explosion = bomb.types[0];
     const number = Math.floor(Math.random() * 71);
-    if(number > 68){
-      explosion = bomb.types[4];
-    } else
-    if(number > 55){
-      explosion = bomb.types[3];
-    } else if(number > 40){
-      explosion = bomb.types[2];
-    } else if(number > 20){
-      explosion = bomb.types[1];
-    }
+    if(number > 68){ explosion = bomb.types[4]; }
+    else if(number > 55){ explosion = bomb.types[3]; }
+    else if(number > 40){ explosion = bomb.types[2]; }
+    else if(number > 20){ explosion = bomb.types[1]; }
     console.table({explosion, boxNumber});
     if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
       track.decrementBombCount();

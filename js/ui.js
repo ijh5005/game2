@@ -213,6 +213,7 @@ const ui = {
   ],
   changeDifficulty: (diff) => {
     settings.difficulty = diff;
+    task.saveToLocalStorage("settings", settings);
     ui.setDifficulty();
   },
   setDifficulty: () => {
@@ -221,6 +222,7 @@ const ui = {
   },
   toggleSound: () => {
     settings.hasMutedSound = !settings.hasMutedSound;
+    task.saveToLocalStorage("settings", settings);
     ui.setSound();
   },
   setSound: () => {
@@ -233,6 +235,7 @@ const ui = {
   },
   toggleMusic: () => {
     settings.hasMutedMusic = !settings.hasMutedMusic;
+    task.saveToLocalStorage("settings", settings);
     ui.setMusic();
   },
   setMusic: () => {

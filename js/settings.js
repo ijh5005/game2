@@ -1,4 +1,4 @@
-const settings = {
+let settings = {
   difficulty: "hard", // options: easy, medium, hard
   hasMutedMusic: false,
   hasMutedSound: true,

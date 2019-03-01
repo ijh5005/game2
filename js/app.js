@@ -37,5 +37,6 @@ let waterRemoval = 0;
 let waterRemovalIndex;
 let initialBombs;
 
+task.setFromLocalStorage();
 lineClickAction.setEdgeBoxClickEvent();
 track.goToPage("homePage");

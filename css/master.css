@@ -66,14 +66,3 @@ p {
 .titleImg {
   transform: scale(3);
 }
-
-/* .titleText,
-.titleText2 {
-  position: relative;
-  left: 0.3em;
-  z-index: -1;
-}
-
-.titleText2 {
-  left: -0.3em;
-} */

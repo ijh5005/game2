@@ -109,5 +109,20 @@ const task = {
   },
   resetPlayerTurn: () => {
     isFirstPlayerTurn = true;
+  },
+  saveToLocalStorage: (key, obj) => {
+    localStorage.setItem('boxes', JSON.stringify({
+      [key]: obj
+    }));
+  },
+  setFromLocalStorage: () => {
+    setTimeout(() => {
+      if(!localStorage.boxes){
+        task.saveToLocalStorage("settings", settings)
+      } else {
+        const storage = JSON.parse(localStorage.boxes)
+        settings = storage.settings;
+      }
+    })
   }
 }

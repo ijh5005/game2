@@ -79,7 +79,7 @@ const track = {
   },
   decrementBombCount: () => {
     bombsToLay--;
-    track.setRemainingBombs();
+    // track.setRemainingBombs();
   },
   setRemainingBombs: () => {
     $(".remainingBombs").text(bombsToLay);

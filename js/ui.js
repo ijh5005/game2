@@ -8,7 +8,7 @@ const ui = {
     initialBombs = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].initialBombs);
     waterRemovalIndex = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].waterRemovalIndex);
     bombsToLay = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].bombsToLay);
-    track.setRemainingBombs();
+    // track.setRemainingBombs();
     lockBombLocations = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].lockBoxes);
 
     gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${level}`]);

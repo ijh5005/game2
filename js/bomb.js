@@ -82,13 +82,13 @@ const bomb = {
     else if(number > 20){ explosion = bomb.types[1]; }
     console.table({explosion, boxNumber});
     if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
-      track.decrementBombCount();
+      // track.decrementBombCount();
       soundEffects.playShowBombSound();
       document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
       bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
       gameBoard[boxNumber][explosion.key] = true;
     } else {
-      track.incrementMissedBombCount();
+      // track.incrementMissedBombCount();
       const missedBox = {
         missedBox: true,
         box: boxNumber

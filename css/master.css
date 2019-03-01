@@ -64,5 +64,20 @@ p {
 }
 
 .titleImg {
-  transform: scale(3);
+  transform: scale(1.2);
+}
+
+#ads {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #120b2d;
+  z-index: -1;
+  height: 6em;
+}
+
+#ads p {
+  font-size: 2em;
+  color: #fff;
+  opacity: 0.3;
 }

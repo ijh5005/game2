@@ -1,7 +1,7 @@
 let settings = {
   difficulty: "hard", // options: easy, medium, hard
   hasMutedMusic: false,
-  hasMutedSound: true,
+  hasMutedSound: false,
   startUpPage: "gameBoardPage",
   levels: {
     levelInformation: [
@@ -101,7 +101,7 @@ let settings = {
         ]
       },
       {
-        isLocked: true,
+        isLocked: false,
         levelNumber: 5,
         stars: 0,
         lockBoxes: [{

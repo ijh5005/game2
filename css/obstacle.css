@@ -1,27 +1,13 @@
 .locked {
-  /* background-image: url(../img/brick.jpg);
-  background-size: 300%;
-  background-position: center; */
-  /* background-color: #84635a; */
-  background-image: url(../img/locked.png);
-  background-size: 100%;
+  background-image: url(../img/obstacles/asset_statue_foot.png);
+  background-size: 92%;
 }
 
 .firstPlayerScored {
-  /* background-image: url(../img/gold4.jpg);
-  background-size: 400%;
-  background-position: center;
-  opacity: 1; */
-  background-color: rgba(89, 92, 105, 0.8);
   background-color: #1a103a;
 }
 
 .secondPlayerScored {
-  /* background-image: url(../img/lock.jpeg);
-  background-size: 200%;
-  background-position: center;
-  opacity: 1; */
-  background-color: rgba(34, 31, 39, 0.8);
   background-color: #4e4179;
 }
 

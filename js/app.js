@@ -40,3 +40,5 @@ let initialBombs;
 task.setFromLocalStorage();
 lineClickAction.setEdgeBoxClickEvent();
 track.goToPage("homePage");
+
+// bomb.showSpriteExplosion();

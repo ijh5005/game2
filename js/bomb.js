@@ -259,5 +259,26 @@ const bomb = {
       bomb.showExplosionInBox(item, "explosion", 80 * 8);
     }
     ui.populateBoard();
+  },
+  showSpriteExplosion: () => {
+    const sprite = $(".sprite");
+    sprite.empty();
+    for(let i = 0; i < 8; i++){
+      const div = $("<div></div>");
+      div.addClass(`sprite${i + 1}`);
+      sprite.append(div);
+    }
+    const spriteCount = 8;
+    let count = 0;
+    const runSprite = setInterval(() => {
+      if(count === spriteCount){
+        $(".sprite").empty();
+        clearInterval(runSprite);
+      } else {
+        $(".sprite").removeClass(`show${count}`);
+        $(".sprite").addClass(`show${count + 1}`);
+      }
+      count++;
+    }, 80)
   }
 }

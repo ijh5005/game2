@@ -1,0 +1,93 @@
+.spriteSheet {
+  zoom: 2;
+  position: absolute;
+  left: 0;
+  height: 60px;
+  width: 60px;
+  overflow: hidden;
+}
+
+.sprite {
+  position: relative;
+  height: 60px;
+  width: 480px;
+}
+
+.sprite > * {
+  height: 60px;
+  width: 60px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sprite1 {
+  background-size: 20%;
+  background-image: url(../img/sprites/4/1_1.png);
+}
+
+.sprite2 {
+  background-size: 50%;
+  background-image: url(../img/sprites/4/1_2.png);
+}
+
+.sprite3 {
+  background-size: 50%;
+  background-image: url(../img/sprites/4/1_3.png);
+}
+
+.sprite4 {
+  background-size: 60%;
+  background-image: url(../img/sprites/4/1_4.png);
+}
+
+.sprite5 {
+  background-size: 70%;
+  background-image: url(../img/sprites/4/1_5.png);
+}
+
+.sprite6 {
+  background-size: 70%;
+  background-image: url(../img/sprites/4/1_6.png);
+}
+
+.sprite7 {
+  background-size: 80%;
+  background-image: url(../img/sprites/4/1_7.png);
+}
+
+.sprite8 {
+  background-size: 80%;
+  background-image: url(../img/sprites/4/1_8.png);
+}
+
+.show1 {
+  left: 0%;
+}
+
+.show2 {
+  left: -100%;
+}
+
+.show3 {
+  left: -200%;
+}
+
+.show4 {
+  left: -300%;
+}
+
+.show5 {
+  left: -400%;
+}
+
+.show6 {
+  left: -500%;
+}
+
+.show7 {
+  left: -600%;
+}
+
+.show8 {
+  left: -700%;
+}

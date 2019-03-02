@@ -111,9 +111,9 @@ const task = {
     isFirstPlayerTurn = true;
   },
   saveToLocalStorage: (key, obj) => {
-    localStorage.setItem('boxes', JSON.stringify({
+    localStorage['boxes'] = JSON.stringify({
       [key]: obj
-    }));
+    });
   },
   setFromLocalStorage: () => {
     setTimeout(() => {

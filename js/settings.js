@@ -38,7 +38,7 @@ let settings = {
         }],
         initialBombs: [{
           box: "box15",
-          bombType: "isLargeExplosion"
+          bombType: "isPantherExplosion"
         }],
         bombsToLay: 0,
         waterRemovalIndex: [],
@@ -61,10 +61,10 @@ let settings = {
         }],
         initialBombs: [{
           box: "box14",
-          bombType: "isMediumExplosion"
+          bombType: "isLionExplosion"
         }, {
           box: "box14",
-          bombType: "isMediumExplosion"
+          bombType: "isCheetahExplosion"
         }],
         bombsToLay: 0,
         waterRemovalIndex: [],
@@ -87,10 +87,10 @@ let settings = {
         }],
         initialBombs: [{
           box: "box21",
-          bombType: "isLargeExplosion"
+          bombType: "isPantherExplosion"
         },{
           box: "box19",
-          bombType: "isVerticalExplosion"
+          bombType: "isPantherExplosion"
         }],
         bombsToLay: 6,
         waterRemovalIndex: [],

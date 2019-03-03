@@ -22,7 +22,7 @@
 }
 
 .smokeGif {
-  background: url(../img/sprites/smokeGif.png);
+  background: url(../img/sprites/smokeSprite.png);
   width: 100px;
   height: 100px;
   animation: exploding 0.8s steps(10);

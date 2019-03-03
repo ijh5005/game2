@@ -27,16 +27,12 @@ const boxInfo = {
     if (gameBoard[box].borders.left) classesToAdd.push("borderLeft");
     if (gameBoard[box].whoScored) classesToAdd.push(gameBoard[box].whoScored);
 
-    if (gameBoard[box].isMediumExplosion) {
-      classesToAdd.push("mediumExplosionImage");
-    } else if (gameBoard[box].isLargeExplosion) {
-      classesToAdd.push("largeExplosionImage");
-    } else if (gameBoard[box].isVerticalExplosion) {
-      classesToAdd.push("verticalExplosionImage");
-    } else if (gameBoard[box].isHorizontalExplosion) {
-      classesToAdd.push("horizontalExplosionImage");
-    } else if (gameBoard[box].isVeryLargeExplosion) {
-      classesToAdd.push("veryLargeExplosionImage");
+    if (gameBoard[box].isLionExplosion) {
+      classesToAdd.push("isLionExplosion");
+    } else if (gameBoard[box].isCheetahExplosion) {
+      classesToAdd.push("isCheetahExplosion");
+    } else if (gameBoard[box].isPantherExplosion) {
+      classesToAdd.push("isPantherExplosion");
     }
 
     const sideClasses = [

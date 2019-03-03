@@ -1,9 +1,8 @@
 const bomb = {
   types: [
-    { key: "isVerticalExplosion", class: "verticalExplosionImage" },
-    { key: "isHorizontalExplosion", class: "horizontalExplosionImage" },
-    { key: "isMediumExplosion", class: "mediumExplosionImage" },
-    { key: "isLargeExplosion", class: "largeExplosionImage" }
+    { key: "isLionExplosion", class: "isLionExplosion" },
+    { key: "isCheetahExplosion", class: "isCheetahExplosion" },
+    { key: "isPantherExplosion", class: "isPantherExplosion" },
   ],
   isExplosionBox: (box) => {
     let isBombBox = false;
@@ -61,9 +60,9 @@ const bomb = {
           hitInfo = { index }
         }
       })
-      if(hitInfo !== false){
+      if(hitInfo || hitInfo === 0){
         lockBombLocations[hitInfo.index].toughness--;
-        if(lockBombLocations[hitInfo.index].toughness === 0){
+        if(lockBombLocations[hitInfo.index].toughness <= 0){
           setTimeout(() => {
             lockBombLocations.splice(hitInfo.index, 1);
             $(`.box.${box}`).removeClass("locked");
@@ -74,15 +73,15 @@ const bomb = {
   },
   placeBomb: (boxNumber) => {
     let explosion = bomb.types[0];
-    const number = Math.floor(Math.random() * 71);
-    if(number > 55){ explosion = bomb.types[3]; }
-    else if(number > 40){ explosion = bomb.types[2]; }
-    else if(number > 20){ explosion = bomb.types[1]; }
+    const number = Math.floor(Math.random() * 100);
+    if(number > 66){ explosion = bomb.types[0]; }
+    else if(number > 33){ explosion = bomb.types[1]; }
+    else { explosion = bomb.types[2]; }
     if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
       // track.decrementBombCount();
       soundEffects.playShowBombSound();
       document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
-      bomb.showExplosionInBox(boxNumber, "smoke", 80 * 9);
+      bomb.showSpriteSmoke(boxNumber);
       gameBoard[boxNumber][explosion.key] = true;
     } else {
       // track.incrementMissedBombCount();
@@ -93,28 +92,42 @@ const bomb = {
     }
   },
   explodeBoxes: (box) => {
-    if (gameBoard[box].isMediumExplosion) {
-      explodingBoxes.push(box);
-      bomb.mediumExplosion(box);
+    if (gameBoard[box].isLionExplosion) {
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isLionExplosion = false;
+      const {
+        boxesToExplode,
+        linesToRemove
+      } = animalExplosions.lion.boxes(box);
+      explodingBoxes.push(...boxesToExplode);
+      // make boxes explode
+      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.checkForChainReactions(boxesToExplode);
       soundEffects.playExplosionSound();
-    } else if (gameBoard[box].isLargeExplosion) {
-      explodingBoxes.push(box);
-      setTimeout(() => {
-        bomb.largerExplosion(box);
-        soundEffects.playExplosionSound();
-      })
-    } else if (gameBoard[box].isVerticalExplosion) {
-      explodingBoxes.push(box);
-      setTimeout(() => {
-        bomb.verticalExplosion(box);
-        soundEffects.playExplosionSound();
-      })
-    } else if (gameBoard[box].isHorizontalExplosion) {
-      explodingBoxes.push(box);
-      setTimeout(() => {
-        bomb.horizontalExplosion(box);
-        soundEffects.playExplosionSound();
-      })
+    } else if (gameBoard[box].isCheetahExplosion) {
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isCheetahExplosion = false;
+      const {
+        boxesToExplode,
+        linesToRemove
+      } = animalExplosions.cheetah.boxes(box);
+      explodingBoxes.push(...boxesToExplode);
+      // make boxes explode
+      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.checkForChainReactions(boxesToExplode);
+      soundEffects.playExplosionSound();
+    } else if (gameBoard[box].isPantherExplosion) {
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isPantherExplosion = false;
+      const {
+        boxesToExplode,
+        linesToRemove
+      } = animalExplosions.panther.boxes(box);
+      explodingBoxes.push(...boxesToExplode);
+      // make boxes explode
+      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.checkForChainReactions(boxesToExplode);
+      soundEffects.playExplosionSound();
     }
     lineClickAction.removeLineClickHighlights();
   },
@@ -126,32 +139,6 @@ const bomb = {
         }
       })
     }, 80 * 4)
-  },
-  mediumExplosion: (box) => {
-    // removes the bomb image from the box after the ui is populated
-    gameBoard[box].isMediumExplosion = false;
-
-    // cache box number
-    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
-    const topBox = boxInfo.getTopBox(boxNumber);
-    const rightBox = boxInfo.getRightBox(boxNumber);
-    const bottomBox = boxInfo.getBottomBox(boxNumber);
-    const leftBox = boxInfo.getLeftBox(boxNumber);
-
-    // cache boxes to target
-    const linesToRemove = [
-      { box: topBox, lines: ["bottom"] },
-      { box: rightBox, lines: ["left"] },
-      { box: bottomBox, lines: ["top"] },
-      { box: leftBox, lines: ["right"] },
-      { box: box, lines: ["top", "right", "bottom", "left"] }
-    ];
-
-    // make boxes explode
-    bomb.explodeBoxesFromArray(linesToRemove);
-
-    const boxesToExplode = [topBox, bottomBox, leftBox, rightBox];
-    bomb.checkForChainReactions(boxesToExplode)
   },
   explodeBoxesFromArray: (linesToRemove) => {
     linesToRemove.forEach(item => {
@@ -165,85 +152,21 @@ const bomb = {
       }
     });
   },
-  largerExplosion: (box) => {
-    // removes the bomb image from the box after the ui is populated
-    gameBoard[box].isLargeExplosion = false;
-    // cache box number
-    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
-    // get all boxes surrounding boxes
-    const allBorders = boxInfo.getAllBorders(boxNumber);
-    // get borders to remove according to the largerExplosion rules
-    const bordersToRemove = boxInfo.getBordersToRemove(box, allBorders);
-    // make boxes explode
-    bomb.explodeBoxesFromArray(bordersToRemove);
-    bomb.checkForChainReactions(Object.entries(allBorders).map(data => data[1]));
-  },
-  verticalExplosion: (box) => {
-    // removes the bomb image from the box after the ui is populated
-    gameBoard[box].isVerticalExplosion = false;
-
-    // cache box number
-    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
-
-    const topBox = boxInfo.getTopBox(boxNumber);
-    const bottomBox = boxInfo.getBottomBox(boxNumber);
-
-    const twoBoxesUp = topBox ? boxInfo.getTopBox(boxInfo.getBoxNumberFromBoxX(topBox)) : false;
-    let twoBoxesDown = bottomBox ? boxInfo.getBottomBox(boxInfo.getBoxNumberFromBoxX(bottomBox)) : false;
-
-    // cache boxes to target
-    const linesToRemove = [
-      { box: twoBoxesDown, lines: ["top"] },
-      { box: twoBoxesUp, lines: ["bottom"] },
-      { box: boxInfo.getTopBox(boxNumber), lines: ["top", "bottom"] },
-      { box: boxInfo.getBottomBox(boxNumber), lines: ["top", "bottom"] },
-      { box: box, lines: ["top", "bottom"] }
-    ];
-
-    // make boxes explode
-    bomb.explodeBoxesFromArray(linesToRemove);
-
-    const boxesToExplode = [topBox, bottomBox, twoBoxesUp, twoBoxesDown];
-
-    bomb.checkForChainReactions(boxesToExplode)
-  },
-  horizontalExplosion: (box) => {
-    // removes the bomb image from the box after the ui is populated
-    gameBoard[box].isHorizontalExplosion = false;
-
-    // cache box number
-    const boxNumber = boxInfo.getBoxNumberFromBoxX(box);
-    const rightBox = boxInfo.getRightBox(boxNumber);
-    const twoBoxesRight = rightBox ? boxInfo.getRightBox(boxInfo.getBoxNumberFromBoxX(rightBox)) : false;
-    const leftBox = boxInfo.getLeftBox(boxNumber);
-    const twoBoxesLeft = leftBox ? boxInfo.getLeftBox(boxInfo.getBoxNumberFromBoxX(leftBox)) : false;
-
-    // cache boxes to target
-    const linesToRemove = [
-      { box: twoBoxesLeft, lines: ["right"] },
-      { box: twoBoxesRight, lines: ["left"] },
-      { box: boxInfo.getRightBox(boxNumber), lines: ["right", "left"] },
-      { box: boxInfo.getLeftBox(boxNumber), lines: ["right", "left"] },
-      { box: box, lines: ["right", "left"] },
-    ];
-
-    // make boxes explode
-    bomb.explodeBoxesFromArray(linesToRemove);
-
-    const boxesToExplode = [boxInfo.getRightBox(boxNumber), boxInfo.getLeftBox(boxNumber), twoBoxesLeft, twoBoxesRight];
-
-    bomb.checkForChainReactions(boxesToExplode)
-  },
   isExploding: [],
   showSpriteExplosion: (box) => {
     $(`.${box} > .spriteSheet`).addClass("explosionGif");
     setTimeout(() => {
       $(`.${box} > .spriteSheet`).removeClass("explosionGif");
-
       // remove the box from the exploding array
       const index = bomb.isExploding.indexOf(box);
       bomb.isExploding.splice(index, 1);
     }, 800);
     bomb.explodeLockBoxIfHit(box);
+  },
+  showSpriteSmoke: (box) => {
+    $(`.${box} > .spriteSheet`).addClass("smokeGif");
+    setTimeout(() => {
+      $(`.${box} > .spriteSheet`).removeClass("smokeGif");
+    }, 800);
   }
 }

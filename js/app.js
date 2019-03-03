@@ -11,7 +11,7 @@ let playerTwoScore = 0;
 let gameBoardLength;
 let gameBoardSize = "level1"; // this will be a variable for the user to select
 let rowLength = 6;
-let gameBoard; // map the selected gameBoard with its corresponding object
+let gameBoard;
 let hasScored = false;
 let isFirstPlayerTurn = true;
 let isPlayingComputer = true; // indicates if you are playing the computer

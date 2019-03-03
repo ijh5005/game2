@@ -1,0 +1,12 @@
+/* animal explosions */
+.isLionExplosion {
+  background-image: url("../img/color_animals/asset_lion.png");
+}
+
+.isCheetahExplosion {
+  background-image: url("../img/color_animals/asset_cheetah.png");
+}
+
+.isPantherExplosion {
+  background-image: url("../img/color_animals/asset_panther.png");
+}

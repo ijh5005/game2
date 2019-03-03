@@ -118,7 +118,7 @@ let settings = {
           toughness: 1
         }],
         initialBombs: [],
-        bombsToLay: 1000,
+        bombsToLay: 4,
         waterRemovalIndex: [],
         starRating: [
           { stars: 1, score: 8 },

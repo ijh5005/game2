@@ -54,17 +54,23 @@ const bomb = {
   },
   explodeLockBoxIfHit: (box) => {
     if(boxInfo.isALockBox(box)) {
-      let hitInfo;
-      lockBombLocations.forEach((data, index) => {
+      let index;
+      lockBombLocations.forEach((data, i) => {
         if(data.box === box){
-          hitInfo = { index }
+          index = i;
         }
       })
-      if(hitInfo || hitInfo === 0){
-        lockBombLocations[hitInfo.index].toughness--;
-        if(lockBombLocations[hitInfo.index].toughness <= 0){
+      if(index || index === 0){
+        lockBombLocations[index].toughness--;
+        if(lockBombLocations[index].toughness <= 0){
           setTimeout(() => {
-            lockBombLocations.splice(hitInfo.index, 1);
+            let newIndex;
+            lockBombLocations.forEach((data, index) => {
+              if(data.box === box){
+                newIndex = index
+              }
+            })
+            lockBombLocations.splice(newIndex, 1);
             $(`.box.${box}`).removeClass("locked");
           }, 300);
         }

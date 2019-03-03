@@ -11,6 +11,9 @@
   color: #1a103a;
   font-weight: bold;
   color: #544D6B;
+}
+
+.title.transitionColor {
   transition: color 5s;
 }
 

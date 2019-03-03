@@ -34,11 +34,37 @@ const lineClickAction = {
           ui.populateBoard();
           $(".tool.selected").removeClass("selected");
         }
+      } else if(selectedBombFunction === "lion"){
+        ui.tools.forEach(data => {
+          if(data.name === selectedBombFunction){
+            data.count--;
+          }
+        });
+        gameBoard[boxNumber].isLionExplosion = true;
+        bomb.explodeBoxes(boxNumber);
+        task.passTure();
+      } else if (selectedBombFunction === "cheetah") {
+        ui.tools.forEach(data => {
+          if(data.name === selectedBombFunction){
+            data.count--;
+          }
+        });
+        gameBoard[boxNumber].isCheetahExplosion = true;
+        bomb.explodeBoxes(boxNumber);
+        task.passTure();
+      } else if (selectedBombFunction === "panther") {
+        ui.tools.forEach(data => {
+          if(data.name === selectedBombFunction){
+            data.count--;
+          }
+        });
+        gameBoard[boxNumber].isPantherExplosion = true;
+        bomb.explodeBoxes(boxNumber);
+        task.passTure();
       }
     } else if(bomb.isExplosionBox(boxNumber)){
       bomb.explodeBoxes(boxNumber);
-      isFirstPlayerTurn = !isFirstPlayerTurn;
-      computerMove.makeComputerMove();
+      task.passTure();
     }
   },
   setEdgeBoxClickEvent: () => {

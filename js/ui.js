@@ -177,7 +177,7 @@ const ui = {
       `);
     },
     helper: (data) => {
-      return (`<div class="tool flexCol ${data.name}" onclick="selectHelper('${data.name}')">
+      return (`<div class="tool flexCol ${data.name}" onclick="ui.selectHelper('${data.name}')">
         <img src=${data.src} alt="">
         <p class="${data.name}p">${data.count}</p>
       </div>`)
@@ -185,35 +185,20 @@ const ui = {
   },
   tools: [
     {
-      name: "bombEraser",
-      src: "./img/bombEraser.png",
-      count: 0
+      name: "lion",
+      src: "./img/color_animals/asset_lion.png",
+      count: 1
     },
     {
-      name: "mediumBomb",
-      src: "./img/mediumBomb.png",
-      count: 0
+      name: "cheetah",
+      src: "./img/color_animals/asset_cheetah.png",
+      count: 1
     },
     {
-      name: "largeBomb",
-      src: "./img/largeBomb.png",
-      count: 0
-    },
-    {
-      name: "verticalBomb",
-      src: "./img/verticalBomb.png",
-      count: 0
-    },
-    {
-      name: "horizontalBomb",
-      src: "./img/horizontalBomb.png",
-      count: 0
-    },
-    {
-      name: "veryLarge",
-      src: "./img/veryLarge.png",
-      count: 0
-    },
+      name: "panther",
+      src: "./img/color_animals/asset_panther.png",
+      count: 1
+    }
   ],
   changeDifficulty: (diff) => {
     settings.difficulty = diff;

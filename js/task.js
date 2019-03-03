@@ -126,6 +126,7 @@ const task = {
     })
   },
   changeTitleColor: () => {
+    $(".title").addClass("transitionColor");
     setInterval(function () {
       $(".title img").addClass("big");
       setTimeout(() => {
@@ -137,5 +138,9 @@ const task = {
         $(".title").addClass("colorChange");
       }
     }, 6000);
+  },
+  passTure: () => {
+    isFirstPlayerTurn = !isFirstPlayerTurn;
+    computerMove.makeComputerMove();
   }
 }

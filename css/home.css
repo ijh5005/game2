@@ -11,10 +11,21 @@
   color: #1a103a;
   font-weight: bold;
   color: #544D6B;
+  transition: color 5s;
+}
+
+.title.colorChange {
+  color: #1a103a;
 }
 
 .title img {
   height: 1em;
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+
+.title img.big {
+  transform: scale(3);
 }
 
 .titleSubText {

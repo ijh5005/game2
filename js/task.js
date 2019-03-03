@@ -124,5 +124,18 @@ const task = {
         settings = storage.settings;
       }
     })
+  },
+  changeTitleColor: () => {
+    setInterval(function () {
+      $(".title img").addClass("big");
+      setTimeout(() => {
+        $(".title img").removeClass("big");
+      }, 100)
+      if($(".title").hasClass("colorChange")){
+        $(".title").removeClass("colorChange");
+      } else {
+        $(".title").addClass("colorChange");
+      }
+    }, 6000);
   }
 }

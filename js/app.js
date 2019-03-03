@@ -41,3 +41,4 @@ task.setFromLocalStorage();
 lineClickAction.setEdgeBoxClickEvent();
 track.goToPage("homePage");
 soundEffects.playGameMusic();
+task.changeTitleColor();

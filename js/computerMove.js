@@ -1,18 +1,22 @@
 const computerMove = {
   makeComputerMove: () => {
-    const timeToWaitForMove = (explodingBoxes.length > 0) ? 1500 : 400;
     explodingBoxes = [];
     // logic to make computer move
     setTimeout(() => { // makes the computer delay before making a move
-      const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
-      const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
-      if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
-        computerMove.clickInATwoBorderBox();
-        ui.populateBoard();
+      //wait for explosions to stop before making computer move
+      if(bomb.isExploding.length === 0){
+        const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
+        const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
+        if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
+          computerMove.clickInATwoBorderBox();
+          ui.populateBoard();
+        } else {
+          computerMove.makeMoveInSafeBox();
+        }
       } else {
-        computerMove.makeMoveInSafeBox();
+        computerMove.makeComputerMove()
       }
-    }, timeToWaitForMove);
+    }, 400);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
     if (threeBorderBoxes.length !== 0) computerMove.getAFreeBox();

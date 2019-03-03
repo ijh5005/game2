@@ -9,44 +9,20 @@
   z-index: 10;
 }
 
-.sprite {
-  position: relative;
-  height: 60px;
-  width: 480px;
-}
-
-.sprite > * {
-  height: 60px;
-  width: 60px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-@keyframes explode {
-    0%   { background-image: url(../img/sprites/4/1_2.png); }
-    14.25%  { background-image: url(../img/sprites/4/1_3.png); }
-    28.5%  { background-image: url(../img/sprites/4/1_4.png);}
-    42.75%  { background-image: url(../img/sprites/4/1_5.png); }
-    57%  { background-image: url(../img/sprites/4/1_6.png); }
-    71.25%  { background-image: url(../img/sprites/4/1_7.png); }
-    85.5%  { background-image: url(../img/sprites/4/1_8.png); }
-    99.75% { background-image: url(../img/sprites/4/1_8.png); }
-}
-
 @keyframes exploding {
   from { background-position: 0px; }
   to { background-position: -1000px; }
 }
 
 .explosionGif {
-  background: url(../img/sprites/4/bombSprite.png);
+  background: url(../img/sprites/bombSprite.png);
   width: 100px;
   height: 100px;
   animation: exploding 0.8s steps(10);
 }
 
 .smokeGif {
-  background: url(../img/sprites/1/smokeGif.png);
+  background: url(../img/sprites/smokeGif.png);
   width: 100px;
   height: 100px;
   animation: exploding 0.8s steps(10);

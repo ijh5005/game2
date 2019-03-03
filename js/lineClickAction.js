@@ -6,7 +6,6 @@ const lineClickAction = {
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
       if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
-        console.table({firstPlayerTurn: true});
         const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
         if (!hasClickBorderPreviously) { // prevent multiple click to the same border
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
@@ -57,11 +56,6 @@ const lineClickAction = {
         if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
           const hasClickBorderPreviously = (gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true);
           if(!hasClickBorderPreviously){
-            console.table({
-              edgeBox: true,
-              edgeBoxClicked: edgeBoxClicked.boxClicked,
-              edgeBoxClicked: edgeBoxClicked.sideClicked
-            });
             lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
           }
         }
@@ -69,7 +63,6 @@ const lineClickAction = {
     });
   },
   clickOnBorder: (boxNumber, lineClicked) => {
-    console.table({boxNumber, lineClicked})
     soundEffects.playLineClickSound();
     bomb.bombPopulation();
     track.incrementTurn();

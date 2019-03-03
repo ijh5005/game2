@@ -84,7 +84,8 @@ const ui = {
         const gridBox = document.createElement("div");
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
         // boxInfo.getNumberText(box, gridBox);
-        $(gridBox).html(`<img class="explosionBox ${box}Explosion hideExplosion">`)
+        // $(gridBox).html(`<img class="explosionBox ${box}Explosion hideExplosion">`)
+        $(gridBox).html(ui.uiComponents.spriteSheet(box));
         gridBox.addEventListener("click", (e) => { // add a click event to the box click on borders
           if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
           lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
@@ -164,6 +165,9 @@ const ui = {
           </div>
         </div>
       `)
+    },
+    spriteSheet: (box) => {
+      return ("<div class='spriteSheet'></div>");
     },
     lockedBoardBox: () => {
       return (`

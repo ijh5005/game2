@@ -158,7 +158,7 @@ const ui = {
         stars += `<img src="./img/star.png" alt="">`;
       }
       return (`
-        <div class="level flexCol" onclick="ui.startGame(${data.levelNumber})">
+        <div class="level flexCol playBoardButton" onclick="ui.startGame(${data.levelNumber})">
           <p>${data.levelNumber}</p>
           <div class="stars flexRow">
             ${stars}

@@ -72,23 +72,30 @@ const bomb = {
     };
   },
   placeBomb: (boxNumber) => {
-    let explosion = bomb.types[0];
-    const number = Math.floor(Math.random() * 100);
-    if(number > 66){ explosion = bomb.types[0]; }
-    else if(number > 33){ explosion = bomb.types[1]; }
-    else { explosion = bomb.types[2]; }
-    if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
-      // track.decrementBombCount();
-      soundEffects.playShowBombSound();
-      document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
-      bomb.showSpriteSmoke(boxNumber);
-      gameBoard[boxNumber][explosion.key] = true;
+    //wait for explosions to stop before placing bomb
+    if(bomb.isExploding.length === 0){
+      setTimeout(() => {
+        let explosion = bomb.types[0];
+        const number = Math.floor(Math.random() * 100);
+        if(number > 66){ explosion = bomb.types[0]; }
+        else if(number > 33){ explosion = bomb.types[1]; }
+        else { explosion = bomb.types[2]; }
+        if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
+          // track.decrementBombCount();
+          soundEffects.playShowBombSound();
+          document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
+          bomb.showSpriteSmoke(boxNumber);
+          gameBoard[boxNumber][explosion.key] = true;
+        } else {
+          // track.incrementMissedBombCount();
+          const missedBox = {
+            missedBox: true,
+            box: boxNumber
+          }
+        }
+      }, 400)
     } else {
-      // track.incrementMissedBombCount();
-      const missedBox = {
-        missedBox: true,
-        box: boxNumber
-      }
+      bomb.placeBomb()
     }
   },
   explodeBoxes: (box) => {

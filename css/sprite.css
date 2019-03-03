@@ -33,6 +33,11 @@
     99.75% { background-image: url(../img/sprites/4/1_8.png); }
 }
 
+@keyframes exploding {
+  from { background-position: 0px; }
+  to { background-position: -1000px; }
+}
+
 .explosionGif {
   background: url(../img/sprites/4/bombSprite.png);
   width: 100px;
@@ -40,7 +45,9 @@
   animation: exploding 0.8s steps(10);
 }
 
-@keyframes exploding {
-  from { background-position: 0px; }
-  to { background-position: -1000px; }
+.smokeGif {
+  background: url(../img/sprites/1/smokeGif.png);
+  width: 100px;
+  height: 100px;
+  animation: exploding 0.8s steps(10);
 }

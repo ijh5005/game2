@@ -61,7 +61,7 @@ const bomb = {
           hitInfo = { index }
         }
       })
-      if(hitInfo){
+      if(hitInfo !== false){
         lockBombLocations[hitInfo.index].toughness--;
         if(lockBombLocations[hitInfo.index].toughness === 0){
           setTimeout(() => {
@@ -162,12 +162,8 @@ const bomb = {
           bomb.isExploding.push(item.box);
           bomb.showSpriteExplosion(item.box);
         }
-        // bomb.showExplosionInBox(item.box, "explosion", 80 * 8);
       }
     });
-    setTimeout(() => {
-      bomb.isExploding = [];
-    }, 4000)
   },
   largerExplosion: (box) => {
     // removes the bomb image from the box after the ui is populated
@@ -243,6 +239,10 @@ const bomb = {
     $(`.${box} > .spriteSheet`).addClass("explosionGif");
     setTimeout(() => {
       $(`.${box} > .spriteSheet`).removeClass("explosionGif");
+
+      // remove the box from the exploding array
+      const index = bomb.isExploding.indexOf(box);
+      bomb.isExploding.splice(index, 1);
     }, 800);
     bomb.explodeLockBoxIfHit(box);
   }

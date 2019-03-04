@@ -30,7 +30,7 @@ const soundEffects = {
             this.play();
           }, 1000);
       }, false);
-      audio.play().then(_ => {
+      audio.play().then(() => {
         // Video playback started ;)
         console.log("playing song...");
         $("#gameScreen").unbind();
@@ -38,7 +38,7 @@ const soundEffects = {
           audio.pause();
         });
         $(document).on("click", ".mOptions.on", () => {
-          audio.play();
+          if(!settings.hasMutedMusic) audio.play();
         });
         // adjust volume on game play
         $(document).on("click", ".playBoardButton", () => {
@@ -46,7 +46,7 @@ const soundEffects = {
         });
         $(document).on("click", ".boardBackButton", () => {
           audio.currentTime = 0;
-          audio.play();
+          if(!settings.hasMutedMusic) audio.play();
         });
       })
       .catch(e => {

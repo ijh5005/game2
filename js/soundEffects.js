@@ -1,6 +1,6 @@
 const soundEffects = {
   playExplosionSound: () => {
-    const audio = new Audio('./soundEffects/explosion.mp3');
+    const audio = new Audio('./soundEffects/purchased/Mine Explosion 1.wav');
     audio.volume = settings.hasMutedSound ? 0 : 0.1;
     audio.play();
   },
@@ -10,7 +10,7 @@ const soundEffects = {
     audio.play();
   },
   playLineClickSound: () => {
-    const audio = new Audio('./soundEffects/lineClick.mp3');
+    const audio = new Audio('./soundEffects/purchased/Balloon_Pop-by_YIO.wav');
     audio.volume = settings.hasMutedSound ? 0 : 0.1;
     audio.play();
   },

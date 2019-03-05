@@ -31,7 +31,7 @@ const soundEffects = {
         $(".title img").removeClass("big");
       }, 200)
     }
-    const timeOuts = [ 0, 434, 869, 1272, 1716, 1986, 2256 ];
+    const timeOuts = [ 0, 434, 869, 1303, 1737, 1986, 2256 ];
     let count = 1;
     const run = () => {
       count++;

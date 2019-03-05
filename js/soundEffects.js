@@ -19,10 +19,36 @@ const soundEffects = {
     audio.volume = settings.hasMutedSound ? 0 : 0.4;
     audio.play();
   },
+  playScoreSound: () => {
+    const audio = new Audio('./soundEffects/purchased/Button Menu Application SFX 57.mp3');
+    audio.volume = settings.hasMutedSound ? 0 : 0.4;
+    audio.play();
+  },
+  runSpeaker: (audio) => {
+    const speaker = () => {
+      $(".title img").addClass("big");
+      setTimeout(() => {
+        $(".title img").removeClass("big");
+      }, 200)
+    }
+    const timeOuts = [ 0, 434, 869, 1272, 1716, 1986, 2256 ];
+    let count = 1;
+    const run = () => {
+      count++;
+      if(count <= 17){
+        timeOuts.forEach(time => {
+          setTimeout(() => {speaker()}, time);
+        })
+        setTimeout(() => { run() }, 4340);
+      }
+    }
+    run();
+  },
   playGameMusic: () => {
     $("#gameScreen").click(playSong = () => {
       let playVolume = 0.4;
       const audio = new Audio('./soundEffects/Song_Beat/ZazahBeatSlow.mp3');
+      soundEffects.runSpeaker(audio);
       audio.volume = settings.hasMutedMusic ? 0 : playVolume;
       audio.addEventListener('ended', function() {
           setTimeout(() => {

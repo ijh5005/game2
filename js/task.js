@@ -128,10 +128,6 @@ const task = {
   changeTitleColor: () => {
     $(".title").addClass("transitionColor");
     setInterval(function () {
-      $(".title img").addClass("big");
-      setTimeout(() => {
-        $(".title img").removeClass("big");
-      }, 100)
       if($(".title").hasClass("colorChange")){
         $(".title").removeClass("colorChange");
       } else {
@@ -139,7 +135,7 @@ const task = {
       }
     }, 6000);
   },
-  passTure: () => {
+  passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
     computerMove.makeComputerMove();
   }

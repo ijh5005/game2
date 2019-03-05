@@ -42,7 +42,7 @@ const lineClickAction = {
         });
         gameBoard[boxNumber].isLionExplosion = true;
         bomb.explodeBoxes(boxNumber);
-        task.passTure();
+        task.passTurn();
       } else if (selectedBombFunction === "cheetah") {
         ui.tools.forEach(data => {
           if(data.name === selectedBombFunction){
@@ -51,7 +51,7 @@ const lineClickAction = {
         });
         gameBoard[boxNumber].isCheetahExplosion = true;
         bomb.explodeBoxes(boxNumber);
-        task.passTure();
+        task.passTurn();
       } else if (selectedBombFunction === "panther") {
         ui.tools.forEach(data => {
           if(data.name === selectedBombFunction){
@@ -60,11 +60,11 @@ const lineClickAction = {
         });
         gameBoard[boxNumber].isPantherExplosion = true;
         bomb.explodeBoxes(boxNumber);
-        task.passTure();
+        task.passTurn();
       }
     } else if(bomb.isExplosionBox(boxNumber)){
       bomb.explodeBoxes(boxNumber);
-      task.passTure();
+      task.passTurn();
     }
   },
   setEdgeBoxClickEvent: () => {

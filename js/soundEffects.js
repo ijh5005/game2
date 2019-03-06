@@ -21,7 +21,7 @@ const soundEffects = {
   },
   playScoreSound: () => {
     const audio = new Audio('./soundEffects/purchased/Button Menu Application SFX 57.mp3');
-    audio.volume = settings.hasMutedSound ? 0 : 0.4;
+    audio.volume = settings.hasMutedSound ? 0 : 0.03;
     audio.play();
   },
   runSpeaker: (audio) => {
@@ -58,7 +58,6 @@ const soundEffects = {
       }, false);
       audio.play().then(() => {
         // Video playback started ;)
-        console.log("playing song...");
         $("#gameScreen").unbind();
         $(document).on("click", ".mOptions.off", () => {
           audio.pause();

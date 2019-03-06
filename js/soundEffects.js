@@ -44,6 +44,17 @@ const soundEffects = {
     }
     run();
   },
+  playBoardMusic: () => {
+    const audio = new Audio('./soundEffects/Song_Beat/Zazah beat 22.mp3');
+    audio.volume = settings.hasMutedMusic ? 0 : 0.08;
+    $(document).on("click", ".boardBackButton", () => {
+      audio.currentTime = 0;
+      audio.pause();
+    });
+    audio.play().then(() => {
+      // playing music
+    }).catch(e => console.log(e));
+  },
   playGameMusic: () => {
     $("#gameScreen").click(playSong = () => {
       let playVolume = 0.4;
@@ -68,9 +79,11 @@ const soundEffects = {
         // adjust volume on game play
         $(document).on("click", ".tipsText", () => {
           audio.pause();
+          soundEffects.playBoardMusic();
         });
         $(document).on("click", ".tipsImages", () => {
           audio.pause();
+          soundEffects.playBoardMusic();
         });
         $(document).on("click", ".boardBackButton", () => {
           audio.currentTime = 0;

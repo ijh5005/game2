@@ -363,11 +363,12 @@
 
 .tool {
   width: 4em;
-  height: 100%;
+  height: 4em;
+  transition: all 0.25s;
 }
 
 .tool img {
-  height: 3.4em;
+  height: 2.4em;
   transform: rotateY(0deg);
 }
 
@@ -384,7 +385,7 @@
 
 .tool.selected {
   background-color: #1a103a;
-  border-radius: 0.4em;
+  border-radius: 50%;
 }
 
 .removePage {

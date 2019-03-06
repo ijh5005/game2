@@ -176,9 +176,9 @@ const ui = {
       `);
     },
     helper: (data) => {
-      return (`<div class="tool flexCol ${data.name}" onclick="ui.selectHelper('${data.name}')">
+      // <p class="${data.name}p">${data.count}</p>
+      return (`<div class="tool flexRow ${data.name}" onclick="ui.selectHelper('${data.name}')">
         <img src=${data.src} alt="">
-        <p class="${data.name}p">${data.count}</p>
       </div>`)
     }
   },

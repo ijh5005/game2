@@ -393,3 +393,26 @@
   opacity: 0;
   z-index: -100;
 }
+
+.interactiveText {
+  position: absolute;
+  top: 8em;
+  width: 100%;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.interactiveText p {
+  font-family: 'Lobster', cursive;
+  font-size: 6em;
+  color: #ffa790;
+  position: relative;
+  top: -2em;
+  opacity: 0;
+  transition: all 0.5s;
+ }
+
+ .interactiveText p.showText {
+   top: 0em;
+   opacity: 1;
+  }

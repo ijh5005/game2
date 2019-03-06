@@ -39,6 +39,11 @@ const computerMove = {
             threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
             computerMove.makeMoveInSafeBox();
           } else {
+            if(oneBorderBoxes.length !== 0 && noBorders.length !== 0){
+              // show text on board
+              boardText.showText("bad");
+            }
+
             lineClickAction.clickOnBorder(clickBox, data);
           }
         // }

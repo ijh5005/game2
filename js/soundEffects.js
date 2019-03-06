@@ -53,7 +53,16 @@ const soundEffects = {
     });
     audio.play().then(() => {
       // playing music
+      soundEffects.replayWhenDone(audio);
     }).catch(e => console.log(e));
+  },
+  replayWhenDone: (audio) => {
+    audio.addEventListener('ended', function() {
+        setTimeout(() => {
+          this.currentTime = 0;
+          this.play();
+        }, 1000);
+    }, false);
   },
   playGameMusic: () => {
     $("#gameScreen").click(playSong = () => {
@@ -61,13 +70,8 @@ const soundEffects = {
       const audio = new Audio('./soundEffects/Song_Beat/ZazahBeatSlow.mp3');
       soundEffects.runSpeaker(audio);
       audio.volume = settings.hasMutedMusic ? 0 : playVolume;
-      audio.addEventListener('ended', function() {
-          setTimeout(() => {
-            this.currentTime = 0;
-            this.play();
-          }, 1000);
-      }, false);
       audio.play().then(() => {
+        soundEffects.replayWhenDone(audio);
         // Video playback started ;)
         $("#gameScreen").unbind();
         $(document).on("click", ".mOptions.off", () => {

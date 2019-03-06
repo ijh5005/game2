@@ -42,7 +42,3 @@ lineClickAction.setEdgeBoxClickEvent();
 track.goToPage("homePage");
 soundEffects.playGameMusic();
 task.changeTitleColor();
-
-setTimeout(() => {
-  $(".interactiveText p").addClass("showText")
-}, 10000)

@@ -11,6 +11,7 @@ const task = {
       }
     })
     isFirstPlayerTurn = (hasScored || disableComputer) ? isFirstPlayerTurn : !isFirstPlayerTurn;
+    hasScored ? soundEffects.playScoreSound() : soundEffects.playLineClickSound();
     hasScored = false;
     if (isPlayingComputer && !isFirstPlayerTurn) { // make the computer move
       computerMove.makeComputerMove();

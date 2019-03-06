@@ -89,7 +89,6 @@ const lineClickAction = {
     });
   },
   clickOnBorder: (boxNumber, lineClicked) => {
-    soundEffects.playLineClickSound();
     bomb.bombPopulation();
     track.incrementTurn();
     gameBoard[boxNumber].borders[lineClicked] = true;

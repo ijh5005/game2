@@ -33,6 +33,7 @@ const task = {
   },
   setGameLevel: (level) => {
     gameLevel = level - 1;
+    track.goToPage('tipsPage');
   },
   setStarsForWinner: (score) => {
     const starRubric = settings.levels.levelInformation[gameLevel].starRating;

@@ -1,0 +1,30 @@
+.tipsPage {
+  margin: 0 auto;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.tipsPage > div > .title {
+  font-size: 5em;
+  margin-top: 0;
+}
+
+.tipsHeading {
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.tipsText {
+  height: 45%;
+  padding-top: 1em;
+}
+
+.tipsImages {
+  height: 55%;
+  width: 100vw;
+  background-color: #1a103a;
+}
+
+.tipsImages img {
+  height: 68%;
+}

@@ -1,20 +1,19 @@
 const ui = {
-  startGame: (level) => {
+  startGame: () => {
     task.resetPlayerTurn();
     task.resetScore();
     track.goToPage(settings.startUpPage);
     task.setDifficulty(settings.difficulty);
-    task.setGameLevel(level)
     initialBombs = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].initialBombs);
     waterRemovalIndex = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].waterRemovalIndex);
     bombsToLay = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].bombsToLay);
     // track.setRemainingBombs();
     lockBombLocations = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].lockBoxes);
 
-    gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${level}`]);
+    gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${gameLevel + 1}`]);
     gameBoardLength = ui.getGameBoardLength();
 
-    const lockBoxesAmount = lockBoxes[level];
+    const lockBoxesAmount = lockBoxes[gameLevel];
     for(let i = 0; i < 36; i++){
       if(!boxInfo.isBoxDisabled(`box${i}`)){
         possibleBombs.push(`box${i}`);
@@ -158,7 +157,7 @@ const ui = {
         stars += `<img src="./img/star.png" alt="">`;
       }
       return (`
-        <div class="level flexCol playBoardButton" onclick="ui.startGame(${data.levelNumber})">
+        <div class="level flexCol playBoardButton" onclick="task.setGameLevel(${data.levelNumber})">
           <p>${data.levelNumber}</p>
           <div class="stars flexRow">
             ${stars}

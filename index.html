@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./css/obstacle.css">
     <link rel="stylesheet" href="./css/blur.css">
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/tips.css">
     <link rel="stylesheet" href="./css/level.css">
     <link rel="stylesheet" href="./css/completionScreen.css">
     <link rel="stylesheet" href="./css/sprite.css">
@@ -92,6 +93,21 @@
           <p class="title">level</p>
           <div class="levelsHolder flexRow"></div>
           <div class="backBtn flexRow" onclick="track.goToPage('homePage')">
+            <i class="fas fa-angle-left"></i>
+          </div>
+        </div>
+
+        <div class="tipsPage page">
+          <div class="tipsText" onclick="ui.startGame()">
+            <p class="title">how to play</p>
+            <div class="tipsTextSection flexCol">
+              <p class="setting">Take turns clicking lines. Connect four lines to score.</p>
+            </div>
+          </div>
+          <div class="tipsImages flexRow" onclick="ui.startGame()">
+            <img src="./img/tips/howto.png" alt="">
+          </div>
+          <div class="backBtn flexRow" onclick="track.goToPage('levelsPage')">
             <i class="fas fa-angle-left"></i>
           </div>
         </div>

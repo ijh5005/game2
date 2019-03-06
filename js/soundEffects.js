@@ -67,7 +67,10 @@ const soundEffects = {
           if(!settings.hasMutedMusic) audio.play();
         });
         // adjust volume on game play
-        $(document).on("click", ".playBoardButton", () => {
+        $(document).on("click", ".tipsText", () => {
+          audio.pause();
+        });
+        $(document).on("click", ".tipsImages", () => {
           audio.pause();
         });
         $(document).on("click", ".boardBackButton", () => {

@@ -19,6 +19,32 @@ const boxInfo = {
     })
     return count;
   },
+  getSafeBoxes: () => {
+    const safeClickBoxWithSide = [];
+    const oneBorder = [...oneBorderBoxes];
+    oneBorder.forEach(box => {
+      oneBorderBoxes.splice(oneBorderBoxes.indexOf(box), 1);
+      const edgeBox = boxInfo.edgeBox(box);
+      if (edgeBox.hasEdgeBox) { // task takes care of the corner cases by clicked its empty side
+        safeClickBoxWithSide.push({
+          clickBox: box,
+          clickSide: edgeBox.clickSide
+        });
+      } else {
+        const surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(data => oneBorderBoxes.includes(data));
+        surroundingOnBorderBoxes.forEach(data => {
+          const adjObj = boxInfo.isAdjacentBoxesConnected(box, data);
+          if (adjObj.isConnected) {
+            safeClickBoxWithSide.push({
+              clickBox: box,
+              clickSide: adjObj.side
+            });
+          }
+        });
+      }
+    })
+    return safeClickBoxWithSide;
+  },
   getAllBoxClasses: (box) => {
     const classesToAdd = ["box", "flexRow", box];
     if (gameBoard[box].borders.top) classesToAdd.push("borderTop");

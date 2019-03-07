@@ -90,5 +90,11 @@ const track = {
     missedBombs++;
     $(".missedBombs").text(missedBombs);
     track.decrementBombCount();
+  },
+  screenText: () => {
+    showTextUsed = true;
+    setTimeout(() => {
+      showTextUsed = false; // prevents multiple calls for screen text
+    }, timeToWaitBetweenText)
   }
 }

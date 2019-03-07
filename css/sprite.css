@@ -15,14 +15,14 @@
 }
 
 .explosionGif {
-  background: url(../img/sprites/bombSprite.png);
+  background: url(../img/sprites/bomb_svg.svg);
   width: 100px;
   height: 100px;
   animation: exploding 0.8s steps(10);
 }
 
 .smokeGif {
-  background: url(../img/sprites/smokeSprite.png);
+  background: url(../img/sprites/smoke_svg.svg);
   width: 100px;
   height: 100px;
   animation: exploding 0.8s steps(10);

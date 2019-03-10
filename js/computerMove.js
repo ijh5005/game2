@@ -39,11 +39,12 @@ const computerMove = {
             threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
             computerMove.makeMoveInSafeBox();
           } else {
-            if(oneBorderBoxes.length !== 0 && noBorders.length !== 0){
+            const hasMoreSafeBoxesToClickIn = boxInfo.getSafeBoxes().length > 1;
+            if(noBorders.length > 0 && !showTextUsed){
+              track.screenText();
               // show text on board
               boardText.showText("bad");
             }
-
             lineClickAction.clickOnBorder(clickBox, data);
           }
         // }
@@ -94,29 +95,7 @@ const computerMove = {
     }
   },
   clickInAOneBorderBox: () => {
-    const safeClickBoxWithSide = [];
-    const oneBorder = [...oneBorderBoxes];
-    oneBorder.forEach(box => {
-      oneBorderBoxes.splice(oneBorderBoxes.indexOf(box), 1);
-      const edgeBox = boxInfo.edgeBox(box);
-      if (edgeBox.hasEdgeBox) { // task takes care of the corner cases by clicked its empty side
-        safeClickBoxWithSide.push({
-          clickBox: box,
-          clickSide: edgeBox.clickSide
-        });
-      } else {
-        const surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(data => oneBorderBoxes.includes(data));
-        surroundingOnBorderBoxes.forEach(data => {
-          const adjObj = boxInfo.isAdjacentBoxesConnected(box, data);
-          if (adjObj.isConnected) {
-            safeClickBoxWithSide.push({
-              clickBox: box,
-              clickSide: adjObj.side
-            });
-          }
-        });
-      }
-    })
+    const safeClickBoxWithSide = boxInfo.getSafeBoxes();
     if (safeClickBoxWithSide.length !== 0) {
       const clickBoxObj = task.getRandomIndexInArray(safeClickBoxWithSide);
       lineClickAction.clickOnBorder(clickBoxObj.clickBox, clickBoxObj.clickSide);

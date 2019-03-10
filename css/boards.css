@@ -60,13 +60,14 @@
 
 /* board */
 #boardHolder {
-  width: 375px;
+  width: 100%;
   height: 375px;
+  overflow: scroll;
+  margin: 0 auto;
 }
 
 #board {
   flex-wrap: wrap;
-  width: 375px;
   position: relative;
   zoom: 96%;
   margin: 0 auto;
@@ -83,9 +84,19 @@
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  /* width: 60px;
+  height: 60px; */
+  /* transition: border 0.5s; */
+}
+
+.box.smallScreen {
+  width: 55px;
+  height: 55px;
+}
+
+.box.mediumScreen {
   width: 60px;
   height: 60px;
-  /* transition: border 0.5s; */
 }
 
 .box.hint {
@@ -404,7 +415,7 @@
 
 .interactiveText p {
   font-family: 'Lobster', cursive;
-  font-size: 6em;
+  font-size: 3em;
   color: #ffa790;
   position: relative;
   top: -2em;
@@ -414,5 +425,5 @@
 
  .interactiveText p.showText {
    top: 0em;
-   opacity: 1;
+   opacity: 0.6;
   }

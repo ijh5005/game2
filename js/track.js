@@ -34,6 +34,9 @@ const track = {
     const pageToShow = document.getElementsByClassName(page)[0];
     pageToShow.classList.remove("removePage");
     ui.setSettingsIfOnSettingsPage(page);
+    if(page === "gameBoardPage"){
+      task.resizeBoard();
+    }
   },
   youLose: () => {
     console.log("you lose")
@@ -90,5 +93,11 @@ const track = {
     missedBombs++;
     $(".missedBombs").text(missedBombs);
     track.decrementBombCount();
+  },
+  screenText: () => {
+    showTextUsed = true;
+    setTimeout(() => {
+      showTextUsed = false; // prevents multiple calls for screen text
+    }, timeToWaitBetweenText)
   }
 }

@@ -34,7 +34,7 @@
 }
 
 .title img.big {
-  transform: scale(1.2);
+  transform: scale(1.4);
 }
 
 .titleSubText {
@@ -64,15 +64,8 @@
 }
 
 .homeBtnText {
-  color: #544D6B;
+  color: #ffa790;
   font-size: 1em;
-  font-weight: bold;
-}
-
-.homeBtnText {
-  color: #544D6B;
-  font-size: 1em;
-  font-weight: bold;
   margin: 0.2em;
   align-self: flex-end;
 }

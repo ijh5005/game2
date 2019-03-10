@@ -45,7 +45,7 @@ const lineClickAction = {
         // this explodes bomb when layed down
         // bomb.explodeBoxes(boxNumber);
         ui.populateBoard(); // remove this line if adding the above commented out line
-        task.passTurn();
+        // task.passTurn();
       } else if (selectedBombFunction === "cheetah") {
         tools.forEach(data => {
           if(data.name === selectedBombFunction){
@@ -57,7 +57,7 @@ const lineClickAction = {
         // this explodes bomb when layed down
         // bomb.explodeBoxes(boxNumber);
         ui.populateBoard();
-        task.passTurn();
+        // task.passTurn();
       } else if (selectedBombFunction === "panther") {
         tools.forEach(data => {
           if(data.name === selectedBombFunction){
@@ -69,7 +69,7 @@ const lineClickAction = {
         // this explodes bomb when layed down
         // bomb.explodeBoxes(boxNumber);
         ui.populateBoard();
-        task.passTurn();
+        // task.passTurn();
       }
     } else if(bomb.isExplosionBox(boxNumber)){
       bomb.explodeBoxes(boxNumber);

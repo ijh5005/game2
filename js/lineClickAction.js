@@ -41,7 +41,10 @@ const lineClickAction = {
           }
         });
         gameBoard[boxNumber].isLionExplosion = true;
-        bomb.explodeBoxes(boxNumber);
+        // don't delete
+        // this explodes bomb when layed down
+        // bomb.explodeBoxes(boxNumber);
+        ui.populateBoard(); // remove this line if adding the above commented out line
         task.passTurn();
       } else if (selectedBombFunction === "cheetah") {
         ui.tools.forEach(data => {
@@ -50,7 +53,10 @@ const lineClickAction = {
           }
         });
         gameBoard[boxNumber].isCheetahExplosion = true;
-        bomb.explodeBoxes(boxNumber);
+        // don't delete
+        // this explodes bomb when layed down
+        // bomb.explodeBoxes(boxNumber);
+        ui.populateBoard();
         task.passTurn();
       } else if (selectedBombFunction === "panther") {
         ui.tools.forEach(data => {
@@ -59,7 +65,10 @@ const lineClickAction = {
           }
         });
         gameBoard[boxNumber].isPantherExplosion = true;
-        bomb.explodeBoxes(boxNumber);
+        // don't delete
+        // this explodes bomb when layed down
+        // bomb.explodeBoxes(boxNumber);
+        ui.populateBoard();
         task.passTurn();
       }
     } else if(bomb.isExplosionBox(boxNumber)){

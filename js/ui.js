@@ -60,6 +60,7 @@ const ui = {
     return length;
   },
   chooseBoard: () => {
+    tools = null;
     track.goToPage("levelsPage");
     $(".levelsHolder").html("");
     settings.levels.levelInformation.forEach(data => {

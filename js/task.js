@@ -34,6 +34,7 @@ const task = {
   },
   setGameLevelAndTips: (level) => {
     gameLevel = level - 1;
+    task.setGameLevelObj();
     track.goToPage('tipsPage');
     task.setTips(level);
   },
@@ -42,13 +43,13 @@ const task = {
       heading,
       text,
       img_src
-    } = settings.levels.levelInformation[gameLevel].tipsPage;
+    } = getGameLevelObj.tipsPage;
     document.getElementById("tipHeading").innerText = heading;
     document.getElementById("tipText").innerText = text;
     document.getElementById("tipImage").src = img_src;
   },
   setStarsForWinner: (score) => {
-    const starRubric = settings.levels.levelInformation[gameLevel].starRating;
+    const starRubric = getGameLevelObj.starRating;
     if(score >= starRubric[2].score){
       starsEarned = starRubric[2].stars;
       task.animateStarCount(["completeStar1", "completeStar2", "completeStar3"])
@@ -161,6 +162,12 @@ const task = {
     })
   },
   getTools: () => {
-    return task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].tools)
+    return task.breakRefAndCopy(getGameLevelObj.tools)
+  },
+  setGameLevelObj: () => {
+    getGameLevelObj = task.getGameLevelObj();
+  },
+  getGameLevelObj: () => {
+    return settings.levels.levelInformation[gameLevel];
   }
 }

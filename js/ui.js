@@ -5,11 +5,11 @@ const ui = {
     task.resetScore();
     track.goToPage(settings.startUpPage);
     task.setDifficulty(settings.difficulty);
-    initialBombs = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].initialBombs);
-    waterRemovalIndex = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].waterRemovalIndex);
-    bombsToLay = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].bombsToLay);
+    initialBombs = task.breakRefAndCopy(getGameLevelObj.initialBombs);
+    waterRemovalIndex = task.breakRefAndCopy(getGameLevelObj.waterRemovalIndex);
+    bombsToLay = task.breakRefAndCopy(getGameLevelObj.bombsToLay);
     // track.setRemainingBombs();
-    lockBombLocations = task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].lockBoxes);
+    lockBombLocations = task.breakRefAndCopy(getGameLevelObj.lockBoxes);
 
     gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${gameLevel + 1}`]);
     gameBoardLength = ui.getGameBoardLength();

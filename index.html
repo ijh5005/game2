@@ -40,14 +40,15 @@
             <p class="title">
               <span>b</span><img class="titleImg" src="./img/color_animals/asset_rhino copy.png" alt=""><span>xes</span>
             </p>
-            <p class="titleSubText">and lines</p>
+            <!-- <p class="titleSubText">and lines</p> -->
           </div>
           <div class="settings flexCol">
-            <p class="setting" onclick="ui.chooseBoard()">play</p>
-            <p class="setting" onclick="track.goToPage('settingsPage')">settings</p>
-            <p class="setting">how to</p>
-            <p class="setting">store</p>
-            <p class="setting">achievements</p>
+            <p class="setting" onclick="ui.chooseBoard()">
+              <span class="homeBtnText">play</span>
+            </p>
+            <p class="setting" onclick="track.goToPage('settingsPage')">
+              <span class="homeBtnText">settings</span>
+            </p>
           </div>
         </div>
 
@@ -61,8 +62,8 @@
           </div>
           <div class="settings flexCol">
             <div class="flexRow settingsOptionField">
-              <p class="settingsPageSettings">difficulty</p>
-              <div class="flexRow onOff">
+              <!-- <p class="settingsPageSettings">difficulty</p> -->
+              <div class="flexRow difficultyText">
                 <p class="settingsPageSettings sOptions diff easy" onclick="ui.changeDifficulty('easy')">easy</p>
                 <p class="settingsPageSettings sOptions diff medium" onclick="ui.changeDifficulty('medium')">med</p>
                 <p class="settingsPageSettings sOptions selectedSetting diff hard" onclick="ui.changeDifficulty('hard')">hard</p>
@@ -99,9 +100,9 @@
 
         <div class="tipsPage page">
           <div class="tipsText" onclick="ui.startGame()">
-            <p class="title">how to play</p>
+            <p class="title">how to</p>
             <div class="tipsTextSection flexCol">
-              <p class="setting">Take turns clicking lines. Connect four lines to score.</p>
+              <p class="setting tipText">Take turns clicking lines. Connect four lines to score.</p>
             </div>
           </div>
           <div class="tipsImages flexRow" onclick="ui.startGame()">
@@ -116,11 +117,11 @@
         <div id="gameBoardPage" class="page gameBoardPage">
           <div class="topBar flexRow hide">
             <div class="scoreHolder flexCol thisPlayerTurn">
-              <p class="playerScoreHeading">1st player score</p>
+              <p class="playerScoreHeading">1st score</p>
               <p class="playerOneScore">0</p>
             </div>
             <div class="scoreHolder flexCol">
-              <p class="playerScoreHeading">2nd player score</p>
+              <p class="playerScoreHeading">2nd score</p>
               <p class="playerTwoScore">0</p>
             </div>
           </div>
@@ -139,11 +140,6 @@
           <div class="backBtn boardBackButton flexRow" onclick="ui.chooseBoard()">
             <i class="fas fa-angle-left"></i>
           </div>
-          <div id="ads" class="flexRow">
-            <p>BLACK BUSINESS ADS</p>
-            <!-- <img src="./img/black.png" alt=""> -->
-          </div>
-
           <!-- interactive text -->
           <div class="interactiveText">
             <p></p>

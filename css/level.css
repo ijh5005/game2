@@ -11,6 +11,7 @@
 
 .levelsHolder {
   flex-wrap: wrap;
+  padding-bottom: 4em;
 }
 
 .level {
@@ -44,11 +45,8 @@
   bottom: 0;
   right: 0;
   height: 1.8em;
-  width: 1.8em;
-}
-
-.settingsPageBackBtn {
-  background-color: #1a103a;
+  width: 100%;
+  border-top: 1px solid #1a1138;
 }
 
 .backBtn i {

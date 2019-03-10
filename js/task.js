@@ -140,5 +140,13 @@ const task = {
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
     computerMove.makeComputerMove();
+  },
+  resizeBoard: () => {
+    setTimeout(() => {
+      const boardSize = $("#board").width();
+      const gridWidth = boardSize/6;
+      $(".box").width(gridWidth - 6);
+      $(".box").height(gridWidth - 6);
+    })
   }
 }

@@ -23,8 +23,11 @@
   height: 55%;
   width: 100vw;
   background-color: #1a103a;
+  background-color: #130b2d;
 }
 
 .tipsImages img {
   height: 68%;
+  top: -10%;
+  position: relative;
 }

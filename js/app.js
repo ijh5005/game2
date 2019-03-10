@@ -37,6 +37,9 @@ let waterRemoval = 0;
 let waterRemovalIndex;
 let initialBombs;
 
+let reset_settings = true;
+let on_game_board = false;
+
 let showTextUsed = false; // used to prevent multiple screen text showing on board
 let timeToWaitBetweenText = 8000;
 

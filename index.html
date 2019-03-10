@@ -103,13 +103,13 @@
 
         <div class="tipsPage page">
           <div class="tipsText" onclick="ui.startGame()">
-            <p class="title">how to</p>
+            <p id="tipHeading" class="title"></p>
             <div class="tipsTextSection flexCol">
-              <p class="setting tipText">Take turns clicking lines. Connect four lines to score.</p>
+              <p id="tipText" class="setting tipText"></p>
             </div>
           </div>
           <div class="tipsImages flexRow" onclick="ui.startGame()">
-            <img src="./img/tips/howto.png" alt="">
+            <img id="tipImage" class="" src="" alt="">
           </div>
           <div class="backBtn flexRow" onclick="track.goToPage('levelsPage')">
             <i class="fas fa-angle-left"></i>

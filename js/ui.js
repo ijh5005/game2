@@ -1,5 +1,6 @@
 const ui = {
   startGame: () => {
+    on_game_board = true;
     task.resetPlayerTurn();
     task.resetScore();
     track.goToPage(settings.startUpPage);
@@ -157,7 +158,7 @@ const ui = {
         stars += `<img src="./img/star.png" alt="">`;
       }
       return (`
-        <div class="level flexCol playBoardButton" onclick="task.setGameLevel(${data.levelNumber})">
+        <div class="level flexCol playBoardButton" onclick="task.setGameLevelAndTips(${data.levelNumber})">
           <p>${data.levelNumber}</p>
           <div class="stars flexRow">
             ${stars}

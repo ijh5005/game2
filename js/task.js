@@ -32,9 +32,20 @@ const task = {
     const ele = document.getElementsByClassName(className)[0];
     ele.classList.remove(classToRemove);
   },
-  setGameLevel: (level) => {
+  setGameLevelAndTips: (level) => {
     gameLevel = level - 1;
     track.goToPage('tipsPage');
+    task.setTips(level);
+  },
+  setTips: (level) => {
+    const {
+      heading,
+      text,
+      img_src
+    } = settings.levels.levelInformation[level - 1].tipsPage;
+    document.getElementById("tipHeading").innerText = heading;
+    document.getElementById("tipText").innerText = text;
+    document.getElementById("tipImage").src = img_src;
   },
   setStarsForWinner: (score) => {
     const starRubric = settings.levels.levelInformation[gameLevel].starRating;
@@ -119,7 +130,7 @@ const task = {
   },
   setFromLocalStorage: () => {
     setTimeout(() => {
-      if(!localStorage.boxes){
+      if(!localStorage.boxes && !reset_settings){
         task.saveToLocalStorage("settings", settings)
       } else {
         const storage = JSON.parse(localStorage.boxes)

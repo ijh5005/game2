@@ -35,7 +35,7 @@ const soundEffects = {
     let count = 1;
     const run = () => {
       count++;
-      if(count <= 17){
+      if(count <= 17 && !on_game_board){
         timeOuts.forEach(time => {
           setTimeout(() => {speaker()}, time);
         })

@@ -17,7 +17,13 @@ let settings = {
           { stars: 1, score: 8 },
           { stars: 2, score: 9 },
           { stars: 3, score: 10 }
-        ]
+        ],
+        tipsPage: {
+          hey: "hey",
+          heading: "how to",
+          text: "Take turns clicking lines. Connect four lines to score.",
+          img_src: "./img/tips/howto.png"
+        }
       },
       {
         isLocked: true,

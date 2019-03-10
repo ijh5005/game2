@@ -67,6 +67,12 @@
   color: #544D6B;
   font-size: 1em;
   font-weight: bold;
+}
+
+.homeBtnText {
+  color: #544D6B;
+  font-size: 1em;
+  font-weight: bold;
   font-size: 2.4em;
   margin: 0.2em;
   align-self: flex-end;

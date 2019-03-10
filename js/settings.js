@@ -23,7 +23,24 @@ let settings = {
           heading: "how to",
           text: "Take turns clicking lines. Connect four lines to score.",
           img_src: "./img/tips/howto.png"
-        }
+        },
+        tools: [
+          {
+            name: "lion",
+            src: "./img/color_animals/asset_lion.png",
+            count: 1
+          },
+          {
+            name: "cheetah",
+            src: "./img/color_animals/asset_cheetah.png",
+            count: 1
+          },
+          {
+            name: "panther",
+            src: "./img/color_animals/asset_panther.png",
+            count: 1
+          }
+        ]
       },
       {
         isLocked: true,
@@ -130,6 +147,23 @@ let settings = {
           { stars: 1, score: 8 },
           { stars: 2, score: 9 },
           { stars: 3, score: 10 }
+        ],
+        tools: [
+          {
+            name: "lion",
+            src: "./img/color_animals/asset_lion.png",
+            count: 1
+          },
+          {
+            name: "cheetah",
+            src: "./img/color_animals/asset_cheetah.png",
+            count: 1
+          },
+          {
+            name: "panther",
+            src: "./img/color_animals/asset_panther.png",
+            count: 1
+          }
         ]
       },
       {

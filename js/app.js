@@ -25,6 +25,7 @@ let gameMode = true;
 let gameLevel;
 let starsEarned;
 let currentPage = "homePage";
+let tools;
 
 // game controls
 let chanceToGiveAWayPoint;

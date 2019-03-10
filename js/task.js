@@ -130,7 +130,7 @@ const task = {
   },
   setFromLocalStorage: () => {
     setTimeout(() => {
-      if(!localStorage.boxes && !reset_settings){
+      if(!localStorage.boxes || reset_settings){
         task.saveToLocalStorage("settings", settings)
       } else {
         const storage = JSON.parse(localStorage.boxes)
@@ -159,5 +159,8 @@ const task = {
       $(".box").width(gridWidth - 6);
       $(".box").height(gridWidth - 6);
     })
+  },
+  getTools: () => {
+    return task.breakRefAndCopy(settings.levels.levelInformation[gameLevel].tools)
   }
 }

@@ -98,7 +98,10 @@ const ui = {
     ui.populateHelpers();
   },
   populateHelpers: () => {
-    ui.tools.forEach(data => {
+    if(!tools){
+      tools = task.getTools();
+    }
+    tools.forEach(data => {
       const tool = $(`.tool.${data.name}`);
       const toolExists = tool.length > 0;
       if(data.count !== 0 && !toolExists){

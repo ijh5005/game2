@@ -3,7 +3,7 @@ const track = {
   incrementTurn: () => {
     track.turn++;
     if(waterRemovalIndex.includes(track.turn)){
-      ui.tools.forEach(data => {
+      tools.forEach(data => {
         if(data.name === "bombEraser"){
           data.count++;
           setTimeout(() => {

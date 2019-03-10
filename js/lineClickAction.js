@@ -25,7 +25,7 @@ const lineClickAction = {
             delete gameBoard[boxNumber][`${data.key}`];
             bomb.showExplosionInBox(boxNumber, "eraseBomb", 80 * 8);
           })
-          ui.tools.forEach(data => {
+          tools.forEach(data => {
             if(data.name === selectedBombFunction){
               data.count--;
             }
@@ -35,7 +35,7 @@ const lineClickAction = {
           $(".tool.selected").removeClass("selected");
         }
       } else if(selectedBombFunction === "lion"){
-        ui.tools.forEach(data => {
+        tools.forEach(data => {
           if(data.name === selectedBombFunction){
             data.count--;
           }
@@ -47,7 +47,7 @@ const lineClickAction = {
         ui.populateBoard(); // remove this line if adding the above commented out line
         task.passTurn();
       } else if (selectedBombFunction === "cheetah") {
-        ui.tools.forEach(data => {
+        tools.forEach(data => {
           if(data.name === selectedBombFunction){
             data.count--;
           }
@@ -59,7 +59,7 @@ const lineClickAction = {
         ui.populateBoard();
         task.passTurn();
       } else if (selectedBombFunction === "panther") {
-        ui.tools.forEach(data => {
+        tools.forEach(data => {
           if(data.name === selectedBombFunction){
             data.count--;
           }

@@ -30,7 +30,7 @@ const computerMove = {
     // this was taken out to fix the locked boxes functionality
     // const smartClickBoxInfo = computerMove.shouldLetHaveBox();
     Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(data => {
-      if (!boxInfo.getGameBoardClickBox(clickBox).borders[data]) {
+      if (!boxInfo.getGameBoardClickBox(clickBox).borders[data] && !isFirstPlayerTurn) {
         // if (smartClickBoxInfo && smartClickBoxInfo.sideToClick && !conserveMoveUsed) {
         //   conserveMoveUsed = true;
         //   lineClickAction.clickOnBorder(smartClickBoxInfo.boxToClick, smartClickBoxInfo.sideToClick)

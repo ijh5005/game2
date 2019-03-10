@@ -17,6 +17,7 @@ const boardText = {
     let text;
     if(type === "bad"){
       text = boardText.getBadText();
+      soundEffects.play("got em/got em.m4a");
     } else if (type === "good") {
       text = boardText.getGoodText();
     } else if (type === "excellent") {

@@ -42,7 +42,7 @@ const task = {
       heading,
       text,
       img_src
-    } = settings.levels.levelInformation[level - 1].tipsPage;
+    } = settings.levels.levelInformation[gameLevel].tipsPage;
     document.getElementById("tipHeading").innerText = heading;
     document.getElementById("tipText").innerText = text;
     document.getElementById("tipImage").src = img_src;

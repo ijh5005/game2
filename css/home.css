@@ -70,6 +70,11 @@
   align-self: flex-end;
 }
 
+.playBtn {
+  font-size: 27vw;
+  color: #544D6B;
+}
+
 .settingsPageSettings {
   color: #ffa790;
   font-size: 1.4em;

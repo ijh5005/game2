@@ -114,7 +114,7 @@ const bomb = {
       } = animalExplosions.lion.boxes(box);
       explodingBoxes.push(...boxesToExplode);
       // make boxes explode
-      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.explodeBoxesFromArray(linesToRemove, box);
       bomb.checkForChainReactions(boxesToExplode);
       soundEffects.playExplosionSound();
     } else if (gameBoard[box].isCheetahExplosion) {
@@ -126,7 +126,7 @@ const bomb = {
       } = animalExplosions.cheetah.boxes(box);
       explodingBoxes.push(...boxesToExplode);
       // make boxes explode
-      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.explodeBoxesFromArray(linesToRemove, box);
       bomb.checkForChainReactions(boxesToExplode);
       soundEffects.playExplosionSound();
     } else if (gameBoard[box].isPantherExplosion) {
@@ -138,7 +138,7 @@ const bomb = {
       } = animalExplosions.panther.boxes(box);
       explodingBoxes.push(...boxesToExplode);
       // make boxes explode
-      bomb.explodeBoxesFromArray(linesToRemove);
+      bomb.explodeBoxesFromArray(linesToRemove, box);
       bomb.checkForChainReactions(boxesToExplode);
       soundEffects.playExplosionSound();
     }
@@ -153,9 +153,17 @@ const bomb = {
       })
     }, 80 * 4)
   },
-  explodeBoxesFromArray: (linesToRemove) => {
+  allExplodingBoxes: [],
+  fillExplodingBoxes: (box) => {
+    bomb.allExplodingBoxes.push(box);
+    setTimeout(() => {
+      bomb.allExplodingBoxes.pop();
+    })
+  },
+  explodeBoxesFromArray: (linesToRemove, box) => {
     linesToRemove.forEach(item => {
       if (item.box) {
+        bomb.fillExplodingBoxes(item.box);
         lineClickAction.removeBorders(item.box, item.lines);
         ui.removeScoreColorIfRemovingBorder(item.box);
         if(!bomb.isExploding.includes(item.box)) {
@@ -171,8 +179,7 @@ const bomb = {
     setTimeout(() => {
       $(`.${box} > .spriteSheet`).removeClass("explosionGif");
       // remove the box from the exploding array
-      const index = bomb.isExploding.indexOf(box);
-      bomb.isExploding.splice(index, 1);
+      bomb.isExploding.pop();
     }, 800);
     bomb.explodeLockBoxIfHit(box);
   },

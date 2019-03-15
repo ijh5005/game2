@@ -70,8 +70,11 @@ const soundEffects = {
         }, 1000);
     }, false);
   },
+  playMusicClicked: false,
   playGameMusic: () => {
     $("#gameScreen").click(playSong = () => {
+      if(soundEffects.playMusicClicked) return null;
+
       let playVolume = 0.4;
       const audio = new Audio('./soundEffects/Song_Beat/ZazahBeatSlow.mp3');
       soundEffects.runSpeaker(audio);

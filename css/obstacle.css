@@ -4,11 +4,18 @@
 }
 
 .firstPlayerScored {
-  background-color: #1a103a;
+  /* background-color: #1a103a;
+  background-color: #5a3c01; */
+  background: radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
 
 .secondPlayerScored {
-  background-color: #4e4179;
+  /* background-color: #4e4179;
+  background-color: #1a103a; */
+  background: radial-gradient(ellipse farthest-corner at right bottom, #784eff 0%, #5e2df8 8%, #4628a8 30%, #452f8d 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #1f1246 0%, #51476f 8%, #533e99 25%, #1a103a 62.5%, #1f1246 100%);
+  background: radial-gradient(ellipse farthest-corner at right bottom, #280e7d 0%, #2d1871 8%, #29156b 30%, #251360 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #4426a1 0%, #321097 8%, #301882 25%, #1a103a 62.5%, #1f1246 100%);
+  background: #130b2d;
 }
 
 .disabled {

@@ -27,14 +27,9 @@ const computerMove = {
   },
   getAFreeBox: () => {
     const clickBox = task.getRandomIndexInArray(threeBorderBoxes);
-    // this was taken out to fix the locked boxes functionality
-    // const smartClickBoxInfo = computerMove.shouldLetHaveBox();
     Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(data => {
-      if (!boxInfo.getGameBoardClickBox(clickBox).borders[data] && !isFirstPlayerTurn) {
-        // if (smartClickBoxInfo && smartClickBoxInfo.sideToClick && !conserveMoveUsed) {
-        //   conserveMoveUsed = true;
-        //   lineClickAction.clickOnBorder(smartClickBoxInfo.boxToClick, smartClickBoxInfo.sideToClick)
-        // } else {
+      if(!bomb.allExplodingBoxes.length > 0){
+        if (!boxInfo.getGameBoardClickBox(clickBox).borders[data] && !isFirstPlayerTurn) {
           if(boxInfo.isAdjBoxALockBox(clickBox, data)){
             threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
             computerMove.makeMoveInSafeBox();
@@ -47,9 +42,9 @@ const computerMove = {
             }
             lineClickAction.clickOnBorder(clickBox, data);
           }
-        // }
+        }
       }
-    })
+    });
   },
   clickInANoBorderBox: () => {
     let keepGoing = true;

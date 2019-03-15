@@ -25,7 +25,7 @@
 .level p {
   font-size: 2.8em;
   margin: 0;
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
 }
 
 .stars img {
@@ -47,6 +47,8 @@
   height: 1.8em;
   width: 100%;
   border-top: 1px solid #1a1138;
+  z-index: 200;
+  opacity: 0.94; 
 }
 
 .backBtn i {

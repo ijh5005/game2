@@ -76,7 +76,7 @@
 .box {
   user-select: none;
   position: relative;
-  border: 0.04em solid #ffa790;
+  border: 0.04em solid #b57800; // #e89a01; //#ffa790;
   border: 0.04em solid #777676;
   border: 0.04em solid #545454;
   border: 0.04em solid #21183e;
@@ -181,22 +181,22 @@
 
 .borderTop {
   border-top-color: #371006;
-  border-top-color: #ff957a;
+  border-top-color: #b57800; // #e89a01; //#ff957a;
 }
 
 .borderRight {
   border-right-color: #371006;
-  border-right-color: #ff957a;
+  border-right-color: #b57800; // #e89a01; //#ff957a;
 }
 
 .borderBottom {
   border-bottom-color: #371006;
-  border-bottom-color: #ff957a;
+  border-bottom-color: #b57800; // #e89a01; //#ff957a;
 }
 
 .borderLeft {
   border-left-color: #371006;
-  border-left-color: #ff957a;
+  border-left-color: #b57800; // #e89a01; //#ff957a;
 }
 
 .topLineClicked {
@@ -391,7 +391,7 @@
 .tool p {
   margin: 0;
   font-size: 2em;
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
 }
 
 .tool.selected {
@@ -416,7 +416,7 @@
 .interactiveText p {
   font-family: 'Lobster', cursive;
   font-size: 3em;
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
   position: relative;
   top: -2em;
   opacity: 0;

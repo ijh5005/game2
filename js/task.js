@@ -144,10 +144,16 @@ const task = {
     setInterval(function () {
       if($(".title").hasClass("colorChange")){
         $(".title").removeClass("colorChange");
+        $(".africa").removeClass("lighter");
+        $(".ripple").addClass("active");
+        setTimeout(() => {
+          $(".ripple").removeClass("active");
+        }, 100)
       } else {
         $(".title").addClass("colorChange");
+        $(".africa").addClass("lighter");
       }
-    }, 6000);
+    }, 4000);
   },
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
@@ -169,5 +175,14 @@ const task = {
   },
   getGameLevelObj: () => {
     return settings.levels.levelInformation[gameLevel];
+  },
+  eventFire: (el, etype) => {
+    if (el.fireEvent) {
+      el.fireEvent('on' + etype);
+    } else {
+      var evObj = document.createEvent('Events');
+      evObj.initEvent(etype, true, false);
+      el.dispatchEvent(evObj);
+    }
   }
 }

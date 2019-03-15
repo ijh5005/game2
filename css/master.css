@@ -57,7 +57,7 @@ p {
 .playerOneScore,
 .playerTwoScore {
   font-size: 2em;
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
   margin: 0;
 }
 

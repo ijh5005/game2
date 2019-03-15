@@ -49,14 +49,15 @@
 }
 
 .settings {
-  background-color: #1a103a;
-  background-color: #130b2d;
+  /* background-color: #1a103a;
+  background-color: #130b2d; */
   width: 100%;
   height: 60%;
+  z-index: 2;
 }
 
 .setting {
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
   font-size: 2.8em;
   margin: 0.2em;
   /* align-self: flex-end; */
@@ -64,19 +65,24 @@
 }
 
 .homeBtnText {
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
+  color: #544D6B;
   font-size: 1em;
   margin: 0.2em;
   align-self: flex-end;
+  font-weight: bold;
 }
 
 .playBtn {
   font-size: 27vw;
+  font-size: 21vw;
   color: #544D6B;
+  color: #b57800; // #e89a01;
+  font-weight: 100;
 }
 
 .settingsPageSettings {
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
   font-size: 1.4em;
   margin: 1em;
   align-self: flex-start;
@@ -102,14 +108,54 @@
   color: #fff;
   opacity: 0.2;
   font-size: 2.4em;
+  font-weight: bold;
 }
 
 .sOptions.selectedSetting,
 .mOptions.selectedSetting {
-  color: #ffa790;
+  color: #b57800; // #e89a01; //#ffa790;
   opacity: 1;
 }
 
 .tipText {
   font-size: 1.8em;
+}
+
+.bottomColor {
+  background-color: #130b2d;
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  bottom: 0;
+}
+
+.africa {
+  position: absolute;
+  top: 4%;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-size: 130% auto;
+  background-position: 0 40px;
+  background-repeat: no-repeat;
+  background-image: url(../img/africa.png);
+  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 5s;
+}
+
+.africa.lighter {
+  opacity: 0;
+}
+
+/* Ripple effect */
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+  background: #130b2d radial-gradient(circle, transparent 1%, #130b2d 1%) center/25000%;
+}
+.ripple.active {
+  background-color: #FFD700;
+  background-size: 100%;
+  transition: background 0s;
 }

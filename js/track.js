@@ -7,9 +7,9 @@ const track = {
         if(data.name === "bombEraser"){
           data.count++;
           setTimeout(() => {
-            $(".tool.bombEraser > img").addClass("animate");
+            task.addClassByQuerySelector(".tool.bombEraser > img", "animate");
             setTimeout(() => {
-              $(".tool.bombEraser > img").removeClass("animate");
+              task.removeClassByQuerySelector(".tool.bombEraser > img", "animate");
             }, 1200)
           })
         }
@@ -17,8 +17,8 @@ const track = {
     }
   },
   winner: () => {
-    firstPlayerPoints = $(".firstPlayerScored").length;
-    secondPlayerPoints = $(".secondPlayerScored").length;
+    firstPlayerPoints = task.getLengthOfElement(".firstPlayerScored");
+    secondPlayerPoints = task.getLengthOfElement(".secondPlayerScored");
     totalPoints = firstPlayerPoints + secondPlayerPoints;
     if(totalPoints === gameBoardLength){
       task.setStarsForWinner(firstPlayerPoints);
@@ -86,12 +86,13 @@ const track = {
     // track.setRemainingBombs();
   },
   setRemainingBombs: () => {
-    $(".remainingBombs").text(bombsToLay);
+    task.addTextByQuerySelector(".remainingBombs", bombsToLay);
   },
   incrementMissedBombCount: () => {
-    let missedBombs = parseInt($(".missedBombs").text());
+    const text = task.getTextByQuerySelector(".missedBombs");
+    let missedBombs = parseInt(text);
     missedBombs++;
-    $(".missedBombs").text(missedBombs);
+    task.addTextByQuerySelector(".missedBombs", missedBombs);
     track.decrementBombCount();
   },
   screenText: () => {

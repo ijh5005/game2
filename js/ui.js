@@ -62,11 +62,12 @@ const ui = {
   chooseBoard: () => {
     tools = null;
     track.goToPage("levelsPage");
-    $(".levelsHolder").html("");
+    document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
+    const node = document.getElementsByClassName("levelsHolder")[0];
     settings.levels.levelInformation.forEach(data => {
       (data.isLocked) ?
-      $(".levelsHolder").append(ui.uiComponents.lockedBoardBox()) :
-      $(".levelsHolder").append(ui.uiComponents.boardBox(data));
+      node.insertAdjacentHTML('beforeend', ui.uiComponents.lockedBoardBox()) :
+      node.insertAdjacentHTML('beforeend', ui.uiComponents.boardBox(data));
     })
   },
   populateBoard: () => { // populate the gameboard into the UI
@@ -91,7 +92,8 @@ const ui = {
           if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
           lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
         });
-        $("#board").append(gridBox); // add the box to the game board
+        const node = document.getElementById("board");
+        node.appendChild(gridBox); // add the box to the game board
       }
     }
     track.setScores();
@@ -106,8 +108,10 @@ const ui = {
       const tool = $(`.tool.${data.name}`);
       const toolExists = tool.length > 0;
       if(data.count !== 0 && !toolExists){
-        const tool = $(ui.uiComponents.helper(data));
-        $(".bombToolsBar").append(tool);
+        const tool = ui.uiComponents.helper(data);
+        const node = document.getElementsByClassName("bombToolsBar")[0];
+        node.insertAdjacentHTML('beforeend', tool);
+        // node.appendChild(tool);
       } else if (data.count !== 0) {
         $(`.${data.name}p`).text(data.count);
       } else if (data.count === 0 && toolExists) {
@@ -116,7 +120,7 @@ const ui = {
     })
   },
   removeAllLockBoxes: () => {
-    $(".box").removeClass("locked");
+    task.removeClassByClassName("box", "locked");
     for(let data in gameBoard){
       gameBoard[data].isLocked = false;
     }
@@ -128,7 +132,8 @@ const ui = {
   },
   removeScoreColorIfRemovingBorder: (box) => {
     gameBoard[box].whoScored = null;
-    $(`.${box}`).removeClass("firstPlayerScored").removeClass("secondPlayerScored");
+    task.removeClassByClassName("box", "firstPlayerScored");
+    task.removeClassByClassName("box", "secondPlayerScored");
   },
   closeTheBoxConnection: (closeTheBoxConnectionParams) => {
     const {
@@ -142,16 +147,17 @@ const ui = {
   },
   showFinishScreen: () => {
     setTimeout(() => {
-      task.removeClassWithClassName("completionScreen", "removePage");
-      task.removeClassWithClassName("ribbonHolder", "down");
+      task.removeClassByClassName("completionScreen", "removePage");
+      task.removeClassByClassName("ribbonHolder", "down");
     }, 1000)
   },
   selectHelper: (bombFunction) => {
-    if($(`.tool[class*=${bombFunction}]`).hasClass("selected")){
-      $(".tool").removeClass("selected");
+    const hasSelected = document.querySelector(`.tool[class*=${bombFunction}]`).classList.contains("selected");
+    if(hasSelected){
+      task.removeClassByClassName("tool", "selected");
     } else {
-      $(".tool").removeClass("selected");
-      $(`.tool[class*=${bombFunction}]`).addClass("selected");
+      task.removeClassByClassName("tool", "selected");
+      task.addClassByQuerySelector(`.tool[class*=${bombFunction}]`, "selected");
       selectedBombFunction = bombFunction;
     }
   },
@@ -210,8 +216,8 @@ const ui = {
     ui.setDifficulty();
   },
   setDifficulty: () => {
-    $(".diff").removeClass("selectedSetting");
-    $(`.${settings.difficulty}`).addClass("selectedSetting");
+    task.removeClassByClassName("diff", "selectedSetting");
+    task.addClassByClassName(settings.difficulty, "selectedSetting");
   },
   toggleSound: () => {
     settings.hasMutedSound = !settings.hasMutedSound;
@@ -219,11 +225,11 @@ const ui = {
     ui.setSound();
   },
   setSound: () => {
-    $(".sound").removeClass("selectedSetting");
+    task.removeClassByClassName("sound", "selectedSetting");
     if(settings.hasMutedSound){
-      $(".sound.sOptions.off").addClass("selectedSetting");
+      task.addClassByQuerySelector(".sound.sOptions.off", "selectedSetting");
     } else {
-      $(".sound.sOptions.on").addClass("selectedSetting");
+      task.addClassByQuerySelector(".sound.sOptions.on", "selectedSetting");
     }
   },
   toggleMusic: () => {
@@ -232,17 +238,17 @@ const ui = {
     ui.setMusic();
   },
   setMusic: () => {
-    $(".music").removeClass("selectedSetting");
+    task.removeClassByClassName("music", "selectedSetting");
     if(settings.hasMutedMusic){
-      $(".music.mOptions.off").addClass("selectedSetting");
+      task.addClassByQuerySelector(".music.mOptions.off", "selectedSetting");
     } else {
-      $(".music.mOptions.on").addClass("selectedSetting");
+      task.addClassByQuerySelector(".music.mOptions.on", "selectedSetting");
     }
   },
   showHint: () => {
     const index = task.getRandomIndexInArray(noBorders);
     const box = noBorders[index];
-    $(`.${box}`).addClass("hint");
+    task.addClassByClassName(box, "hint");
     setTimeout(() => {
       $(`.${box}`).removeClass("hint");
     }, 600);

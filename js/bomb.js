@@ -46,10 +46,11 @@ const bomb = {
   },
   showExplosionInBox: (box, type, seconds) => {
     if(type !== "smoke") bomb.explodeLockBoxIfHit(box);
-    $(`.${box}Explosion`).removeClass("hideExplosion").attr("src", `./gifs/${type}.gif`);
+    task.removeClassByQuerySelector(`.${box}Explosion`, "hideExplosion");
+    document.querySelector(`.${box}Explosion`).src = `./gifs/${type}.gif`;
     setTimeout(() => {
       explodingBoxes.pop();
-      $(`.${box}Explosion`).addClass("hideExplosion");
+      taks.addClassByClassName(`${box}Explosion`, "hideExplosion")
     }, seconds);
   },
   explodeLockBoxIfHit: (box) => {
@@ -71,7 +72,7 @@ const bomb = {
               }
             })
             lockBombLocations.splice(newIndex, 1);
-            $(`.box.${box}`).removeClass("locked");
+            task.removeClassByQuerySelector(`.box.${box}`, "locked")
           }, 300);
         }
       }
@@ -175,18 +176,18 @@ const bomb = {
   },
   isExploding: [],
   showSpriteExplosion: (box) => {
-    $(`.${box} > .spriteSheet`).addClass("explosionGif");
+    task.addClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
     setTimeout(() => {
-      $(`.${box} > .spriteSheet`).removeClass("explosionGif");
+      task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
       // remove the box from the exploding array
       bomb.isExploding.pop();
     }, 800);
     bomb.explodeLockBoxIfHit(box);
   },
   showSpriteSmoke: (box) => {
-    $(`.${box} > .spriteSheet`).addClass("smokeGif");
+    task.addClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
     setTimeout(() => {
-      $(`.${box} > .spriteSheet`).removeClass("smokeGif");
+      task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
     }, 800);
   }
 }

@@ -459,9 +459,9 @@ const boxInfo = {
         const zoom = 0.96;
         const gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
         const gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
-        const height = $(`.${thisBox}`).height();
+        const height = task.getHeightWithClassName(thisBox);
         const width = $(`.${thisBox}`).width();
-        const boardHolderWidth = $("#boardHolder").width();
+        const boardHolderWidth = task.getWidthWithId("boardHolder");
         const offset = 10;
 
         const topClickOffset = {

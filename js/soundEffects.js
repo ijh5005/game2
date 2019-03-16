@@ -32,9 +32,9 @@ const soundEffects = {
   },
   runSpeaker: (audio) => {
     const speaker = () => {
-      $(".title img").addClass("big");
+      task.addClassByQuerySelector(".title img", "big");
       setTimeout(() => {
-        $(".title img").removeClass("big");
+        task.removeClassByQuerySelector(".title img", "big");
       }, 200)
     }
     const timeOuts = [ 0, 434, 869, 1303, 1737, 1986, 2256 ];
@@ -72,7 +72,7 @@ const soundEffects = {
   },
   playMusicClicked: false,
   playGameMusic: () => {
-    $("#gameScreen").click(playSong = () => {
+    const clickFunction = playSong => {
       if(soundEffects.playMusicClicked) return null;
 
       let playVolume = 0.4;
@@ -82,7 +82,7 @@ const soundEffects = {
       audio.play().then(() => {
         soundEffects.replayWhenDone(audio);
         // Video playback started ;)
-        $("#gameScreen").unbind();
+        document.getElementById("gameScreen").removeEventListener("click",  clickFunction);
         $(document).on("click", ".mOptions.off", () => {
           audio.pause();
         });
@@ -107,6 +107,7 @@ const soundEffects = {
         // Video playback failed ;(
         console.log(e);
       });
-    });
+    }
+    document.getElementById("gameScreen").addEventListener("click",  clickFunction);
   }
 }

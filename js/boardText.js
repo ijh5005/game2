@@ -23,9 +23,11 @@ const boardText = {
     } else if (type === "excellent") {
       text = boardText.getExcellentText();
     }
-    $(".interactiveText p").text(text).addClass("showText");
+    task.addTextByQuerySelector(".interactiveText p", text);
+    task.addClassByQuerySelector(".interactiveText p", "showText")
     setTimeout(() => {
-      $(".interactiveText p").text("").removeClass("showText");
+      task.addTextByQuerySelector(".interactiveText p", "");
+      task.removeClassByQuerySelector(".interactiveText p", "showText")
     }, 2000);
   }
 }

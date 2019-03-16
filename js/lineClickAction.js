@@ -1,6 +1,6 @@
 const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
-    const height = $(".box").height();
+    const height = task.getHeightWithClassName("box");
     const upperOutOfBoundsNumber = height - 10;
     const lowerOutOfBoundsNumber = 10;
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
@@ -32,7 +32,7 @@ const lineClickAction = {
           });
           soundEffects.playEraseBombSound();
           ui.populateBoard();
-          $(".tool.selected").removeClass("selected");
+          task.removeClassByQuerySelector(".tool.selected", "selected");
         }
       } else if(selectedBombFunction === "lion"){
         tools.forEach(data => {
@@ -84,7 +84,7 @@ const lineClickAction = {
       const pageClickPositionX = e.pageX;
       const clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
       if(clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn){
-        const heightOfBoxes = $(".box13").height();
+        const heightOfBoxes = task.getHeightWithClassName("box13");
         const positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
         const rowInformation = boxInfo.getEdgeBoxClickPoistion(positionFromTopOfGameBoard, heightOfBoxes);
         const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
@@ -127,15 +127,15 @@ const lineClickAction = {
     track.winner();
   },
   removeLineClickHighlights: () => {
-    $(".box").removeClass("topLineClicked");
-    $(".box").removeClass("rightLineClicked");
-    $(".box").removeClass("bottomLineClicked");
-    $(".box").removeClass("leftLineClicked");
+    task.removeClassByClassName("box", "topLineClicked");
+    task.removeClassByClassName("box", "rightLineClicked");
+    task.removeClassByClassName("box", "bottomLineClicked");
+    task.removeClassByClassName("box", "leftLineClicked");
   },
   changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
     lineClickAction.removeLineClickHighlights();
     setTimeout(() => {
-      $(`.${boxNumber}`).addClass(`${lineClicked}LineClicked`);
+      task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
     })
   },
   isNotALockedBoxClick: (box, lineClicked) => {

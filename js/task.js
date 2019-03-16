@@ -28,10 +28,6 @@ const task = {
   getRandomIndexInArray: (boxArray) => {
     return boxArray[Math.floor(Math.random() * boxArray.length)];
   },
-  removeClassWithClassName: (className, classToRemove) => {
-    const ele = document.getElementsByClassName(className)[0];
-    ele.classList.remove(classToRemove);
-  },
   setGameLevelAndTips: (level) => {
     gameLevel = level - 1;
     task.setGameLevelObj();
@@ -64,13 +60,13 @@ const task = {
   animateStarCount: (score) => {
     setTimeout(() => {
       if(score[0]){
-        task.removeClassWithClassName(score[0], "hide");
+        task.removeClassByClassName(score[0], "hide");
         setTimeout(() => {
           if(score[1]){
-            task.removeClassWithClassName(score[1], "hide");
+            task.removeClassByClassName(score[1], "hide");
             setTimeout(() => {
               if(score[2]){
-                task.removeClassWithClassName(score[2], "hide");
+                task.removeClassByClassName(score[2], "hide");
               }
             }, 200)
           }
@@ -88,7 +84,7 @@ const task = {
     }
   },
   clearBoard: () => {
-    $(".box").remove();
+    document.getElementsByClassName("box")[0].remove();
     ui.startGame(gameLevel + 1); // add one for the index
   },
   breakRefAndCopy: (obj) => {
@@ -113,13 +109,13 @@ const task = {
     return noDublicates;
   },
   isSelected: () => {
-    return $(".tool.selected").length === 1;
+    return task.getLengthOfElement(".tool.selected") === 1
   },
   resetScore: () => {
     playerOneScore = 0;
     playerTwoScore = 0;
-    $(".playerOneScore").text(playerOneScore);
-    $(".playerTwoScore").text(playerTwoScore);
+    task.addTextByQuerySelector(".playerOneScore", playerOneScore);
+    task.addTextByQuerySelector(".playerTwoScore", playerTwoScore);
   },
   resetPlayerTurn: () => {
     isFirstPlayerTurn = true;
@@ -140,18 +136,19 @@ const task = {
     })
   },
   changeTitleColor: () => {
-    $(".title").addClass("transitionColor");
+    task.addClassByClassName("title", "transitionColor");
     setInterval(function () {
-      if($(".title").hasClass("colorChange")){
-        $(".title").removeClass("colorChange");
-        $(".africa").removeClass("lighter");
-        $(".ripple").addClass("active");
+      const hasColorChangheClass = task.hasClassByClassName("title", "colorChange");
+      if(hasColorChangheClass){
+        task.removeClassByClassName("title", "colorChange");
+        task.removeClassByClassName("africa", "lighter");
+        task.addClassByClassName("ripple", "active");
         setTimeout(() => {
-          $(".ripple").removeClass("active");
+          task.removeClassByClassName("ripple", "active");
         }, 100)
       } else {
-        $(".title").addClass("colorChange");
-        $(".africa").addClass("lighter");
+        task.addClassByClassName("title", "colorChange");
+        task.addClassByClassName("africa", "lighter");
       }
     }, 4000);
   },
@@ -161,10 +158,10 @@ const task = {
   },
   resizeBoard: () => {
     setTimeout(() => {
-      const boardSize = $("#board").width();
+      const boardSize = task.getWidthWithId("board");
       const gridWidth = boardSize/6;
-      $(".box").width(gridWidth - 6);
-      $(".box").height(gridWidth - 6);
+      task.setHeightWithClassName("box", gridWidth - 6);
+      task.setWidthWithClassName("box", gridWidth - 6);
     })
   },
   getTools: () => {
@@ -184,5 +181,100 @@ const task = {
       evObj.initEvent(etype, true, false);
       el.dispatchEvent(evObj);
     }
+  },
+  addTextByQuerySelector: (selector, text) => {
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].innerText = text;
+      }
+    }
+  },
+  getTextByQuerySelector: (selector) => {
+    const element = document.querySelectorAll(selector)[0];
+    return element.innerText;
+  },
+  addClassByQuerySelector: (selector, classToRemove) => {
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].classList.add(classToRemove);
+      }
+    }
+  },
+  removeClassByQuerySelector: (selector, classToRemove) => {
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].classList.remove(classToRemove);
+      }
+    }
+  },
+  removeClassByClassName: (selector, classToRemove) => {
+    const element = document.getElementsByClassName(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].classList.remove(classToRemove);
+      }
+    }
+  },
+  addClassByClassName: (selector, classToAdd) => {
+    const element = document.getElementsByClassName(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].classList.add(classToAdd);
+      }
+    }
+  },
+  hasClassByClassName: (selector, classToCheckFor) => {
+    const element = document.getElementsByClassName(selector)[0];
+    if(element){
+      return element.classList.contains(classToCheckFor);
+    }
+  },
+  hasClassByQuerySelector: (selector, classToCheckFor) => {
+    let hasClass = false;
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        if(element[i].classList.contains(classToCheckFor)){
+          hasClass = true;
+        }
+      }
+    }
+    return hasClass;
+  },
+  getHeightWithClassName: (selector) => {
+    return document.getElementsByClassName(selector)[0].clientHeight;
+  },
+  getWidthWithClassName: (selector) => {
+    return document.getElementsByClassName(selector)[0].clientWidth;
+  },
+  getWidthWithId: (selector) => {
+    return document.getElementById(selector).clientWidth;
+  },
+  setHeightWithClassName: (selector, height) => {
+    const sel = document.getElementsByClassName(selector);
+    const length = sel.length;
+    for(let i = 0; i < length; i++){
+      sel[i].style.height = `${height}px`;
+    }
+  },
+  setWidthWithClassName: (selector, width) => {
+    const sel = document.getElementsByClassName(selector);
+    const length = sel.length;
+    for(let i = 0; i < length; i++){
+      sel[i].style.width = `${width}px`;
+    }
+  },
+  getLengthOfElement: (selector) => {
+    const query = document.querySelectorAll(selector);
+    return query.length;
   }
 }

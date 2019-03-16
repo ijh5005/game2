@@ -14,9 +14,9 @@ const lineClickAction = {
     } else if(task.isSelected()){
       if(selectedBombFunction === "bombEraser"){
         let hasBomb = false;
-        const box = $(`.box.${boxNumber}`);
         bomb.types.forEach(data => {
-          if(box.hasClass(data.class)){
+          const hasClass = task.hasClassByQuerySelector(`.box.${boxNumber}`, data.class);
+          if(hasClass){
             hasBomb = true;
           }
         })

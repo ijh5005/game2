@@ -84,14 +84,6 @@ const boxInfo = {
 
     return classesToAdd;
   },
-  getNumberText: (box, div) => {
-    let numberOfSides = 0;
-    if (gameBoard[box].borders.top) numberOfSides++;
-    if (gameBoard[box].borders.right) numberOfSides++;
-    if (gameBoard[box].borders.bottom) numberOfSides++;
-    if (gameBoard[box].borders.left) numberOfSides++;
-    $(div).html(`<p>${numberOfSides}</p>`)
-  },
   getUnclickedBorders: (box) => {
     const bordersArray = [];
     const borders = gameBoard[box].borders;
@@ -460,7 +452,7 @@ const boxInfo = {
         const gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
         const gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
         const height = task.getHeightWithClassName(thisBox);
-        const width = $(`.${thisBox}`).width();
+        const width = task.getWidthWithClassName(thisBox);
         const boardHolderWidth = task.getWidthWithId("boardHolder");
         const offset = 10;
 

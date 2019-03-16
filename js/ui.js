@@ -85,9 +85,7 @@ const ui = {
         ui.addLockBox(box);
         const gridBox = document.createElement("div");
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
-        // boxInfo.getNumberText(box, gridBox);
-        // $(gridBox).html(`<img class="explosionBox ${box}Explosion hideExplosion">`)
-        $(gridBox).html(ui.uiComponents.spriteSheet(box));
+        gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));
         gridBox.addEventListener("click", (e) => { // add a click event to the box click on borders
           if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
           lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
@@ -105,17 +103,16 @@ const ui = {
       tools = task.getTools();
     }
     tools.forEach(data => {
-      const tool = $(`.tool.${data.name}`);
-      const toolExists = tool.length > 0;
+      const tools = document.querySelectorAll(`.tool.${data.name}`);
+      const toolExists = tools.length > 0;
       if(data.count !== 0 && !toolExists){
         const tool = ui.uiComponents.helper(data);
         const node = document.getElementsByClassName("bombToolsBar")[0];
         node.insertAdjacentHTML('beforeend', tool);
-        // node.appendChild(tool);
       } else if (data.count !== 0) {
-        $(`.${data.name}p`).text(data.count);
+        task.addTextByQuerySelector(`.${data.name}p`, data.count);
       } else if (data.count === 0 && toolExists) {
-        $(tool).remove();
+        tools[0].remove();
       }
     })
   },
@@ -250,7 +247,7 @@ const ui = {
     const box = noBorders[index];
     task.addClassByClassName(box, "hint");
     setTimeout(() => {
-      $(`.${box}`).removeClass("hint");
+      task.removeClassByClassName(box, "hint");
     }, 600);
   },
   setSettingsIfOnSettingsPage: (page) => {

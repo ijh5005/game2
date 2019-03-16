@@ -20,8 +20,8 @@ const task = {
   isGameOver: () => {
     totalPointsScored = 0;
     Object.keys(gameBoard).forEach(box => {
-      const firstPlayerScored = $(`.${box}`).attr("class").includes("firstPlayerScored");
-      const secondPlayerScored = $(`.${box}`).attr("class").includes("secondPlayerScored");
+      const firstPlayerScored = task.hasClassByQuerySelector(`.${box}`, "firstPlayerScored");
+      const secondPlayerScored = task.hasClassByQuerySelector(`.${box}`, "secondPlayerScored");
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
     })
   },

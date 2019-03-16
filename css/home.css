@@ -4,8 +4,8 @@
 }
 
 .titleSection .title {
-  position: relative;
-  top: 14px;
+  /* position: relative;
+  top: 14px; */
 }
 
 .titleSection {
@@ -57,7 +57,7 @@
 }
 
 .setting {
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
   font-size: 2.8em;
   margin: 0.2em;
   /* align-self: flex-end; */
@@ -65,7 +65,7 @@
 }
 
 .homeBtnText {
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
   color: #544D6B;
   font-size: 1em;
   margin: 0.2em;
@@ -88,7 +88,7 @@
 }
 
 .settingsPageSettings {
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
   font-size: 1.4em;
   margin: 1em;
   align-self: flex-start;

@@ -76,17 +76,10 @@
 .box {
   user-select: none;
   position: relative;
-  border: 0.04em solid #b57800; // #e89a01; //#ffa790;
-  border: 0.04em solid #777676;
-  border: 0.04em solid #545454;
-  border: 0.04em solid #21183e;
+  border: 0.09em solid #21183e;
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
-  /* width: 60px;
-  height: 60px; */
-  /* transition: border 0.5s; */
 }
 
 .box.smallScreen {
@@ -106,12 +99,10 @@
 
 .mediumExplosionImage {
   background-image: url("../img/mediumBomb.png");
-  /* background-size: 82%; */
 }
 
 .largeExplosionImage {
   background-image: url("../img/largeBomb.png");
-  /* background-size: 86%; */
 }
 
 .verticalExplosionImage {
@@ -120,35 +111,11 @@
 
 .horizontalExplosionImage {
   background-image: url("../img/horizontalBomb.png");
-  /* background-size: 118%; */
 }
 
 .veryLargeExplosionImage {
   background-image: url("../img/veryLarge.png");
-  /* background-size: 65%; */
 }
-
-/* .box::before {
-  content: "";
-  height: 2em;
-  width: 2em;
-  position: absolute;
-  top: -1em;
-  left: -1.2em;
-  background-color: #222;
-  border-radius: 50%;
-}
-
-.box::after {
-  content: "";
-  height: 2em;
-  width: 2em;
-  position: absolute;
-  top: -1em;
-  right: -1.2em;
-  background-color: #222;
-  border-radius: 50%;
-} */
 
 .box .explosionBox {
   position: absolute;
@@ -181,22 +148,22 @@
 
 .borderTop {
   border-top-color: #371006;
-  border-top-color: #b57800; // #e89a01; //#ff957a;
+  border-top-color: #b57800;
 }
 
 .borderRight {
   border-right-color: #371006;
-  border-right-color: #b57800; // #e89a01; //#ff957a;
+  border-right-color: #b57800;
 }
 
 .borderBottom {
   border-bottom-color: #371006;
-  border-bottom-color: #b57800; // #e89a01; //#ff957a;
+  border-bottom-color: #b57800;
 }
 
 .borderLeft {
   border-left-color: #371006;
-  border-left-color: #b57800; // #e89a01; //#ff957a;
+  border-left-color: #b57800;
 }
 
 .topLineClicked {
@@ -311,25 +278,21 @@
 }
 
 .isTopRightCornerBox {
-  /* border-top-right-radius: 1em; */
   border-top-width: 0.1em;
   border-right-width: 0.1em;
 }
 
 .isTopLeftCornerBox {
-  /* border-top-left-radius: 1em; */
   border-top-width: 0.1em;
   border-left-width: 0.1em;
 }
 
 .isBottomRightCornerBox {
-  /* border-bottom-right-radius: 1em; */
   border-bottom-width: 0.1em;
   border-right-width: 0.1em;
 }
 
 .isBottomLeftCornerBox {
-  /* border-bottom-left-radius: 1em; */
   border-bottom-width: 0.1em;
   border-left-width: 0.1em;
 }
@@ -391,7 +354,7 @@
 .tool p {
   margin: 0;
   font-size: 2em;
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
 }
 
 .tool.selected {
@@ -416,7 +379,7 @@
 .interactiveText p {
   font-family: 'Lobster', cursive;
   font-size: 3em;
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
   position: relative;
   top: -2em;
   opacity: 0;

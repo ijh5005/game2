@@ -64,3 +64,12 @@
   -o-filter: blur(70px);
   filter: blur(70px);
 }
+
+
+.orange {
+  background-image: linear-gradient(to top right, rgba(185, 124, 91, 0.8) 0%, rgba(144, 91, 47, 0.8) 45%, rgba(195, 99, 43, 0.6) 60%);
+}
+
+.green {
+  background-image: linear-gradient(to top right, rgba(53, 133, 64, 0.8) 0%, rgba(41, 96, 40, 0.8) 45%, rgba(65, 121, 77, 0.6) 60%);
+}

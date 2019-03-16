@@ -61,6 +61,10 @@ p {
   margin: 0;
 }
 
+.playerTwoScore {
+  color: #130b2d;
+}
+
 .titleImg {
   transform: scale(1.2);
 }

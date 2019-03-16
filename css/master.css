@@ -24,16 +24,6 @@ p {
   margin-bottom: 0;
 }
 
-#playBtn {
-  text-align: center;
-  font-size: 4em;
-  border: 0.4rem solid;
-  border-radius: 1em;
-  width: 3em;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
 .topBar {
   justify-content: space-between;
 }

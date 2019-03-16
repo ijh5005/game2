@@ -75,10 +75,16 @@
 
 .playBtn {
   font-size: 27vw;
-  font-size: 21vw;
-  color: #544D6B;
-  color: #b57800; // #e89a01;
+  color: #b57800;
   font-weight: 100;
+}
+
+.settingsBtn {
+  font-size: 11vw;
+}
+
+.goalsBtn {
+  font-size: 7vw;
 }
 
 .settingsPageSettings {
@@ -113,8 +119,10 @@
 
 .sOptions.selectedSetting,
 .mOptions.selectedSetting {
-  color: #b57800; // #e89a01; //#ffa790;
+  color: #b57800;
   opacity: 1;
+  position: relative;
+  top: -0.12em;
 }
 
 .tipText {

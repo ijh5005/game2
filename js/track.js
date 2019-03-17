@@ -2,28 +2,6 @@ const track = {
   turn: 0,
   incrementTurn: () => {
     track.turn++;
-    if(waterRemovalIndex.includes(track.turn)){
-      tools.forEach(data => {
-        if(data.name === "bombEraser"){
-          data.count++;
-          setTimeout(() => {
-            task.addClassByQuerySelector(".tool.bombEraser > img", "animate");
-            setTimeout(() => {
-              task.removeClassByQuerySelector(".tool.bombEraser > img", "animate");
-            }, 1200)
-          })
-        }
-      })
-    }
-  },
-  winner: () => {
-    firstPlayerPoints = task.getLengthOfElement(".firstPlayerScored");
-    secondPlayerPoints = task.getLengthOfElement(".secondPlayerScored");
-    totalPoints = firstPlayerPoints + secondPlayerPoints;
-    if(totalPoints === gameBoardLength){
-      task.setStarsForWinner(firstPlayerPoints);
-      // ui.showFinishScreen();
-    }
   },
   goToPage: (page) => {
     currentPage = page;

@@ -10,3 +10,11 @@
 .isPantherExplosion {
   background-image: url("../img/color_animals/asset_panther.png");
 }
+
+.isLionExplosion,
+.isCheetahExplosion,
+.isPantherExplosion {
+  background-size: 68%;
+  background-position: center;
+  background-repeat: no-repeat;
+}

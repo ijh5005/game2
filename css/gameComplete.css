@@ -1,0 +1,127 @@
+.gameCompleteBox {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  opacity: 1;
+  transition: all 0.5s;
+  pointer-events: none;
+}
+
+.gameCompleteBox.hideGameComplete {
+  top: -2em;
+  opacity: 0;
+}
+
+.gameComplete {
+  position: relative;
+  width: 100vw;
+  background-color: #130b2d;
+  padding: 1em;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  transform-style: preserve-3d;
+  perspective: 250px;
+}
+
+.goldCount {
+  color: #b57800;
+  font-size: 2em;
+  margin: 0;
+}
+
+.goldDesciption {
+  font-size: 1em;
+  margin-right: 1em;
+}
+
+.yourScore,
+.computerScore {
+  color: #544D6B
+}
+
+.countAnimationPic {
+  height: 8em;
+}
+
+.completeStars {
+  height: 3em;
+}
+
+.completeStars img {
+  height: 3em;
+}
+
+.completeStar1,
+.completeStar2,
+.completeStar3 {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.completeStar1.hide,
+.completeStar2.hide,
+.completeStar3.hide {
+  opacity: 0;
+}
+
+.completeStar2 {
+  top: 2em;
+}
+
+.completeStar1 {
+  left: 2em;
+}
+
+.completeStar3 {
+  left: -2em;
+}
+
+.rewardScreen {
+  position: absolute;
+  bottom: -28em;
+  transform-origin: top;
+  transition: transform 0.5s;
+  transform: rotateX(-80deg);
+  opacity: 0;
+}
+
+.rewardScreen.showPrice {
+  transform: rotateX(0deg);
+}
+
+.goldScreen {
+  height: 28em;
+  width: 100vw;
+  padding: 1em;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+}
+
+.goldScreen p {
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.goldScreen img {
+  padding: 0.1em;
+}
+
+.bombReward {
+  color: rgb(109, 2, 2);
+  font-size: 1.4em;
+  margin: 0;
+}
+
+.cheetah_reward {
+  width: 80%;
+}
+
+.panther_reward {
+  height: 80%;
+}
+
+.lion_reward {
+  height: 40%;
+}

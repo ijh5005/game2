@@ -110,18 +110,19 @@
 .sOptions,
 .mOptions {
   margin: 0;
-  /* margin-right: 0.5em; */
   color: #fff;
   opacity: 0.2;
   font-size: 2.4em;
   font-weight: bold;
+  top: 0;
+  transition: top 0.5s;
+  position: relative;
 }
 
 .sOptions.selectedSetting,
 .mOptions.selectedSetting {
   color: #b57800;
   opacity: 1;
-  position: relative;
   top: -0.12em;
 }
 

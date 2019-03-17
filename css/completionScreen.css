@@ -40,7 +40,7 @@
 .completeStar1.hide,
 .completeStar2.hide,
 .completeStar3.hide {
-  opacity: 0;
+  /* opacity: 0; */
 }
 
 .completeStar2 {

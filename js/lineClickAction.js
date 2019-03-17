@@ -120,11 +120,12 @@ const lineClickAction = {
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
     task.setTurnPlayer(); // set the turn player
-    task.isGameOver();
     ui.populateBoard(board);
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
-    track.winner();
+    setTimeout(() => {
+      task.isGameOver();
+    })
   },
   removeLineClickHighlights: () => {
     task.removeClassByClassName("box", "topLineClicked");

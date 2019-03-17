@@ -23,7 +23,10 @@ const task = {
       const firstPlayerScored = task.hasClassByQuerySelector(`.${box}`, "firstPlayerScored");
       const secondPlayerScored = task.hasClassByQuerySelector(`.${box}`, "secondPlayerScored");
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
-    })
+    });
+    if(totalPointsScored === gameBoardLength){
+      ui.showCompleteScreen();
+    }
   },
   getRandomIndexInArray: (boxArray) => {
     return boxArray[Math.floor(Math.random() * boxArray.length)];
@@ -35,44 +38,15 @@ const task = {
     task.setTips(level);
   },
   setTips: (level) => {
+    const tips = getGameLevelObj.tipsPage || level_data[0].tipsPage;
     const {
       heading,
       text,
       img_src
-    } = getGameLevelObj.tipsPage;
+    } = tips;
     document.getElementById("tipHeading").innerText = heading;
     document.getElementById("tipText").innerText = text;
     document.getElementById("tipImage").src = img_src;
-  },
-  setStarsForWinner: (score) => {
-    const starRubric = getGameLevelObj.starRating;
-    if(score >= starRubric[2].score){
-      starsEarned = starRubric[2].stars;
-      task.animateStarCount(["completeStar1", "completeStar2", "completeStar3"])
-    } else if(score >= starRubric[1].score){
-      starsEarned = starRubric[1].stars;
-      task.animateStarCount(["completeStar1", "completeStar2", false])
-    } else if(score >= starRubric[0].score){
-      starsEarned = starRubric[0].stars;
-      task.animateStarCount(["completeStar1", false, false])
-    }
-  },
-  animateStarCount: (score) => {
-    setTimeout(() => {
-      if(score[0]){
-        task.removeClassByClassName(score[0], "hide");
-        setTimeout(() => {
-          if(score[1]){
-            task.removeClassByClassName(score[1], "hide");
-            setTimeout(() => {
-              if(score[2]){
-                task.removeClassByClassName(score[2], "hide");
-              }
-            }, 200)
-          }
-        }, 200)
-      }
-    }, 500)
   },
   setDifficulty: (difficulty) => {
     if (difficulty === "easy") {
@@ -165,13 +139,13 @@ const task = {
     })
   },
   getTools: () => {
-    return task.breakRefAndCopy(getGameLevelObj.tools)
+    return getGameLevelObj.tools ? task.breakRefAndCopy(getGameLevelObj.tools) : [];
   },
   setGameLevelObj: () => {
     getGameLevelObj = task.getGameLevelObj();
   },
   getGameLevelObj: () => {
-    return settings.levels.levelInformation[gameLevel];
+    return level_data[gameLevel];
   },
   eventFire: (el, etype) => {
     if (el.fireEvent) {
@@ -276,5 +250,11 @@ const task = {
   getLengthOfElement: (selector) => {
     const query = document.querySelectorAll(selector);
     return query.length;
-  }
+  },
+  setStarsForWinner: (score) => {
+    const starRubric = getGameLevelObj.starRating || [];
+    if(score >= starRubric[2].score){ return 3 }
+    else if(score >= starRubric[1].score){ return 2 }
+    else if(score >= starRubric[0].score){ return 1 }
+  },
 }

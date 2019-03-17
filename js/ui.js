@@ -5,11 +5,10 @@ const ui = {
     task.resetScore();
     track.goToPage(settings.startUpPage);
     task.setDifficulty(settings.difficulty);
-    initialBombs = task.breakRefAndCopy(getGameLevelObj.initialBombs);
-    waterRemovalIndex = task.breakRefAndCopy(getGameLevelObj.waterRemovalIndex);
-    bombsToLay = task.breakRefAndCopy(getGameLevelObj.bombsToLay);
+    initialBombs = getGameLevelObj.initialBombs ? task.breakRefAndCopy(getGameLevelObj.initialBombs) : [];
+    bombsToLay = getGameLevelObj.bombsToLay ? task.breakRefAndCopy(getGameLevelObj.bombsToLay) : 0;
     // track.setRemainingBombs();
-    lockBombLocations = task.breakRefAndCopy(getGameLevelObj.lockBoxes);
+    lockBombLocations = getGameLevelObj.lockBoxes ? task.breakRefAndCopy(getGameLevelObj.lockBoxes) : [];
 
     gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${gameLevel + 1}`]);
     gameBoardLength = ui.getGameBoardLength();
@@ -64,7 +63,7 @@ const ui = {
     track.goToPage("levelsPage");
     document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
     const node = document.getElementsByClassName("levelsHolder")[0];
-    settings.levels.levelInformation.forEach(data => {
+    level_data.forEach(data => {
       (data.isLocked) ?
       node.insertAdjacentHTML('beforeend', ui.uiComponents.lockedBoardBox()) :
       node.insertAdjacentHTML('beforeend', ui.uiComponents.boardBox(data));
@@ -256,5 +255,68 @@ const ui = {
       ui.setSound();
       ui.setMusic();
     }
+  },
+  animateScore: (prize, starTimeout) => {
+    let remainingGold = parseInt(task.getTextByQuerySelector(".remainingGold"));
+    const changeNumber = () => {
+      const gold = remainingGold;
+      starTimeout += 50;
+      setTimeout(() => {
+        task.addTextByQuerySelector(".remainingGold", gold);
+        const currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
+        task.addTextByQuerySelector(".currentGoldCount", currectGold)
+      }, starTimeout)
+      remainingGold--;
+      if(remainingGold > 0){
+        changeNumber();
+      }
+    }
+    changeNumber();
+    setTimeout(() => {
+      task.addTextByQuerySelector(".remainingGold", 0);
+      ui.showGift(prize, starTimeout);
+    }, starTimeout);
+  },
+  showGift: (prize, starTimeout) => {
+    if(prize){
+      setTimeout(() => {
+        task.addClassByClassName("rewardScreen", "showPrice")
+      }, 200);
+    }
+  },
+  showEndGameScreen: (stars, yourScore, computerScore, currentGoldCount, prize) => {
+    task.removeClassByClassName("gameCompleteBox", "hideGameComplete");
+    task.addTextByQuerySelector(".yourScore", yourScore);
+    task.addTextByQuerySelector(".computerScore", computerScore);
+    const remainingGold = parseInt(yourScore) - parseInt(computerScore);
+    task.addTextByQuerySelector(".remainingGold", remainingGold);
+    task.addTextByQuerySelector(".currentGoldCount", currentGoldCount);
+    setTimeout(() => {
+      document.getElementsByClassName("rewardScreen")[0].style.opacity = 1;
+    }, 1000);
+    let starTimeout = 200;
+    const showStars = (count) => {
+      let starCount = count + 1;
+      setTimeout(() => {
+        document.getElementsByClassName(`completeStar${starCount}`)[0].style.opacity = 1;
+      }, starTimeout);
+      starTimeout += 200;
+    }
+    setTimeout(() => {
+      for(let i = 0; i < stars; i++){
+        showStars(i);
+      }
+      ui.animateScore(prize, starTimeout);
+    }, starTimeout)
+  },
+  showCompleteScreen: () => {
+    setTimeout(() => {
+      const stars = task.setStarsForWinner(playerOneScore);
+      const yourScore = playerOneScore;
+      const computerScore = playerTwoScore;
+      const currentGoldCount = 50;
+      const prize = "cheetah";
+      ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
+    }, 500)
   }
 }

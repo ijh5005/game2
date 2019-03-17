@@ -35,8 +35,6 @@ let lockBombLocations = [];
 const possibleBombs = [];
 let lockedBoxLimit = 5;
 
-let waterRemoval = 0;
-let waterRemovalIndex;
 let initialBombs;
 
 let reset_settings = false;

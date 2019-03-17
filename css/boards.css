@@ -76,7 +76,7 @@
 .box {
   user-select: none;
   position: relative;
-  border: 2px solid #21183e;
+  border: 1px solid #21183e;
 }
 
 .box.smallScreen {
@@ -259,39 +259,39 @@
 }
 
 .isTopSideRow {
-  border-top-width: 4px;
+  border-top-width: 2px;
 }
 
 .isRightSideRow {
-  border-right-width: 4px;
+  border-right-width: 2px;
 }
 
 .isBottomSideRow {
-  border-bottom-width: 4px;
+  border-bottom-width: 2px;
 }
 
 .isLeftSideRow {
-  border-left-width: 4px;
+  border-left-width: 2px;
 }
 
 .isTopRightCornerBox {
-  border-top-width: 4px;
-  border-right-width: 4px;
+  border-top-width: 2px;
+  border-right-width: 2px;
 }
 
 .isTopLeftCornerBox {
-  border-top-width: 4px;
-  border-left-width: 4px;
+  border-top-width: 2px;
+  border-left-width: 2px;
 }
 
 .isBottomRightCornerBox {
-  border-bottom-width: 4px;
-  border-right-width: 4px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
 }
 
 .isBottomLeftCornerBox {
-  border-bottom-width: 4px;
-  border-left-width: 4px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
 }
 
 .isNoBorderBox {

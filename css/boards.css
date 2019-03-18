@@ -383,7 +383,29 @@
   transition: all 0.5s;
  }
 
- .interactiveText p.showText {
-   top: 0em;
-   opacity: 0.6;
-  }
+.interactiveText p.showText {
+  top: 0em;
+  opacity: 0.6;
+}
+
+.helpText {
+  position: absolute;
+  top: 6em;
+  width: 100vw;
+  pointer-events: none;
+}
+
+.helpText p {
+  font-size: 1.4em;
+  color: #b57800;
+  margin: 0;
+  opacity: 0;
+  position: relative;
+  top: -1em;
+  transition: all 0.5s;
+}
+
+.helpText p.showHelpText {
+  opacity: 1;
+  top: 0;
+}

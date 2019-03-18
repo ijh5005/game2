@@ -35,7 +35,9 @@
 .boardLock {
   color: #fff;
   opacity: 0.3;
-  font-size: 3em;
+  font-size: 1em;
+  height: 3em;
+  width: 3em;
 }
 
 .backBtn {
@@ -51,8 +53,10 @@
   opacity: 0.94;
 }
 
-.backBtn i {
+.backBtn div {
   color: #fff;
   opacity: 0.3;
-  font-size: 1.4em;
+  font-size: 0.1em;
+  height: 6em;
+  width: 3em;
 }

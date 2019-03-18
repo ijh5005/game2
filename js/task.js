@@ -147,15 +147,6 @@ const task = {
   getGameLevelObj: () => {
     return level_data[gameLevel];
   },
-  eventFire: (el, etype) => {
-    if (el.fireEvent) {
-      el.fireEvent('on' + etype);
-    } else {
-      var evObj = document.createEvent('Events');
-      evObj.initEvent(etype, true, false);
-      el.dispatchEvent(evObj);
-    }
-  },
   addTextByQuerySelector: (selector, text) => {
     const element = document.querySelectorAll(selector);
     const length = element.length;

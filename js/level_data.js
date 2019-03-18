@@ -9,6 +9,11 @@ const level_data = [
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
     ],
+    boardHelpText: {
+      helpText1: "Press a line on the board",
+      helpText2: "Press another line",
+      helpText3: "Create a box to score"
+    },
     tipsPage: {
       hey: "hey",
       heading: "how to",

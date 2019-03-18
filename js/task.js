@@ -1,12 +1,11 @@
 const task = {
   setTurnPlayer: () => {
     setTimeout(() => {
-      const lockBoxesWasNotCleared = (twoBorderBoxes.length === 0)
-                                  && (noBorders.length === 0)
-                                  && (oneBorderBoxes.length === 0)
-                                  && (threeBorderBoxes.length !== 0);
+      const noMoreLinesToClick =
+        (twoBorderBoxes.length === 0) && (noBorders.length === 0) &&
+        (oneBorderBoxes.length === 0) && (threeBorderBoxes.length !== 0);
       const hasLockedBoxes = (lockBombLocations.length > 0);
-      if(lockBoxesWasNotCleared && hasLockedBoxes){
+      if(noMoreLinesToClick && hasLockedBoxes){
         console.log("game over");
       }
     })
@@ -38,24 +37,17 @@ const task = {
     task.setTips(level);
   },
   setTips: (level) => {
-    const tips = getGameLevelObj.tipsPage || level_data[0].tipsPage;
     const {
-      heading,
-      text,
-      img_src
-    } = tips;
-    document.getElementById("tipHeading").innerText = heading;
-    document.getElementById("tipText").innerText = text;
+      heading, text, img_src
+    } = getGameLevelObj.tipsPage || level_data[0].tipsPage;
+    task.addTextByQuerySelector("#tipHeading", heading);
+    task.addTextByQuerySelector("#tipText", text);
     document.getElementById("tipImage").src = img_src;
   },
   setDifficulty: (difficulty) => {
-    if (difficulty === "easy") {
-      chanceToGiveAWayPoint = 0.4;
-    } else if (difficulty === "medium") {
-      chanceToGiveAWayPoint = 0.2;
-    } else if (difficulty === "hard") {
-      chanceToGiveAWayPoint = 0.01;
-    }
+    if (difficulty === "easy") { chanceToGiveAWayPoint = 0.4 }
+    else if (difficulty === "medium") { chanceToGiveAWayPoint = 0.2 }
+    else if (difficulty === "hard") { chanceToGiveAWayPoint = 0.01 }
   },
   clearBoard: () => {
     document.getElementsByClassName("box")[0].remove();

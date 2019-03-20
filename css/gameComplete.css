@@ -111,6 +111,30 @@
   padding: 0.1em;
 }
 
+svg.redoBtn,
+svg.nextBtn {
+  position: absolute;
+  height: 3em;
+  bottom: 1em;
+  color: #b57800;
+  opacity: 0;
+  transition: opacity 1s;
+  z-index: 201;
+}
+
+svg.redoBtn {
+  left: 1em;
+}
+
+svg.nextBtn {
+  right: 1em;
+}
+
+svg.redoBtn.showBtn,
+svg.nextBtn.showBtn {
+  opacity: 1;
+}
+
 .bombReward {
   color: rgb(109, 2, 2);
   font-size: 1.4em;

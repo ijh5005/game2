@@ -395,8 +395,8 @@
   pointer-events: none;
 }
 
-.helpText p {
-  font-size: 1.4em;
+.helpTextP {
+  font-size: 1.6em;
   color: #b57800;
   margin: 0;
   opacity: 0;
@@ -405,7 +405,7 @@
   transition: all 0.5s;
 }
 
-.helpText p.showHelpText {
+.helpTextP.showHelpText {
   opacity: 1;
   top: 0;
 }

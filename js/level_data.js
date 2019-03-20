@@ -6,14 +6,15 @@ const level_data = [
     lockBoxes: [],
     starRating: [
       { stars: 1, score: 8 },
-      { stars: 2, score: 9 },
-      { stars: 3, score: 10 }
+      { stars: 3, score: 9 },
+      { stars: 5, score: 10 }
     ],
-    boardHelpText: {
-      helpText1: "Press a line on the board",
-      helpText2: "Press another line",
-      helpText3: "Create a box to score"
+    boardHelpText: function* gen(){
+      yield "Tap a line on the board";
+      yield "Tap another line";
+      yield "Create a box to score";
     },
+    helpTurns: [0, 2, 4],
     tipsPage: {
       hey: "hey",
       heading: "how to",
@@ -25,7 +26,7 @@ const level_data = [
     isLocked: false,
     levelNumber: 2,
     stars: 2,
-    takenBoxes: ["box7", "box8", "box9", "box10"],
+    prefilledBoxes: ["box7", "box8", "box9", "box10"],
     initialBombs: [
       {
         box: "box9",
@@ -36,7 +37,11 @@ const level_data = [
       { stars: 1, score: 8 },
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
-    ]
+    ],
+    boardHelpText: function* gen(){
+      yield "Tap the cheetah! It blows away boxes";
+    },
+    helpTurns: [0],
   },
   {
     isLocked: true,

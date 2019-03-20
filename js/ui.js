@@ -29,8 +29,10 @@ const ui = {
     })
 
     ui.addInitialBombs();
+    ui.fillPreFilledBoxes();
     ui.populateBoard();
-    bomb.fillPopulationData()
+    bomb.fillPopulationData();
+    ui.startLevelText();
   },
   redo: () => {
     task.clearBoard();
@@ -59,7 +61,6 @@ const ui = {
     return length;
   },
   chooseBoard: () => {
-    tools = null;
     track.goToPage("levelsPage");
     document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
     const node = document.getElementsByClassName("levelsHolder")[0];
@@ -98,12 +99,19 @@ const ui = {
     ui.populateHelpers();
   },
   populateHelpers: () => {
+    //set helpers
     if(!tools){
       tools = task.getTools();
     }
+
+    //empty any helpers still on the board
+    const nodes = document.getElementsByClassName("bombToolsBar");
+    nodes[0].innerHTML = "";
+
+    //populate board with helps
     tools.forEach(data => {
-      const tools = document.querySelectorAll(`.tool.${data.name}`);
-      const toolExists = tools.length > 0;
+      const tool = document.querySelectorAll(`.tool.${data.name}`);
+      const toolExists = tool.length > 0;
       if(data.count !== 0 && !toolExists){
         const tool = ui.uiComponents.helper(data);
         const node = document.getElementsByClassName("bombToolsBar")[0];
@@ -111,7 +119,7 @@ const ui = {
       } else if (data.count !== 0) {
         task.addTextByQuerySelector(`.${data.name}p`, data.count);
       } else if (data.count === 0 && toolExists) {
-        tools[0].remove();
+        tool[0].remove();
       }
     })
   },
@@ -282,7 +290,11 @@ const ui = {
   showGift: (prize, starTimeout) => {
     if(prize){
       setTimeout(() => {
-        task.addClassByClassName("rewardScreen", "showPrice")
+        task.addClassByClassName("rewardScreen", "showPrice");
+        setTimeout(() => {
+          task.addClassByQuerySelector("svg.redoBtn", "showBtn");
+          task.addClassByQuerySelector("svg.nextBtn", "showBtn");
+        }, 1000)
       }, 200);
     }
   },
@@ -320,5 +332,97 @@ const ui = {
       const prize = "cheetah";
       ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
     }, 500)
+  },
+  showText: (text) => {
+    task.removeClassByClassName("helpTextP", "showHelpText");
+    setTimeout(() => {
+      task.addTextByQuerySelector(".helpTextP", text);
+      task.addClassByClassName("helpTextP", "showHelpText");
+    }, 500)
+  },
+  startLevelText: () => {
+    if(!getGameLevelObj["boardHelpText"]) {
+      task.removeClassByQuerySelector(".helpTextP", "showHelpText");
+      return null
+    };
+
+    const levelText = getGameLevelObj["boardHelpText"]();
+    const turnsToShowText = levelText ? getGameLevelObj["helpTurns"] : [];
+
+    if(track.turn === 0){
+      helpText = levelText;
+    }
+
+    if(!helpText && levelText && turnsToShowText.includes(track.turn)){
+      const text = helpText.next().value;
+      ui.showText(text);
+    } else if(helpText && turnsToShowText.includes(track.turn)) {
+      const text = helpText.next().value;
+      ui.showText(text);
+    }
+    if(turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1){
+      setTimeout(() => {
+        ui.showText("");
+      }, 5000)
+    }
+  },
+  fillPreFilledBoxes: () => {
+    const {prefilledBoxes} = getGameLevelObj;
+    if(prefilledBoxes){
+      for(let box in gameBoard){
+        if(prefilledBoxes.includes(box)){
+          // fill box
+          gameBoard[box].borders.top = true;
+          gameBoard[box].borders.right = true;
+          gameBoard[box].borders.bottom = true;
+          gameBoard[box].borders.left = true;
+          gameBoard[box].whoScored = "secondPlayerScored";
+          // fill adj box
+          const topAdj = boxInfo.getAdjBoxBySide(box, "top");
+          const rightAdj = boxInfo.getAdjBoxBySide(box, "right");
+          const leftAdj = boxInfo.getAdjBoxBySide(box, "left");
+          const bottomAdj = boxInfo.getAdjBoxBySide(box, "bottom");
+          if(topAdj){ gameBoard[topAdj].borders.bottom = true }
+          if(rightAdj){ gameBoard[rightAdj].borders.left = true }
+          if(bottomAdj){ gameBoard[bottomAdj].borders.top = true }
+          if(leftAdj){ gameBoard[leftAdj].borders.right = true }
+        }
+      }
+    }
+  },
+  undoFinishScreen: () => {
+    task.addClassByClassName("gameCompleteBox", "hideGameComplete");
+    task.addTextByQuerySelector(".yourScore", 0);
+    task.addTextByQuerySelector(".computerScore", 0);
+    task.addTextByQuerySelector(".remainingGold", 0);
+    task.addTextByQuerySelector(".currentGoldCount", 0);
+    document.getElementsByClassName("rewardScreen")[0].style.opacity = 0;
+    document.getElementsByClassName(`completeStar1`)[0].style.opacity = 0;
+    document.getElementsByClassName(`completeStar2`)[0].style.opacity = 0;
+    document.getElementsByClassName(`completeStar3`)[0].style.opacity = 0;
+    task.removeClassByClassName("rewardScreen", "showPrice");
+    task.removeClassByQuerySelector("svg.redoBtn", "showBtn");
+    task.removeClassByQuerySelector("svg.nextBtn", "showBtn");
+  },
+  redoBorder: () => {
+    ui.undoFinishScreen();
+    const click = ui.click();
+    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
+    gameLevel++;
+    task.setGameLevelAndTips(gameLevel);
+  },
+  nextBorder: () => {
+    ui.undoFinishScreen();
+    const click = ui.click();
+    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
+    gameLevel+=2;
+    task.setGameLevelAndTips(gameLevel);
+  },
+  click: () => {
+    return clickEvent = new MouseEvent("click", {
+      "view": window,
+      "bubbles": true,
+      "cancelable": false
+    });
   }
 }

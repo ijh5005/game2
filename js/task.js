@@ -170,6 +170,15 @@ const task = {
       }
     }
   },
+  removeClassByQuerySelector: (selector, classToRemove) => {
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].classList.remove(classToRemove);
+      }
+    }
+  },
   removeClassByClassName: (selector, classToRemove) => {
     const element = document.getElementsByClassName(selector);
     const length = element.length;

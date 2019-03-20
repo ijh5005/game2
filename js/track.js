@@ -4,6 +4,7 @@ const track = {
     track.turn++;
   },
   goToPage: (page) => {
+    tools = null;
     currentPage = page;
     const allPages = document.getElementsByClassName("page");
     for(let i = 0; i < allPages.length; i++){
@@ -13,6 +14,7 @@ const track = {
     pageToShow.classList.remove("removePage");
     ui.setSettingsIfOnSettingsPage(page);
     if(page === "gameBoardPage"){
+      track.turn = 0;
       task.resizeBoard();
     }
   },

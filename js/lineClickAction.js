@@ -125,6 +125,7 @@ const lineClickAction = {
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
     setTimeout(() => {
       task.isGameOver();
+      ui.startLevelText();
     })
   },
   removeLineClickHighlights: () => {

@@ -1,5 +1,7 @@
+// this file contains the exploding patterns of the animal bombs
+
 const animalExplosions = {
-  lion: {
+  lion: { // exploding pattern for the lion
     boxes: (box) => {
       /*
         explodes around animal
@@ -7,6 +9,8 @@ const animalExplosions = {
               12  13  14
               18  19  20
       */
+
+      // cache every box that will be exploded
       const boxNumber = parseInt(box.replace("box", ""));
       const topRightBoxNumber = boxInfo.getTopRightBoxNumber(boxNumber);
       const topLeftBoxNumber = boxInfo.getTopLeftBoxNumber(boxNumber);
@@ -16,6 +20,9 @@ const animalExplosions = {
       const leftBox = boxInfo.getLeftBox(boxNumber);
       const bottomBox = boxInfo.getBottomBox(boxNumber);
       const rightBox = boxInfo.getRightBox(boxNumber);
+
+      // places those exploding boxes into an array and filter out invalid boxes
+      // invalid boxes include boxes that are on the edge of the board
       const boxesToExplode = [
         `box${boxNumber}`,
         topRightBoxNumber,
@@ -27,6 +34,8 @@ const animalExplosions = {
         bottomBox,
         rightBox
       ].filter(data => data);
+
+      // match the boxes with the lines that will be remove and a result of the explosion
       const linesToRemove = [
         { box: topRightBoxNumber, lines: ["bottom", "left"] },
         { box: topLeftBoxNumber, lines: ["bottom", "right"] },

@@ -136,8 +136,8 @@ const ui = {
   },
   removeScoreColorIfRemovingBorder: (box) => {
     gameBoard[box].whoScored = null;
-    task.removeClassByClassName("box", "firstPlayerScored");
-    task.removeClassByClassName("box", "secondPlayerScored");
+    task.removeClassByClassName(`.${box}`, "firstPlayerScored");
+    task.removeClassByClassName(`.${box}`, "secondPlayerScored");
   },
   closeTheBoxConnection: (closeTheBoxConnectionParams) => {
     const {
@@ -290,6 +290,11 @@ const ui = {
   showGift: (prize, starTimeout) => {
     if(prize){
       setTimeout(() => {
+        if(!getGameLevelObj.hasLargePrize){
+          task.addClassByClassName("goldScreen", "smallPrize");
+        } else {
+          task.removeClassByClassName("goldScreen", "smallPrize");
+        }
         task.addClassByClassName("rewardScreen", "showPrice");
         setTimeout(() => {
           task.addClassByQuerySelector("svg.redoBtn", "showBtn");

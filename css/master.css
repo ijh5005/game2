@@ -55,6 +55,25 @@ p {
   color: #130b2d;
 }
 
+.turnPlayer {
+  background-color: #b57800;
+  height: 0.5em;
+  top: 3.6em;
+  width: 0.5em;
+  position: absolute;
+  transition: left 0.5s;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+
+.turnPlayer.firstPlayerTurn {
+  left: 32vw;
+}
+
+.turnPlayer.secondPlayerTurn {
+  left: 66vw;
+}
+
 .titleImg {
   transform: scale(1.2);
 }

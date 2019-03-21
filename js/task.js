@@ -10,6 +10,7 @@ const task = {
       }
     })
     isFirstPlayerTurn = (hasScored || disableComputer) ? isFirstPlayerTurn : !isFirstPlayerTurn;
+    task.setTurnIndicator();
     hasScored ? soundEffects.playScoreSound() : soundEffects.playLineClickSound();
     hasScored = false;
     if (isPlayingComputer && !isFirstPlayerTurn) { // make the computer move
@@ -85,6 +86,7 @@ const task = {
   },
   resetPlayerTurn: () => {
     isFirstPlayerTurn = true;
+    task.setTurnIndicator();
   },
   saveToLocalStorage: (key, obj) => {
     localStorage['boxes'] = JSON.stringify({
@@ -120,6 +122,7 @@ const task = {
   },
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
+    task.setTurnIndicator();
     computerMove.makeComputerMove();
   },
   resizeBoard: () => {
@@ -249,4 +252,10 @@ const task = {
     else if(score >= starRubric[1].score){ return 2 }
     else if(score >= starRubric[0].score){ return 1 }
   },
+  setTurnIndicator: () => {
+    task.removeClassByClassName("turnPlayer", "firstPlayerTurn");
+    task.removeClassByClassName("turnPlayer", "secondPlayerTurn");
+    if(isFirstPlayerTurn){ task.addClassByQuerySelector(".turnPlayer", "firstPlayerTurn") }
+    else { task.addClassByQuerySelector(".turnPlayer", "secondPlayerTurn") }
+  }
 }

@@ -46,11 +46,14 @@
             <p class="setting" onclick="ui.chooseBoard()">
               <span class="homeBtnText playBtn">play</span>
             </p>
-            <p class="setting" onclick="track.goToPage('settingsPage')">
-              <span class="homeBtnText settingsBtn">settings</span>
-            </p>
             <p class="setting">
               <span class="homeBtnText goalsBtn">goals</span>
+            </p>
+            <p class="setting">
+              <span class="homeBtnText storeBtn">store</span>
+            </p>
+            <p class="setting" onclick="track.goToPage('settingsPage')">
+              <span class="homeBtnText settingsBtn">settings</span>
             </p>
           </div>
         </div>
@@ -138,6 +141,7 @@
               <p class="playerScoreHeading">2nd score</p>
               <p class="playerTwoScore">0</p>
             </div>
+            <div class="turnPlayer firstPlayerTurn"></div>
           </div>
           <div class="bombToolsBar flexRow hide"></div>
           <div id="boardHolder">
@@ -168,6 +172,8 @@
             <div class="rewardScreen">
               <div class="goldScreen flexCol">
                 <img class="panther_reward" src="./img/rewards/panther_reward.png" alt="">
+                <p class="prizeText">prize</p>
+                <div class="prize"></div>
               </div>
             </div>
           </div>

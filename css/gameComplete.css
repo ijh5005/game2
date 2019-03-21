@@ -99,12 +99,44 @@
   background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%);
 }
 
+.goldScreen.smallPrize {
+  background: rgb(72,46,158);
+  background: radial-gradient(circle, rgba(72,46,158,1) 0%, rgba(19,11,45,1) 100%);
+}
+
+.goldScreen.smallPrize img {
+  display: none;
+}
+
+.prize {
+  position: absolute;
+  top: 40%;
+  margin: 0 auto;
+  background-image: url(../img/rewards/asset_goldbrick.png);
+  height: 8em;
+  width: 8em;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  opacity: 0;
+}
+
+p.prizeText {
+  opacity: 0;
+}
+
+.goldScreen.smallPrize .prize,
+.goldScreen.smallPrize .prizeText {
+  opacity: 1;
+}
+
 .goldScreen p {
   letter-spacing: 3px;
   font-weight: bold;
   font-size: 2em;
   margin: 0;
   color: rgba(255, 255, 255, 0.4);
+  position: absolute;
+  top: 2em;
 }
 
 .goldScreen img {

@@ -27,6 +27,10 @@ const level_data = [
     levelNumber: 2,
     stars: 2,
     prefilledBoxes: ["box7", "box8", "box9", "box10"],
+    hasLargePrize: {
+      prize: "cheetah",
+      quantity: 1
+    },
     initialBombs: [
       {
         box: "box9",

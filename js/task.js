@@ -13,7 +13,7 @@ const task = {
     task.setTurnIndicator();
     hasScored ? soundEffects.playScoreSound() : soundEffects.playLineClickSound();
     hasScored = false;
-    if (isPlayingComputer && !isFirstPlayerTurn) { // make the computer move
+    if (!isFirstPlayerTurn) { // make the computer move
       computerMove.makeComputerMove();
     }
   },

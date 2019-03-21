@@ -120,7 +120,7 @@ const lineClickAction = {
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
     task.setTurnPlayer(); // set the turn player
-    ui.populateBoard(board);
+    ui.populateBoard();
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
     setTimeout(() => {

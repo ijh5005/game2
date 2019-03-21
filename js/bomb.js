@@ -144,6 +144,7 @@ const bomb = {
       soundEffects.playExplosionSound();
     }
     lineClickAction.removeLineClickHighlights();
+    ui.populateBoard();
   },
   checkForChainReactions: (boxesToCheck) => {
     setTimeout(() => {

@@ -294,6 +294,12 @@ const ui = {
           task.addClassByClassName("goldScreen", "smallPrize");
         } else {
           task.removeClassByClassName("goldScreen", "smallPrize");
+          const prize = getGameLevelObj.hasLargePrize.prize;
+          const img = document.querySelector(".goldScreen img")
+          img.src = `./img/rewards/${prize}_reward.png`;
+          const currentClass = img.classList[0];
+          img.classList.remove(currentClass);
+          img.classList.add(`${prize}_reward`);
         }
         task.addClassByClassName("rewardScreen", "showPrice");
         setTimeout(() => {

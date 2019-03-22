@@ -269,22 +269,25 @@ const ui = {
   },
   animateScore: (prize, starTimeout) => {
     let remainingGold = parseInt(task.getTextByQuerySelector(".remainingGold"));
-    const changeNumber = () => {
-      const gold = remainingGold;
-      starTimeout += 50;
-      setTimeout(() => {
-        task.addTextByQuerySelector(".remainingGold", gold);
-        const currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
-        task.addTextByQuerySelector(".currentGoldCount", currectGold)
-      }, starTimeout)
-      remainingGold--;
-      if(remainingGold > 0){
-        changeNumber();
+    const hasScore = remainingGold !== 0;
+    if(hasScore){
+      const changeNumber = () => {
+        const gold = remainingGold;
+        starTimeout += 100;
+        setTimeout(() => {
+          // task.addTextByQuerySelector(".remainingGold", gold);
+          const currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
+          task.addTextByQuerySelector(".currentGoldCount", currectGold)
+        }, starTimeout)
+        remainingGold--;
+        if(remainingGold > 0){
+          changeNumber();
+        }
       }
+      changeNumber();
     }
-    changeNumber();
     setTimeout(() => {
-      task.addTextByQuerySelector(".remainingGold", 0);
+      // task.addTextByQuerySelector(".remainingGold", 0);
       ui.showGift(prize, starTimeout);
     }, starTimeout);
   },

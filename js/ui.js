@@ -435,5 +435,12 @@ const ui = {
       "bubbles": true,
       "cancelable": false
     });
+  },
+  checkForGameBoardTextConditions: () => {
+    if(pointsInArow > 10){
+      boardText.showText("excellent");
+    } else if (pointsInArow > 5) {
+      boardText.showText("good");
+    }
   }
 }

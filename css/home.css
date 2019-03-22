@@ -37,7 +37,7 @@
 }
 
 .title img.big {
-  transform: scale(1.4);
+  transform: scale(1.2);
 }
 
 .titleSubText {
@@ -82,15 +82,16 @@
 .playBtn {
   font-size: 27vw;
   color: #b57800;
-  font-weight: 300;
+  font-weight: 100;
 }
 
 .settingsBtn,
 .goalsBtn,
 .storeBtn {
-  font-family: 'Raleway Dots', cursive;
+  font-family: 'Raleway', cursive;
   font-size: 11vw;
-  font-weight: 200;
+  font-weight: 100;
+  color: #b57800;
 }
 
 /* .goalsBtn {
@@ -128,7 +129,7 @@
   top: 0;
   transition: top 0.5s;
   position: relative;
-  font-family: 'Raleway Dots', cursive;
+  font-family: 'Raleway', cursive;
 }
 
 .sOptions.selectedSetting,

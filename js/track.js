@@ -38,6 +38,10 @@ const track = {
   highlightBoxIfScored: (boxNumber) => {
     if (boxInfo.getBorderCount(boxNumber) === 4) {
       gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
+      if(isFirstPlayerTurn){
+        pointsInArow++;
+        ui.checkForGameBoardTextConditions();
+      }
       soundEffects.playScoreSound();
     }
   },

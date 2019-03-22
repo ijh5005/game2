@@ -1,5 +1,6 @@
 const computerMove = {
   makeComputerMove: () => {
+    pointsInArow = 0;
     explodingBoxes = [];
     // logic to make computer move
     setTimeout(() => { // makes the computer delay before making a move

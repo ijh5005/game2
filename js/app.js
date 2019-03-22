@@ -32,6 +32,8 @@ let hasScored = false;
 let isFirstPlayerTurn = true;
 // disable the computer while debugging
 let disableComputer = false;
+// track previously used boardtext type to avoid resaying the same type in a row
+let textType;
 
 // tracks points scored and used with gameBoardLength to determine if the game is over
 let totalPointsScored = 0;
@@ -47,6 +49,8 @@ let lockBombLocations = [];
 const possibleBombs = [];
 // initial bomb on the screen
 let initialBombs;
+// number of points scored in a row by isFirstPlayerTurn
+let pointsInArow = 0;
 
 // current page we are on
 let currentPage = "homePage";
@@ -56,7 +60,7 @@ let chanceToGiveAWayPoint;
 
 
 let reset_settings = false;
-//determines if we ae on the game board
+//determines if we are on the game board
 let on_game_board = false;
 
 // used to prevent multiple game board text showing on board

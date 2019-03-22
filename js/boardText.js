@@ -16,13 +16,19 @@ const boardText = {
   showText: (type) => {
     let text;
     if(type === "bad"){
+      if(textType === "bad") return null;
       text = boardText.getBadText();
       soundEffects.play("got em/got em.m4a");
     } else if (type === "good") {
+      if(textType === "good") return null;
       text = boardText.getGoodText();
+      soundEffects.play("jasmin/i see u.m4a");
     } else if (type === "excellent") {
+      if(textType === "excellent") return null;
       text = boardText.getExcellentText();
+      soundEffects.play("jasmin/yes.m4a");
     }
+    textType = type;
     task.addTextByQuerySelector(".interactiveText p", text);
     task.addClassByQuerySelector(".interactiveText p", "showText")
     setTimeout(() => {

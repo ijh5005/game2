@@ -146,25 +146,25 @@
 .borderTop {
   border-top-color: #371006;
   border-top-color: #b57800;
-  border-top-color: #e3a731;
+  /* border-top-color: #e3a731; */
 }
 
 .borderRight {
   border-right-color: #371006;
   border-right-color: #b57800;
-  border-right-color: #e3a731;
+  /* border-right-color: #e3a731; */
 }
 
 .borderBottom {
   border-bottom-color: #371006;
   border-bottom-color: #b57800;
-  border-bottom-color: #e3a731;
+  /* border-bottom-color: #e3a731; */
 }
 
 .borderLeft {
   border-left-color: #371006;
   border-left-color: #b57800;
-  border-left-color: #e3a731;
+  /* border-left-color: #e3a731; */
 }
 
 .topLineClicked {

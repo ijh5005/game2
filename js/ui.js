@@ -1,5 +1,6 @@
 const ui = {
   startGame: () => {
+    textType = null;
     on_game_board = true;
     task.resetPlayerTurn();
     task.resetScore();

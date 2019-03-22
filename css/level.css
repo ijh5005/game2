@@ -48,15 +48,16 @@
   right: 0;
   height: 1.8em;
   width: 100%;
-  border-top: 1px solid #1a1138;
+  /* border-top: 1px solid #1a1138; */
   z-index: 200;
   opacity: 0.94;
 }
 
 .backBtn div {
-  color: #fff;
-  opacity: 0.3;
-  font-size: 0.1em;
+  color: #b57800;
+  font-size: 54%;
+  position: relative;
   height: 6em;
   width: 3em;
+  top: 44%;
 }

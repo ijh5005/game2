@@ -56,18 +56,19 @@ p {
 }
 
 .turnPlayer {
-  background-color: #b57800;
+  background-color: #130b2d;
   height: 0.5em;
   top: 3.6em;
   width: 0.5em;
   position: absolute;
-  transition: left 0.5s;
+  transition: all 0.5s;
   border-radius: 50%;
   opacity: 0.5;
 }
 
 .turnPlayer.firstPlayerTurn {
   left: 32vw;
+  background-color: #b57800;
 }
 
 .turnPlayer.secondPlayerTurn {

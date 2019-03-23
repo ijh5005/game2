@@ -11,7 +11,7 @@ const lineClickAction = {
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
       }
-    } else if(task.isSelected()){
+    } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber)){
       if(selectedBombFunction === "bombEraser"){
         let hasBomb = false;
         bomb.types.forEach(data => {

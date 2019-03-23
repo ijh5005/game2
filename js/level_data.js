@@ -48,7 +48,7 @@ const level_data = [
     helpTurns: [0],
   },
   {
-    isLocked: true,
+    isLocked: false,
     levelNumber: 3,
     stars: 2,
     lockBoxes: [
@@ -62,15 +62,29 @@ const level_data = [
       initialBombs: [{
         box: "box14",
         bombType: "isLionExplosion"
-      }, {
-        box: "box14",
-        bombType: "isCheetahExplosion"
       }
     ],
     starRating: [
       { stars: 1, score: 11 },
       { stars: 2, score: 12 },
       { stars: 3, score: 13 }
+    ],
+    tools: [
+      {
+        name: "lion",
+        src: "./img/color_animals/asset_lion.png",
+        count: 1
+      },
+      {
+        name: "cheetah",
+        src: "./img/color_animals/asset_cheetah.png",
+        count: 1
+      },
+      {
+        name: "panther",
+        src: "./img/color_animals/asset_panther.png",
+        count: 1
+      }
     ]
   },
   {

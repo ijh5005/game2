@@ -43,7 +43,7 @@ const level_data = [
       { stars: 3, score: 10 }
     ],
     boardHelpText: function* gen(){
-      yield "Tap the cheetah! It blows away boxes";
+      yield "Tap the cheetah! It blows away lines";
     },
     helpTurns: [0],
   },

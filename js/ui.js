@@ -308,6 +308,7 @@ const ui = {
     }
   },
   showEndGameScreen: (stars, yourScore, computerScore, currentGoldCount, prize) => {
+    isFirstPlayerTurn = true;
     task.removeClassByClassName("gameCompleteBox", "hideGameComplete");
     task.addTextByQuerySelector(".yourScore", yourScore);
     task.addTextByQuerySelector(".computerScore", computerScore);

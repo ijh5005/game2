@@ -63,7 +63,6 @@ p {
   position: absolute;
   transition: all 0.5s;
   border-radius: 50%;
-  opacity: 0.5;
 }
 
 .turnPlayer.firstPlayerTurn {

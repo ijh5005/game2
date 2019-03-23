@@ -25,7 +25,15 @@ const task = {
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
     });
     if(totalPointsScored === gameBoardLength){
-      ui.showCompleteScreen();
+      if(playerOneScore > playerTwoScore){
+        ui.showCompleteScreen();
+      } else if(playerOneScore === playerTwoScore){
+        boardText.showOnBoard("DRAW", 5000);
+        isFirstPlayerTurn = true;
+      } else {
+        boardText.showOnBoard("You Be Ard. Try again", 5000);
+        isFirstPlayerTurn = true;
+      }
     }
   },
   getRandomIndexInArray: (boxArray) => {

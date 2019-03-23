@@ -29,11 +29,13 @@ const boardText = {
       soundEffects.play("jasmin/yes.m4a");
     }
     textType = type;
+  },
+  showOnBoard: (text, adjustTimeout) => {
     task.addTextByQuerySelector(".interactiveText p", text);
     task.addClassByQuerySelector(".interactiveText p", "showText")
     setTimeout(() => {
       task.addTextByQuerySelector(".interactiveText p", "");
       task.removeClassByQuerySelector(".interactiveText p", "showText")
-    }, 2000);
+    }, adjustTimeout || 2000);
   }
 }

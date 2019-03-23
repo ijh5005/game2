@@ -74,7 +74,7 @@ const level_data = [
     ]
   },
   {
-    isLocked: true,
+    isLocked: false,
     levelNumber: 4,
     stars: 1,
     lockBoxes: [
@@ -99,6 +99,23 @@ const level_data = [
       { stars: 1, score: 10 },
       { stars: 2, score: 11 },
       { stars: 3, score: 12 }
+    ],
+    tools: [
+      {
+        name: "lion",
+        src: "./img/color_animals/asset_lion.png",
+        count: 1
+      },
+      {
+        name: "cheetah",
+        src: "./img/color_animals/asset_cheetah.png",
+        count: 1
+      },
+      {
+        name: "panther",
+        src: "./img/color_animals/asset_panther.png",
+        count: 1
+      }
     ]
   },
   {

@@ -150,12 +150,6 @@ const ui = {
     if (gameBoard[boxNumber].surroundingBoxes[`${boxNumberClosedBorder}Box`]) gameBoard[boxNumber].surroundingBoxes[`${boxNumberClosedBorder}Box`].isConnected = false;
     if (adjacentBox && gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`]) gameBoard[adjacentBox].surroundingBoxes[`${adjacentBoxClosedBorder}Box`].isConnected = false;
   },
-  showFinishScreen: () => {
-    setTimeout(() => {
-      task.removeClassByClassName("completionScreen", "removePage");
-      task.removeClassByClassName("ribbonHolder", "down");
-    }, 1000)
-  },
   selectHelper: (bombFunction) => {
     const hasSelected = document.querySelector(`.tool[class*=${bombFunction}]`).classList.contains("selected");
     if(hasSelected){

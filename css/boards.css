@@ -424,8 +424,8 @@
   position: absolute;
   height: 0.5em;
   width: 0.5em;
-  border-radius: 50%;
-  background-color: #21183e;
+  border-radius: 25%;
+  background-color: #251c44;
 }
 
 .topRightDot {

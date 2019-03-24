@@ -84,7 +84,23 @@ const ui = {
     } else {
       for (let box in gameBoard) {
         ui.addLockBox(box);
+
+        const topRightDot = document.createElement("div");
+        const topLeftDot = document.createElement("div");
+        const bottomRightDot = document.createElement("div");
+        const bottomLeftDot = document.createElement("div");
+        topRightDot.classList.add("topRightDot");
+        topLeftDot.classList.add("topLeftDot");
+        bottomRightDot.classList.add("bottomRightDot");
+        bottomLeftDot.classList.add("bottomLeftDot");
+
         const gridBox = document.createElement("div");
+
+        gridBox.appendChild(topRightDot);
+        gridBox.appendChild(topLeftDot);
+        gridBox.appendChild(bottomRightDot);
+        gridBox.appendChild(bottomLeftDot);
+
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
         gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));
         gridBox.addEventListener("click", (e) => { // add a click event to the box click on borders
@@ -164,7 +180,7 @@ const ui = {
     boardBox: (data) => {
       let stars = "";
       for(let i = 0; i < data.stars; i++){
-        stars += `<img src="./img/star.png" alt="">`;
+        stars += `<img class="star${i}" src="./img/star.png" alt="">`;
       }
       return (`
         <div class="level flexCol playBoardButton" onclick="task.setGameLevelAndTips(${data.levelNumber})">
@@ -479,5 +495,20 @@ const ui = {
     setTimeout(() => {
       helperMovingImage.remove();
     }, 250)
+  },
+  animateStars: () => {
+    setInterval(() => {
+      let timeoutToNext = 0;
+      const nums = [0, 1, 2];
+      nums.forEach(num => {
+        timeoutToNext += 100;
+        setTimeout(() => {
+          task.addClassByClassName(`star${num}`, `up`);
+          setTimeout(() => {
+            task.removeClassByClassName(`star${num}`, `up`);
+          }, 400)
+        }, timeoutToNext)
+      })
+    }, 4000)
   }
 }

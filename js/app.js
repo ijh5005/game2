@@ -85,3 +85,6 @@ soundEffects.playGameMusic();
 
 // animal text on home screen
 task.changeTitleColor();
+
+// animate the board selecting page stars
+ui.animateStars();

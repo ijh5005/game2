@@ -14,5 +14,6 @@
 }
 
 .disabled {
-  border: none;
+  border-color: transparent;
+  opacity: 0;
 }

@@ -414,3 +414,36 @@
   opacity: 1;
   top: 0;
 }
+
+.topRightDot,
+.topLeftDot,
+.bottomRightDot,
+.bottomLeftDot {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  background-color: #21183e;
+}
+
+.topRightDot {
+  top: -0.25em;
+  right: -0.25em;
+}
+
+.topLeftDot {
+  top: -0.25em;
+  left: -0.25em;
+}
+
+.bottomRightDot {
+  bottom: -0.25em;
+  right: -0.25em;
+}
+
+.bottomLeftDot {
+  bottom: -0.25em;
+  left: -0.25em;
+}

@@ -66,12 +66,12 @@ p {
 }
 
 .turnPlayer.firstPlayerTurn {
-  left: 31vw;
+  left: 32vw;
   background-color: #b57800;
 }
 
 .turnPlayer.secondPlayerTurn {
-  left: 66vw;
+  left: 65vw;
 }
 
 .titleImg {

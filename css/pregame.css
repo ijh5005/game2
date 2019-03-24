@@ -1,0 +1,3 @@
+.silverScreen {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #BEC0C2 0%, #B3B6B5 8%, #8E8D8D 30%, #7D7D7A 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #BEC0C2 0%, #BEC0C2 8%, #A1A2A3 25%, #70706F 62.5%, #70706F 100%);
+}

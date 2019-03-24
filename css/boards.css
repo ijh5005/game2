@@ -447,3 +447,19 @@
   bottom: -0.25em;
   left: -0.25em;
 }
+
+.cantClickTop {
+  border-top-color: #ac4830;
+}
+
+.cantClickRight {
+  border-right-color: #ac4830;
+}
+
+.cantClickBottom {
+  border-bottom-color: #ac4830;
+}
+
+.cantClickLeft {
+  border-left-color: #ac4830;
+}

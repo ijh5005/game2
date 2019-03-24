@@ -510,5 +510,43 @@ const ui = {
         }, timeoutToNext)
       })
     }, 4000)
+  },
+  displayNoClickIndicator: (boxNumber, lineClicked) => {
+    const incorrectLineClick = (box, classToAdd) => {
+      task.addClassByClassName(box, classToAdd);
+      setTimeout(() => {
+        task.removeClassByClassName(box, classToAdd);
+      }, 1000);
+    }
+
+    const lineClickClass = {
+      top: {
+        thisBox: "cantClickTop",
+        adjBox: "cantClickBottom"
+      },
+      right: {
+        thisBox: "cantClickRight",
+        adjBox: "cantClickLeft"
+      },
+      bottom: {
+        thisBox: "cantClickBottom",
+        adjBox: "cantClickTop"
+      },
+      left: {
+        thisBox: "cantClickLeft",
+        adjBox: "cantClickRight"
+      }
+    }
+
+    incorrectLineClick(boxNumber, lineClickClass[lineClicked].thisBox);
+
+    let adjacentBox = null;
+    let adjBoxNumber = null;
+    const hasAdjacentBox = ((gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== null) && (gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== undefined));
+    if (hasAdjacentBox) {
+      adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
+      adjBoxNumber = `box${adjacentBox}`;
+      incorrectLineClick(adjBoxNumber, lineClickClass[lineClicked].adjBox);
+    }
   }
 }

@@ -10,6 +10,8 @@ const lineClickAction = {
         if (!hasClickBorderPreviously) { // prevent multiple click to the same border
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
+      } else {
+        ui.displayNoClickIndicator(boxNumber, lineClicked);
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber)){
       // show smoke when help enters the field

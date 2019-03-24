@@ -441,5 +441,43 @@ const ui = {
     } else if (pointsInArow > 5) {
       boardText.showText("good");
     }
+  },
+  animateBombMovement: (boxNumber) => {
+    const helper = document.querySelectorAll(".tool.selected > img")[0];
+    const box = document.querySelectorAll(`.${boxNumber}`)[0];
+    const boardHolder = document.getElementById("boardHolder");
+    const {
+      src, offsetHeight, offsetWidth, x, y
+    } = helper;
+
+    // position the image
+    const node = document.createElement("img");
+    document.getElementById("gameScreen").appendChild(node);
+    node.id = "helperMovingImage"
+    node.src = src;
+    node.style.position = "absolute";
+    node.style.left = `${x}px`;
+    node.style.top = `${y}px`;
+    node.style.height = `${offsetHeight}px`;
+    node.style.width = `${offsetWidth}px`;
+    node.style.transform = "scale(2)";
+    node.style.transition = "all 0.15s";
+
+    // get position of box
+    var rect = box.getBoundingClientRect();
+    var position = {
+      top: rect.top + window.pageYOffset,
+      left: rect.left + window.pageXOffset
+    };
+
+    // move the image to the box
+    const helperMovingImage = document.getElementById("helperMovingImage");
+    helperMovingImage.style.transform = "scale(1.1)";
+    helperMovingImage.style.left = `${position.left}px`;
+    helperMovingImage.style.top = `${position.top}px`;
+
+    setTimeout(() => {
+      helperMovingImage.remove();
+    }, 250)
   }
 }

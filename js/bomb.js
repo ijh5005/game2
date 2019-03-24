@@ -92,7 +92,10 @@ const bomb = {
           soundEffects.playShowBombSound();
           document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
           bomb.showSpriteSmoke(boxNumber);
-          gameBoard[boxNumber][explosion.key] = true;
+          setTimeout(() => {
+            gameBoard[boxNumber][explosion.key] = true;
+            ui.populateBoard();
+          }, 100)
         } else {
           // track.incrementMissedBombCount();
           const missedBox = {
@@ -177,7 +180,10 @@ const bomb = {
   },
   isExploding: [],
   showSpriteExplosion: (box) => {
-    task.addClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
+    task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
+    setTimeout(() => {
+      task.addClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
+    })
     setTimeout(() => {
       task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
       // remove the box from the exploding array

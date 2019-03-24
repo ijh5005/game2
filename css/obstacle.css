@@ -1,8 +1,8 @@
 .locked {
   background-image: url(../img/obstacles/asset_statue_foot.png);
-  background-size: 82%;
   background-repeat: no-repeat;
   background-position: bottom;
+  background-size: auto 100%;
 }
 
 .firstPlayerScored {

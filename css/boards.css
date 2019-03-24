@@ -64,6 +64,7 @@
   height: 375px;
   overflow: scroll;
   margin: 0 auto;
+  padding: 1em 0;
 }
 
 #board {

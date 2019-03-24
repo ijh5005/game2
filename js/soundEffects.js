@@ -7,7 +7,7 @@ const soundEffects = {
   },
   playExplosionSound: () => {
     const audio = new Audio('./soundEffects/purchased/Mine Explosion 1.wav');
-    audio.volume = settings.hasMutedSound ? 0 : 0.1;
+    audio.volume = settings.hasMutedSound ? 0 : 0.2;
     audio.play();
   },
   playShowBombSound: () => {

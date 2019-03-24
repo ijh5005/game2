@@ -12,6 +12,13 @@ const lineClickAction = {
         }
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber)){
+      // show smoke when help enters the field
+      if(selectedBombFunction !== "bombEraser"){
+        ui.animateBombMovement(boxNumber);
+        soundEffects.playShowBombSound();
+        bomb.showSpriteSmoke(boxNumber);
+      }
+
       if(selectedBombFunction === "bombEraser"){
         let hasBomb = false;
         bomb.types.forEach(data => {
@@ -34,43 +41,52 @@ const lineClickAction = {
           ui.populateBoard();
           task.removeClassByQuerySelector(".tool.selected", "selected");
         }
-      } else if(selectedBombFunction === "lion"){
-        tools.forEach(data => {
-          if(data.name === selectedBombFunction){
-            data.count--;
-          }
-        });
-        gameBoard[boxNumber].isLionExplosion = true;
-        // don't delete
-        // this explodes bomb when layed down
-        // bomb.explodeBoxes(boxNumber);
-        ui.populateBoard(); // remove this line if adding the above commented out line
-        // task.passTurn();
-      } else if (selectedBombFunction === "cheetah") {
-        tools.forEach(data => {
-          if(data.name === selectedBombFunction){
-            data.count--;
-          }
-        });
-        gameBoard[boxNumber].isCheetahExplosion = true;
-        // don't delete
-        // this explodes bomb when layed down
-        // bomb.explodeBoxes(boxNumber);
-        ui.populateBoard();
-        // task.passTurn();
-      } else if (selectedBombFunction === "panther") {
-        tools.forEach(data => {
-          if(data.name === selectedBombFunction){
-            data.count--;
-          }
-        });
-        gameBoard[boxNumber].isPantherExplosion = true;
-        // don't delete
-        // this explodes bomb when layed down
-        // bomb.explodeBoxes(boxNumber);
-        ui.populateBoard();
-        // task.passTurn();
+      } else {
+        setTimeout(() => {
+          showHelper();
+        }, 100);
       }
+
+      const showHelper = () => {
+        if(selectedBombFunction === "lion"){
+          tools.forEach(data => {
+            if(data.name === selectedBombFunction){
+              data.count--;
+            }
+          });
+          gameBoard[boxNumber].isLionExplosion = true;
+          // don't delete
+          // this explodes bomb when layed down
+          // bomb.explodeBoxes(boxNumber);
+          ui.populateBoard(); // remove this line if adding the above commented out line
+          // task.passTurn();
+        } else if (selectedBombFunction === "cheetah") {
+          tools.forEach(data => {
+            if(data.name === selectedBombFunction){
+              data.count--;
+            }
+          });
+          gameBoard[boxNumber].isCheetahExplosion = true;
+          // don't delete
+          // this explodes bomb when layed down
+          // bomb.explodeBoxes(boxNumber);
+          ui.populateBoard();
+          // task.passTurn();
+        } else if (selectedBombFunction === "panther") {
+          tools.forEach(data => {
+            if(data.name === selectedBombFunction){
+              data.count--;
+            }
+          });
+          gameBoard[boxNumber].isPantherExplosion = true;
+          // don't delete
+          // this explodes bomb when layed down
+          // bomb.explodeBoxes(boxNumber);
+          ui.populateBoard();
+          // task.passTurn();
+        }
+      }
+
     } else if(bomb.isExplosionBox(boxNumber)){
       bomb.explodeBoxes(boxNumber);
       task.passTurn();

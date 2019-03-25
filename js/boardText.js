@@ -1,8 +1,11 @@
 const boardText = {
   text: {
-    bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin"],
-    good: ["I see u", "Lets get it", "Chill", "Iiight"],
-    excellent: ["Okurrrr", "Yarrrrpp", "Aaaaaa", "You hyyyype"]
+    // bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin"],
+    bad: ["Haah... got em"],
+    // good: ["I see u", "Lets get it", "Chill", "Iiight"],
+    good: ["I see u"],
+    // excellent: ["Okurrrr", "Yarrrrpp", "Aaaaaa", "You hyyyype"]
+    excellent: ["Uh Yes"]
   },
   getBadText: () => {
     return task.getRandomIndexInArray(boardText.text.bad);
@@ -29,6 +32,7 @@ const boardText = {
       soundEffects.play("jasmin/yes.m4a");
     }
     textType = type;
+    boardText.showOnBoard(text, 2000);
   },
   showOnBoard: (text, adjustTimeout) => {
     task.addTextByQuerySelector(".interactiveText p", text);

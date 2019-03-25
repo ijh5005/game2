@@ -390,7 +390,7 @@
 
 .interactiveText p.showText {
   top: 0em;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .helpText {
@@ -398,6 +398,7 @@
   top: 6em;
   width: 100vw;
   pointer-events: none;
+  z-index: 2;
 }
 
 .helpTextP {
@@ -408,6 +409,7 @@
   position: relative;
   top: -1em;
   transition: all 0.5s;
+  width: 60%;
 }
 
 .helpTextP.showHelpText {

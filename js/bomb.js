@@ -87,7 +87,7 @@ const bomb = {
         if(number > 66){ explosion = bomb.types[0]; }
         else if(number > 33){ explosion = bomb.types[1]; }
         else { explosion = bomb.types[2]; }
-        if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber)){
+        if(!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
           // track.decrementBombCount();
           soundEffects.playShowBombSound();
           document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);

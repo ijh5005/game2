@@ -13,7 +13,7 @@ const lineClickAction = {
       } else {
         ui.displayNoClickIndicator(boxNumber, lineClicked);
       }
-    } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber)){
+    } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
       // show smoke when help enters the field
       if(selectedBombFunction !== "bombEraser"){
         ui.animateBombMovement(boxNumber);

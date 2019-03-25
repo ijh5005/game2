@@ -552,5 +552,18 @@ const boxInfo = {
   },
   getBoxNumberFromBoxX: (box) => {
     return parseInt(box.replace("box", ""));
+  },
+  isABomb: (box) => {
+    let hasExplosion = false;
+    const classes = document.querySelector(`.${box}`).classList;
+    for(index in classes){
+      const num = parseInt(index);
+      const isIndex = isNaN(num);
+      const hasAnExplosion = !isIndex ? classes[index].indexOf("Explosion") : false;
+      if(hasAnExplosion && hasAnExplosion !== -1){
+        hasExplosion = true;
+      }
+    }
+    return hasExplosion;
   }
 }

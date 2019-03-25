@@ -69,23 +69,21 @@ const level_data = [
       { stars: 2, score: 12 },
       { stars: 3, score: 13 }
     ],
+    hasLargePrize: {
+      prize: "lion",
+      quantity: 1
+    },
     tools: [
-      {
-        name: "lion",
-        src: "./img/color_animals/asset_lion.png",
-        count: 1
-      },
       {
         name: "cheetah",
         src: "./img/color_animals/asset_cheetah.png",
         count: 1
-      },
-      {
-        name: "panther",
-        src: "./img/color_animals/asset_panther.png",
-        count: 1
       }
-    ]
+    ],
+    boardHelpText: function* gen(){
+      yield "Tap the cheetah. Then tap any box.";
+    },
+    helpTurns: [0]
   },
   {
     isLocked: false,
@@ -114,6 +112,10 @@ const level_data = [
       { stars: 2, score: 11 },
       { stars: 3, score: 12 }
     ],
+    hasLargePrize: {
+      prize: "panther",
+      quantity: 1
+    },
     tools: [
       {
         name: "lion",
@@ -123,11 +125,6 @@ const level_data = [
       {
         name: "cheetah",
         src: "./img/color_animals/asset_cheetah.png",
-        count: 1
-      },
-      {
-        name: "panther",
-        src: "./img/color_animals/asset_panther.png",
         count: 1
       }
     ]

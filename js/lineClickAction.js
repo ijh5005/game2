@@ -156,7 +156,7 @@ const lineClickAction = {
     lineClickAction.removeLineClickHighlights();
     setTimeout(() => {
       task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
-    })
+    }, 10)
   },
   isNotALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);

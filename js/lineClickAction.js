@@ -40,7 +40,7 @@ const lineClickAction = {
             }
           });
           soundEffects.playEraseBombSound();
-          ui.populateBoard();
+          ui.populateTheUI();
           task.removeClassByQuerySelector(".tool.selected", "selected");
         }
       } else {
@@ -60,7 +60,7 @@ const lineClickAction = {
           // don't delete
           // this explodes bomb when layed down
           // bomb.explodeBoxes(boxNumber);
-          ui.populateBoard(); // remove this line if adding the above commented out line
+          ui.populateTheUI(); // remove this line if adding the above commented out line
           // task.passTurn();
         } else if (selectedBombFunction === "cheetah") {
           tools.forEach(data => {
@@ -72,7 +72,7 @@ const lineClickAction = {
           // don't delete
           // this explodes bomb when layed down
           // bomb.explodeBoxes(boxNumber);
-          ui.populateBoard();
+          ui.populateTheUI();
           // task.passTurn();
         } else if (selectedBombFunction === "panther") {
           tools.forEach(data => {
@@ -84,7 +84,7 @@ const lineClickAction = {
           // don't delete
           // this explodes bomb when layed down
           // bomb.explodeBoxes(boxNumber);
-          ui.populateBoard();
+          ui.populateTheUI();
           // task.passTurn();
         }
       }
@@ -138,7 +138,7 @@ const lineClickAction = {
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
     task.setTurnPlayer(); // set the turn player
-    ui.populateBoard();
+    ui.populateTheUI();
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
     (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
     setTimeout(() => {
@@ -185,6 +185,6 @@ const lineClickAction = {
     borders.forEach(border => {
       gameBoard[box].borders[border] = null;
     });
-    ui.populateBoard();
+    ui.populateTheUI();
   },
 }

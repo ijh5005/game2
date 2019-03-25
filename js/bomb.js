@@ -94,7 +94,7 @@ const bomb = {
           bomb.showSpriteSmoke(boxNumber);
           setTimeout(() => {
             gameBoard[boxNumber][explosion.key] = true;
-            ui.populateBoard();
+            ui.populateTheUI();
           }, 100)
         } else {
           // track.incrementMissedBombCount();
@@ -147,7 +147,7 @@ const bomb = {
       soundEffects.playExplosionSound();
     }
     lineClickAction.removeLineClickHighlights();
-    ui.populateBoard();
+    ui.populateTheUI();
   },
   checkForChainReactions: (boxesToCheck) => {
     setTimeout(() => {

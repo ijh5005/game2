@@ -10,7 +10,7 @@ const computerMove = {
         const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
         if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
           computerMove.clickInATwoBorderBox();
-          ui.populateBoard();
+          ui.populateTheUI();
         } else {
           computerMove.makeMoveInSafeBox();
         }
@@ -24,7 +24,7 @@ const computerMove = {
     else if (noBorders.length !== 0) computerMove.clickInANoBorderBox();
     else if (oneBorderBoxes.length !== 0) computerMove.clickInAOneBorderBox();
     else if (twoBorderBoxes.length !== 0) computerMove.clickInATwoBorderBox();
-    ui.populateBoard();
+    ui.populateTheUI();
   },
   getAFreeBox: () => {
     const clickBox = task.getRandomIndexInArray(threeBorderBoxes);

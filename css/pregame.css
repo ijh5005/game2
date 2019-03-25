@@ -1,3 +1,76 @@
 .silverScreen {
-  background: radial-gradient(ellipse farthest-corner at right bottom, #BEC0C2 0%, #B3B6B5 8%, #8E8D8D 30%, #7D7D7A 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #BEC0C2 0%, #BEC0C2 8%, #A1A2A3 25%, #70706F 62.5%, #70706F 100%);
+  display: none;
+  position: absolute;
+  top: 10%;
+  height: 80vh;
+  width: 100vw;
+  z-index: 200;
+  /* background: radial-gradient(ellipse farthest-corner at right bottom, #BEC0C2 0%, #B3B6B5 8%, #8E8D8D 30%, #7D7D7A 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #BEC0C2 0%, #BEC0C2 8%, #A1A2A3 25%, #70706F 62.5%, #70706F 100%); */
+  /* background: #130b2d; */
+  /* background: radial-gradient(ellipse farthest-corner at right bottom, #BEC0C2 0%, #B3B6B5 8%, #8E8D8D 30%, #7D7D7A 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #BEC0C2 0%, #BEC0C2 8%, #A1A2A3 25%, #130b2d 62.5%, #130b2d 100%); */
+  transition: all 0.5s;
+  background: rgba(19, 11, 45, 0.6);
+}
+
+.silverScreen.hidePregameScreen {
+  background: transparent;
+}
+
+.silverScreen.hidePregameScreen .hideWhenViewingBoard {
+  display: none;
+}
+
+.pickBomb {
+  display: none;
+}
+
+.silverScreen.hidePregameScreen .pickBomb {
+  display: block;
+}
+
+.silverScreen p {
+  font-size: 2em;
+  color: #fff;
+  font-weight: 600;
+  opacity: 0.4;
+}
+
+.pregameBombs {
+  margin: 1em;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding: 1em;
+  flex-wrap: wrap;
+}
+
+.pregameBombs img {
+  height: 3em;
+  margin: 1em;
+}
+
+.pregameBombs img.selected {
+  background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%);
+  border-radius: 10%;
+}
+
+.patternScreen img {
+  height: 28vh;
+}
+
+.viewBtn {
+  height: 4em;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  justify-content: space-between;
+  /* background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%); */
+  /* background: #130b2d; */
+  background: radial-gradient(ellipse farthest-corner at right bottom, #BEC0C2 0%, #B3B6B5 8%, #8E8D8D 30%, #7D7D7A 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #BEC0C2 0%, #BEC0C2 8%, #A1A2A3 25%, #130b2d 62.5%, #130b2d 100%)
+}
+
+.viewBtn span {
+  /* color: #b57800; */
+  color: #130b2d;
+  padding: 1em;
+  font-size: 1.4em;
 }

@@ -31,7 +31,7 @@ const ui = {
 
     ui.addInitialBombs();
     ui.fillPreFilledBoxes();
-    ui.populateBoard();
+    ui.populateTheUI();
     bomb.fillPopulationData();
     ui.startLevelText();
   },
@@ -547,6 +547,25 @@ const ui = {
       adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
       adjBoxNumber = `box${adjacentBox}`;
       incorrectLineClick(adjBoxNumber, lineClickClass[lineClicked].adjBox);
+    }
+  },
+  togglePregameScreen: () => {
+    if(task.hasClassByQuerySelector(".silverScreen", "hidePregameScreen")){
+      task.removeClassByClassName("silverScreen", "hidePregameScreen")
+    } else {
+      task.addClassByClassName("silverScreen", "hidePregameScreen")
+    }
+  },
+  uiPopulater: null,
+  populateTheUI: () => {
+    if(ui.uiPopulater === null){
+      ui.populateBoard();
+      ui.uiPopulater = 1;
+    } else {
+      clearTimeout(ui.uiPopulater);
+      ui.uiPopulater = setTimeout(() => {
+        ui.populateBoard();
+      });
     }
   }
 }

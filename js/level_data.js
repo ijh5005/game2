@@ -9,16 +9,19 @@ const level_data = [
       { stars: 3, score: 9 },
       { stars: 5, score: 10 }
     ],
-    boardHelpText: function* gen(){
-      yield "Tap a line on the board";
-      yield "Tap another line";
-      yield "Create a box to score";
+    help: {
+      boardHelpText: function* gen(){
+        yield "Tap a line on the board";
+        yield "Tap another line";
+        yield "Create a box to score";
+        yield "The moving dots is to the left when it's your turn.";
+      },
+      helpTurns: [0, 2, 4, 6]
     },
-    helpTurns: [0, 2, 4],
     tipsPage: {
       hey: "hey",
       heading: "how to",
-      text: "Take turns clicking lines. Complete a box to score and go again.",
+      text: "Take turns clicking lines. Complete a box to score and take another turn.",
       img_src: "./img/tips/howto.png"
     }
   },
@@ -42,32 +45,52 @@ const level_data = [
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
     ],
-    boardHelpText: function* gen(){
-      yield "Tap the cheetah! It blows away lines";
-    },
-    helpTurns: [0],
+    help: {
+      boardHelpText: function* gen(){
+        yield "Tap the cheetah! It blows away lines";
+      },
+      helpTurns: [0]
+    }
   },
   {
     isLocked: false,
     levelNumber: 3,
     stars: 2,
-    lockBoxes: [
-      {
-        box: "box15",
-        toughness: 1
-      }, {
-        box: "box20",
-        toughness: 1
-      }],
-      initialBombs: [{
-        box: "box14",
-        bombType: "isLionExplosion"
-      }
-    ],
     starRating: [
       { stars: 1, score: 11 },
       { stars: 2, score: 12 },
       { stars: 3, score: 13 }
+    ],
+    tools: [
+      {
+        name: "cheetah",
+        src: "./img/color_animals/asset_cheetah.png",
+        count: 1
+      }
+    ],
+    help: {
+      boardHelpText: function* gen(){
+        yield "Tap the cheetah. Then tap any box.";
+        yield "If you surround the cheetah with a box it explodes.";
+      },
+      helpTurns: [0, 1]
+    }
+  },
+  {
+    isLocked: false,
+    levelNumber: 4,
+    stars: 1,
+    initialBombs: [
+      {
+        box: "box21",
+        bombType: "isLionExplosion"
+      }
+    ],
+    waterRemovalIndex: [],
+    starRating: [
+      { stars: 1, score: 10 },
+      { stars: 2, score: 11 },
+      { stars: 3, score: 12 }
     ],
     hasLargePrize: {
       prize: "lion",
@@ -80,59 +103,22 @@ const level_data = [
         count: 1
       }
     ],
-    boardHelpText: function* gen(){
-      yield "Tap the cheetah. Then tap any box.";
-    },
-    helpTurns: [0]
-  },
-  {
-    isLocked: false,
-    levelNumber: 4,
-    stars: 1,
-    lockBoxes: [
-      {
-        box: "box7",
-        toughness: 1
-      }, {
-        box: "box28",
-        toughness: 1
-      }],
-      initialBombs: [{
-        box: "box21",
-        bombType: "isPantherExplosion"
-      },{
-        box: "box19",
-        bombType: "isPantherExplosion"
-      }
-    ],
-    bombsToLay: 6,
-    waterRemovalIndex: [],
-    starRating: [
-      { stars: 1, score: 10 },
-      { stars: 2, score: 11 },
-      { stars: 3, score: 12 }
-    ],
-    hasLargePrize: {
-      prize: "panther",
-      quantity: 1
-    },
-    tools: [
-      {
-        name: "lion",
-        src: "./img/color_animals/asset_lion.png",
-        count: 1
+    help: {
+      boardHelpText: function* gen(){
+        yield "Place the Cheetah next to the Lion. Then tap either one";
+        yield "Chain explosions help explode more boxes at once";
       },
-      {
-        name: "cheetah",
-        src: "./img/color_animals/asset_cheetah.png",
-        count: 1
-      }
-    ]
+      helpTurns: [0, 1]
+    }
   },
   {
     isLocked: false,
     levelNumber: 5,
     stars: 0,
+    hasLargePrize: {
+      prize: "panther",
+      quantity: 1
+    },
     lockBoxes: [
       {
         box: "box14",
@@ -148,14 +134,27 @@ const level_data = [
         toughness: 1
       }
     ],
-    initialBombs: [],
-    bombsToLay: 4,
+    initialBombs: [
+      {
+        box: "box27",
+        bombType: "isPantherExplosion"
+      }
+    ],
+    // bombsToLay: 4,
     waterRemovalIndex: [],
     starRating: [
       { stars: 1, score: 8 },
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
     ],
+    help: {
+      boardHelpText: function* gen(){
+        yield "Tap the panther to explode The Foot Of Oppression";
+        yield "You cannot click lines around The Foot Of Oppression";
+        yield "If The Foot Of Oppression isn't destroyed You Lose";
+      },
+      helpTurns: [0, 1, 2]
+    },
     tools: [
       {
         name: "lion",
@@ -165,11 +164,6 @@ const level_data = [
       {
         name: "cheetah",
         src: "./img/color_animals/asset_cheetah.png",
-        count: 1
-      },
-      {
-        name: "panther",
-        src: "./img/color_animals/asset_panther.png",
         count: 1
       }
     ]

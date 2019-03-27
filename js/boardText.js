@@ -5,7 +5,7 @@ const boardText = {
     // good: ["I see u", "Lets get it", "Chill", "Iiight"],
     good: ["I see u"],
     // excellent: ["Okurrrr", "Yarrrrpp", "Aaaaaa", "You hyyyype"]
-    excellent: ["Uh Yes"]
+    excellent: ["Ooo Yes"]
   },
   getBadText: () => {
     return task.getRandomIndexInArray(boardText.text.bad);

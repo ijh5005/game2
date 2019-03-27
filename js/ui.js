@@ -367,13 +367,13 @@ const ui = {
     }, 500)
   },
   startLevelText: () => {
-    if(!getGameLevelObj["boardHelpText"]) {
+    if(!getGameLevelObj["help"]) {
       task.removeClassByQuerySelector(".helpTextP", "showHelpText");
       return null
     };
 
-    const levelText = getGameLevelObj["boardHelpText"]();
-    const turnsToShowText = levelText ? getGameLevelObj["helpTurns"] : [];
+    const levelText = getGameLevelObj["help"]["boardHelpText"]();
+    const turnsToShowText = levelText ? getGameLevelObj["help"]["helpTurns"] : [];
 
     if(track.turn === 0){
       helpText = levelText;
@@ -389,7 +389,7 @@ const ui = {
     if(turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1){
       setTimeout(() => {
         ui.showText("");
-      }, 5000)
+      }, 8000)
     }
   },
   fillPreFilledBoxes: () => {

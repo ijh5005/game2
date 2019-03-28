@@ -56,7 +56,8 @@ p {
 }
 
 .turnPlayer {
-  background-color: #130b2d;
+  background: #130b2d;
+  /* background: radial-gradient(ellipse farthest-corner at right bottom, #130b2d 0%, #130b2d 8%, #130b2d 30%, #130b2d 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #130b2d 0%, #130b2d 8%, #130b2d 25%, #130b2d 62.5%, #130b2d 100%); */
   height: 1em;
   top: 3.4em;
   width: 1em;
@@ -67,6 +68,7 @@ p {
 
 .turnPlayer.firstPlayerTurn {
   left: 32vw;
+  background: radial-gradient(ellipse farthest-corner at right bottom, #c3a51a 0%, #d5a33e 8%, #9f7928 30%, #8A6E2F 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #f1e19a 0%, #d4be86 8%, #a28a47 25%, #5d4a1f 62.5%, #5d4a1f 100%);
   background-color: #b57800;
 }
 

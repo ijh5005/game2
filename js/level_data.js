@@ -14,7 +14,7 @@ const level_data = [
         yield "Tap a line on the board";
         yield "Tap another line";
         yield "Create a box to score";
-        yield "The moving dots is to the left when it's your turn.";
+        yield "It's your turn when the moving dot is gold.";
       },
       helpTurns: [0, 2, 4, 6]
     },

@@ -16,8 +16,8 @@
   font-weight: bold;
   color: #544D6B;
   color: #130b2d;
-  font-size: 31vw;
-  font-weight: 500;
+  font-size: 27vw;
+  font-weight: 900;
 }
 
 .title.transitionColor {
@@ -30,12 +30,10 @@
 }
 
 .title img {
-  height: 1em;
+  height: 0.5em;
   transform: scale(1.2);
   transition: transform 0.14s;
   z-index: 200;
-  position: relative;
-  top: 0.2em;
 }
 
 .title img.big {
@@ -153,6 +151,8 @@
   height: 60%;
   position: absolute;
   bottom: 0;
+  border-top-left-radius: 100% 30px;
+  border-bottom-right-radius: 100% 30px;
 }
 
 .africa {

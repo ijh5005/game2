@@ -152,7 +152,7 @@
   position: absolute;
   bottom: 0;
   border-top-left-radius: 100% 30px;
-  border-bottom-right-radius: 100% 30px;
+  border-top-right-radius: 100% 30px;
 }
 
 .africa {

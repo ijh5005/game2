@@ -48,9 +48,10 @@
   right: 0;
   height: 1.8em;
   width: 100%;
-  /* border-top: 1px solid #1a1138; */
   z-index: 200;
   opacity: 0.94;
+  border-top-left-radius: 100% 30px;
+  border-top-right-radius: 100% 30px;
 }
 
 .backBtn div {

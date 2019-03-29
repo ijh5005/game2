@@ -16,7 +16,9 @@
 
 .blur {
   transform: translate(0px, 0px, 0px);
-  background-image: linear-gradient(to top right, rgba(42, 32, 76, 0.8) 0%, rgba(53, 40, 96, 0.8) 45%, rgba(78, 65, 121, 0.6) 60%);
+  background-image: linear-gradient(to top right, rgba(37, 3, 49, 1) 0%, rgb(106, 43, 129) 45%, rgba(75, 31, 92, 1) 60%);
+  /* background-image: linear-gradient(to top right, rgba(42, 32, 76, 0.8) 0%, rgba(53, 40, 96, 0.8) 45%, rgba(78, 65, 121, 0.6) 60%); */
+  /* background-image: linear-gradient(to top right, rgba(35, 16, 48, 0.8) 0%, rgba(58, 33, 75, 0.8) 45%, rgba(62, 30, 83, 0.6) 60%); */
   position: absolute;
   width: 100%;
   height: 100%;

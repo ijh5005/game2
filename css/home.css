@@ -18,6 +18,8 @@
   color: #130b2d;
   font-size: 27vw;
   font-weight: 900;
+  color: rgb(38, 0, 51);
+  color: rgb(39, 0, 53);
 }
 
 .title.transitionColor {
@@ -69,7 +71,6 @@
 
 .homeBtnText {
   color: #b57800;
-  color: #544D6B;
   font-size: 1em;
   margin: 0.2em;
   align-self: flex-end;
@@ -93,7 +94,7 @@
 .storeBtn,
 .settingsBtn {
   font-size: 1em;
-  font-weight: 900;
+  font-weight: 300;
 }
 
 .settingsPageSettings {
@@ -144,7 +145,7 @@
 }
 
 .bottomColor {
-  background-color: #130b2d;
+  background-color: rgb(39, 0, 53);
   width: 100%;
   height: 60%;
   position: absolute;

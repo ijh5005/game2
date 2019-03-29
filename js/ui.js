@@ -494,6 +494,10 @@ const ui = {
 
     setTimeout(() => {
       helperMovingImage.remove();
+      if(boxInfo.getBorderCount(boxNumber) === 4){
+        bomb.explodeBoxes(boxNumber);
+        task.passTurn();
+      }
     }, 250)
   },
   animateStars: () => {

@@ -79,25 +79,22 @@
   color: #b57800
 }
 
-.playBtn {
-  font-size: 27vw;
-  color: #b57800;
-  font-weight: 100;
-}
-
+.playBtn,
 .settingsBtn,
 .goalsBtn,
-.storeBtn {
+.storeBtn,
+.settingsBtn {
   font-family: 'Raleway', cursive;
-  font-size: 11vw;
   font-weight: 100;
-  color: #b57800;
 }
 
-/* .goalsBtn {
-  font-size: 6vw;
-  font-weight: 200;
-} */
+.playBtn,
+.goalsBtn,
+.storeBtn,
+.settingsBtn {
+  font-size: 1em;
+  font-weight: 900;
+}
 
 .settingsPageSettings {
   color: #b57800;
@@ -129,7 +126,7 @@
   top: 0;
   transition: top 0.5s;
   position: relative;
-  font-family: 'Raleway', cursive;
+  font-family: 'Raleway Dots', cursive;
 }
 
 .sOptions.selectedSetting,
@@ -138,6 +135,7 @@
   opacity: 1;
   top: -0.12em;
   font-family: 'Raleway', cursive;
+  font-weight: 900;
 }
 
 .tipText {

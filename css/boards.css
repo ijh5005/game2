@@ -78,7 +78,7 @@
   user-select: none;
   position: relative;
   border: 1px solid #21183e;
-  border: 1px solid rgb(80, 19, 102);
+  border: 1px solid rgb(73, 17, 94);
 }
 
 .box.smallScreen {
@@ -477,7 +477,7 @@
 .isPantherExplosion {
   border-radius: 10%;
   box-shadow: 0 0 0 rgba(204,169,44, 0.4);
-  animation: pulse 2s infinite;
+  animation: pulse 4s infinite;
 }
 
 @-webkit-keyframes pulse {
@@ -510,7 +510,7 @@
 .locked {
   border-radius: 10%;
   box-shadow: 0 0 0 rgba(204,169,44, 0.4);
-  animation: badPulse 2s infinite;
+  animation: badPulse 4s infinite;
 }
 
 @-webkit-keyframes badPulse {

@@ -94,7 +94,8 @@
 .storeBtn,
 .settingsBtn {
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 900;
+  letter-spacing: 8px;
 }
 
 .settingsPageSettings {
@@ -147,11 +148,12 @@
 .bottomColor {
   background-color: rgb(39, 0, 53);
   width: 100%;
-  height: 60%;
+  height: 76%;
   position: absolute;
   bottom: 0;
-  border-top-left-radius: 100% 30px;
-  border-top-right-radius: 100% 30px;
+  z-index: -1;
+  /* border-top-left-radius: 100% 30px;
+  border-top-right-radius: 100% 30px; */
 }
 
 .africa {

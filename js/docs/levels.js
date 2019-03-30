@@ -13,7 +13,7 @@ const level_data = [
       hey: "hey",
       heading: "how to",
       text: "Take turns clicking lines. Complete a box to score and go again.",
-      img_src: "./img/tips/howto.png"
+      img_src: "./img/tips/howto.gif"
     }
   },
   {

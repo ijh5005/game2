@@ -22,14 +22,14 @@ const level_data = [
       hey: "hey",
       heading: "how to",
       text: "Take turns clicking lines. Complete a box to score and take another turn.",
-      img_src: "./img/tips/howto.png"
+      img_src: "./img/tips/howto.gif"
     }
   },
   {
     isLocked: false,
     levelNumber: 2,
     stars: 2,
-    prefilledBoxes: ["box7", "box8", "box9", "box10"],
+    prefilledBoxes: ["box7", "box8", "box10"],
     hasLargePrize: {
       prize: "cheetah",
       quantity: 1

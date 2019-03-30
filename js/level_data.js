@@ -159,7 +159,7 @@ const level_data = [
         yield "Tap the panther to explode The Foot Of Oppression";
         yield "You cannot click lines around The Foot Of Oppression";
         yield "If The Foot Of Oppression isn't destroyed You Lose";
-        yield " ";
+        yield "";
       },
       helpTurns: [0, 1, 3, 4]
     },

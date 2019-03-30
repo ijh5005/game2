@@ -7,23 +7,18 @@
   left: -20px;
   pointer-events: none;
   z-index: 10;
+  background: url(../img/sprites/bomb_svg.svg) left center;
 }
 
 @keyframes exploding {
-  from { background-position: 0px; }
-  to { background-position: -1000px; }
+  100% { background-position: -1000px; }
 }
 
 .explosionGif {
-  background: url(../img/sprites/bomb_svg.svg);
-  width: 100px;
-  height: 100px;
   animation: exploding 0.8s steps(10);
 }
 
 .smokeGif {
-  background: url(../img/sprites/smoke_svg.svg);
-  width: 100px;
-  height: 100px;
+  background: url(../img/sprites/smoke_svg.svg) left center;
   animation: exploding 0.8s steps(10);
 }

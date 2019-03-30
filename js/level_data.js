@@ -15,8 +15,9 @@ const level_data = [
         yield "Tap another line";
         yield "Create a box to score";
         yield "It's your turn when the moving dot is gold.";
+        yield "";
       },
-      helpTurns: [0, 2, 4, 6]
+      helpTurns: [0, 2, 4, 6, 8]
     },
     tipsPage: {
       hey: "hey",
@@ -48,8 +49,9 @@ const level_data = [
     help: {
       boardHelpText: function* gen(){
         yield "Tap the cheetah! It blows away lines";
+        yield "";
       },
-      helpTurns: [0]
+      helpTurns: [0, 1]
     }
   },
   {
@@ -70,10 +72,11 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the cheetah. Then tap any box.";
-        yield "If you surround the cheetah with a box it explodes.";
+        yield "Tap the cheetah. Then tap any box. Then take your turn.";
+        yield "The cheetah explodes if it is inside a box.";
+        yield "";
       },
-      helpTurns: [0, 1]
+      helpTurns: [0, 2, 4]
     }
   },
   {
@@ -107,8 +110,9 @@ const level_data = [
       boardHelpText: function* gen(){
         yield "Place the Cheetah next to the Lion. Then tap either one";
         yield "Chain explosions help explode more boxes at once";
+        yield "";
       },
-      helpTurns: [0, 1]
+      helpTurns: [0, 2, 4]
     }
   },
   {
@@ -152,8 +156,9 @@ const level_data = [
         yield "Tap the panther to explode The Foot Of Oppression";
         yield "You cannot click lines around The Foot Of Oppression";
         yield "If The Foot Of Oppression isn't destroyed You Lose";
+        yield " ";
       },
-      helpTurns: [0, 1, 2]
+      helpTurns: [0, 2, 4, 6]
     },
     tools: [
       {

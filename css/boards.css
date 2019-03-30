@@ -95,27 +95,6 @@
   border-right-color: #d5e4ff;
 }
 
-
-.mediumExplosionImage {
-  background-image: url("../img/mediumBomb.png");
-}
-
-.largeExplosionImage {
-  background-image: url("../img/largeBomb.png");
-}
-
-.verticalExplosionImage {
-  background-image: url("../img/verticalBomb.png");
-}
-
-.horizontalExplosionImage {
-  background-image: url("../img/horizontalBomb.png");
-}
-
-.veryLargeExplosionImage {
-  background-image: url("../img/veryLarge.png");
-}
-
 .box .explosionBox {
   position: absolute;
   top: 0;

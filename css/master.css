@@ -40,7 +40,7 @@ p {
 .playerScoreHeading {
   font-size: 1em;
   margin: 1em;
-  color: #6e658d;
+  color: rgb(177, 66, 218);
   margin-bottom: 0;
 }
 
@@ -52,11 +52,11 @@ p {
 }
 
 .playerTwoScore {
-  color: #130b2d;
+  color: rgb(177, 66, 218);
 }
 
 .turnPlayer {
-  background: #130b2d;
+  background: rgb(43, 9, 56);
   /* background: radial-gradient(ellipse farthest-corner at right bottom, #130b2d 0%, #130b2d 8%, #130b2d 30%, #130b2d 40%, transparent 80%), radial-gradient(ellipse farthest-corner at left top, #130b2d 0%, #130b2d 8%, #130b2d 25%, #130b2d 62.5%, #130b2d 100%); */
   height: 1em;
   top: 3.4em;

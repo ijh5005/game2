@@ -48,10 +48,13 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the cheetah! It blows away lines";
+        yield "Tap the cheetah! Watch your opponent score drop";
         yield "";
       },
       helpTurns: [0, 1]
+    },
+    directions: {
+      directionTurns: [0]
     }
   },
   {
@@ -112,7 +115,7 @@ const level_data = [
         yield "Chain explosions help explode more boxes at once";
         yield "";
       },
-      helpTurns: [0, 2, 4]
+      helpTurns: [0, 1, 3]
     }
   },
   {
@@ -158,7 +161,7 @@ const level_data = [
         yield "If The Foot Of Oppression isn't destroyed You Lose";
         yield " ";
       },
-      helpTurns: [0, 2, 4, 6]
+      helpTurns: [0, 1, 3, 4]
     },
     tools: [
       {

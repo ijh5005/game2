@@ -565,6 +565,7 @@ const ui = {
     if(ui.uiPopulater === null){
       ui.populateBoard();
       ui.uiPopulater = 1;
+      track.adjustScore();
     } else {
       clearTimeout(ui.uiPopulater);
       ui.uiPopulater = setTimeout(() => {

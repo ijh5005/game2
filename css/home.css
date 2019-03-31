@@ -26,6 +26,13 @@
   transition: color 5s;
 }
 
+.homeTitle,
+.settingTitle {
+  margin: 0;
+  position: relative;
+  top: 38%;
+}
+
 .title.colorChange {
   color: #130b2d;
   color: #b57800;

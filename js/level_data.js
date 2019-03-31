@@ -1,5 +1,6 @@
 const level_data = [
   {
+    computerSpeed: 1500,
     isLocked: false,
     levelNumber: 1,
     stars: 3,
@@ -9,16 +10,64 @@ const level_data = [
       { stars: 3, score: 9 },
       { stars: 5, score: 10 }
     ],
+    isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
         yield "Tap a line on the board";
         yield "Tap another line";
         yield "Create a box to score";
-        yield "It's your turn when the moving dot is gold.";
+        yield "It's your turn when the above dot is gold.";
         yield "";
       },
       helpTurns: [0, 2, 4, 6, 8]
     },
+    trainingRestrictions: {
+      restrictions: [
+        {
+          type: "highLightLine",
+          turn: 0,
+          boxOne: {
+            box: "box15",
+            side: "left"
+          },
+          boxTwo: {
+            box: "box14",
+            side: "right"
+          }
+        },
+        {
+          type: "highLightLine",
+          turn: 2,
+          boxOne: {
+            box: "box20",
+            side: "bottom"
+          },
+          boxTwo: {
+            box: "box26",
+            side: "top"
+          }
+        },
+        {
+          type: "highLightLine",
+          turn: 4,
+          boxOne: {
+            box: "box15",
+            side: "right"
+          },
+          boxTwo: {
+            box: "box16",
+            side: "left"
+          }
+        }
+      ]
+    },
+    computerMoves: [
+      {
+        turn: 3,
+        box: "box15",
+        line: "top"
+      }
+    ],
     tipsPage: {
       hey: "hey",
       heading: "how to",
@@ -48,12 +97,18 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the cheetah! Watch your opponent score drop";
+        yield "Tap the cheetah! Watch the computer's score drop";
         yield "";
       },
       helpTurns: [0, 1]
     },
-    directions: {
+    trainingRestrictions: {
+      restriction: {
+        explodeBomb: {
+          bomb: "cheetah",
+          boxesToClick: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"]
+        }
+      },
       directionTurns: [0]
     }
   },

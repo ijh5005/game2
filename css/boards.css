@@ -516,3 +516,59 @@
       box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
+
+.clickTopLine {
+  border-top-color: rgb(73, 17, 94);
+  transition: all 0.5s;
+  animation: clickTopLine 1s infinite;
+}
+@keyframes clickTopLine {
+  0% {
+    border-top-color: rgb(73, 17, 94);
+  }
+  50% {
+    border-top-color: #d5e4ff;
+  }
+}
+
+.clickRightLine {
+  border-right-color: rgb(73, 17, 94);
+  transition: all 0.5s;
+  animation: clickRightLine 1s infinite;
+}
+@keyframes clickRightLine {
+  0% {
+    border-right-color: rgb(73, 17, 94);
+  }
+  50% {
+    border-right-color: #d5e4ff;
+  }
+}
+
+.clickBottomLine {
+  border-bottom-color: rgb(73, 17, 94);
+  transition: all 0.5s;
+  animation: clickBottomLine 1s infinite;
+}
+@keyframes clickBottomLine {
+  0% {
+    border-bottom-color: rgb(73, 17, 94);
+  }
+  50% {
+    border-bottom-color: #d5e4ff;
+  }
+}
+
+.clickLeftLine {
+  border-left-color: rgb(73, 17, 94);
+  transition: all 0.5s;
+  animation: clickLeftLine 1s infinite;
+}
+@keyframes clickLeftLine {
+  0% {
+    border-left-color: rgb(73, 17, 94);
+  }
+  50% {
+    border-left-color: #d5e4ff;
+  }
+}

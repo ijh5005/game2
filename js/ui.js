@@ -103,7 +103,7 @@ const ui = {
 
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
         gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));
-        gridBox.addEventListener("click", (e) => { // add a click event to the box click on borders
+        gridBox.addEventListener("mousedown", (e) => { // add a click event to the box click on borders
           if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
           lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
         });
@@ -562,14 +562,17 @@ const ui = {
   },
   uiPopulater: null,
   populateTheUI: () => {
+
     if(ui.uiPopulater === null){
       ui.populateBoard();
       ui.uiPopulater = 1;
       track.adjustScore();
+      task.setTurnRestrictions();
     } else {
       clearTimeout(ui.uiPopulater);
       ui.uiPopulater = setTimeout(() => {
         ui.populateBoard();
+        task.setTurnRestrictions();
       });
     }
   }

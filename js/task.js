@@ -265,5 +265,61 @@ const task = {
     task.removeClassByClassName("turnPlayer", "secondPlayerTurn");
     if(isFirstPlayerTurn){ task.addClassByQuerySelector(".turnPlayer", "firstPlayerTurn") }
     else { task.addClassByQuerySelector(".turnPlayer", "secondPlayerTurn") }
+  },
+  setTurnRestrictions: () => {
+    task.resetAllRestrictions();
+
+    const { isTrainingBoard } = level_data[gameLevel];
+    if(isTrainingBoard){
+      const { restrictions } = level_data[gameLevel].trainingRestrictions;
+      restrictions.forEach(restriction => {
+        const {
+          turn,
+          type,
+          boxOne,
+          boxTwo
+        } = restriction;
+        const onRestrictionTurn = track.turn === turn;
+        if(onRestrictionTurn){
+          task.resetAllRestrictions();
+          if(type === "highLightLine"){
+            restrictionLineClicks = [boxOne, boxTwo];
+            task.highlightLine();
+          }
+        }
+      })
+    }
+  },
+  highlightLine: () => {
+    const restrict = task.breakRefAndCopy(restrictionLineClicks);
+    setTimeout(() => {
+      restrict.forEach(data => {
+        if(data.side === "top"){
+          task.addClassByClassName(data.box, "clickTopLine")
+        } else if (data.side === "right") {
+          task.addClassByClassName(data.box, "clickRightLine")
+        } else if (data.side === "bottom") {
+          task.addClassByClassName(data.box, "clickBottomLine")
+        } else if (data.side === "left") {
+          task.addClassByClassName(data.box, "clickLeftLine")
+        }
+      })
+    }, 500)
+  },
+  resetAllRestrictions: () => {
+    restrictionLineClicks = null;
+  },
+  hasPassedTrainingRestriction: (boxNumber, lineClicked) => {
+    let hasPassed = true;
+    if(restrictionLineClicks){
+      hasPassed = false;
+      restrictionLineClicks.forEach(restriction => {
+        const { box, side } = restriction;
+        if(box === boxNumber && side === lineClicked){
+          hasPassed = true;
+        }
+      })
+    }
+    return hasPassed;
   }
 }

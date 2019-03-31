@@ -17,7 +17,7 @@ const computerMove = {
       } else {
         computerMove.makeComputerMove()
       }
-    }, 400);
+    }, level_data[gameLevel].computerSpeed || 500);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
     if (threeBorderBoxes.length !== 0) computerMove.getAFreeBox();

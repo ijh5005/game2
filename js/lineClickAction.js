@@ -7,6 +7,9 @@ const lineClickAction = {
 
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
+
+      if(!task.hasPassedTrainingRestriction(boxNumber, lineClicked)) return null;
+
       if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
         const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
         if (!hasClickBorderPreviously) { // prevent multiple click to the same border
@@ -17,6 +20,9 @@ const lineClickAction = {
         ui.displayNoClickIndicator(boxNumber, lineClicked);
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
+
+      if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
+
       // show smoke when help enters the field
       if(selectedBombFunction !== "bombEraser"){
         ui.animateBombMovement(boxNumber);
@@ -93,6 +99,9 @@ const lineClickAction = {
       }
 
     } else if(bomb.isExplosionBox(boxNumber)){
+
+      if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
+
       bomb.explodeBoxes(boxNumber);
       task.passTurn();
     }
@@ -112,7 +121,14 @@ const lineClickAction = {
         if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
           const hasClickBorderPreviously = (gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true);
           if(!hasClickBorderPreviously){
-            lineClickAction.clickOnBorder(edgeBoxClicked.boxClicked, edgeBoxClicked.sideClicked);
+
+            const { boxClicked, sideClicked } = edgeBoxClicked;
+
+            const hasPassed = task.hasPassedTrainingRestriction(boxClicked, sideClicked);
+            if(hasPassed){
+              lineClickAction.clickOnBorder(boxClicked, sideClicked);
+            }
+
           }
         }
       }

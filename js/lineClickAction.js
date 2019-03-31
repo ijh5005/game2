@@ -138,6 +138,12 @@ const lineClickAction = {
     bomb.bombPopulation();
     track.incrementTurn();
     gameBoard[boxNumber].borders[lineClicked] = true;
+
+    if(!isFirstPlayerTurn){
+      debugger
+      whoClickedLine[boxNumber][lineClicked] = "computer"
+    }
+
     track.highlightBoxIfScored(boxNumber);
     let adjacentBox = null;
     let adjBoxNumber = null;
@@ -147,6 +153,10 @@ const lineClickAction = {
       gameBoard[`box${adjacentBox}`].borders[boxInfo.complementBorder[`${lineClicked}`]] = true;
       track.highlightBoxIfScored(`box${adjacentBox}`);
       adjBoxNumber = `box${adjacentBox}`;
+
+      if(!isFirstPlayerTurn){
+        whoClickedLine[adjBoxNumber][boxInfo.complementBorder[`${lineClicked}`]] = "computer"
+      }
     }
     ui.closeTheBoxConnection({
       boxNumber,

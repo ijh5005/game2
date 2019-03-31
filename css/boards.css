@@ -125,27 +125,35 @@
 }
 
 .borderTop {
-  border-top-color: #371006;
   border-top-color: #b57800;
-  /* border-top-color: #e3a731; */
 }
 
 .borderRight {
-  border-right-color: #371006;
   border-right-color: #b57800;
-  /* border-right-color: #e3a731; */
 }
 
 .borderBottom {
-  border-bottom-color: #371006;
   border-bottom-color: #b57800;
-  /* border-bottom-color: #e3a731; */
 }
 
 .borderLeft {
-  border-left-color: #371006;
   border-left-color: #b57800;
-  /* border-left-color: #e3a731; */
+}
+
+.borderTopComputer {
+  border-top-color: #980000;
+}
+
+.borderRightComputer {
+  border-right-color: #980000;
+}
+
+.borderBottomComputer {
+  border-bottom-color: #980000;
+}
+
+.borderLeftComputer {
+  border-left-color: #980000;
 }
 
 .topLineClicked {

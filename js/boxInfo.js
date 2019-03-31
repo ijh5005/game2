@@ -47,10 +47,36 @@ const boxInfo = {
   },
   getAllBoxClasses: (box) => {
     const classesToAdd = ["box", "flexRow", box];
-    if (gameBoard[box].borders.top) classesToAdd.push("borderTop");
-    if (gameBoard[box].borders.right) classesToAdd.push("borderRight");
-    if (gameBoard[box].borders.bottom) classesToAdd.push("borderBottom");
-    if (gameBoard[box].borders.left) classesToAdd.push("borderLeft");
+
+    if (gameBoard[box].borders.top){
+      if(whoClickedLine[box].top === "computer"){
+        classesToAdd.push("borderTopComputer")
+      } else {
+        classesToAdd.push("borderTop")
+      }
+    }
+    if (gameBoard[box].borders.right){
+      if(whoClickedLine[box].right === "computer"){
+        classesToAdd.push("borderRightComputer")
+      } else {
+        classesToAdd.push("borderRight")
+      }
+    }
+    if (gameBoard[box].borders.bottom){
+      if(whoClickedLine[box].bottom === "computer"){
+        classesToAdd.push("borderBottomComputer")
+      } else {
+        classesToAdd.push("borderBottom")
+      }
+    }
+    if (gameBoard[box].borders.left){
+      if(whoClickedLine[box].left === "computer"){
+        classesToAdd.push("borderLeftComputer")
+      } else {
+        classesToAdd.push("borderLeft")
+      }
+    }
+
     if (gameBoard[box].whoScored) classesToAdd.push(gameBoard[box].whoScored);
 
     if (gameBoard[box].isLionExplosion) {

@@ -1,5 +1,6 @@
 const ui = {
   startGame: () => {
+    const whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
     textType = null;
     on_game_board = true;
     task.resetPlayerTurn();

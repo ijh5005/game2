@@ -11,6 +11,9 @@ const threeBorderBoxes = [];
 // offset from line to be considered a line click
 const lineClickOffset = 15;
 
+// tracks who click the line
+const whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
+
 // this is the selected animal to be placed on the board from the help section
 let selectedBombFunction;
 

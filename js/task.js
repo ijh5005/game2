@@ -293,6 +293,7 @@ const task = {
   highlightLine: () => {
     const restrict = task.breakRefAndCopy(restrictionLineClicks);
     setTimeout(() => {
+      lineClickAction.removeLineClickHighlights();
       restrict.forEach(data => {
         if(data.side === "top"){
           task.addClassByClassName(data.box, "clickTopLine")

@@ -425,7 +425,7 @@ const boxInfo = {
     else if(row < 4 && row > 3.76){ row = 4; }
     return Math.floor(row);
   },
-  getEdgeBoxClickPoistion: (positionFromTopOfGameBoard, heightOfBoxes) => {
+  getEdgeBoxClickPosition: (positionFromTopOfGameBoard, heightOfBoxes) => {
     const row = boxInfo.getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
     const rowInformation = {
       row0: [], row1: [], row2: [],
@@ -454,7 +454,7 @@ const boxInfo = {
         const height = task.getHeightWithClassName(thisBox);
         const width = task.getWidthWithClassName(thisBox);
         const boardHolderWidth = task.getWidthWithId("boardHolder");
-        const offset = 10;
+        const offset = lineClickOffset;
 
         const topClickOffset = {
           xRange: {min: gameBoardPositionX, max: gameBoardPositionX + width},

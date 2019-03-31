@@ -1,8 +1,10 @@
 const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
+
     const height = task.getHeightWithClassName("box");
-    const upperOutOfBoundsNumber = height - 10;
-    const lowerOutOfBoundsNumber = 10;
+    const upperOutOfBoundsNumber = height - lineClickOffset;
+    const lowerOutOfBoundsNumber = lineClickOffset;
+
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
       if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
@@ -11,6 +13,7 @@ const lineClickAction = {
           lineClickAction.clickOnBorder(boxNumber, lineClicked);
         }
       } else {
+        // turns the line red to indicate that it cant be clicked
         ui.displayNoClickIndicator(boxNumber, lineClicked);
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
@@ -104,7 +107,7 @@ const lineClickAction = {
       if(clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn){
         const heightOfBoxes = task.getHeightWithClassName("box13");
         const positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
-        const rowInformation = boxInfo.getEdgeBoxClickPoistion(positionFromTopOfGameBoard, heightOfBoxes);
+        const rowInformation = boxInfo.getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes);
         const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
         if(edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked){
           const hasClickBorderPreviously = (gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true);

@@ -8,6 +8,9 @@ const twoBorderBoxes = [];
 // will contain boxes with three lines clicked
 const threeBorderBoxes = [];
 
+// offset from line to be considered a line click
+const lineClickOffset = 15;
+
 // this is the selected animal to be placed on the board from the help section
 let selectedBombFunction;
 
@@ -70,6 +73,9 @@ let timeToWaitBetweenText = 8000;
 
 // help text shown when learning on the game board
 let helpText;
+
+// traning helping variable
+let restrictionLineClicks;
 
 // set any saved field in local storage
 task.setFromLocalStorage();

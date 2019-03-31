@@ -1,5 +1,14 @@
 const computerMove = {
   makeComputerMove: () => {
+    const hasAPreMadeMove = task.hasAPreMadeMove();
+    if(hasAPreMadeMove.hasPreMadeMove){
+      const { box, line } = hasAPreMadeMove.moveToMakes;
+      setTimeout(() => {
+        lineClickAction.clickOnBorder(box, line)
+      }, level_data[gameLevel].computerSpeed || 500)
+      return null;
+    }
+
     pointsInArow = 0;
     explodingBoxes = [];
     // logic to make computer move

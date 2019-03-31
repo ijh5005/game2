@@ -14,12 +14,12 @@ const level_data = [
     help: {
       boardHelpText: function* gen(){
         yield "Tap a line on the board";
-        yield "Tap another line";
+        yield "It's your turn when the above dot is gold. Tap another line";
         yield "Create a box to score";
-        yield "It's your turn when the above dot is gold.";
+        yield "Take another turn because you scored!";
         yield "";
       },
-      helpTurns: [0, 2, 4, 6, 8]
+      helpTurns: [0, 2, 4, 5, 6]
     },
     trainingRestrictions: {
       restrictions: [
@@ -63,9 +63,14 @@ const level_data = [
     },
     computerMoves: [
       {
+        turn: 1,
+        box: "box9",
+        line: "bottom"
+      },
+      {
         turn: 3,
         box: "box15",
-        line: "top"
+        line: "bottom"
       }
     ],
     tipsPage: {

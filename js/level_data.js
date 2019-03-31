@@ -81,6 +81,7 @@ const level_data = [
     }
   },
   {
+    computerSpeed: 1000,
     isLocked: false,
     levelNumber: 2,
     stars: 2,
@@ -103,9 +104,10 @@ const level_data = [
     help: {
       boardHelpText: function* gen(){
         yield "Tap the cheetah! Watch the computer's score drop";
+        yield "You pass the turn when the animal explodes";
         yield "";
       },
-      helpTurns: [0, 1]
+      helpTurns: [0, 1, 3]
     },
     trainingRestrictions: {
       restriction: {

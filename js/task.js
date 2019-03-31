@@ -324,19 +324,19 @@ const task = {
   },
   hasAPreMadeMove: () => {
     let hasPreMadeMove = false;
-    let moveToMake;
+    let moveToMake = "";
     const { computerMoves } = level_data[gameLevel];
     if(computerMoves){
       computerMoves.forEach(move => {
         if(move.turn === track.turn){
           hasPreMadeMove = true;
-          moveToMakes = move;
+          moveToMake = move;
         }
       })
     }
     return {
       hasPreMadeMove,
-      moveToMakes
+      moveToMake
     }
   }
 }

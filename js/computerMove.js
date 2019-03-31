@@ -2,7 +2,7 @@ const computerMove = {
   makeComputerMove: () => {
     const hasAPreMadeMove = task.hasAPreMadeMove();
     if(hasAPreMadeMove.hasPreMadeMove){
-      const { box, line } = hasAPreMadeMove.moveToMakes;
+      const { box, line } = hasAPreMadeMove.moveToMake;
       setTimeout(() => {
         lineClickAction.clickOnBorder(box, line)
       }, level_data[gameLevel].computerSpeed || 500)

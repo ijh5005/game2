@@ -183,9 +183,11 @@ const lineClickAction = {
   },
   changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
     lineClickAction.removeLineClickHighlights();
-    setTimeout(() => {
-      task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
-    }, 10)
+    if(isFirstPlayerTurn){
+      setTimeout(() => {
+        task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
+      }, 10)
+    }
   },
   isNotALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);

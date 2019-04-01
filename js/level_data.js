@@ -107,13 +107,12 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the first cheetah! Watch the computer's score drop";
+        yield "Tap the 1st cheetah! The computer's score drops";
         yield "If the cheetah is in a box it explodes";
         yield "The cheetah explodes from right to left";
-        yield "You will pass your turn when an animal explodes";
         yield "";
       },
-      helpTurns: [0, 2, 3, 5, 6]
+      helpTurns: [0, 2, 3, 5]
     },
     isTrainingBoard: true,
     trainingRestrictions: {

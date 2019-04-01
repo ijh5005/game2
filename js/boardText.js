@@ -1,6 +1,6 @@
 const boardText = {
   text: {
-    // bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin"],
+    // bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin", "Bruh"],
     bad: ["Haah... got em"],
     // good: ["I see u", "Lets get it", "Chill", "Iiight"],
     good: ["I see u"],

@@ -85,7 +85,7 @@ const level_data = [
     isLocked: false,
     levelNumber: 2,
     stars: 2,
-    prefilledBoxes: ["box7", "box8", "box10"],
+    prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
     hasLargePrize: {
       prize: "cheetah",
       quantity: 1
@@ -109,10 +109,10 @@ const level_data = [
       boardHelpText: function* gen(){
         yield "Tap the cheetah! Watch the computer's score drop";
         yield "The cheetah explodes from right to left";
-        yield "You will pass the turn when the animal explodes";
+        yield "You will pass your turn when an animal explodes";
         yield "";
       },
-      helpTurns: [0, 1, 3, 4]
+      helpTurns: [0, 2, 4, 5]
     },
     isTrainingBoard: true,
     trainingRestrictions: {

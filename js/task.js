@@ -128,6 +128,13 @@ const task = {
       }
     }, 4000);
   },
+  pass: 0,
+  setPassTurn: () => {
+    clearTimeout(task.pass);
+    task.pass = setTimeout(() => {
+      task.passTurn();
+    })
+  },
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
     task.setTurnIndicator();

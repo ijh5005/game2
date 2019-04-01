@@ -498,7 +498,7 @@ const ui = {
       helperMovingImage.remove();
       if(boxInfo.getBorderCount(boxNumber) === 4){
         bomb.explodeBoxes(boxNumber);
-        task.passTurn();
+        task.setPassTurn();
       }
     }, 250)
   },

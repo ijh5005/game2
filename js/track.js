@@ -54,6 +54,7 @@ const track = {
     const score = (box) => {
       if (!track.hasScored(box)) return null; // check to see if player scored a point
       bomb.explodeBoxes(box);
+      task.setPassTurn();
       hasScored = true;
     }
 

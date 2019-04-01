@@ -69,11 +69,7 @@ const lineClickAction = {
             }
           });
           gameBoard[boxNumber].isLionExplosion = true;
-          // don't delete
-          // this explodes bomb when layed down
-          // bomb.explodeBoxes(boxNumber);
           ui.populateTheUI(); // remove this line if adding the above commented out line
-          // task.passTurn();
         } else if (selectedBombFunction === "cheetah") {
           tools.forEach(data => {
             if(data.name === selectedBombFunction){
@@ -81,11 +77,7 @@ const lineClickAction = {
             }
           });
           gameBoard[boxNumber].isCheetahExplosion = true;
-          // don't delete
-          // this explodes bomb when layed down
-          // bomb.explodeBoxes(boxNumber);
           ui.populateTheUI();
-          // task.passTurn();
         } else if (selectedBombFunction === "panther") {
           tools.forEach(data => {
             if(data.name === selectedBombFunction){
@@ -93,11 +85,7 @@ const lineClickAction = {
             }
           });
           gameBoard[boxNumber].isPantherExplosion = true;
-          // don't delete
-          // this explodes bomb when layed down
-          // bomb.explodeBoxes(boxNumber);
           ui.populateTheUI();
-          // task.passTurn();
         }
       }
 
@@ -106,7 +94,7 @@ const lineClickAction = {
       track.incrementTurn();
 
       bomb.explodeBoxes(boxNumber);
-      task.passTurn();
+      task.setPassTurn();
     } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
       ui.showText("Tap a line between the dots!");
@@ -201,9 +189,7 @@ const lineClickAction = {
   isNotALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
     const includesLocked = (boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox));
-    // const doesBoxIncludeABomb = bomb.isExplosionBox(box);
-    // const doesAdjBoxIncludeABomb = bomb.isExplosionBox(adjBox);
-    return !includesLocked; //(!includesLocked || doesBoxIncludeABomb || doesAdjBoxIncludeABomb);
+    return !includesLocked;
   },
   isALineClick: (offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) => {
     const inUpperOutOfBounds = (offsetX > upperOutOfBoundsNumber) || (offsetY > upperOutOfBoundsNumber);

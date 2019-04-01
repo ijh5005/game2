@@ -6,11 +6,10 @@ const lineClickAction = {
     const lowerOutOfBoundsNumber = lineClickOffset;
 
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
-      track.incrementTurn();
-
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
 
       if(!task.hasPassedTrainingRestriction(boxNumber, lineClicked)) return null;
+      track.incrementTurn();
 
       if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
         const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
@@ -23,6 +22,7 @@ const lineClickAction = {
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
       track.incrementTurn();
+      console.log("selected");
 
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
 
@@ -102,9 +102,8 @@ const lineClickAction = {
       }
 
     } else if(bomb.isExplosionBox(boxNumber)){
-      track.incrementTurn();
-
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
+      track.incrementTurn();
 
       bomb.explodeBoxes(boxNumber);
       task.passTurn();

@@ -30,6 +30,11 @@ const soundEffects = {
     audio.volume = settings.hasMutedSound ? 0 : 0.03;
     audio.play();
   },
+  playWrongSound: () => {
+    const audio = new Audio('./soundEffects/purchased/Wrong.wav');
+    audio.volume = settings.hasMutedSound ? 0 : 0.2;
+    audio.play();
+  },
   runSpeaker: (audio) => {
     const speaker = () => {
       task.addClassByQuerySelector(".title img", "big");

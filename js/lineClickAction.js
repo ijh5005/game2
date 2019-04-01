@@ -104,6 +104,9 @@ const lineClickAction = {
 
       bomb.explodeBoxes(boxNumber);
       task.passTurn();
+    } else {
+      soundEffects.playWrongSound();
+      ui.showText("Tap a line between the dots!");
     }
   },
   setEdgeBoxClickEvent: () => {

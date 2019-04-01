@@ -6,6 +6,8 @@ const lineClickAction = {
     const lowerOutOfBoundsNumber = lineClickOffset;
 
     if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
+      track.incrementTurn();
+
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
 
       if(!task.hasPassedTrainingRestriction(boxNumber, lineClicked)) return null;
@@ -20,6 +22,7 @@ const lineClickAction = {
         ui.displayNoClickIndicator(boxNumber, lineClicked);
       }
     } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
+      track.incrementTurn();
 
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
 
@@ -99,14 +102,20 @@ const lineClickAction = {
       }
 
     } else if(bomb.isExplosionBox(boxNumber)){
+      track.incrementTurn();
 
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
 
       bomb.explodeBoxes(boxNumber);
       task.passTurn();
-    } else {
+    } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
       ui.showText("Tap a line between the dots!");
+      setTimeout(() => {
+        ui.showText("");
+      }, 1000)
+    } else {
+      soundEffects.playWrongSound();
     }
   },
   setEdgeBoxClickEvent: () => {
@@ -139,11 +148,9 @@ const lineClickAction = {
   },
   clickOnBorder: (boxNumber, lineClicked) => {
     bomb.bombPopulation();
-    track.incrementTurn();
     gameBoard[boxNumber].borders[lineClicked] = true;
 
     if(!isFirstPlayerTurn){
-      debugger
       whoClickedLine[boxNumber][lineClicked] = "computer"
     }
 

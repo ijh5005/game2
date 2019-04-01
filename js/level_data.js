@@ -94,6 +94,10 @@ const level_data = [
       {
         box: "box9",
         bombType: "isCheetahExplosion"
+      },
+      {
+        box: "box26",
+        bombType: "isCheetahExplosion"
       }
     ],
     starRating: [
@@ -104,20 +108,29 @@ const level_data = [
     help: {
       boardHelpText: function* gen(){
         yield "Tap the cheetah! Watch the computer's score drop";
-        yield "You pass the turn when the animal explodes";
+        yield "The cheetah explodes from right to left";
+        yield "You will pass the turn when the animal explodes";
         yield "";
       },
-      helpTurns: [0, 1, 3]
+      helpTurns: [0, 1, 3, 4]
     },
+    isTrainingBoard: true,
     trainingRestrictions: {
-      restriction: {
-        explodeBomb: {
-          bomb: "cheetah",
-          boxesToClick: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"]
+      restrictions: [
+        {
+          type: "clickBox",
+          turn: 0,
+          clickBox: ["box9", "box26"]
         }
-      },
-      directionTurns: [0]
-    }
+      ]
+    },
+    computerMoves: [
+      {
+        turn: 1,
+        box: "box16",
+        line: "bottom"
+      }
+    ]
   },
   {
     isLocked: false,

@@ -4,7 +4,8 @@ const computerMove = {
     if(hasAPreMadeMove.hasPreMadeMove){
       const { box, line } = hasAPreMadeMove.moveToMake;
       setTimeout(() => {
-        lineClickAction.clickOnBorder(box, line)
+        lineClickAction.clickOnBorder(box, line);
+        track.incrementTurn();
       }, level_data[gameLevel].computerSpeed || 500)
       return null;
     }
@@ -26,6 +27,8 @@ const computerMove = {
       } else {
         computerMove.makeComputerMove()
       }
+
+      track.incrementTurn();
     }, level_data[gameLevel].computerSpeed || 500);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score

@@ -1,5 +1,6 @@
 const ui = {
   startGame: () => {
+    track.turn = 0;
     const whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
     textType = null;
     on_game_board = true;
@@ -382,10 +383,10 @@ const ui = {
 
     if(!helpText && levelText && turnsToShowText.includes(track.turn)){
       const text = helpText.next().value;
-      ui.showText(text);
+      ui.showText(text || "");
     } else if(helpText && turnsToShowText.includes(track.turn)) {
       const text = helpText.next().value;
-      ui.showText(text);
+      ui.showText(text || "");
     }
     if(turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1){
       setTimeout(() => {

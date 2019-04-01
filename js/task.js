@@ -277,7 +277,8 @@ const task = {
           turn,
           type,
           boxOne,
-          boxTwo
+          boxTwo,
+          clickBox
         } = restriction;
         const onRestrictionTurn = track.turn === turn;
         if(onRestrictionTurn){
@@ -285,6 +286,8 @@ const task = {
           if(type === "highLightLine"){
             restrictionLineClicks = [boxOne, boxTwo];
             task.highlightLine();
+          } else if (type === "clickBox") {
+            restrictionClickBox = clickBox;
           }
         }
       })
@@ -309,6 +312,10 @@ const task = {
   },
   resetAllRestrictions: () => {
     restrictionLineClicks = null;
+    restrictionClickBox = null;
+  },
+  onRestrictionTurn: () => {
+    return restrictionLineClicks || restrictionClickBox;
   },
   hasPassedTrainingRestriction: (boxNumber, lineClicked) => {
     let hasPassed = true;
@@ -320,7 +327,17 @@ const task = {
           hasPassed = true;
         }
       })
+    } else if (restrictionClickBox) {
+      hasPassed = false;
+      if(restrictionClickBox.includes(boxNumber) && !lineClicked){
+        hasPassed = true;
+      }
     }
+
+    if(!hasPassed){
+      soundEffects.playWrongSound();
+    }
+
     return hasPassed;
   },
   hasAPreMadeMove: () => {

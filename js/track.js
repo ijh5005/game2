@@ -15,7 +15,6 @@ const track = {
     pageToShow.classList.remove("removePage");
     ui.setSettingsIfOnSettingsPage(page);
     if(page === "gameBoardPage"){
-      track.turn = 0;
       task.resizeBoard();
     } else {
       on_game_board = false;

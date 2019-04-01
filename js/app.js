@@ -79,6 +79,7 @@ let helpText;
 
 // traning helping variable
 let restrictionLineClicks;
+let restrictionClickBox;
 
 // set any saved field in local storage
 task.setFromLocalStorage();

@@ -420,6 +420,14 @@
   border-radius: 25%;
   background-color: #251c44;
   background-color: rgb(45, 0, 63);
+  transition: background-color 5s;
+}
+
+.topRightDot.lighterDot,
+.topLeftDot.lighterDot,
+.bottomRightDot.lighterDot,
+.bottomLeftDot.lighterDot {
+  background-color: rgb(149, 96, 15);
 }
 
 .topRightDot {

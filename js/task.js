@@ -9,13 +9,28 @@ const task = {
         console.log("game over");
       }
     })
-    isFirstPlayerTurn = (hasScored || disableComputer) ? isFirstPlayerTurn : !isFirstPlayerTurn;
-    task.setTurnIndicator();
-    hasScored ? soundEffects.playScoreSound() : soundEffects.playLineClickSound();
-    hasScored = false;
-    if (!isFirstPlayerTurn) { // make the computer move
-      computerMove.makeComputerMove();
+
+    if(takeAnotherTurn && isFirstPlayerTurn){
+      takeAnotherTurn = false;
+    } else if (takeAnotherTurn && !isFirstPlayerTurn) {
+      takeAnotherTurn = false;
+    } else if(layedBomb){
+      layedBomb = false;
+    } else if (clickedExplosion) {
+      clickedExplosion = false;
+    } else if(!takeAnotherTurn){
+      isFirstPlayerTurn = !isFirstPlayerTurn;
+      soundEffects.playLineClickSound();
     }
+
+    setTimeout(() => {
+      ui.populateTheUI();
+      setTimeout(() => {
+        if(!isFirstPlayerTurn){
+          computerMove.makeComputerMove();
+        }
+      }, 100)
+    })
   },
   isGameOver: () => {
     totalPointsScored = 0;
@@ -29,9 +44,11 @@ const task = {
         ui.showCompleteScreen();
       } else if(playerOneScore === playerTwoScore){
         boardText.showOnBoard("DRAW", 5000);
+        debugger
         isFirstPlayerTurn = true;
       } else {
         boardText.showOnBoard("You Be Ard. Try again", 5000);
+        debugger
         isFirstPlayerTurn = true;
       }
     }
@@ -128,17 +145,12 @@ const task = {
       }
     }, 4000);
   },
-  pass: 0,
-  setPassTurn: () => {
-    clearTimeout(task.pass);
-    task.pass = setTimeout(() => {
-      task.passTurn();
-    })
-  },
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
     task.setTurnIndicator();
-    computerMove.makeComputerMove();
+    if(!isFirstPlayerTurn){
+      computerMove.setMakeComputerMove();
+    }
   },
   resizeBoard: () => {
     setTimeout(() => {
@@ -363,5 +375,12 @@ const task = {
       hasPreMadeMove,
       moveToMake
     }
+  },
+  incorrectClick: (boxNumber, lineClicked) => {
+    if(boxNumber && lineClicked){
+      // turns the line red to indicate that it cant be clicked
+      ui.displayNoClickIndicator(boxNumber, lineClicked);
+    }
+    soundEffects.playWrongSound();
   }
 }

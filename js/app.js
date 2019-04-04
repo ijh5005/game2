@@ -12,7 +12,7 @@ const threeBorderBoxes = [];
 const lineClickOffset = 15;
 
 // tracks who click the line
-const whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
+let whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
 
 // this is the selected animal to be placed on the board from the help section
 let selectedBombFunction;
@@ -33,13 +33,19 @@ let gameLevel;
 let getGameLevelObj;
 
 // trcak if a play has score (used to determin the player turn)
-let hasScored = false;
+let takeAnotherTurn = false;
 // will be tru if first player turn
 let isFirstPlayerTurn = true;
 // disable the computer while debugging
 let disableComputer = false;
 // track previously used boardtext type to avoid resaying the same type in a row
 let textType;
+// help to take another turn after laying a bomb
+let layedBomb;
+// has clicked a bomb
+let clickedExplosion;
+// help to passTurn during computer move
+let computerHasScored = false;
 
 // tracks points scored and used with gameBoardLength to determine if the game is over
 let totalPointsScored = 0;
@@ -98,3 +104,4 @@ task.changeTitleColor();
 
 // animate the board selecting page stars
 ui.animateStars();
+// ui.animateDots();

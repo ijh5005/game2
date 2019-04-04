@@ -1,7 +1,7 @@
 const ui = {
   startGame: () => {
     track.turn = 0;
-    const whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
+    whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
     textType = null;
     on_game_board = true;
     task.resetPlayerTurn();
@@ -326,7 +326,7 @@ const ui = {
     }
   },
   showEndGameScreen: (stars, yourScore, computerScore, currentGoldCount, prize) => {
-    isFirstPlayerTurn = true;
+    task.resetPlayerTurn();
     task.removeClassByClassName("gameCompleteBox", "hideGameComplete");
     task.addTextByQuerySelector(".yourScore", yourScore);
     task.addTextByQuerySelector(".computerScore", computerScore);
@@ -498,7 +498,6 @@ const ui = {
       helperMovingImage.remove();
       if(boxInfo.getBorderCount(boxNumber) === 4){
         bomb.explodeBoxes(boxNumber);
-        task.setPassTurn();
       }
     }, 250)
   },
@@ -516,6 +515,28 @@ const ui = {
         }, timeoutToNext)
       })
     }, 4000)
+  },
+  animateDots: () => {
+    setInterval(() => {
+      const topRightDot = document.querySelectorAll(".topRightDot");
+      const topLeftDot = document.querySelectorAll(".topLeftDot");
+      const bottomRightDot = document.querySelectorAll(".bottomRightDot");
+      const bottomLeftDot = document.querySelectorAll(".bottomLeftDot");
+      const length = 36;
+      for(let i = 0; i < length; i++){
+        if(Math.random() < 0.5){
+          topRightDot[i].classList.add("lighterDot");
+          topLeftDot[i].classList.add("lighterDot");
+          bottomRightDot[i].classList.add("lighterDot");
+          bottomLeftDot[i].classList.add("lighterDot");
+        } else {
+          topRightDot[i].classList.remove("lighterDot");
+          topLeftDot[i].classList.remove("lighterDot");
+          bottomRightDot[i].classList.remove("lighterDot");
+          bottomLeftDot[i].classList.remove("lighterDot");
+        }
+      }
+    }, 2000);
   },
   displayNoClickIndicator: (boxNumber, lineClicked) => {
     const incorrectLineClick = (box, classToAdd) => {
@@ -578,5 +599,15 @@ const ui = {
       });
       track.adjustScore();
     }
+  },
+  showHelper: (boxNumber) => {
+    tools.forEach(data => {
+      if(data.name === selectedBombFunction) data.count--;
+    });
+    let explosionType;
+    if(selectedBombFunction === "lion") explosionType = "isLionExplosion";
+    if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
+    if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
+    if(explosionType) gameBoard[boxNumber][explosionType] = true;
   }
 }

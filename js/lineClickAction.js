@@ -1,100 +1,44 @@
 const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
-
     const height = task.getHeightWithClassName("box");
     const upperOutOfBoundsNumber = height - lineClickOffset;
     const lowerOutOfBoundsNumber = lineClickOffset;
+    const meetsBombLayingConditions = task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber);
+    let hasMadeMove = false;
+    // check to see if a line is clicked
+    const isALineClicked = lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
+    if (isALineClicked) {
+      // the line thats clicked
+      const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
+      // are we following the training rules
+      const followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, lineClicked);
+      // prevent multiple click to the same border
+      const lineIsAlreadyClick = boxInfo.hasClickBorderPreviously(boxNumber, lineClicked);
+      // is the line click part of a lock box
+      const isLockBoxLineClick = lineClickAction.isALockedBoxClick(boxNumber, lineClicked);
+      hasMadeMove = true;
+      // prevent the line if these conditions are met
+      if(!followingTrainingRulesIfAny || lineIsAlreadyClick) return task.incorrectClick();
+      if(isLockBoxLineClick) return task.incorrectClick(boxNumber, lineClicked);
 
-    if (lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber)) { // check to see if a line is clicked
-      const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber); // cache the clicked line
-
-      if(!task.hasPassedTrainingRestriction(boxNumber, lineClicked)) return null;
-      track.incrementTurn();
-
-      if(lineClickAction.isNotALockedBoxClick(boxNumber, lineClicked)){
-        const hasClickBorderPreviously = (gameBoard[boxNumber].borders[lineClicked] === true);
-        if (!hasClickBorderPreviously) { // prevent multiple click to the same border
-          lineClickAction.clickOnBorder(boxNumber, lineClicked);
-        }
-      } else {
-        // turns the line red to indicate that it cant be clicked
-        ui.displayNoClickIndicator(boxNumber, lineClicked);
-      }
-    } else if(task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)){
-      track.incrementTurn();
-      console.log("selected");
-
-      if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
-
+      lineClickAction.clickOnBorder(boxNumber, lineClicked);
+    } else if(meetsBombLayingConditions){
+      // are we following the training rules
+      const followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, null);
+      if(!followingTrainingRulesIfAny) return task.incorrectClick();
+      // takeAnotherTurn = true;
+      hasMadeMove = true;
+      layedBomb = true;
       // show smoke when help enters the field
-      if(selectedBombFunction !== "bombEraser"){
-        ui.animateBombMovement(boxNumber);
-        soundEffects.playShowBombSound();
-        bomb.showSpriteSmoke(boxNumber);
-      }
-
-      if(selectedBombFunction === "bombEraser"){
-        let hasBomb = false;
-        bomb.types.forEach(data => {
-          const hasClass = task.hasClassByQuerySelector(`.box.${boxNumber}`, data.class);
-          if(hasClass){
-            hasBomb = true;
-          }
-        })
-        if(hasBomb){
-          bomb.types.forEach(data => {
-            delete gameBoard[boxNumber][`${data.key}`];
-            bomb.showExplosionInBox(boxNumber, "eraseBomb", 80 * 8);
-          })
-          tools.forEach(data => {
-            if(data.name === selectedBombFunction){
-              data.count--;
-            }
-          });
-          soundEffects.playEraseBombSound();
-          ui.populateTheUI();
-          task.removeClassByQuerySelector(".tool.selected", "selected");
-        }
-      } else {
-        setTimeout(() => {
-          showHelper();
-        }, 100);
-      }
-
-      const showHelper = () => {
-        if(selectedBombFunction === "lion"){
-          tools.forEach(data => {
-            if(data.name === selectedBombFunction){
-              data.count--;
-            }
-          });
-          gameBoard[boxNumber].isLionExplosion = true;
-          ui.populateTheUI(); // remove this line if adding the above commented out line
-        } else if (selectedBombFunction === "cheetah") {
-          tools.forEach(data => {
-            if(data.name === selectedBombFunction){
-              data.count--;
-            }
-          });
-          gameBoard[boxNumber].isCheetahExplosion = true;
-          ui.populateTheUI();
-        } else if (selectedBombFunction === "panther") {
-          tools.forEach(data => {
-            if(data.name === selectedBombFunction){
-              data.count--;
-            }
-          });
-          gameBoard[boxNumber].isPantherExplosion = true;
-          ui.populateTheUI();
-        }
-      }
-
+      ui.animateBombMovement(boxNumber);
+      soundEffects.playShowBombSound();
+      bomb.showSpriteSmoke(boxNumber);
+      ui.showHelper(boxNumber);
     } else if(bomb.isExplosionBox(boxNumber)){
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
-      track.incrementTurn();
-
+      clickedExplosion = true;
       bomb.explodeBoxes(boxNumber);
-      task.setPassTurn();
+      track.incrementTurn();
     } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
       ui.showText("Tap a line between the dots!");
@@ -103,6 +47,10 @@ const lineClickAction = {
       }, 1000)
     } else {
       soundEffects.playWrongSound();
+    }
+
+    if(hasMadeMove){
+      track.incrementTurn();
     }
   },
   setEdgeBoxClickEvent: () => {
@@ -126,6 +74,7 @@ const lineClickAction = {
             const hasPassed = task.hasPassedTrainingRestriction(boxClicked, sideClicked);
             if(hasPassed){
               lineClickAction.clickOnBorder(boxClicked, sideClicked);
+              ui.populateTheUI();
             }
 
           }
@@ -134,26 +83,26 @@ const lineClickAction = {
     });
   },
   clickOnBorder: (boxNumber, lineClicked) => {
-    bomb.bombPopulation();
-    gameBoard[boxNumber].borders[lineClicked] = true;
-
-    if(!isFirstPlayerTurn){
-      whoClickedLine[boxNumber][lineClicked] = "computer"
-    }
-
-    track.highlightBoxIfScored(boxNumber);
     let adjacentBox = null;
     let adjBoxNumber = null;
+
+    bomb.bombPopulation();
+    boxInfo.setLineAsClicked(boxNumber, lineClicked);
+
+    boxInfo.setLineColor(boxNumber, lineClicked);
+    boxInfo.highlightBoxIfScored(boxNumber);
+
     const hasAdjacentBox = ((gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== null) && (gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`] !== undefined));
     if (hasAdjacentBox) {
       adjacentBox = gameBoard[boxNumber].surroundingBoxes[`${lineClicked}Box`].boxNumber;
       gameBoard[`box${adjacentBox}`].borders[boxInfo.complementBorder[`${lineClicked}`]] = true;
-      track.highlightBoxIfScored(`box${adjacentBox}`);
+      boxInfo.highlightBoxIfScored(`box${adjacentBox}`);
       adjBoxNumber = `box${adjacentBox}`;
+      boxInfo.setLineColor(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]);
+    }
 
-      if(!isFirstPlayerTurn){
-        whoClickedLine[adjBoxNumber][boxInfo.complementBorder[`${lineClicked}`]] = "computer"
-      }
+    if(adjacentBox){
+      boxInfo.setLineAsClicked(boxNumber, lineClicked);
     }
     ui.closeTheBoxConnection({
       boxNumber,
@@ -163,14 +112,12 @@ const lineClickAction = {
     });
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
-    lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked);
-    (hasAdjacentBox) ? lineClickAction.changeLineColorOfLastClickedBox(adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]): null;
+    lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]);
     setTimeout(() => {
+      task.setTurnPlayer();
       task.isGameOver();
       ui.startLevelText();
     })
-    task.setTurnPlayer(); // set the turn player
-    ui.populateTheUI();
   },
   removeLineClickHighlights: () => {
     task.removeClassByClassName("box", "topLineClicked");
@@ -178,18 +125,21 @@ const lineClickAction = {
     task.removeClassByClassName("box", "bottomLineClicked");
     task.removeClassByClassName("box", "leftLineClicked");
   },
-  changeLineColorOfLastClickedBox: (boxNumber, lineClicked) => {
+  changeLineColorOfLastClickedBox: (boxNumber, lineClicked, adjBoxNumber, adjBoxLine) => {
     lineClickAction.removeLineClickHighlights();
     if(!isFirstPlayerTurn){
       setTimeout(() => {
         task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
-      }, 10)
+        if(adjBoxNumber){
+          task.addClassByClassName(adjBoxNumber, `${adjBoxLine}LineClicked`);
+        }
+      }, 10);
     }
   },
-  isNotALockedBoxClick: (box, lineClicked) => {
+  isALockedBoxClick: (box, lineClicked) => {
     const adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
     const includesLocked = (boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox));
-    return !includesLocked;
+    return includesLocked;
   },
   isALineClick: (offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) => {
     const inUpperOutOfBounds = (offsetX > upperOutOfBoundsNumber) || (offsetY > upperOutOfBoundsNumber);

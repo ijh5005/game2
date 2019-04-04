@@ -1,4 +1,11 @@
 const computerMove = {
+  computerMoveSetter: 0,
+  setMakeComputerMove: () => {
+    clearTimeout(computerMove.computerMoveSetter);
+    computerMove.computerMoveSetter = setTimeout(() => {
+      computerMove.makeComputerMove();
+    })
+  },
   makeComputerMove: () => {
     const hasAPreMadeMove = task.hasAPreMadeMove();
     if(hasAPreMadeMove.hasPreMadeMove){
@@ -25,7 +32,7 @@ const computerMove = {
           computerMove.makeMoveInSafeBox();
         }
       } else {
-        computerMove.makeComputerMove()
+        computerMove.setMakeComputerMove()
       }
 
       track.incrementTurn();
@@ -36,23 +43,29 @@ const computerMove = {
     else if (noBorders.length !== 0) computerMove.clickInANoBorderBox();
     else if (oneBorderBoxes.length !== 0) computerMove.clickInAOneBorderBox();
     else if (twoBorderBoxes.length !== 0) computerMove.clickInATwoBorderBox();
+    // if(computerHasScored) {
+    //   computerHasScored = false;
+    // } else {
+    //   task.passTurn();
+    // }
     ui.populateTheUI();
   },
   getAFreeBox: () => {
     const clickBox = task.getRandomIndexInArray(threeBorderBoxes);
     Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(data => {
       if(!bomb.allExplodingBoxes.length > 0){
-        if (!boxInfo.getGameBoardClickBox(clickBox).borders[data] && !isFirstPlayerTurn) {
+        const borderCanBeClicked = !boxInfo.getGameBoardClickBox(clickBox).borders[data];
+        if (borderCanBeClicked && !isFirstPlayerTurn) {
           if(boxInfo.isAdjBoxALockBox(clickBox, data)){
             threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
             computerMove.makeMoveInSafeBox();
           } else {
-            const hasMoreSafeBoxesToClickIn = boxInfo.getSafeBoxes().length > 1;
             if(noBorders.length > 0 && !showTextUsed){
               track.screenText();
               // show text on board
               boardText.showText("bad");
             }
+            computerHasScored = true;
             lineClickAction.clickOnBorder(clickBox, data);
           }
         }

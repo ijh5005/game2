@@ -591,5 +591,27 @@ const boxInfo = {
       }
     }
     return hasExplosion;
+  },
+  hasClickBorderPreviously: (boxNumber, lineClicked) => {
+    return (gameBoard[boxNumber].borders[lineClicked] === true);
+  },
+  setLineAsClicked: (boxNumber, lineClicked) => {
+    gameBoard[boxNumber].borders[lineClicked] = true;
+  },
+  setLineColor: (boxNumber, lineClicked) => {
+    if(!isFirstPlayerTurn){
+      whoClickedLine[boxNumber][lineClicked] = "computer"
+    }
+  },
+  highlightBoxIfScored: (boxNumber) => {
+    if (boxInfo.getBorderCount(boxNumber) === 4) {
+      takeAnotherTurn = true;
+      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
+      if(isFirstPlayerTurn){
+        pointsInArow++;
+        ui.checkForGameBoardTextConditions();
+      }
+      soundEffects.playScoreSound();
+    }
   }
 }

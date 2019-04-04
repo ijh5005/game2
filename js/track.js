@@ -35,16 +35,6 @@ const track = {
       }
     }
   },
-  highlightBoxIfScored: (boxNumber) => {
-    if (boxInfo.getBorderCount(boxNumber) === 4) {
-      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
-      if(isFirstPlayerTurn){
-        pointsInArow++;
-        ui.checkForGameBoardTextConditions();
-      }
-      soundEffects.playScoreSound();
-    }
-  },
   adjustScore: (boxNumber, adjacentBoxNumber) => {
     track.setScores();
 
@@ -54,8 +44,6 @@ const track = {
     const score = (box) => {
       if (!track.hasScored(box)) return null; // check to see if player scored a point
       bomb.explodeBoxes(box);
-      task.setPassTurn();
-      hasScored = true;
     }
 
     if (boxNumber) score(boxNumber);

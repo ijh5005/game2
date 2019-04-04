@@ -23,6 +23,8 @@ const task = {
       soundEffects.playLineClickSound();
     }
 
+    task.setTurnIndicator();
+
     setTimeout(() => {
       ui.populateTheUI();
       setTimeout(() => {
@@ -280,10 +282,9 @@ const task = {
     else if(score >= starRubric[0].score){ return 1 }
   },
   setTurnIndicator: () => {
-    task.removeClassByClassName("turnPlayer", "firstPlayerTurn");
-    task.removeClassByClassName("turnPlayer", "secondPlayerTurn");
-    if(isFirstPlayerTurn){ task.addClassByQuerySelector(".turnPlayer", "firstPlayerTurn") }
-    else { task.addClassByQuerySelector(".turnPlayer", "secondPlayerTurn") }
+    task.removeClassByClassName("scoreHolder", "thisPlayerTurn");
+    if(isFirstPlayerTurn){ task.addClassByQuerySelector(".firstPlayerTurnHolder", "thisPlayerTurn") }
+    else { task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
   },
   setTurnRestrictions: () => {
     task.resetAllRestrictions();

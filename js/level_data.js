@@ -112,7 +112,7 @@ const level_data = [
         yield "The cheetah explodes from right to left";
         yield "";
       },
-      helpTurns: [0, 2, 3, 5]
+      helpTurns: [0, 1, 3, 5]
     },
     isTrainingBoard: true,
     trainingRestrictions: {

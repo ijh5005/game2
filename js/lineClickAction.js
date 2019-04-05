@@ -45,7 +45,7 @@ const lineClickAction = {
       ui.showText("Tap a line between the dots!");
       setTimeout(() => {
         ui.showText("");
-      }, 1000)
+      }, 4000)
     } else {
       soundEffects.playWrongSound();
     }

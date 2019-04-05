@@ -65,6 +65,14 @@
   top: 40%;
 }
 
+.bbtn {
+  position: relative;
+  font-size: 4em;
+  margin: 0;
+  top: -18px;
+  font-weight: 900;
+}
+
 .stars img {
   position: relative;
   top: 0;

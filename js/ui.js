@@ -1,6 +1,8 @@
 const ui = {
   startGame: () => {
+    task.startEndGameInterval();
     track.turn = 0;
+    pointsInArow = 0;
     whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
     textType = null;
     on_game_board = true;

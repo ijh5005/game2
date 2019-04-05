@@ -2,9 +2,14 @@ const task = {
   endTurnTasks: () => {
     setTimeout(() => {
       task.setTurnPlayer();
-      task.isGameOver();
       ui.startLevelText();
     })
+  },
+  endGameChecker: 0,
+  startEndGameInterval: () => {
+    task.endGameChecker = setInterval(() => {
+      task.isGameOver();
+    }, 1000)
   },
   setTurnPlayer: () => {
     setTimeout(() => {
@@ -50,15 +55,14 @@ const task = {
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
     });
     if(totalPointsScored === gameBoardLength){
+      clearTimeout(task.endGameChecker);
       if(playerOneScore > playerTwoScore){
         ui.showCompleteScreen();
       } else if(playerOneScore === playerTwoScore){
         boardText.showOnBoard("DRAW", 5000);
-        debugger
         isFirstPlayerTurn = true;
       } else {
         boardText.showOnBoard("You Be Ard. Try again", 5000);
-        debugger
         isFirstPlayerTurn = true;
       }
     }

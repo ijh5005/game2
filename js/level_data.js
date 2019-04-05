@@ -4,7 +4,6 @@ const level_data = [
     isLocked: false,
     levelNumber: 1,
     stars: 3,
-    lockBoxes: [],
     starRating: [
       { stars: 1, score: 8 },
       { stars: 3, score: 9 },
@@ -105,6 +104,7 @@ const level_data = [
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
     ],
+    isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
         yield "Tap the 1st cheetah! The computer's score drops";
@@ -114,7 +114,6 @@ const level_data = [
       },
       helpTurns: [0, 1, 3, 5]
     },
-    isTrainingBoard: true,
     trainingRestrictions: {
       restrictions: [
         {

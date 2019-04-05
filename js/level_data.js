@@ -14,7 +14,7 @@ const level_data = [
     help: {
       boardHelpText: function* gen(){
         yield "Tap a line on the board";
-        yield "It's your turn when the above dot is gold. Tap another line";
+        yield "It's your turn. Tap another line";
         yield "Create a box to score";
         yield "Take another turn because you scored!";
         yield "";

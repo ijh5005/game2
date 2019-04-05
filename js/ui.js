@@ -585,7 +585,6 @@ const ui = {
   },
   uiPopulater: null,
   populateTheUI: () => {
-
     if(ui.uiPopulater === null){
       ui.populateBoard();
       ui.uiPopulater = 1;

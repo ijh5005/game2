@@ -20,7 +20,6 @@ const lineClickAction = {
       // prevent the line if these conditions are met
       if(!followingTrainingRulesIfAny || lineIsAlreadyClick) return task.incorrectClick();
       if(isLockBoxLineClick) return task.incorrectClick(boxNumber, lineClicked);
-
       lineClickAction.clickOnBorder(boxNumber, lineClicked);
     } else if(meetsBombLayingConditions){
       // are we following the training rules
@@ -34,11 +33,13 @@ const lineClickAction = {
       soundEffects.playShowBombSound();
       bomb.showSpriteSmoke(boxNumber);
       ui.showHelper(boxNumber);
+      ui.populateTheUI();
+      task.endTurnTasks();
     } else if(bomb.isExplosionBox(boxNumber)){
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
       clickedExplosion = true;
       bomb.explodeBoxes(boxNumber);
-      track.incrementTurn();
+      task.endTurnTasks();
     } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
       ui.showText("Tap a line between the dots!");
@@ -113,11 +114,7 @@ const lineClickAction = {
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]);
-    setTimeout(() => {
-      task.setTurnPlayer();
-      task.isGameOver();
-      ui.startLevelText();
-    })
+    task.endTurnTasks();
   },
   removeLineClickHighlights: () => {
     task.removeClassByClassName("box", "topLineClicked");

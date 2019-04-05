@@ -1,4 +1,11 @@
 const task = {
+  endTurnTasks: () => {
+    setTimeout(() => {
+      task.setTurnPlayer();
+      task.isGameOver();
+      ui.startLevelText();
+    })
+  },
   setTurnPlayer: () => {
     setTimeout(() => {
       const noMoreLinesToClick =
@@ -18,6 +25,7 @@ const task = {
       layedBomb = false;
     } else if (clickedExplosion) {
       clickedExplosion = false;
+      isFirstPlayerTurn = !isFirstPlayerTurn;
     } else if(!takeAnotherTurn){
       isFirstPlayerTurn = !isFirstPlayerTurn;
       soundEffects.playLineClickSound();

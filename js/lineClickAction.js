@@ -1,5 +1,7 @@
 const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
+    lineClickAction.removeLineClickHighlights();
+    
     const height = task.getHeightWithClassName("box");
     const upperOutOfBoundsNumber = height - lineClickOffset;
     const lowerOutOfBoundsNumber = lineClickOffset;
@@ -48,10 +50,6 @@ const lineClickAction = {
       }, 4000)
     } else {
       soundEffects.playWrongSound();
-    }
-
-    if(hasMadeMove){
-      track.incrementTurn();
     }
   },
   setEdgeBoxClickEvent: () => {
@@ -123,7 +121,6 @@ const lineClickAction = {
     task.removeClassByClassName("box", "leftLineClicked");
   },
   changeLineColorOfLastClickedBox: (boxNumber, lineClicked, adjBoxNumber, adjBoxLine) => {
-    lineClickAction.removeLineClickHighlights();
     if(!isFirstPlayerTurn){
       setTimeout(() => {
         task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);

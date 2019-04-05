@@ -12,7 +12,6 @@ const computerMove = {
       const { box, line } = hasAPreMadeMove.moveToMake;
       setTimeout(() => {
         lineClickAction.clickOnBorder(box, line);
-        track.incrementTurn();
       }, level_data[gameLevel].computerSpeed || 500)
       return null;
     }
@@ -35,7 +34,6 @@ const computerMove = {
         computerMove.setMakeComputerMove()
       }
 
-      track.incrementTurn();
     }, level_data[gameLevel].computerSpeed || 500);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
@@ -43,11 +41,6 @@ const computerMove = {
     else if (noBorders.length !== 0) computerMove.clickInANoBorderBox();
     else if (oneBorderBoxes.length !== 0) computerMove.clickInAOneBorderBox();
     else if (twoBorderBoxes.length !== 0) computerMove.clickInATwoBorderBox();
-    // if(computerHasScored) {
-    //   computerHasScored = false;
-    // } else {
-    //   task.passTurn();
-    // }
     ui.populateTheUI();
   },
   getAFreeBox: () => {

@@ -590,16 +590,14 @@ const ui = {
     if(ui.uiPopulater === null){
       ui.populateBoard();
       ui.uiPopulater = 1;
-      task.setTurnRestrictions();
-      track.adjustScore();
     } else {
       clearTimeout(ui.uiPopulater);
       ui.uiPopulater = setTimeout(() => {
         ui.populateBoard();
-        task.setTurnRestrictions();
       });
-      track.adjustScore();
     }
+    task.setTurnRestrictions();
+    track.adjustScore();
   },
   showHelper: (boxNumber) => {
     tools.forEach(data => {

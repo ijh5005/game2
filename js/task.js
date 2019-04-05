@@ -2,7 +2,6 @@ const task = {
   endTurnTasks: () => {
     setTimeout(() => {
       task.setTurnPlayer();
-      ui.startLevelText();
     })
   },
   endGameChecker: 0,
@@ -22,6 +21,8 @@ const task = {
       }
     })
 
+    task.resetAllRestrictions();
+
     if(takeAnotherTurn && isFirstPlayerTurn){
       takeAnotherTurn = false;
     } else if (takeAnotherTurn && !isFirstPlayerTurn) {
@@ -39,7 +40,9 @@ const task = {
     task.setTurnIndicator();
 
     setTimeout(() => {
+      track.incrementTurn();
       ui.populateTheUI();
+      ui.startLevelText();
       setTimeout(() => {
         if(!isFirstPlayerTurn){
           computerMove.makeComputerMove();
@@ -299,8 +302,6 @@ const task = {
     else { task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
   },
   setTurnRestrictions: () => {
-    task.resetAllRestrictions();
-
     const { isTrainingBoard } = level_data[gameLevel];
     if(isTrainingBoard){
       const { restrictions } = level_data[gameLevel].trainingRestrictions;
@@ -313,6 +314,7 @@ const task = {
           clickBox
         } = restriction;
         const onRestrictionTurn = track.turn === turn;
+        console.log(track.turn)
         if(onRestrictionTurn){
           task.resetAllRestrictions();
           if(type === "highLightLine"){
@@ -328,7 +330,6 @@ const task = {
   highlightLine: () => {
     const restrict = task.breakRefAndCopy(restrictionLineClicks);
     setTimeout(() => {
-      lineClickAction.removeLineClickHighlights();
       restrict.forEach(data => {
         if(data.side === "top"){
           task.addClassByClassName(data.box, "clickTopLine")
@@ -345,6 +346,12 @@ const task = {
   resetAllRestrictions: () => {
     restrictionLineClicks = null;
     restrictionClickBox = null;
+    setTimeout(() => {
+      task.removeClassByClassName("box", "clickTopLine");
+      task.removeClassByClassName("box", "clickRightLine");
+      task.removeClassByClassName("box", "clickBottomLine");
+      task.removeClassByClassName("box", "clickLeftLine");
+    }, 500)
   },
   onRestrictionTurn: () => {
     return restrictionLineClicks || restrictionClickBox;

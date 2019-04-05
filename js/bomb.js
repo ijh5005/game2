@@ -146,7 +146,6 @@ const bomb = {
       bomb.checkForChainReactions(boxesToExplode);
       soundEffects.playExplosionSound();
     }
-    lineClickAction.removeLineClickHighlights();
     ui.populateTheUI();
   },
   checkForChainReactions: (boxesToCheck) => {

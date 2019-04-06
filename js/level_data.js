@@ -107,8 +107,8 @@ const level_data = [
     isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the 1st cheetah! The computer's score drops";
-        yield "If the cheetah is in a box it explodes";
+        yield "Tap the top cheetah! It will explode the boxes!";
+        yield "If the cheetah is in a box it also explodes";
         yield "The cheetah explodes from right to left";
         yield "";
       },

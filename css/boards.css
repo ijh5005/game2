@@ -588,3 +588,17 @@
     border-left-color: #d5e4ff;
   }
 }
+
+.clickBox {
+  background-color: transparent;
+  transition: all 0.5s;
+  animation: clickBox 1s infinite;
+}
+@keyframes clickBox {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgb(170, 125, 186);
+  }
+}

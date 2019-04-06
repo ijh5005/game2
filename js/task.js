@@ -314,7 +314,6 @@ const task = {
           clickBox
         } = restriction;
         const onRestrictionTurn = track.turn === turn;
-        console.log(track.turn)
         if(onRestrictionTurn){
           task.resetAllRestrictions();
           if(type === "highLightLine"){
@@ -322,6 +321,7 @@ const task = {
             task.highlightLine();
           } else if (type === "clickBox") {
             restrictionClickBox = clickBox;
+            task.addClassByClassName(clickBox, "clickBox");
           }
         }
       })

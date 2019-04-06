@@ -1,5 +1,7 @@
 const ui = {
   startGame: () => {
+    restrictionLineClicks = null;
+    restrictionClickBox = null;
     task.startEndGameInterval();
     track.turn = 0;
     pointsInArow = 0;

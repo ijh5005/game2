@@ -23,12 +23,14 @@ const task = {
 
     task.resetAllRestrictions();
 
+    let incrementTurn = true;;
     if(takeAnotherTurn && isFirstPlayerTurn){
       takeAnotherTurn = false;
     } else if (takeAnotherTurn && !isFirstPlayerTurn) {
       takeAnotherTurn = false;
     } else if(layedBomb){
       layedBomb = false;
+      incrementTurn = false;
     } else if (clickedExplosion) {
       clickedExplosion = false;
       isFirstPlayerTurn = !isFirstPlayerTurn;
@@ -40,7 +42,9 @@ const task = {
     task.setTurnIndicator();
 
     setTimeout(() => {
-      track.incrementTurn();
+      if(incrementTurn){
+        track.incrementTurn()
+      }
       ui.populateTheUI();
       ui.startLevelText();
       setTimeout(() => {
@@ -311,7 +315,8 @@ const task = {
           type,
           boxOne,
           boxTwo,
-          clickBox
+          clickBox,
+          then
         } = restriction;
         const onRestrictionTurn = track.turn === turn;
         if(onRestrictionTurn){
@@ -322,6 +327,11 @@ const task = {
           } else if (type === "clickBox") {
             restrictionClickBox = clickBox;
             task.addClassByClassName(clickBox, "clickBox");
+          } else if (type === "layBomb") {
+            restrictionLayBomb = clickBox;
+          }
+          if(then){
+            nextRestriction = then;
           }
         }
       })
@@ -346,6 +356,8 @@ const task = {
   resetAllRestrictions: () => {
     restrictionLineClicks = null;
     restrictionClickBox = null;
+    restrictionLayBomb = null;
+    nextRestriction = null;
     setTimeout(() => {
       task.removeClassByClassName("box", "clickTopLine");
       task.removeClassByClassName("box", "clickRightLine");
@@ -370,6 +382,52 @@ const task = {
       hasPassed = false;
       if(restrictionClickBox.includes(boxNumber) && !lineClicked){
         hasPassed = true;
+      }
+    } else if(restrictionLayBomb) {
+      hasPassed = false;
+      if(restrictionLayBomb.includes("any box") || restrictionLayBomb.includes(boxNumber)){
+        if(!lineClicked){
+          hasPassed = true;
+          restrictionLayBomb = null;
+
+          if(nextRestriction){
+            const {
+              turn,
+              type,
+              boxOne,
+              boxTwo,
+              clickBox,
+              then,
+              withClickBox
+            } = nextRestriction;
+            if(type === "highLightLine"){
+              setTimeout(() => {
+                restrictionLineClicks = [boxOne, boxTwo];
+                task.highlightLine();
+              }, 500)
+            } else if (type === "clickBox") {
+              if(withClickBox){
+                setTimeout(() => {
+                  restrictionClickBox = [...clickBox, boxNumber];
+                  restrictionClickBox.forEach(data => {
+                    task.addClassByClassName(data, "clickBox");
+                  })
+                }, 500)
+              } else {
+                setTimeout(() => {
+                  restrictionClickBox = clickBox;
+                  restrictionClickBox.forEach(data => {
+                    task.addClassByClassName(data, "clickBox");
+                  })
+                })
+              }
+            } else if (type === "layBomb") {
+              setTimeout(() => {
+                restrictionLayBomb = clickBox;
+              })
+            }
+          }
+        }
       }
     }
 

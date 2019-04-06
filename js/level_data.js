@@ -166,6 +166,16 @@ const level_data = [
         yield "";
       },
       helpTurns: [0, 2, 4]
+    },
+    isTrainingBoard: true,
+    trainingRestrictions: {
+      restrictions: [
+        {
+          type: "layBomb",
+          turn: 0,
+          clickBox: ["any box"]
+        }
+      ]
     }
   },
   {
@@ -202,6 +212,21 @@ const level_data = [
         yield "";
       },
       helpTurns: [0, 1, 3]
+    },
+    isTrainingBoard: true,
+    trainingRestrictions: {
+      restrictions: [
+        {
+          type: "layBomb",
+          turn: 0,
+          clickBox: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"],
+          then: {
+            type: "clickBox",
+            clickBox: ["box21"],
+            withClickBox: true
+          }
+        }
+      ]
     }
   },
   {

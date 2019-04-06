@@ -3,6 +3,7 @@
   --negCubeHeightWidth: -8em;
   --translate: 4em;
   --negativeTranslate: -4em;
+  --blue: rgb(27, 1, 37)
 }
 
 /* general */
@@ -373,6 +374,12 @@
   top: -2em;
   opacity: 0;
   transition: all 0.5s;
+  text-shadow:
+       3px 3px 0 var(--blue),
+     -1px -1px 0 var(--blue),
+      1px -1px 0 var(--blue),
+      -1px 1px 0 var(--blue),
+       1px 1px 0 var(--blue);
  }
 
 .interactiveText p.showText {
@@ -387,6 +394,12 @@
   pointer-events: none;
   z-index: 2;
   transition: all 0.5s;
+  text-shadow:
+       3px 3px 0 var(--blue),
+     -1px -1px 0 var(--blue),
+      1px -1px 0 var(--blue),
+      -1px 1px 0 var(--blue),
+       1px 1px 0 var(--blue);
 }
 
 .helpTextP {

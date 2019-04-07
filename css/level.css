@@ -61,7 +61,7 @@
   font-size: 40%;
   position: relative;
   height: 6em;
-  width: 3em;
+  /* width: 3em; */
   top: 40%;
 }
 
@@ -71,6 +71,10 @@
   margin: 0;
   top: -18px;
   font-weight: 900;
+}
+
+.backl {
+  color: rgb(94, 1, 128);
 }
 
 .stars img {

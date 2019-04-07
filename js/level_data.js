@@ -12,7 +12,7 @@ const level_data = [
     isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
-        yield "Tap a line on the board";
+        yield "Tap the blinking line on the board";
         yield "It's your turn. Tap another line";
         yield "Create a box to score";
         yield "Take another turn because you scored!";

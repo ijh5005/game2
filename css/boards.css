@@ -3,7 +3,8 @@
   --negCubeHeightWidth: -8em;
   --translate: 4em;
   --negativeTranslate: -4em;
-  --blue: rgb(27, 1, 37)
+  --blue: rgb(27, 1, 37);
+  --edgeBox: rgb(35, 1, 48);
 }
 
 /* general */
@@ -123,6 +124,99 @@
 .box p {
   font-size: 6em;
   color: #fff;
+}
+
+
+.isTopSideRow {
+  border-top-width: 2px;
+  border-top-color: var(--edgeBox);
+  border-top-style: dotted;
+}
+
+.isRightSideRow {
+  border-right-width: 2px;
+  border-right-color: var(--edgeBox);
+  border-right-style: dotted;
+}
+
+.isBottomSideRow {
+  border-bottom-width: 2px;
+  border-bottom-color: var(--edgeBox);
+  border-bottom-style: dotted;
+}
+
+.isLeftSideRow {
+  border-left-width: 2px;
+  border-left-color: var(--edgeBox);
+  border-left-style: dotted;
+}
+
+.isTopRightCornerBox {
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-top-color: var(--edgeBox);
+  border-right-color: var(--edgeBox);
+  border-top-style: dotted;
+  border-right-style: dotted;
+}
+
+.isTopLeftCornerBox {
+  border-top-width: 2px;
+  border-left-width: 2px;
+  border-top-color: var(--edgeBox);
+  border-left-color: var(--edgeBox);
+  border-top-style: dotted;
+  border-left-style: dotted;
+}
+
+.isBottomRightCornerBox {
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  border-bottom-color: var(--edgeBox);
+  border-right-color: var(--edgeBox);
+  border-bottom-style: dotted;
+  border-right-style: dotted;
+}
+
+.isBottomLeftCornerBox {
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-bottom-color: var(--edgeBox);
+  border-left-color: var(--edgeBox);
+  border-bottom-style: dotted;
+  border-left-style: dotted;
+}
+
+.isNoBorderBox {
+  width: 8em;
+  user-select: none;
+  position: relative;
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.isNoBorderBox::before {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1.2em;
+  left: -1em;
+  background-color: #222;
+  border-radius: 50%;
+}
+
+.isNoBorderBox::after {
+  content: "";
+  height: 2em;
+  width: 2em;
+  position: absolute;
+  top: -1.2em;
+  right: -1em;
+  background-color: #222;
+  border-radius: 50%;
 }
 
 .borderTop {
@@ -250,74 +344,6 @@
 
 #time {
   margin-left: 4em;
-}
-
-.isTopSideRow {
-  border-top-width: 2px;
-}
-
-.isRightSideRow {
-  border-right-width: 2px;
-}
-
-.isBottomSideRow {
-  border-bottom-width: 2px;
-}
-
-.isLeftSideRow {
-  border-left-width: 2px;
-}
-
-.isTopRightCornerBox {
-  border-top-width: 2px;
-  border-right-width: 2px;
-}
-
-.isTopLeftCornerBox {
-  border-top-width: 2px;
-  border-left-width: 2px;
-}
-
-.isBottomRightCornerBox {
-  border-bottom-width: 2px;
-  border-right-width: 2px;
-}
-
-.isBottomLeftCornerBox {
-  border-bottom-width: 2px;
-  border-left-width: 2px;
-}
-
-.isNoBorderBox {
-  width: 8em;
-  user-select: none;
-  position: relative;
-  background-size: 70%;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-.isNoBorderBox::before {
-  content: "";
-  height: 2em;
-  width: 2em;
-  position: absolute;
-  top: -1.2em;
-  left: -1em;
-  background-color: #222;
-  border-radius: 50%;
-}
-
-.isNoBorderBox::after {
-  content: "";
-  height: 2em;
-  width: 2em;
-  position: absolute;
-  top: -1.2em;
-  right: -1em;
-  background-color: #222;
-  border-radius: 50%;
 }
 
 .bombToolsBar {

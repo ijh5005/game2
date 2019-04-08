@@ -1,6 +1,6 @@
 const ui = {
   startGame: () => {
-    
+
     restrictionLineClicks = null;
     restrictionClickBox = null;
     restrictionLayBomb = null;
@@ -104,12 +104,17 @@ const ui = {
         bottomRightDot.classList.add("bottomRightDot");
         bottomLeftDot.classList.add("bottomLeftDot");
 
+        const pointer = document.getElementById("helpPointer");
+        const clone = pointer.cloneNode(true);
+
         const gridBox = document.createElement("div");
 
         gridBox.appendChild(topRightDot);
         gridBox.appendChild(topLeftDot);
         gridBox.appendChild(bottomRightDot);
         gridBox.appendChild(bottomLeftDot);
+
+        gridBox.appendChild(clone);
 
         gridBox.classList.add(...boxInfo.getAllBoxClasses(box));
         gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));

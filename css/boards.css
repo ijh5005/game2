@@ -433,6 +433,8 @@
   border-radius: 25%;
   background-color: #251c44;
   background-color: rgb(45, 0, 63);
+  background-color: rgb(148, 5, 206);
+  background-color: rgb(39, 0, 56);
   transition: background-color 5s;
 }
 
@@ -613,5 +615,66 @@
   }
   50% {
     background-color: rgb(170, 125, 186);
+  }
+}
+
+#helpPointer {
+  color: #b57800;
+  opacity: 0;
+  position: absolute;
+}
+
+.clickTopLine #helpPointer {
+  height: 3em;
+  opacity: 1;
+  top: -58px;
+  z-index: 200;
+  animation: upAndDown 1s infinite;
+}
+
+.clickRightLine #helpPointer {
+  height: 3em;
+  opacity: 1;
+  top: 3px;
+  transform: rotateZ(90deg);
+  left: 70px;
+  z-index: 200;
+  animation: leftToRight 1s infinite;
+}
+
+.clickBox #helpPointer {
+  height: 3em;
+  opacity: 1;
+  top: 3px;
+  transform: rotateZ(90deg);
+  left: 45px;
+  z-index: 200;
+  animation: clickBoxleftToRight 1s infinite;
+}
+
+@keyframes upAndDown {
+  0% {
+    top: -58px;
+  }
+  50% {
+    top: -71px;
+  }
+}
+
+@keyframes leftToRight {
+  0% {
+    left: 70px;
+  }
+  50% {
+    left: 85px;
+  }
+}
+
+@keyframes clickBoxleftToRight {
+  0% {
+    left: 45px;
+  }
+  50% {
+    left: 60px;
   }
 }

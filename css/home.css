@@ -159,6 +159,7 @@
   position: absolute;
   bottom: 0;
   z-index: -1;
+  border-top: 2px dashed #b57800;
   /* border-top-left-radius: 100% 30px;
   border-top-right-radius: 100% 30px; */
 }

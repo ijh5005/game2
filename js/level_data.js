@@ -188,7 +188,6 @@ const level_data = [
         bombType: "isLionExplosion"
       }
     ],
-    waterRemovalIndex: [],
     starRating: [
       { stars: 1, score: 10 },
       { stars: 2, score: 11 },
@@ -207,7 +206,7 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Place the Cheetah next to the Lion. Then tap either one";
+        yield "Place the Cheetah next to the Lion. Then tap the lion";
         yield "Chain explosions help explode more boxes at once";
         yield "";
       },
@@ -222,8 +221,8 @@ const level_data = [
           clickBox: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"],
           then: {
             type: "clickBox",
-            clickBox: ["box21"],
-            withClickBox: true
+            clickBox: ["box21"]
+            // withClickBox: true
           }
         }
       ]
@@ -258,8 +257,6 @@ const level_data = [
         bombType: "isPantherExplosion"
       }
     ],
-    // bombsToLay: 4,
-    waterRemovalIndex: [],
     starRating: [
       { stars: 1, score: 8 },
       { stars: 2, score: 9 },

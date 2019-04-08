@@ -415,11 +415,11 @@ const task = {
                 }, 500)
               } else {
                 setTimeout(() => {
-                  restrictionClickBox = clickBox;
+                  restrictionClickBox = [...clickBox];
                   restrictionClickBox.forEach(data => {
                     task.addClassByClassName(data, "clickBox");
                   })
-                })
+                }, 500)
               }
             } else if (type === "layBomb") {
               setTimeout(() => {

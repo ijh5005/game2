@@ -5,6 +5,7 @@
   --negativeTranslate: -4em;
   --blue: rgb(27, 1, 37);
   --edgeBox: rgb(35, 1, 48);
+  --borderStyle: dashed;
 }
 
 /* general */
@@ -130,25 +131,25 @@
 .isTopSideRow {
   border-top-width: 2px;
   border-top-color: var(--edgeBox);
-  border-top-style: dotted;
+  border-top-style: var(--borderStyle);
 }
 
 .isRightSideRow {
   border-right-width: 2px;
   border-right-color: var(--edgeBox);
-  border-right-style: dotted;
+  border-right-style: var(--borderStyle);
 }
 
 .isBottomSideRow {
   border-bottom-width: 2px;
   border-bottom-color: var(--edgeBox);
-  border-bottom-style: dotted;
+  border-bottom-style: var(--borderStyle);
 }
 
 .isLeftSideRow {
   border-left-width: 2px;
   border-left-color: var(--edgeBox);
-  border-left-style: dotted;
+  border-left-style: var(--borderStyle);
 }
 
 .isTopRightCornerBox {
@@ -156,8 +157,8 @@
   border-right-width: 2px;
   border-top-color: var(--edgeBox);
   border-right-color: var(--edgeBox);
-  border-top-style: dotted;
-  border-right-style: dotted;
+  border-top-style: var(--borderStyle);
+  border-right-style: var(--borderStyle);
 }
 
 .isTopLeftCornerBox {
@@ -165,8 +166,8 @@
   border-left-width: 2px;
   border-top-color: var(--edgeBox);
   border-left-color: var(--edgeBox);
-  border-top-style: dotted;
-  border-left-style: dotted;
+  border-top-style: var(--borderStyle);
+  border-left-style: var(--borderStyle);
 }
 
 .isBottomRightCornerBox {
@@ -174,8 +175,8 @@
   border-right-width: 2px;
   border-bottom-color: var(--edgeBox);
   border-right-color: var(--edgeBox);
-  border-bottom-style: dotted;
-  border-right-style: dotted;
+  border-bottom-style: var(--borderStyle);
+  border-right-style: var(--borderStyle);
 }
 
 .isBottomLeftCornerBox {
@@ -183,8 +184,8 @@
   border-left-width: 2px;
   border-bottom-color: var(--edgeBox);
   border-left-color: var(--edgeBox);
-  border-bottom-style: dotted;
-  border-left-style: dotted;
+  border-bottom-style: var(--borderStyle);
+  border-left-style: var(--borderStyle);
 }
 
 .isNoBorderBox {
@@ -221,34 +222,42 @@
 
 .borderTop {
   border-top-color: #b57800;
+  border-top-style: solid;
 }
 
 .borderRight {
   border-right-color: #b57800;
+  border-right-style: solid;
 }
 
 .borderBottom {
   border-bottom-color: #b57800;
+  border-bottom-style: solid;
 }
 
 .borderLeft {
   border-left-color: #b57800;
+  border-left-style: solid;
 }
 
 .borderTopComputer {
   border-top-color: #980000;
+  border-top-style: solid;
 }
 
 .borderRightComputer {
   border-right-color: #980000;
+  border-right-style: solid;
 }
 
 .borderBottomComputer {
   border-bottom-color: #980000;
+  border-bottom-style: solid;
 }
 
 .borderLeftComputer {
   border-left-color: #980000;
+  border-left-style: solid;
 }
 
 .topLineClicked {

@@ -9,7 +9,7 @@ const twoBorderBoxes = [];
 const threeBorderBoxes = [];
 
 // offset from line to be considered a line click
-const lineClickOffset = 15;
+const lineClickOffset = 16;
 
 // tracks who click the line
 let whoClickedLine = task.breakRefAndCopy(whoClickTheLine);

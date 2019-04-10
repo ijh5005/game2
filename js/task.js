@@ -326,7 +326,9 @@ const task = {
             task.highlightLine();
           } else if (type === "clickBox") {
             restrictionClickBox = clickBox;
-            task.addClassByClassName(clickBox, "clickBox");
+            setTimeout(() => {
+              task.addClassByClassName(clickBox, "clickBox");
+            }, 500)
           } else if (type === "layBomb") {
             restrictionLayBomb = clickBox;
           }

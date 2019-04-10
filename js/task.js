@@ -331,6 +331,10 @@ const task = {
             }, 500)
           } else if (type === "layBomb") {
             restrictionLayBomb = clickBox;
+            const boxToClick = level_data[gameLevel].clickAnimal;
+            setTimeout(() => {
+              task.addClassByQuerySelector(`.tool.${boxToClick}`, "clickBox");
+            })
           }
           if(then){
             nextRestriction = then;

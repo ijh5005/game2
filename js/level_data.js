@@ -146,7 +146,8 @@ const level_data = [
   {
     isLocked: false,
     levelNumber: 3,
-    stars: 2,
+    stars: 3,
+    clickAnimal: "cheetah",
     starRating: [
       { stars: 1, score: 11 },
       { stars: 2, score: 12 },

@@ -75,6 +75,9 @@
 
 .backl {
   color: rgb(94, 1, 128);
+  background: -webkit-linear-gradient(rgb(110, 10, 145), rgb(27, 1, 37));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stars img {

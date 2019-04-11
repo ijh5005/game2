@@ -375,9 +375,11 @@ const ui = {
       ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
     }, 500)
   },
+  showTextTimeout: 0,
   showText: (text) => {
     task.removeClassByClassName("helpTextP", "showHelpText");
-    setTimeout(() => {
+    clearTimeout(ui.showTextTimeout);
+    ui.showTextTimeout = setTimeout(() => {
       task.addTextByQuerySelector(".helpTextP", text);
       task.addClassByClassName("helpTextP", "showHelpText");
     }, 500)

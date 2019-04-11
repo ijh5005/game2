@@ -1,7 +1,7 @@
 const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
     lineClickAction.removeLineClickHighlights();
-    
+
     const height = task.getHeightWithClassName("box");
     const upperOutOfBoundsNumber = height - lineClickOffset;
     const lowerOutOfBoundsNumber = lineClickOffset;
@@ -20,8 +20,20 @@ const lineClickAction = {
       const isLockBoxLineClick = lineClickAction.isALockedBoxClick(boxNumber, lineClicked);
       hasMadeMove = true;
       // prevent the line if these conditions are met
-      if(!followingTrainingRulesIfAny || lineIsAlreadyClick) return task.incorrectClick();
-      if(isLockBoxLineClick) return task.incorrectClick(boxNumber, lineClicked);
+      if(!followingTrainingRulesIfAny){
+        return task.incorrectClick()
+      }
+
+      if(lineIsAlreadyClick){
+        ui.showText("line is taken! chose another..");
+        return task.incorrectClick()
+      }
+
+      if(isLockBoxLineClick){
+        ui.showText("destroy the item to click this line!");
+        return task.incorrectClick(boxNumber, lineClicked)
+      }
+
       lineClickAction.clickOnBorder(boxNumber, lineClicked);
     } else if(meetsBombLayingConditions){
       // are we following the training rules
@@ -44,7 +56,7 @@ const lineClickAction = {
       task.endTurnTasks();
     } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
-      ui.showText("Tap a line between the dots!");
+      ui.showText("Tap directly between the dots!");
       setTimeout(() => {
         ui.showText("");
       }, 4000)

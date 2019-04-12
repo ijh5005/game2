@@ -107,9 +107,9 @@ const level_data = [
     isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the top cheetah! It will explode the boxes!";
+        yield "Tap the cheetah to explode the boxes!";
         yield "If the cheetah is in a box it also explodes";
-        yield "The cheetah explodes from right to left";
+        yield "notice it explosed from left to right";
         yield "";
       },
       helpTurns: [0, 1, 3, 5]

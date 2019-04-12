@@ -4,7 +4,6 @@ const track = {
     track.turn++;
   },
   goToPage: (page) => {
-    if(currentPage === "gameBoardPage" && !isFirstPlayerTurn) return null;
     tools = null;
     currentPage = page;
     const allPages = document.getElementsByClassName("page");

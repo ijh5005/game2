@@ -437,6 +437,10 @@
        1px 1px 0 var(--blue);
 }
 
+.highlightText {
+  color: #980000;
+}
+
 .helpTextP {
   font-size: 1.6em;
   color: #b57800;

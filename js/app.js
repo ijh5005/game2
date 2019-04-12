@@ -107,3 +107,5 @@ task.changeTitleColor();
 // animate the board selecting page stars
 ui.animateStars();
 // ui.animateDots();
+
+task.setToolClickEvent();

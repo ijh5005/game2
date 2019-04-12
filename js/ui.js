@@ -380,7 +380,7 @@ const ui = {
     task.removeClassByClassName("helpTextP", "showHelpText");
     clearTimeout(ui.showTextTimeout);
     ui.showTextTimeout = setTimeout(() => {
-      task.addTextByQuerySelector(".helpTextP", text);
+      task.addHTMLByQuerySelector(".helpTextP", text);
       task.addClassByClassName("helpTextP", "showHelpText");
     }, 500)
   },

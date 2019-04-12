@@ -199,6 +199,15 @@ const task = {
       }
     }
   },
+  addHTMLByQuerySelector: (selector, html) => {
+    const element = document.querySelectorAll(selector);
+    const length = element.length;
+    if(element){
+      for(let i = 0; i < length; i++){
+        element[i].innerHTML = html;
+      }
+    }
+  },
   getTextByQuerySelector: (selector) => {
     const element = document.querySelectorAll(selector)[0];
     return element.innerText;
@@ -466,5 +475,13 @@ const task = {
       ui.displayNoClickIndicator(boxNumber, lineClicked);
     }
     soundEffects.playWrongSound();
+  },
+  setToolClickEvent: () => {
+    $(document).on("click", ".tool.clickBox", () => {
+      const clickBox = level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
+      clickBox.forEach(box => {
+        task.addClassByClassName(box, "clickBox");
+      })
+    })
   }
 }

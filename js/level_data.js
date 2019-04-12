@@ -12,10 +12,10 @@ const level_data = [
     isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the blinking line on the board";
-        yield "It's your turn. Tap another line";
-        yield "Create a box to score";
-        yield "Take another turn because you scored!";
+        yield "tap the <span class='highlightText'>blinking line</span> on the board";
+        yield "it's your turn. Tap another line";
+        yield "create a <span class='highlightText'>box</span> to score";
+        yield "take <span class='highlightText'>another turn</span> because you scored!";
         yield "";
       },
       helpTurns: [0, 2, 4, 5, 6]
@@ -107,9 +107,9 @@ const level_data = [
     isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the cheetah to explode the boxes!";
-        yield "If the cheetah is in a box it also explodes";
-        yield "notice it explosed from left to right";
+        yield "tap the <span class='highlightText'>cheetah</span> to explode the boxes!";
+        yield "if the cheetah is in a <span class='highlightText'>box</span> it explodes";
+        yield "the cheetah explodes the <span class='highlightText'>row</span>";
         yield "";
       },
       helpTurns: [0, 1, 3, 5]
@@ -147,7 +147,12 @@ const level_data = [
     isLocked: false,
     levelNumber: 3,
     stars: 3,
-    clickAnimal: "cheetah",
+    prefilledBoxes: ["box9", "box15", "box27"],
+    clickAnimal: "panther",
+    hasLargePrize: {
+      prize: "panther",
+      quantity: 1
+    },
     starRating: [
       { stars: 1, score: 11 },
       { stars: 2, score: 12 },
@@ -155,15 +160,15 @@ const level_data = [
     ],
     tools: [
       {
-        name: "cheetah",
-        src: "./img/color_animals/asset_cheetah.png",
+        name: "panther",
+        src: "./img/color_animals/asset_panther.png",
         count: 1
       }
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the cheetah. Then tap any box. Then take your turn.";
-        yield "The cheetah explodes if it is inside a box.";
+        yield "tap the <span class='highlightText'>panther</span>, then tap the box, then tap the panther";
+        yield "the panther explodes the <span class='highlightText'>column</span>";
         yield "";
       },
       helpTurns: [0, 2, 4]
@@ -174,7 +179,7 @@ const level_data = [
         {
           type: "layBomb",
           turn: 0,
-          clickBox: ["any box"]
+          clickBox: ["box21"]
         }
       ]
     }
@@ -205,10 +210,11 @@ const level_data = [
         count: 1
       }
     ],
+    clickAnimal: "cheetah",
     help: {
       boardHelpText: function* gen(){
-        yield "Place the Cheetah next to the Lion. Then tap the lion";
-        yield "Chain explosions help explode more boxes at once";
+        yield "place the <span class='highlightText'>cheetah</span> next to the <span class='highlightText'>lion</span>. then tap the lion";
+        yield "that was a <span class='highlightText'>chain explosion</span>!";
         yield "";
       },
       helpTurns: [0, 1, 3]
@@ -233,10 +239,6 @@ const level_data = [
     isLocked: false,
     levelNumber: 5,
     stars: 0,
-    hasLargePrize: {
-      prize: "panther",
-      quantity: 1
-    },
     lockBoxes: [
       {
         box: "box14",

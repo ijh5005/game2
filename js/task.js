@@ -315,8 +315,8 @@ const task = {
     else { task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
   },
   setTurnRestrictions: () => {
-    const { isTrainingBoard } = level_data[gameLevel];
-    if(isTrainingBoard){
+    const { trainingRestrictions } = level_data[gameLevel];
+    if(trainingRestrictions){
       const { restrictions } = level_data[gameLevel].trainingRestrictions;
       restrictions.forEach(restriction => {
         const {

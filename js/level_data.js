@@ -9,7 +9,6 @@ const level_data = [
       { stars: 3, score: 9 },
       { stars: 5, score: 10 }
     ],
-    isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
         yield "tap the <span class='highlightText'>blinking line</span> on the board";
@@ -104,7 +103,6 @@ const level_data = [
       { stars: 2, score: 9 },
       { stars: 3, score: 10 }
     ],
-    isTrainingBoard: true,
     help: {
       boardHelpText: function* gen(){
         yield "tap the <span class='highlightText'>cheetah</span> to explode the boxes!";
@@ -173,7 +171,6 @@ const level_data = [
       },
       helpTurns: [0, 2, 4]
     },
-    isTrainingBoard: true,
     trainingRestrictions: {
       restrictions: [
         {
@@ -219,7 +216,6 @@ const level_data = [
       },
       helpTurns: [0, 1, 3]
     },
-    isTrainingBoard: true,
     trainingRestrictions: {
       restrictions: [
         {
@@ -267,12 +263,12 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "Tap the panther to explode The Foot Of Oppression";
-        yield "You cannot click lines around The Foot Of Oppression";
-        yield "If The Foot Of Oppression isn't destroyed You Lose";
+        yield "explode the <span class='highlightText'>Foot Of Oppression</span>";
+        yield "You <span class='highlightText'>cannot</span> click lines <span class='highlightText'>around</span> The Foot Of Oppression";
+        yield "If The Foot Of Oppression <span class='highlightText'>is not</span> destroyed You Lose";
         yield "";
       },
-      helpTurns: [0, 1, 3, 4]
+      helpTurns: [0, 1, 3, 5]
     },
     tools: [
       {
@@ -285,7 +281,16 @@ const level_data = [
         src: "./img/color_animals/asset_cheetah.png",
         count: 1
       }
-    ]
+    ],
+    trainingRestrictions: {
+      restrictions: [
+        {
+          type: "clickBox",
+          turn: 0,
+          clickBox: ["box27"]
+        }
+      ]
+    }
   },
   {
     isLocked: true,

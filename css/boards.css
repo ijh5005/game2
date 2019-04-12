@@ -64,7 +64,7 @@
 /* board */
 #boardHolder {
   width: 100%;
-  height: 375px;
+  /* height: 375px; */
   overflow: scroll;
   margin: 0 auto;
   padding: 1em 0;

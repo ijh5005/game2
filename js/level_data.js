@@ -119,11 +119,12 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "tap the <span class='highlightText'>cheetah</span> to explode the boxes!";
-        yield "if the cheetah is in a <span class='highlightText'>box</span> it explodes";
+        // yield "tap the <span class='highlightText'>cheetah</span> to explode the boxes!";
         yield "the cheetah explodes the <span class='highlightText'>row</span>";
+        yield "if the cheetah is in a <span class='highlightText'>box</span> it explodes";
         yield "";
       },
+      // helpTurns: [0, 1, 3, 5]
       helpTurns: [0, 1, 3, 5]
     },
     trainingRestrictions: {

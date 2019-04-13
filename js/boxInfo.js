@@ -605,7 +605,11 @@ const boxInfo = {
   },
   highlightBoxIfScored: (boxNumber) => {
     if (boxInfo.getBorderCount(boxNumber) === 4) {
-      takeAnotherTurn = true;
+      if(!boxInfo.isABomb(boxNumber)){
+        takeAnotherTurn = true;
+      } else {
+        takeAnotherTurn = false;
+      }
       gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
       if(isFirstPlayerTurn){
         pointsInArow++;

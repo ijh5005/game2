@@ -85,11 +85,13 @@ const task = {
   },
   setTips: (level) => {
     const {
-      heading, text, img_src
+      heading, text, img_src, height
     } = getGameLevelObj.tipsPage || level_data[0].tipsPage;
+
     task.addTextByQuerySelector("#tipHeading", heading);
     task.addTextByQuerySelector("#tipText", text);
     document.getElementById("tipImage").src = img_src;
+    document.getElementById("tipImage").style.height = height;
   },
   setDifficulty: (difficulty) => {
     if (difficulty === "easy") { chanceToGiveAWayPoint = 0.4 }

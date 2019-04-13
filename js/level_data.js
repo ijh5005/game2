@@ -11,13 +11,15 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "tap the <span class='highlightText'>blinking line</span> on the board";
-        yield "it's your turn. Tap another line";
+        // yield "tap the <span class='highlightText'>blinking line</span> on the board";
+        // yield "it's your turn. Tap another line";
         yield "create a <span class='highlightText'>box</span> to score";
         yield "take <span class='highlightText'>another turn</span> because you scored!";
+        yield "your turn!";
         yield "";
       },
-      helpTurns: [0, 2, 4, 5, 6]
+      // helpTurns: [0, 2, 4, 5, 6]
+      helpTurns: [4, 5, 7, 8]
     },
     trainingRestrictions: {
       restrictions: [
@@ -56,6 +58,18 @@ const level_data = [
             box: "box16",
             side: "left"
           }
+        },
+        {
+          type: "highLightLine",
+          turn: 5,
+          boxOne: {
+            box: "box21",
+            side: "bottom"
+          },
+          boxTwo: {
+            box: "box27",
+            side: "top"
+          }
         }
       ]
     },
@@ -72,10 +86,10 @@ const level_data = [
       }
     ],
     tipsPage: {
-      hey: "hey",
       heading: "how to",
-      text: "Take turns clicking lines. Complete a box to score and take another turn.",
-      img_src: "./img/tips/howto.gif"
+      text: "Complete a box to score. You get another turn by scoring.",
+      img_src: "./img/tips/howto.gif",
+      height: "30%"
     }
   },
   {
@@ -139,7 +153,13 @@ const level_data = [
         box: "box26",
         line: "bottom"
       }
-    ]
+    ],
+    tipsPage: {
+      heading: "how to",
+      text: "Explode as many opponent boxes as possible",
+      img_src: "./img/tips/bomb_example.png",
+      height: "78%"
+    }
   },
   {
     isLocked: false,
@@ -179,6 +199,12 @@ const level_data = [
           clickBox: ["box21"]
         }
       ]
+    },
+    tipsPage: {
+      heading: "how to",
+      text: "place the bomb on the board by selecting it and a box",
+      img_src: "./img/tips/drop_example.png",
+      height: "72%"
     }
   },
   {

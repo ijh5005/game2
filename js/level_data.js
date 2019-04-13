@@ -158,8 +158,8 @@ const level_data = [
     tipsPage: {
       heading: "how to",
       text: "Explode as many opponent boxes as possible",
-      img_src: "./img/tips/bomb_example.png",
-      height: "78%"
+      img_src: "./img/tips/bomb_example.gif",
+      height: "30%"
     }
   },
   {

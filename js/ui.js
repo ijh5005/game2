@@ -184,6 +184,8 @@ const ui = {
   selectHelper: (bombFunction) => {
     const hasSelected = document.querySelector(`.tool[class*=${bombFunction}]`).classList.contains("selected");
     if(hasSelected){
+      const helperDisabled = document.querySelector("keepSelected").length > 0;
+      if(helperDisabled) return null;
       task.removeClassByClassName("tool", "selected");
     } else {
       task.removeClassByClassName("tool", "selected");

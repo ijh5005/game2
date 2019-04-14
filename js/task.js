@@ -86,7 +86,7 @@ const task = {
   setTips: (level) => {
     const {
       heading, text, img_src, height
-    } = getGameLevelObj.tipsPage || level_data[0].tipsPage;
+    } = getGameLevelObj.tipsPage || settings.level_data[0].tipsPage;
 
     task.addTextByQuerySelector("#tipHeading", heading);
     task.addTextByQuerySelector("#tipText", text);
@@ -149,6 +149,12 @@ const task = {
         const storage = JSON.parse(localStorage.boxes)
         settings = storage.settings;
       }
+      settings.level_data.forEach((data, index) => {
+        if(data.help){
+          data.help.boardHelpText = helpTextArray[index].help.boardHelpText;
+          data.help.helpTurns = helpTextArray[index].help.helpTurns;
+        }
+      })
     })
   },
   changeTitleColor: () => {
@@ -190,7 +196,7 @@ const task = {
     getGameLevelObj = task.getGameLevelObj();
   },
   getGameLevelObj: () => {
-    return level_data[gameLevel];
+    return settings.level_data[gameLevel];
   },
   addTextByQuerySelector: (selector, text) => {
     const element = document.querySelectorAll(selector);
@@ -305,11 +311,21 @@ const task = {
     const query = document.querySelectorAll(selector);
     return query.length;
   },
-  setStarsForWinner: (score) => {
+  getStarsForWinner: (score) => {
     const starRubric = getGameLevelObj.starRating || [];
     if(score >= starRubric[2].score){ return 3 }
     else if(score >= starRubric[1].score){ return 2 }
     else if(score >= starRubric[0].score){ return 1 }
+  },
+  setStarsForWinner: (stars) => {
+    settings.level_data[gameLevel].stars = stars;
+    task.saveToLocalStorage("settings", settings);
+  },
+  openNextBoard: (stars) => {
+    if(stars > 0){
+      settings.level_data[gameLevel + 1].isLocked = false;
+      task.saveToLocalStorage("settings", settings);
+    }
   },
   setTurnIndicator: () => {
     task.removeClassByClassName("scoreHolder", "thisPlayerTurn");
@@ -317,9 +333,9 @@ const task = {
     else { task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
   },
   setTurnRestrictions: () => {
-    const { trainingRestrictions } = level_data[gameLevel];
+    const { trainingRestrictions } = settings.level_data[gameLevel];
     if(trainingRestrictions){
-      const { restrictions } = level_data[gameLevel].trainingRestrictions;
+      const { restrictions } = settings.level_data[gameLevel].trainingRestrictions;
       restrictions.forEach(restriction => {
         const {
           turn,
@@ -342,7 +358,7 @@ const task = {
             }, 500)
           } else if (type === "layBomb") {
             restrictionLayBomb = clickBox;
-            const boxToClick = level_data[gameLevel].clickAnimal;
+            const boxToClick = settings.level_data[gameLevel].clickAnimal;
             setTimeout(() => {
               task.addClassByQuerySelector(`.tool.${boxToClick}`, "clickBox");
             })
@@ -457,7 +473,7 @@ const task = {
   hasAPreMadeMove: () => {
     let hasPreMadeMove = false;
     let moveToMake = "";
-    const { computerMoves } = level_data[gameLevel];
+    const { computerMoves } = settings.level_data[gameLevel];
     if(computerMoves){
       computerMoves.forEach(move => {
         if(move.turn === track.turn){
@@ -481,7 +497,7 @@ const task = {
   setToolClickEvent: () => {
     $(document).on("click", ".tool.clickBox", () => {
       task.removeClassByClassName(".tool", "keepSelected");
-      const clickBox = level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
+      const clickBox = settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
       clickBox.forEach(box => {
         task.addClassByQuerySelector(".tool.clickBox", "keepSelected");
         task.removeClassByQuerySelector(".tool.clickBox", "clickBox");
@@ -490,7 +506,7 @@ const task = {
     })
   },
   shouldHighlightLayedBomb: () => {
-    return level_data[gameLevel].trainingRestrictions.restrictions[track.turn]
-            && level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
+    return settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn]
+            && settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
   }
 }

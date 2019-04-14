@@ -12,7 +12,7 @@ const computerMove = {
       const { box, line } = hasAPreMadeMove.moveToMake;
       setTimeout(() => {
         lineClickAction.clickOnBorder(box, line);
-      }, level_data[gameLevel].computerSpeed || 500)
+      }, settings.level_data[gameLevel].computerSpeed || 500)
       return null;
     }
 
@@ -34,7 +34,7 @@ const computerMove = {
         computerMove.setMakeComputerMove()
       }
 
-    }, level_data[gameLevel].computerSpeed || 500);
+    }, settings.level_data[gameLevel].computerSpeed || 500);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
     if (threeBorderBoxes.length !== 0) computerMove.getAFreeBox();

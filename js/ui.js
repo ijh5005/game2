@@ -76,7 +76,7 @@ const ui = {
     track.goToPage("levelsPage");
     document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
     const node = document.getElementsByClassName("levelsHolder")[0];
-    level_data.forEach(data => {
+    settings.level_data.forEach(data => {
       (data.isLocked) ?
       node.insertAdjacentHTML('beforeend', ui.uiComponents.lockedBoardBox()) :
       node.insertAdjacentHTML('beforeend', ui.uiComponents.boardBox(data));
@@ -370,7 +370,9 @@ const ui = {
   },
   showCompleteScreen: () => {
     setTimeout(() => {
-      const stars = task.setStarsForWinner(playerOneScore);
+      const stars = task.getStarsForWinner(playerOneScore);
+      task.setStarsForWinner(stars);
+      task.openNextBoard(stars);
       const yourScore = playerOneScore;
       const computerScore = playerTwoScore;
       const currentGoldCount = 50;

@@ -36,11 +36,18 @@ const soundEffects = {
     audio.play();
   },
   runSpeaker: (audio) => {
+    let hasCancelledMusic = false;
     const speaker = () => {
-      task.addClassByQuerySelector(".title img", "big");
-      setTimeout(() => {
-        task.removeClassByQuerySelector(".title img", "big");
-      }, 200)
+      if(settings.hasMutedMusic){
+        hasCancelledMusic = true;
+        return;
+      };
+      if(!hasCancelledMusic){
+        task.addClassByQuerySelector(".title img", "big");
+        setTimeout(() => {
+          task.removeClassByQuerySelector(".title img", "big");
+        }, 200)
+      }
     }
     const timeOuts = [ 0, 434, 869, 1303, 1737, 1986, 2256 ];
     let count = 1;
@@ -92,7 +99,12 @@ const soundEffects = {
           audio.pause();
         });
         $(document).on("click", ".mOptions.on", () => {
-          if(!settings.hasMutedMusic) audio.play();
+          if(!settings.hasMutedMusic){
+            audio.currentTime = 0;
+            audio.volume = playVolume;
+            soundEffects.runSpeaker();
+            audio.play();
+          }
         });
         // adjust volume on game play
         $(document).on("click", ".tipsText", () => {

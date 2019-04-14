@@ -1,5 +1,6 @@
 const ui = {
   startGame: () => {
+    task.removeClassByClassName("helpTextP", "showHelpText");
 
     restrictionLineClicks = null;
     restrictionClickBox = null;

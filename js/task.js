@@ -99,7 +99,7 @@ const task = {
     else if (difficulty === "hard") { chanceToGiveAWayPoint = 0.01 }
   },
   clearBoard: () => {
-    document.getElementsByClassName("box")[0].remove();
+    // document.getElementsByClassName("box")[0].remove();
     ui.startGame(gameLevel + 1); // add one for the index
   },
   breakRefAndCopy: (obj) => {

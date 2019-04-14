@@ -622,5 +622,10 @@ const ui = {
     if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
     if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
     if(explosionType) gameBoard[boxNumber][explosionType] = true;
+  },
+  addHighlightToClickBox: (clickBox) => {
+    setTimeout(() => {
+      task.addClassByClassName(clickBox, "clickBox");
+    }, 500)
   }
 }

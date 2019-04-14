@@ -49,6 +49,10 @@ const lineClickAction = {
       ui.showHelper(boxNumber);
       ui.populateTheUI();
       task.endTurnTasks();
+      const highlightDropBox = task.shouldHighlightLayedBomb();
+      if(highlightDropBox){
+        ui.addHighlightToClickBox(boxNumber);
+      }
     } else if(bomb.isExplosionBox(boxNumber)){
       if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
       clickedExplosion = true;

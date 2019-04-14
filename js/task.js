@@ -480,10 +480,17 @@ const task = {
   },
   setToolClickEvent: () => {
     $(document).on("click", ".tool.clickBox", () => {
+      task.removeClassByClassName(".tool", "keepSelected");
       const clickBox = level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
       clickBox.forEach(box => {
+        task.addClassByQuerySelector(".tool.clickBox", "keepSelected");
+        task.removeClassByQuerySelector(".tool.clickBox", "clickBox");
         task.addClassByClassName(box, "clickBox");
       })
     })
+  },
+  shouldHighlightLayedBomb: () => {
+    return level_data[gameLevel].trainingRestrictions.restrictions[track.turn]
+            && level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
   }
 }

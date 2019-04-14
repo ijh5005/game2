@@ -186,18 +186,18 @@ const level_data = [
     ],
     help: {
       boardHelpText: function* gen(){
-        yield "tap the <span class='highlightText'>panther</span>, then tap the box, then tap the panther";
         yield "the panther explodes the <span class='highlightText'>column</span>";
         yield "";
       },
-      helpTurns: [0, 2, 4]
+      helpTurns: [2, 4]
     },
     trainingRestrictions: {
       restrictions: [
         {
           type: "layBomb",
           turn: 0,
-          clickBox: ["box21"]
+          clickBox: ["box21"],
+          clickWhenLayed: true
         }
       ]
     },
@@ -205,7 +205,7 @@ const level_data = [
       heading: "how to",
       text: "place the bomb on the board by selecting it and a box",
       img_src: "./img/tips/drop_example.png",
-      height: "72%"
+      height: "64%"
     }
   },
   {
@@ -237,11 +237,11 @@ const level_data = [
     clickAnimal: "cheetah",
     help: {
       boardHelpText: function* gen(){
-        yield "place the <span class='highlightText'>cheetah</span> next to the <span class='highlightText'>lion</span>. then tap the lion";
         yield "that was a <span class='highlightText'>chain explosion</span>!";
+        yield "the <span class='highlightText'>lion</span> explodes surrounding boxes!";
         yield "";
       },
-      helpTurns: [0, 1, 3]
+      helpTurns: [1, 3, 5]
     },
     trainingRestrictions: {
       restrictions: [

@@ -106,3 +106,9 @@ p {
   color: #fff;
   opacity: 0.3;
 }
+
+.comingsoon {
+  margin-top: 40%;
+  font-weight: 100;
+  color: #b57800;
+}

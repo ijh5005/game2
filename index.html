@@ -34,6 +34,16 @@
 
         <div class="blur"></div>
 
+        <!-- coming soon page -->
+        <div class="comingSoonPage flexCol page">
+          <p class="comingsoon">Coming Soon</p>
+          <div class="backBtn settingsPageBackBtn flexRow" onclick="track.goToPage('homePage')">
+            <div class="">
+              <p class="bbtn"> go b<span class="backl">l</span>ack </p>
+            </div>
+          </div>
+        </div>
+
         <!-- home page -->
         <div class="homePage flexCol page">
           <!-- <div class="africa"></div> -->
@@ -47,10 +57,10 @@
             <p class="setting" onclick="ui.chooseBoard()">
               <span class="homeBtnText playBtn">play</span>
             </p>
-            <p class="setting">
+            <p class="setting" onclick="track.goToPage('comingSoonPage')">
               <span class="homeBtnText goalsBtn">goals</span>
             </p>
-            <p class="setting">
+            <p class="setting" onclick="track.goToPage('comingSoonPage')">
               <span class="homeBtnText storeBtn">store</span>
             </p>
             <p class="setting" onclick="track.goToPage('settingsPage')">

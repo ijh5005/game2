@@ -449,6 +449,7 @@ const ui = {
     task.removeClassByQuerySelector("svg.nextBtn", "showBtn");
   },
   redoBorder: () => {
+    if(currentPage !== "gameBoardPage") return null;
     ui.undoFinishScreen();
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
@@ -456,6 +457,7 @@ const ui = {
     task.setGameLevelAndTips(gameLevel);
   },
   nextBorder: () => {
+    if(currentPage !== "gameBoardPage") return null;
     ui.undoFinishScreen();
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);

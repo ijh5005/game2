@@ -162,7 +162,7 @@ let settings = {
       ],
       tipsPage: {
         heading: "how to",
-        text: "Explode as many opponent boxes as possible",
+        text: "Exploding opponent's boxes decrease their score",
         img_src: "./img/tips/bomb_example.gif",
         height: "30%"
       }

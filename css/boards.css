@@ -688,7 +688,7 @@
   opacity: 1;
   top: 3px;
   transform: rotateZ(90deg);
-  left: 45px;
+  left: 38px;
   z-index: 200;
   animation: clickBoxleftToRight 1s infinite;
 }
@@ -713,7 +713,7 @@
 
 @keyframes clickBoxleftToRight {
   0% {
-    left: 45px;
+    left: 38px;
   }
   50% {
     left: 60px;

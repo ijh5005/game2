@@ -71,7 +71,7 @@ let currentPage = "homePage";
 let chanceToGiveAWayPoint;
 
 
-let reset_settings = true;
+let reset_settings = false;
 //determines if we are on the game board
 let on_game_board = false;
 

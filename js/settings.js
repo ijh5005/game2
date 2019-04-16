@@ -331,6 +331,11 @@ let settings = {
       lockBoxes: [],
       initialBombs: [],
       bombsToLay: 0,
+      starRating: [
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
+      ]
     },
     {
       isLocked: true,
@@ -339,6 +344,11 @@ let settings = {
       lockBoxes: [],
       initialBombs: [],
       bombsToLay: 0,
+      starRating: [
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
+      ]
     },
     {
       isLocked: true,
@@ -347,6 +357,11 @@ let settings = {
       lockBoxes: [],
       initialBombs: [],
       bombsToLay: 0,
+      starRating: [
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
+      ]
     },
     {
       isLocked: true,
@@ -355,6 +370,11 @@ let settings = {
       lockBoxes: [],
       initialBombs: [],
       bombsToLay: 0,
+      starRating: [
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
+      ]
     },
     {
       isLocked: true,
@@ -363,6 +383,11 @@ let settings = {
       lockBoxes: [],
       initialBombs: [],
       bombsToLay: 0,
+      starRating: [
+        { stars: 1, score: 8 },
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
+      ]
     }
   ]
 }

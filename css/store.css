@@ -1,0 +1,154 @@
+.storeContainer {
+  height: 90vh;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.merchHolder {
+  height: 70vh;
+  width: 90vw;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 1em;
+}
+
+.animalBox {
+  height: 8em;
+  width: 8em;
+  margin: 0 0.5em 0 0.5em;
+}
+
+.animal {
+  height: 4em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  width: 100%;
+  position: relative;
+  top: 0.8em;
+}
+
+.price {
+  background-color: rgb(39, 0, 53);
+  width: 100%;
+}
+
+.price span {
+  font-size: 2em;
+  color: #fff;
+  opacity: 0.4;
+  margin-right: 0.5em;
+}
+
+.price div {
+  height: 3em;
+  background-image: url(../img/rewards/asset_goldbrick.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  width: 3em;
+}
+
+.currentGold {
+  background-color: rgba(39, 0, 53, 0.2);
+  height: 4em;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+  justify-content: flex-end;
+  padding-right: 1em;
+  z-index: 2;
+}
+
+.currentGold > div {
+  width: 30%;
+}
+
+.buy_cheetah {
+  background-image: url(../img/color_animals/asset_cheetah.png);
+}
+
+.buy_lion {
+  background-image: url(../img/color_animals/asset_lion.png);
+}
+
+.buy_panther {
+  background-image: url(../img/color_animals/asset_panther.png);
+}
+
+.buy_elephant {
+  background-image: url(../img/color_animals/asset_elephant.png);
+}
+
+.buy_giraffe {
+  background-image: url(../img/color_animals/asset_giraffe.png);
+}
+
+.buy_gorilla {
+  background-image: url(../img/color_animals/asset_gorilla.png);
+}
+
+.buy_redtailedmonkey {
+  background-image: url(../img/color_animals/asset_redtailedmonkey.png);
+}
+
+.buy_rhino {
+  background-image: url(../img/color_animals/asset_rhino.png);
+}
+
+.buy_cheetah_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_cheetah.png);
+}
+
+.buy_lion_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_lion.png);
+}
+
+.buy_panther_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_panther.png);
+}
+
+.buy_elephant_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_elephant.png);
+}
+
+.buy_giraffe_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_giraffe.png);
+}
+
+.buy_gorilla_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_gorilla.png);
+}
+
+.buy_redtailedmonkey_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_redtailedmonkey.png);
+}
+
+.buy_rhino_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_animals/asset_rhino.png);
+}

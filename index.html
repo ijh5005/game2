@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="./css/explosions.css">
     <link rel="stylesheet" href="./css/gameComplete.css">
     <link rel="stylesheet" href="./css/pregame.css">
+    <link rel="stylesheet" href="./css/store.css">
 
     <link href="./css/font.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
@@ -60,7 +61,7 @@
             <p class="setting" onclick="track.goToPage('comingSoonPage')">
               <span class="homeBtnText goalsBtn">goals</span>
             </p>
-            <p class="setting" onclick="track.goToPage('comingSoonPage')">
+            <p class="setting" onclick="track.goToPage('storePage')">
               <span class="homeBtnText storeBtn">store</span>
             </p>
             <p class="setting" onclick="track.goToPage('settingsPage')">
@@ -103,6 +104,95 @@
               </div>
             </div>
           </div>
+          <div class="backBtn settingsPageBackBtn flexRow" onclick="track.goToPage('homePage')">
+            <div class="">
+              <p class="bbtn"> go b<span class="backl">l</span>ack </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- store page -->
+        <div class="storePage flexCol page removePage">
+
+          <div class="storeContainer">
+            <div class="currentGold flexRow">
+              <div class="price flexRow">
+                <span>10</span>
+                <div class="goldMoney"></div>
+              </div>
+            </div>
+            <div class="">
+              <p class="title">STORE</p>
+            </div>
+            <div class="merchHolder flexRow">
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_cheetah"></div>
+                <div class="price flexRow">
+                  <span>10</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_lion"></div>
+                <div class="price flexRow">
+                  <span>10</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_panther"></div>
+                <div class="price flexRow">
+                  <span>10</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_elephant_dark"></div>
+                <div class="price flexRow">
+                  <span>?</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_giraffe_dark"></div>
+                <div class="price flexRow">
+                  <span>?</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_gorilla_dark"></div>
+                <div class="price flexRow">
+                  <span>?</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_redtailedmonkey_dark"></div>
+                <div class="price flexRow">
+                  <span>?</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+              <div class="animalBox flexCol">
+                <div class="animal buy_rhino_dark"></div>
+                <div class="price flexRow">
+                  <span>?</span>
+                  <div class="goldMoney"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
           <div class="backBtn settingsPageBackBtn flexRow" onclick="track.goToPage('homePage')">
             <div class="">
               <p class="bbtn"> go b<span class="backl">l</span>ack </p>

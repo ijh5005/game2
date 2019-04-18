@@ -389,5 +389,55 @@ let settings = {
         { stars: 3, score: 10 }
       ]
     }
-  ]
+  ],
+  store: {
+    cheetah: {
+      hasUnlocked: true,
+      unlockedImgClass: "buy_cheetah",
+      lockedImgClass: "buy_cheetah_dark",
+      cost: "10"
+    },
+    lion: {
+      hasUnlocked: true,
+      unlockedImgClass: "buy_lion",
+      lockedImgClass: "buy_lion_dark",
+      cost: "10"
+    },
+    panther: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_panther",
+      lockedImgClass: "buy_panther_dark",
+      cost: "10"
+    },
+    elephant: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_elephant",
+      lockedImgClass: "buy_elephant_dark",
+      cost: "10"
+    },
+    giraffe: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_giraffe",
+      lockedImgClass: "buy_giraffe_dark",
+      cost: "10"
+    },
+    gorilla: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_gorilla",
+      lockedImgClass: "buy_gorilla_dark",
+      cost: "10"
+    },
+    redtailedmonkey: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_redtailedmonkey",
+      lockedImgClass: "buy_redtailedmonkey_dark",
+      cost: "10"
+    },
+    rhino: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_rhino",
+      lockedImgClass: "buy_rhino_dark",
+      cost: "10"
+    }
+  }
 }

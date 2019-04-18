@@ -18,6 +18,10 @@ const track = {
     } else {
       on_game_board = false;
     }
+
+    if(page === "storePage"){
+      ui.populateStore();
+    }
   },
   youLose: () => {
     console.log("you lose")

@@ -374,6 +374,8 @@ const ui = {
           const currentClass = img.classList[0];
           img.classList.remove(currentClass);
           img.classList.add(`${prize}_reward`);
+          settings.store[prize].hasUnlocked = true;
+          task.saveToLocalStorage("settings", settings);
         }
         task.addClassByClassName("rewardScreen", "showPrice");
         setTimeout(() => {

@@ -152,3 +152,28 @@
   top: 2em;
   background-image: url(../img/dark_animals/asset_rhino.png);
 }
+
+
+/* queens */
+
+.buy_queen_candace {
+  background-image: url(../img/queens/asset_queen_candace.png);
+}
+
+.buy_queen_makeda {
+  background-image: url(../img/queens/asset_queen_makeda.png);
+}
+
+.buy_queen_candace_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_queens/asset_queen_candace.png);
+}
+
+.buy_queen_makeda_dark {
+  opacity: 0.4;
+  z-index: -1;
+  top: 2em;
+  background-image: url(../img/dark_queens/asset_queen_makeda.png);
+}

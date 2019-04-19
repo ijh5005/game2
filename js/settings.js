@@ -392,13 +392,13 @@ let settings = {
   ],
   store: {
     cheetah: {
-      hasUnlocked: true,
+      hasUnlocked: false,
       unlockedImgClass: "buy_cheetah",
       lockedImgClass: "buy_cheetah_dark",
       cost: "10"
     },
     lion: {
-      hasUnlocked: true,
+      hasUnlocked: false,
       unlockedImgClass: "buy_lion",
       lockedImgClass: "buy_lion_dark",
       cost: "10"
@@ -438,6 +438,18 @@ let settings = {
       unlockedImgClass: "buy_rhino",
       lockedImgClass: "buy_rhino_dark",
       cost: "10"
+    },
+    candace: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_queen_makeda",
+      lockedImgClass: "buy_queen_makeda_dark",
+      cost: "100"
+    },
+    makeda: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_queen_candace",
+      lockedImgClass: "buy_queen_candace_dark",
+      cost: "100"
     }
   }
 }

@@ -200,6 +200,7 @@ const ui = {
     }
   },
   populateStore: () => {
+    task.addTextByQuerySelector("#goldAmount", settings.gold);
     const merchHolder = document.getElementsByClassName("merchHolder")[0];
     merchHolder.innerHTML = "";
     const { store } = settings;
@@ -348,6 +349,7 @@ const ui = {
           // task.addTextByQuerySelector(".remainingGold", gold);
           const currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
           task.addTextByQuerySelector(".currentGoldCount", currectGold)
+          settings.gold = currectGold;
         }, starTimeout)
         remainingGold--;
         if(remainingGold > 0){
@@ -418,7 +420,7 @@ const ui = {
       task.openNextBoard(stars);
       const yourScore = playerOneScore;
       const computerScore = playerTwoScore;
-      const currentGoldCount = 50;
+      const currentGoldCount = settings.gold;
       const prize = "cheetah";
       ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
     }, 500)

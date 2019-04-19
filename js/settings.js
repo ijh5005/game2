@@ -451,5 +451,6 @@ let settings = {
       lockedImgClass: "buy_queen_candace_dark",
       cost: "100"
     }
-  }
+  },
+  gold: 0
 }

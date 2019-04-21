@@ -410,9 +410,12 @@ const ui = {
   showGift: (prize, starTimeout) => {
     if(prize){
       setTimeout(() => {
-        if(!getGameLevelObj.hasLargePrize){
+        const hasClaimed = getGameLevelObj.hasLargePrize && getGameLevelObj.hasLargePrize.hasClaimed;
+        if(!getGameLevelObj.hasLargePrize || hasClaimed){
           task.addClassByClassName("goldScreen", "smallPrize");
         } else {
+          settings.level_data[gameLevel].hasLargePrize.hasClaimed = true;
+          task.saveToLocalStorage("settings", settings);
           task.removeClassByClassName("goldScreen", "smallPrize");
           const prize = getGameLevelObj.hasLargePrize.prize;
           const img = document.querySelector(".goldScreen img")
@@ -558,7 +561,7 @@ const ui = {
   nextBoard: () => {
     const notOnBoard = currentPage !== "gameBoardPage";
     const hasAnotherLevel = gameLevel && settings.level_data[gameLevel + 1];
-    if(notOnBoard || !hasAnotherLevel) return null;
+    if(notOnBoard || (hasAnotherLevel === false)) return null;
     ui.undoFinishScreen();
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);

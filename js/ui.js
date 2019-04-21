@@ -10,6 +10,8 @@ const ui = {
     restrictionLayBomb = null;
     nextRestriction =  null;
 
+    settings.itemsSelected = [];
+
     task.startEndGameInterval();
     track.turn = 0;
     pointsInArow = 0;
@@ -192,8 +194,9 @@ const ui = {
   },
   selectHelper: (bombFunction) => {
     const hasSelected = document.querySelector(`.tool[class*=${bombFunction}]`).classList.contains("selected");
-    if(hasSelected){
-      const helperDisabled = document.querySelector("keepSelected").length > 0;
+    const keepSelected = document.querySelector("keepSelected");
+    if(hasSelected && keepSelected){
+      const helperDisabled = keepSelected.length > 0;
       if(helperDisabled) return null;
       task.removeClassByClassName("tool", "selected");
     } else {
@@ -223,8 +226,8 @@ const ui = {
         populated.push(data)
       }
     })
-    const hasNotTakenLayTutorial = settings.level_data[2].isLocked === true;
-    if(populated.length === 0 || hasNotTakenLayTutorial){
+    const hasTakenLayTutorial = gameLevel > 4;
+    if(populated.length === 0 || !hasTakenLayTutorial){
       ui.doneBombSelected();
     }
   },
@@ -256,7 +259,6 @@ const ui = {
       `);
     },
     helper: (data) => {
-      // <p class="${data.name}p">${data.count}</p>
       return (`<div class="tool flexRow ${data.name}" onclick="ui.selectHelper('${data.name}')">
         <img src=${data.src} alt="">
         <svg class="helpPointer" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-point-down" class="svg-inline--fa fa-hand-point-down fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M91.826 467.2V317.966c-8.248 5.841-16.558 10.57-24.918 14.153C35.098 345.752-.014 322.222 0 288c.008-18.616 10.897-32.203 29.092-40 28.286-12.122 64.329-78.648 77.323-107.534 7.956-17.857 25.479-28.453 43.845-28.464l.001-.002h171.526c11.812 0 21.897 8.596 23.703 20.269 7.25 46.837 38.483 61.76 38.315 123.731-.007 2.724.195 13.254.195 16 0 50.654-22.122 81.574-71.263 72.6-9.297 18.597-39.486 30.738-62.315 16.45-21.177 24.645-53.896 22.639-70.944 6.299V467.2c0 24.15-20.201 44.8-43.826 44.8-23.283 0-43.826-21.35-43.826-44.8zM112 72V24c0-13.255 10.745-24 24-24h192c13.255 0 24 10.745 24 24v48c0 13.255-10.745 24-24 24H136c-13.255 0-24-10.745-24-24zm212-24c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z"></path></svg>
@@ -402,7 +404,6 @@ const ui = {
       changeNumber();
     }
     setTimeout(() => {
-      // task.addTextByQuerySelector(".remainingGold", 0);
       ui.showGift(prize, starTimeout);
     }, starTimeout);
   },
@@ -420,12 +421,17 @@ const ui = {
           img.classList.remove(currentClass);
           img.classList.add(`${prize}_reward`);
           settings.store[prize].hasUnlocked = true;
+          const currentQuantity = settings.store[prize].quantity;
+          settings.store[prize].quantity = currentQuantity + 1;
+          settings.itemsPurchased.push(prize);
           task.saveToLocalStorage("settings", settings);
         }
         task.addClassByClassName("rewardScreen", "showPrice");
         setTimeout(() => {
           task.addClassByQuerySelector("svg.redoBtn", "showBtn");
-          task.addClassByQuerySelector("svg.nextBtn", "showBtn");
+          if(settings.level_data[gameLevel + 1]){
+            task.addClassByQuerySelector("svg.nextBtn", "showBtn");
+          }
         }, 1000)
       }, 200);
     }
@@ -549,8 +555,10 @@ const ui = {
     gameLevel++;
     task.setGameLevelAndTips(gameLevel);
   },
-  nextBorder: () => {
-    if(currentPage !== "gameBoardPage") return null;
+  nextBoard: () => {
+    const notOnBoard = currentPage !== "gameBoardPage";
+    const hasAnotherLevel = gameLevel && settings.level_data[gameLevel + 1];
+    if(notOnBoard || !hasAnotherLevel) return null;
     ui.undoFinishScreen();
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);

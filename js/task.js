@@ -6,6 +6,7 @@ const task = {
   },
   endGameChecker: 0,
   startEndGameInterval: () => {
+    clearInterval(task.endGameChecker);
     task.endGameChecker = setInterval(() => {
       task.isGameOver();
     }, 1000)
@@ -62,7 +63,7 @@ const task = {
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
     });
     if(totalPointsScored === gameBoardLength){
-      clearTimeout(task.endGameChecker);
+      clearInterval(task.endGameChecker);
       if(playerOneScore > playerTwoScore){
         ui.showCompleteScreen();
       } else if(playerOneScore === playerTwoScore){
@@ -322,8 +323,9 @@ const task = {
     task.saveToLocalStorage("settings", settings);
   },
   openNextBoard: (stars) => {
-    if(stars > 0){
-      settings.level_data[gameLevel + 1].isLocked = false;
+    const nextLevel = settings.level_data[gameLevel + 1];
+    if(stars > 0 && nextLevel){
+      nextLevel.isLocked = false;
       task.saveToLocalStorage("settings", settings);
     }
   },

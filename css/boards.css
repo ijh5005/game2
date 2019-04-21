@@ -399,6 +399,7 @@
   width: 100%;
   font-weight: bold;
   pointer-events: none;
+  z-index: 200;
 }
 
 .interactiveText p {

@@ -60,7 +60,8 @@ const lineClickAction = {
       task.endTurnTasks();
     } else if(!task.onRestrictionTurn()) {
       soundEffects.playWrongSound();
-      if(!settings.level_data[gameLevel].help.helpTurns.includes(track.turn)){
+      const help = settings.level_data[gameLevel].help;
+      if(help && !help.helpTurns.includes(track.turn)){
         ui.showText("Tap directly between the dots!");
         setTimeout(() => {
           ui.showText("");

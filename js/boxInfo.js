@@ -6,6 +6,9 @@ const boxInfo = {
     return gameBoard[clickBox].surroundingBoxes[boxSide]
   },
   getSurroundingBoxesKeys: (clickBox) => {
+    if(!Object.keys(boxInfo.getGameBoardClickBox(clickBox))){
+      return null;
+    }
     return Object.keys(boxInfo.getGameBoardClickBox(clickBox).surroundingBoxes);
   },
   isBoxDisabled: (box) => {

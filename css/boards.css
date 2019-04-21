@@ -719,3 +719,88 @@
     left: 60px;
   }
 }
+
+
+/* select bomb screen */
+.selectBombScreen {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-color: rgba(27, 1, 37, 0.2);
+  transition:  background-color 0.5s;
+  z-index: 200;
+  top: 0;
+}
+
+.selectBombScreen.showBoard {
+  background-color: rgba(27, 1, 37, 0);
+}
+
+.selectBombScreen.playGame {
+  display: none;
+}
+
+.selectBombsContainer {
+  height: 80vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.selectBombText {
+  color: #b57800;
+  margin: 0;
+  font-size: 2em;
+  margin-bottom: 0.2em;
+}
+
+.selectBtns {
+  height: 20vh;
+  width: 100vw;
+  background-color: rgb(27, 1, 37);
+}
+
+.selectBtns div {
+  height: 100%;
+  width: 50%;
+}
+
+.selectBtnText {
+  font-size: 1em;
+  color: #b57800;
+  font-size: 2em;
+  width: 60%;
+  margin: 0;
+}
+
+.selectBomb {
+  width: 100vw;
+  height: 10em;
+  background-color: rgb(27, 1, 37);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 1em 0;
+  overflow-y: hidden;
+}
+
+.selectBombScreen.showBoard .selectBomb,
+.selectBombScreen.showBoard .selectBombText {
+  display: none;
+}
+
+.animalBombSelectBox {
+  height: 4em;
+  width: 4em;
+  margin-left: 0.6em;
+  display: inline-block;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 0;
+  transition: top 0.5s;
+}
+
+.selectedBombForBoard {
+  top: 4em;
+  animation: pulse 2s infinite;
+}

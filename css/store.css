@@ -16,6 +16,7 @@
   height: 8em;
   width: 8em;
   margin: 0 0.5em 0 0.5em;
+  position: relative;
 }
 
 .animal {
@@ -31,6 +32,7 @@
 .price {
   background-color: rgb(39, 0, 53);
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .price span {
@@ -47,6 +49,49 @@
   background-repeat: no-repeat;
   background-size: 100% auto;
   width: 3em;
+}
+
+.totalForItem {
+  position: absolute;
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  top: 0;
+  right: -1em;
+}
+
+.totalForItemP {
+  font-size: 2em;
+  margin: 0;
+  color: #c899d9;
+}
+
+.buyItemContainer {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.buyItemContainer.hidePurchaseScreen {
+  z-index: -10;
+}
+
+.buyItem {
+  position: relative;
+  margin: 0 auto;
+  top: 4em;
+  height: 14em;
+  width: 14em;
+  border-radius: 0.2em;
+  background-color: rgb(27, 1, 37);
+}
+
+.buyItem p {
+  font-size: 2em;
+  color: #b57800;
+  font-weight: 900;
 }
 
 .currentGold {
@@ -176,4 +221,10 @@
   z-index: -1;
   top: 2em;
   background-image: url(../img/dark_queens/asset_queen_makeda.png);
+}
+
+.confirmYesBtn,
+.confirmNoBtn {
+  height: 6em;
+  width: 50%;
 }

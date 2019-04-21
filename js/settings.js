@@ -392,65 +392,77 @@ let settings = {
   ],
   store: {
     cheetah: {
-      hasUnlocked: false,
+      hasUnlocked: true,
       unlockedImgClass: "buy_cheetah",
       lockedImgClass: "buy_cheetah_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     lion: {
-      hasUnlocked: false,
+      hasUnlocked: true,
       unlockedImgClass: "buy_lion",
       lockedImgClass: "buy_lion_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     panther: {
-      hasUnlocked: false,
+      hasUnlocked: true,
       unlockedImgClass: "buy_panther",
       lockedImgClass: "buy_panther_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     elephant: {
       hasUnlocked: false,
       unlockedImgClass: "buy_elephant",
       lockedImgClass: "buy_elephant_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     giraffe: {
       hasUnlocked: false,
       unlockedImgClass: "buy_giraffe",
       lockedImgClass: "buy_giraffe_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     gorilla: {
       hasUnlocked: false,
       unlockedImgClass: "buy_gorilla",
       lockedImgClass: "buy_gorilla_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     redtailedmonkey: {
       hasUnlocked: false,
       unlockedImgClass: "buy_redtailedmonkey",
       lockedImgClass: "buy_redtailedmonkey_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     rhino: {
       hasUnlocked: false,
       unlockedImgClass: "buy_rhino",
       lockedImgClass: "buy_rhino_dark",
-      cost: "10"
+      cost: "10",
+      quantity: 0
     },
     candace: {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_makeda",
       lockedImgClass: "buy_queen_makeda_dark",
-      cost: "100"
+      cost: "100",
+      quantity: 0
     },
     makeda: {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_candace",
       lockedImgClass: "buy_queen_candace_dark",
-      cost: "100"
+      cost: "100",
+      quantity: 0
     }
   },
-  gold: 0
+  gold: 42,
+  itemsPurchased: [],
+  itemsSelected: []
 }

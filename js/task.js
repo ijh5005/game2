@@ -508,5 +508,27 @@ const task = {
   shouldHighlightLayedBomb: () => {
     return settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn]
             && settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
+  },
+  selectStoreItem: (item, cost) => {
+    const currentGold = settings.gold;
+    if(currentGold >= cost){
+      for (var x in storeItemSelected) delete storeItemSelected[x];
+      storeItemSelected.item = item;
+      storeItemSelected.cost = cost;
+      ui.toggleConfirmScreen();
+    } else {
+      soundEffects.playWrongSound();
+    }
+  },
+  buyItem: () => {
+    const currentGold = settings.gold;
+    settings.gold = currentGold - storeItemSelected.cost;
+    settings.itemsPurchased.push(storeItemSelected.item);
+    const newQuantity = settings.store[storeItemSelected.item].quantity + 1;
+    settings.store[storeItemSelected.item].quantity = newQuantity;
+    task.saveToLocalStorage("settings", settings)
+    ui.toggleConfirmScreen();
+    document.getElementById("goldAmount").innerText = settings.gold;
+    ui.populateStore();
   }
 }

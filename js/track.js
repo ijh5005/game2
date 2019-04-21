@@ -15,6 +15,7 @@ const track = {
     ui.setSettingsIfOnSettingsPage(page);
     if(page === "gameBoardPage"){
       task.resizeBoard();
+      ui.populateBombSelectionScreen();
     } else {
       on_game_board = false;
     }

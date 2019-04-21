@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="./css/sprite.css">
     <link rel="stylesheet" href="./css/explosions.css">
     <link rel="stylesheet" href="./css/gameComplete.css">
-    <link rel="stylesheet" href="./css/pregame.css">
     <link rel="stylesheet" href="./css/store.css">
 
     <link href="./css/font.css" rel="stylesheet">
@@ -114,6 +113,20 @@
         <!-- store page -->
         <div class="storePage flexCol page removePage">
 
+          <div class="buyItemContainer hidePurchaseScreen">
+            <div class="buyItem">
+              <p>confirm your order</p>
+              <div class="flexRow">
+                <div class="confirmYesBtn" onclick="task.buyItem()">
+                  <p>yes</p>
+                </div>
+                <div class="confirmNoBtn" onclick="ui.toggleConfirmScreen()">
+                  <p>no</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="storeContainer">
             <div class="currentGold flexRow">
               <div class="price flexRow">
@@ -196,6 +209,24 @@
           <div class="interactiveText">
             <p></p>
           </div>
+
+          <!-- select bombs screen -->
+          <div class="selectBombScreen">
+            <div class="selectBombsContainer flexCol">
+              <p class="selectBombText">choose ya bombs</p>
+              <div class="selectBomb">
+                <div class="animalBombSelectBox buy_cheetah" onclick="ui.selectPregameBomb('buy_cheetah')"></div>
+              </div>
+            </div>
+            <div class="selectBtns flexRow">
+              <div class="flexRow" onClick="ui.toggleBombSelected()">
+                <p class="selectBtnText">view board</p>
+              </div>
+              <div class="flexRow">
+                <p class="selectBtnText" onClick="ui.doneBombSelected()">start</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- comple box -->
@@ -222,29 +253,6 @@
 
         <svg onclick="ui.redoBorder()" class="redoBtn" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo-alt" class="svg-inline--fa fa-redo-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"></path></svg>
         <svg onclick="ui.nextBorder()" class="nextBtn" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-right" class="svg-inline--fa fa-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg>
-
-        <div class="silverScreen">
-          <p class="hideWhenViewingBoard">choose ya bombs</p>
-          <div class="pregameBombs hideWhenViewingBoard flexRow">
-            <img src="./img/color_animals/asset_cheetah.png" alt="">
-            <img src="./img/color_animals/asset_panther.png" alt="">
-            <img src="./img/color_animals/asset_giraffe.png" alt="">
-            <img src="./img/color_animals/asset_gorilla.png" alt="">
-            <img src="./img/color_animals/asset_lion.png" alt="">
-            <img src="./img/color_animals/asset_panther.png" alt="">
-            <img src="./img/color_animals/asset_elephant.png" alt="">
-            <img src="./img/color_animals/asset_redtailedmonkey.png" alt="">
-            <img src="./img/color_animals/asset_rhino.png" alt="">
-          </div>
-          <!-- <div class="patternScreen hideWhenViewingBoard flexRow">
-            <img src="./img/rewards/panther_reward.png" alt="">
-          </div> -->
-          <div class="viewBtn flexRow">
-            <span class="hideWhenViewingBoard" onclick="ui.togglePregameScreen()">View Board</span>
-            <span class="pickBomb" onclick="ui.togglePregameScreen()">Ya Bombs</span>
-            <span>Let's Get It</span>
-          </div>
-        </div>
 
       </div>
 

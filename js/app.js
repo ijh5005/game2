@@ -8,6 +8,9 @@ const twoBorderBoxes = [];
 // will contain boxes with three lines clicked
 const threeBorderBoxes = [];
 
+//store item selected
+const storeItemSelected = {}
+
 // offset from line to be considered a line click
 const lineClickOffset = 12;
 

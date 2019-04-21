@@ -1,5 +1,8 @@
 const ui = {
   startGame: () => {
+    const selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    selectBombScreen.classList.remove("playGame")
+
     task.removeClassByClassName("helpTextP", "showHelpText");
 
     restrictionLineClicks = null;
@@ -209,6 +212,21 @@ const ui = {
       merchHolder.append(animalBox);
     }
   },
+  populateBombSelectionScreen: () => {
+    const selectBomb = document.getElementsByClassName("selectBomb")[0];
+    selectBomb.innerHTML = "";
+    const populated = [];
+    settings.itemsPurchased.forEach(data => {
+      if(!populated.includes(data)){
+        const animalSelectBox = ui.uiComponents.getAnimalSelectBox(data);
+        selectBomb.append(animalSelectBox);
+        populated.push(data)
+      }
+    })
+    if(populated.length === 0){
+      ui.doneBombSelected();
+    }
+  },
   uiComponents: {
     boardBox: (data) => {
       let stars = "";
@@ -249,6 +267,8 @@ const ui = {
       const animalClasses = ["animal", hasUnlocked ? unlockedImgClass : lockedImgClass];
       const priceClasses = ["price", "flexRow"];
       const goldMoneyClasses = ["goldMoney"];
+      const totalForItemClasses = ["totalForItem"];
+      const totalForItemPClasses = ["totalForItemP"];
       const costLabel = item.hasUnlocked ? item.cost : "?";
 
       const animalBox = document.createElement("div");
@@ -256,18 +276,40 @@ const ui = {
       let price = document.createElement("div");
       const goldMoney = document.createElement("div");
       const cost = document.createElement("span");
+      const totalForItem = document.createElement("div");
+      const totalForItemP = document.createElement("p");
 
       cost.innerText = costLabel;
+      totalForItemP.innerText = item.hasUnlocked ? item.quantity : "";
       animalBox.classList.add(...animalBoxClasses);
       animal.classList.add(...animalClasses);
       price.classList.add(...priceClasses);
       goldMoney.classList.add(...goldMoneyClasses);
+      totalForItem.classList.add(...totalForItemClasses);
+      totalForItemP.classList.add(...totalForItemPClasses);
 
       price.append(cost);
       price.append(goldMoney);
       animalBox.append(animal);
       animalBox.append(price);
+      totalForItem.append(totalForItemP);
+      animalBox.append(totalForItem);
 
+      animalBox.addEventListener("click", () => {
+        const animal = item.unlockedImgClass.replace("buy_", "");
+        const cost = (price.innerText === "?") ? 10000000 : parseInt(item.cost);
+        task.selectStoreItem(animal, cost);
+      });
+
+      return animalBox;
+    },
+    getAnimalSelectBox: (animal) => {
+      const animalBoxClasses = ["animalBombSelectBox", `buy_${animal}`];
+      const animalBox = document.createElement("div");
+      animalBox.classList.add(...animalBoxClasses);
+      animalBox.addEventListener("click", () => {
+        ui.selectPregameBomb(`buy_${animal}`);
+      });
       return animalBox;
     }
   },
@@ -679,5 +721,64 @@ const ui = {
     setTimeout(() => {
       task.addClassByClassName(clickBox, "clickBox");
     }, 500)
+  },
+  toggleBombSelected: () => {
+    const selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    const classList = selectBombScreen.classList;
+    if(classList.contains("showBoard")){
+      selectBombScreen.classList.remove("showBoard")
+    } else {
+      selectBombScreen.classList.add("showBoard")
+    }
+  },
+  doneBombSelected: () => {
+    const selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    selectBombScreen.classList.remove("showBoard");
+    selectBombScreen.classList.add("playGame");
+    if(!tools){
+      tools = task.getTools();
+    }
+    const used = [];
+    settings.itemsSelected.forEach(item => {
+      const animalName = item.replace("buy_", "")
+      const animal = {
+        name: animalName,
+        src: `./img/color_animals/asset_${animalName}.png`,
+        count: 1
+      }
+      tools = [
+        ...tools,
+        animal
+      ]
+      used.push(item);
+    })
+    used.forEach(data => {
+      const animalName = data.replace("buy_", "");
+      const index = settings.itemsPurchased.indexOf(animalName);
+      settings.itemsPurchased.splice(index, 1);
+      const currentQuantity = settings.store[animalName].quantity;
+      settings.store[animalName].quantity = currentQuantity - 1;
+    })
+    task.saveToLocalStorage("settings", settings);
+    settings.itemsSelected = [];
+    ui.populateHelpers();
+  },
+  selectPregameBomb: (selected) => {
+    const animal = document.querySelector(`.${selected}.selectedBombForBoard`);
+    if(animal){
+      task.removeClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
+      const index = settings.itemsSelected.indexOf(selected);
+      settings.itemsSelected.splice(index, 1)
+    } else {
+      task.addClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
+      settings.itemsSelected.push(selected);
+    }
+  },
+  toggleConfirmScreen: () => {
+    if(task.hasClassByClassName("buyItemContainer", "hidePurchaseScreen")){
+      task.removeClassByClassName("buyItemContainer", "hidePurchaseScreen")
+    } else {
+      task.addClassByClassName("buyItemContainer", "hidePurchaseScreen")
+    }
   }
 }

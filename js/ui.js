@@ -223,7 +223,8 @@ const ui = {
         populated.push(data)
       }
     })
-    if(populated.length === 0){
+    const hasNotTakenLayTutorial = settings.level_data[2].isLocked;
+    if(populated.length === 0 || hasNotTakenLayTutorial){
       ui.doneBombSelected();
     }
   },

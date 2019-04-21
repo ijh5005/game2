@@ -746,11 +746,19 @@ const ui = {
         src: `./img/color_animals/asset_${animalName}.png`,
         count: 1
       }
-      tools = [
-        ...tools,
-        animal
-      ]
-      used.push(item);
+      let isInTools = false;
+      tools.forEach(data => {
+        if(data.name === animalName){
+          isInTools = true;
+        }
+      })
+      if(!isInTools){
+        tools = [
+          ...tools,
+          animal
+        ]
+        used.push(item);
+      }
     })
     used.forEach(data => {
       const animalName = data.replace("buy_", "");

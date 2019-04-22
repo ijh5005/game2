@@ -404,21 +404,21 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_cheetah",
       lockedImgClass: "buy_cheetah_dark",
-      cost: "10",
+      cost: "20",
       quantity: 0
     },
     lion: {
       hasUnlocked: false,
       unlockedImgClass: "buy_lion",
       lockedImgClass: "buy_lion_dark",
-      cost: "10",
+      cost: "20",
       quantity: 0
     },
     panther: {
       hasUnlocked: false,
       unlockedImgClass: "buy_panther",
       lockedImgClass: "buy_panther_dark",
-      cost: "10",
+      cost: "20",
       quantity: 0
     },
     elephant: {

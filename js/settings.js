@@ -315,11 +315,6 @@ let settings = {
           name: "cheetah",
           src: "./img/color_animals/asset_cheetah.png",
           count: 1
-        },
-        {
-          name: "queen_makeda",
-          src: "./img/queens/asset_queen_makeda.png",
-          count: 1
         }
       ],
       trainingRestrictions: {
@@ -330,10 +325,16 @@ let settings = {
             clickBox: ["box27"]
           }
         ]
+      },
+      tipsPage: {
+        heading: "how to",
+        text: "There comes a time when people get tired of being trampled by the iron foot of oppression. - MLK Jr.",
+        img_src: "./img/tips/foot.png",
+        height: "50%"
       }
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 6,
       stars: 0,
       lockBoxes: [],

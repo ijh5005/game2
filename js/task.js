@@ -85,6 +85,10 @@ const task = {
     task.setTips(level);
   },
   setTips: (level) => {
+    if(!getGameLevelObj.tipsPage){
+      ui.startGame()
+    }
+
     const {
       heading, text, img_src, height
     } = getGameLevelObj.tipsPage || settings.level_data[0].tipsPage;

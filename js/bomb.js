@@ -3,6 +3,7 @@ const bomb = {
     { key: "isLionExplosion", class: "isLionExplosion" },
     { key: "isCheetahExplosion", class: "isCheetahExplosion" },
     { key: "isPantherExplosion", class: "isPantherExplosion" },
+    { key: "isQueenMakedaExplosion", class: "isQueenMakedaExplosion" }
   ],
   isExplosionBox: (box) => {
     let isBombBox = false;
@@ -140,6 +141,18 @@ const bomb = {
         boxesToExplode,
         linesToRemove
       } = animalExplosions.panther.boxes(box);
+      explodingBoxes.push(...boxesToExplode);
+      // make boxes explode
+      bomb.explodeBoxesFromArray(linesToRemove, box);
+      bomb.checkForChainReactions(boxesToExplode);
+      soundEffects.playExplosionSound();
+    } else if (gameBoard[box].isQueenMakedaExplosion) {
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isQueenMakedaExplosion = false;
+      const {
+        boxesToExplode,
+        linesToRemove
+      } = animalExplosions.queen_makeda.boxes(box);
       explodingBoxes.push(...boxesToExplode);
       // make boxes explode
       bomb.explodeBoxesFromArray(linesToRemove, box);

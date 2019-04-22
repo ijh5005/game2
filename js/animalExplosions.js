@@ -95,5 +95,24 @@ const animalExplosions = {
         boxesToExplode
       }
     }
+  },
+  queen_makeda: {
+    boxes: (box) => {
+      const temp = queen_makedaSquares[box].filter(data => data !== null);
+      const boxesToExplode = temp.map(data => `box${data}`);
+
+      const linesToRemove = [];
+      boxesToExplode.forEach(data => {
+        linesToRemove.push({
+          box: data,
+          lines: ["top", "bottom"]
+        })
+      });
+
+      return {
+        linesToRemove,
+        boxesToExplode
+      }
+    }
   }
 }

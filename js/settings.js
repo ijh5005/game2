@@ -99,7 +99,7 @@ let settings = {
     },
     {
       computerSpeed: 1000,
-      isLocked: false,
+      isLocked: true,
       levelNumber: 2,
       stars: 0,
       prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
@@ -315,6 +315,11 @@ let settings = {
           name: "cheetah",
           src: "./img/color_animals/asset_cheetah.png",
           count: 1
+        },
+        {
+          name: "queen_makeda",
+          src: "./img/queens/asset_queen_makeda.png",
+          count: 1
         }
       ],
       trainingRestrictions: {
@@ -390,12 +395,7 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
-      ],
-      hasLargePrize: {
-        prize: "queen_makeda",
-        quantity: 1,
-        hasClaimed: false
-      }
+      ]
     }
   ],
   store: {

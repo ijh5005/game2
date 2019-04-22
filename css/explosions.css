@@ -11,9 +11,14 @@
   background-image: url("../img/color_animals/asset_panther.png");
 }
 
+.isQueenMakedaExplosion {
+  background-image: url("../img/queens/asset_queen_makeda.png");
+}
+
 .isLionExplosion,
 .isCheetahExplosion,
-.isPantherExplosion {
+.isPantherExplosion,
+.isQueenMakedaExplosion {
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;

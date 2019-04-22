@@ -727,6 +727,7 @@ const ui = {
     if(selectedBombFunction === "lion") explosionType = "isLionExplosion";
     if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
     if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
+    if (selectedBombFunction === "queen_makeda") explosionType = "isQueenMakedaExplosion";
     if(explosionType) gameBoard[boxNumber][explosionType] = true;
   },
   addHighlightToClickBox: (clickBox) => {
@@ -753,10 +754,19 @@ const ui = {
     const used = [];
     settings.itemsSelected.forEach(item => {
       const animalName = item.replace("buy_", "")
-      const animal = {
-        name: animalName,
-        src: `./img/color_animals/asset_${animalName}.png`,
-        count: 1
+      let animal;
+      if(animalName.includes("queen")){
+        animal = {
+          name: animalName,
+          src: `./img/queens/asset_${animalName}.png`,
+          count: 1
+        }
+      } else {
+        animal = {
+          name: animalName,
+          src: `./img/color_animals/asset_${animalName}.png`,
+          count: 1
+        }
       }
       let isInTools = false;
       tools.forEach(data => {

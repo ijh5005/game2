@@ -508,6 +508,9 @@ const task = {
     })
   },
   shouldHighlightLayedBomb: () => {
+    if(!settings.level_data[gameLevel].trainingRestrictions){
+      return null;
+    }
     return settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn]
             && settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
   },

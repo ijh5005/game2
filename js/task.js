@@ -70,7 +70,7 @@ const task = {
         boardText.showOnBoard("DRAW", 5000);
         isFirstPlayerTurn = true;
       } else {
-        boardText.showOnBoard("You Be Ard. Try again", 5000);
+        boardText.showOnBoard("Aint nobody got time for that!", 5000);
         isFirstPlayerTurn = true;
       }
     }

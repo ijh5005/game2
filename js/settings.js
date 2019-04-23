@@ -334,7 +334,7 @@ let settings = {
       }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 6,
       stars: 0,
       lockBoxes: [],
@@ -386,7 +386,7 @@ let settings = {
       ]
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 10,
       stars: 0,
       lockBoxes: [],

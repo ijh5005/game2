@@ -412,70 +412,80 @@ let settings = {
       unlockedImgClass: "buy_cheetah",
       lockedImgClass: "buy_cheetah_dark",
       cost: "20",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isCheetahExplosion"
     },
     lion: {
       hasUnlocked: false,
       unlockedImgClass: "buy_lion",
       lockedImgClass: "buy_lion_dark",
       cost: "20",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isLionExplosion"
     },
     panther: {
       hasUnlocked: false,
       unlockedImgClass: "buy_panther",
       lockedImgClass: "buy_panther_dark",
       cost: "20",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isPantherExplosion"
     },
     elephant: {
       hasUnlocked: false,
       unlockedImgClass: "buy_elephant",
       lockedImgClass: "buy_elephant_dark",
       cost: "10",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isElephantExplosion"
     },
     giraffe: {
       hasUnlocked: false,
       unlockedImgClass: "buy_giraffe",
       lockedImgClass: "buy_giraffe_dark",
       cost: "10",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isGiraffeExplosion"
     },
     gorilla: {
       hasUnlocked: false,
       unlockedImgClass: "buy_gorilla",
       lockedImgClass: "buy_gorilla_dark",
       cost: "10",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isGorillaExplosion"
     },
     redtailedmonkey: {
       hasUnlocked: false,
       unlockedImgClass: "buy_redtailedmonkey",
       lockedImgClass: "buy_redtailedmonkey_dark",
       cost: "10",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isRedTailedMonkeyExplosion"
     },
     rhino: {
       hasUnlocked: false,
       unlockedImgClass: "buy_rhino",
       lockedImgClass: "buy_rhino_dark",
       cost: "10",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isRhinoExplosion"
     },
     queen_candace: {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_candace",
       lockedImgClass: "buy_queen_candace_dark",
       cost: "100",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isQueenCandaceExplosion"
     },
     queen_makeda: {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_makeda",
       lockedImgClass: "buy_queen_makeda_dark",
       cost: "100",
-      quantity: 0
+      quantity: 0,
+      imgBackgroundClass: "isQueenMakedaExplosion"
     }
   },
   gold: 0,

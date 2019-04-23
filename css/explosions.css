@@ -1,4 +1,6 @@
-/* animal explosions */
+/********** ----------------- ************************************/
+/********** animal explosions ************************************/
+/********** ----------------- ************************************/
 .isLionExplosion {
   background-image: url("../img/color_animals/asset_lion.png");
 }
@@ -11,19 +13,53 @@
   background-image: url("../img/color_animals/asset_panther.png");
 }
 
-.isQueenMakedaExplosion {
-  background-image: url("../img/queens/asset_queen_makeda.png");
+.isElephantExplosion {
+  background-image: url("../img/color_animals/asset_elephant.png");
+}
+
+.isGiraffeExplosion {
+  background-image: url("../img/color_animals/asset_giraffe.png");
+}
+
+.isGorillaExplosion {
+  background-image: url("../img/color_animals/asset_gorilla.png");
+}
+
+.isRedTailedMonkeyExplosion {
+  background-image: url("../img/color_animals/asset_redtailedmonkey.png");
+}
+
+.isRhinoExplosion {
+  background-image: url("../img/color_animals/asset_rhino.png");
 }
 
 .isLionExplosion,
 .isCheetahExplosion,
 .isPantherExplosion,
-.isQueenMakedaExplosion {
+.isElephantExplosion,
+.isGiraffeExplosion,
+.isGorillaExplosion,
+.isRedTailedMonkeyExplosion,
+.isRhinoExplosion {
   background-size: 68%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/********** ----------------- ************************************/
+/********** queens explosions ************************************/
+/********** ----------------- ************************************/
 .isQueenMakedaExplosion {
+  background-image: url("../img/queens/asset_queen_makeda.png");
+}
+
+.isQueenCandaceExplosion {
+  background-image: url("../img/queens/asset_queen_candace.png");
+}
+
+.isQueenMakedaExplosion,
+.isQueenCandaceExplosion, {
   background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }

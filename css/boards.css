@@ -525,7 +525,13 @@
 .isCheetahExplosion,
 .isLionExplosion,
 .isPantherExplosion,
-.isQueenMakedaExplosion {
+.isQueenMakedaExplosion,
+.isElephantExplosion,
+.isGiraffeExplosion,
+.isGorillaExplosion,
+.isRedTailedMonkeyExplosion,
+.isRhinoExplosion,
+.isQueenCandaceExplosion, {
   /* border-radius: 10%; */
   box-shadow: 0 0 0 rgba(204,169,44, 0.4);
   animation: pulse 4s infinite;

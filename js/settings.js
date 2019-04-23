@@ -386,7 +386,7 @@ let settings = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 10,
       stars: 0,
       lockBoxes: [],
@@ -396,6 +396,13 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
+      ],
+      tools: [
+        {
+          count: 1,
+          name: "queen_makeda",
+          src: "./img/queens/asset_queen_makeda.png"
+        }
       ]
     }
   ],

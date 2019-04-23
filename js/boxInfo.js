@@ -88,6 +88,8 @@ const boxInfo = {
       classesToAdd.push("isCheetahExplosion");
     } else if (gameBoard[box].isPantherExplosion) {
       classesToAdd.push("isPantherExplosion");
+    } else if (gameBoard[box].isQueenMakedaExplosion) {
+      classesToAdd.push("isQueenMakedaExplosion");
     }
 
     const sideClasses = [

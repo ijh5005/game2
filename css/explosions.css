@@ -23,3 +23,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.isQueenMakedaExplosion {
+  background-size: 100%;
+}

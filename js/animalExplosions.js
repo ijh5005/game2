@@ -102,10 +102,11 @@ const animalExplosions = {
       const boxesToExplode = temp.map(data => `box${data}`);
 
       const linesToRemove = [];
-      boxesToExplode.forEach(data => {
+      boxesToExplode.forEach((data, index) => {
+        const lines = (index < 6) ? ["left", "right"] : ["top", "bottom"];
         linesToRemove.push({
           box: data,
-          lines: ["top", "bottom"]
+          lines
         })
       });
 

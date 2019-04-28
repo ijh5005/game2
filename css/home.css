@@ -23,14 +23,13 @@
 }
 
 .motivationTitle {
-  height: 32em;
-  overflow: scroll;
-  padding-bottom: 8em;
+  font-size: 14vw;
 }
 
 .motivationBody {
-  height: 100vh;
+  height: 32em;
   overflow: scroll;
+  padding-bottom: 8em;
 }
 
 .title.transitionColor {

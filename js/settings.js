@@ -99,7 +99,7 @@ let settings = {
     },
     {
       computerSpeed: 1000,
-      isLocked: true,
+      isLocked: false,
       levelNumber: 2,
       stars: 0,
       prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
@@ -169,7 +169,7 @@ let settings = {
       }
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 3,
       stars: 0,
       prefilledBoxes: ["box9", "box15", "box27"],
@@ -216,7 +216,7 @@ let settings = {
       }
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 4,
       stars: 0,
       initialBombs: [
@@ -267,7 +267,7 @@ let settings = {
       }
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 5,
       stars: 0,
       lockBoxes: [
@@ -334,10 +334,24 @@ let settings = {
       }
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 6,
       stars: 0,
-      lockBoxes: [],
+      lockBoxes: [
+        {
+          box: "box28",
+          toughness: 1
+        }, {
+          box: "box29",
+          toughness: 1
+        }, {
+          box: "box34",
+          toughness: 1
+        }, {
+          box: "box35",
+          toughness: 1
+        }
+      ],
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
@@ -347,10 +361,24 @@ let settings = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 7,
       stars: 0,
-      lockBoxes: [],
+      lockBoxes: [
+        {
+          box: "box0",
+          toughness: 1
+        }, {
+          box: "box5",
+          toughness: 1
+        }, {
+          box: "box30",
+          toughness: 1
+        }, {
+          box: "box35",
+          toughness: 1
+        }
+      ],
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
@@ -360,10 +388,42 @@ let settings = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 8,
       stars: 0,
-      lockBoxes: [],
+      lockBoxes: [
+        {
+          box: "box2",
+          toughness: 1
+        }, {
+          box: "box3",
+          toughness: 1
+        }, {
+          box: "box8",
+          toughness: 1
+        }, {
+          box: "box9",
+          toughness: 1
+        }, {
+          box: "box20",
+          toughness: 1
+        }, {
+          box: "box21",
+          toughness: 1
+        }, {
+          box: "box26",
+          toughness: 1
+        }, {
+          box: "box27",
+          toughness: 1
+        }, {
+          box: "box32",
+          toughness: 1
+        }, {
+          box: "box33",
+          toughness: 1
+        }
+      ],
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
@@ -373,10 +433,36 @@ let settings = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 9,
       stars: 0,
-      lockBoxes: [],
+      lockBoxes: [
+        {
+          box: "box0",
+          toughness: 1
+        }, {
+          box: "box6",
+          toughness: 1
+        }, {
+          box: "box5",
+          toughness: 1
+        }, {
+          box: "box11",
+          toughness: 1
+        }, {
+          box: "box24",
+          toughness: 1
+        }, {
+          box: "box30",
+          toughness: 1
+        }, {
+          box: "box29",
+          toughness: 1
+        }, {
+          box: "box35",
+          toughness: 1
+        }
+      ],
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
@@ -386,7 +472,7 @@ let settings = {
       ]
     },
     {
-      isLocked: true,
+      isLocked: false,
       levelNumber: 10,
       stars: 0,
       lockBoxes: [],
@@ -402,6 +488,60 @@ let settings = {
           count: 1,
           name: "queen_makeda",
           src: "./img/queens/asset_queen_makeda.png"
+        }
+      ],
+      lockBoxes: [
+        {
+          box: "box6",
+          toughness: 1
+        }, {
+          box: "box7",
+          toughness: 1
+        }, {
+          box: "box8",
+          toughness: 1
+        }, {
+          box: "box9",
+          toughness: 1
+        }, {
+          box: "box10",
+          toughness: 1
+        }, {
+          box: "box11",
+          toughness: 1
+        }, {
+          box: "box12",
+          toughness: 1
+        }, {
+          box: "box13",
+          toughness: 1
+        }, {
+          box: "box14",
+          toughness: 1
+        }, {
+          box: "box15",
+          toughness: 1
+        }, {
+          box: "box17",
+          toughness: 1
+        }, {
+          box: "box18",
+          toughness: 1
+        }, {
+          box: "box19",
+          toughness: 1
+        }, {
+          box: "box20",
+          toughness: 1
+        }, {
+          box: "box21",
+          toughness: 1
+        }, {
+          box: "box22",
+          toughness: 1
+        }, {
+          box: "box23",
+          toughness: 1
         }
       ]
     }

@@ -759,6 +759,8 @@
   margin: 0;
   font-size: 2em;
   margin-bottom: 0.2em;
+  background-color: rgba(27, 1, 37, 0.7);
+  margin: 0;
 }
 
 .selectBtns {

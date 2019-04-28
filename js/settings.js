@@ -549,7 +549,7 @@ let settings = {
         }
       ],
       tipsPage: {
-        heading: "how to",
+        heading: "history",
         text: "Queen Makeda could make a small kingdom the most revered kingdom in the world",
         img_src: "./img/tips/asset_queen_makeda.png",
         height: "40%"

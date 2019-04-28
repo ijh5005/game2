@@ -99,7 +99,7 @@ let settings = {
     },
     {
       computerSpeed: 1000,
-      isLocked: false,
+      isLocked: true,
       levelNumber: 2,
       stars: 0,
       prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
@@ -169,7 +169,7 @@ let settings = {
       }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 3,
       stars: 0,
       prefilledBoxes: ["box9", "box15", "box27"],
@@ -210,13 +210,13 @@ let settings = {
       },
       tipsPage: {
         heading: "how to",
-        text: "place the bomb on the board by selecting it and a box",
+        text: "place the bomb on the board by selecting it first. Then selecting a box",
         img_src: "./img/tips/drop_example.png",
         height: "64%"
       }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 4,
       stars: 0,
       initialBombs: [
@@ -267,7 +267,7 @@ let settings = {
       }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 5,
       stars: 0,
       lockBoxes: [
@@ -334,7 +334,7 @@ let settings = {
       }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 6,
       stars: 0,
       lockBoxes: [
@@ -358,10 +358,16 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
-      ]
+      ],
+      tipsPage: {
+        heading: "how to",
+        text: "Go to the store to purchase items when you need to win",
+        img_src: "./img/tips/store.png",
+        height: "74%"
+      }
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 7,
       stars: 0,
       lockBoxes: [
@@ -388,7 +394,7 @@ let settings = {
       ]
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 8,
       stars: 0,
       lockBoxes: [
@@ -433,7 +439,7 @@ let settings = {
       ]
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 9,
       stars: 0,
       lockBoxes: [
@@ -472,7 +478,7 @@ let settings = {
       ]
     },
     {
-      isLocked: false,
+      isLocked: true,
       levelNumber: 10,
       stars: 0,
       lockBoxes: [],
@@ -543,7 +549,13 @@ let settings = {
           box: "box23",
           toughness: 1
         }
-      ]
+      ],
+      tipsPage: {
+        heading: "how to",
+        text: "Queen Makeda could make a small kingdom the most revered kingdom in the world",
+        img_src: "./img/tips/asset_queen_makeda.png",
+        height: "40%"
+      }
     }
   ],
   store: {

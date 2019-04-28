@@ -22,6 +22,17 @@
   color: rgb(39, 0, 53);
 }
 
+.motivationTitle {
+  height: 32em;
+  overflow: scroll;
+  padding-bottom: 8em;
+}
+
+.motivationBody {
+  height: 100vh;
+  overflow: scroll;
+}
+
 .title.transitionColor {
   transition: color 5s;
 }
@@ -89,7 +100,7 @@
 
 .playBtn,
 .settingsBtn,
-.goalsBtn,
+.motivationBtn,
 .storeBtn,
 .settingsBtn {
   font-family: 'Raleway', cursive;
@@ -97,7 +108,7 @@
 }
 
 .playBtn,
-.goalsBtn,
+.motivationBtn,
 .storeBtn,
 .settingsBtn {
   font-size: 1em;
@@ -148,7 +159,7 @@
 }
 
 .tipText {
-  font-size: 1.8em;
+  font-size: 1.6em;
   width: 80%;
 }
 

@@ -143,6 +143,7 @@ p.prizeText {
 .goldScreen img {
   padding: 0.1em;
   width: 80%;
+  height: auto;
 }
 
 svg.redoBtn,

@@ -146,7 +146,7 @@ const lineClickAction = {
         if(adjBoxNumber){
           task.addClassByClassName(adjBoxNumber, `${adjBoxLine}LineClicked`);
         }
-      }, 200);
+      }, 500);
     }
   },
   isALockedBoxClick: (box, lineClicked) => {

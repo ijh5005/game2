@@ -64,17 +64,32 @@ const task = {
     });
     if(totalPointsScored === gameBoardLength){
       clearInterval(task.endGameChecker);
+      settings.endGame = true;
+      setTimeout(() => {
+        settings.endGame = false;
+      }, 4000)
       if(playerOneScore > playerTwoScore){
-        settings.endGame = true;
-        setTimeout(() => {
-          settings.endGame = false;
-        }, 4000)
         ui.showCompleteScreen();
       } else if(playerOneScore === playerTwoScore){
         boardText.showOnBoard("DRAW", 5000);
         isFirstPlayerTurn = true;
       } else {
         boardText.showOnBoard("Aint nobody got time for that!", 5000);
+        isFirstPlayerTurn = true;
+      }
+    } else {
+      const hasNoBorderBoxes = noBorders.length === 0;
+      const hasTwoBorderBoxes = twoBorderBoxes.length === 0;
+      const hasThreeBorderBoxes = threeBorderBoxes.length === 0;
+      const noBoxesLeft = hasNoBorderBoxes && hasTwoBorderBoxes && hasThreeBorderBoxes;
+      if(noBoxesLeft){
+
+        settings.endGame = true;
+        setTimeout(() => {
+          settings.endGame = false;
+        }, 4000)
+
+        boardText.showOnBoard("Game Over! Blow up the foot of oppression to win", 6000);
         isFirstPlayerTurn = true;
       }
     }

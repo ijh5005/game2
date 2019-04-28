@@ -1,4 +1,5 @@
 let settings = {
+  version: 1,
   difficulty: "easy", // options: easy, medium, hard
   hasMutedMusic: false,
   hasMutedSound: false,
@@ -11,8 +12,8 @@ let settings = {
       stars: 0,
       starRating: [
         { stars: 1, score: 8 },
-        { stars: 3, score: 9 },
-        { stars: 5, score: 10 }
+        { stars: 2, score: 9 },
+        { stars: 3, score: 10 }
       ],
       help: {
         boardHelpText: function* gen(){
@@ -180,9 +181,9 @@ let settings = {
         hasClaimed: false
       },
       starRating: [
-        { stars: 1, score: 11 },
-        { stars: 2, score: 12 },
-        { stars: 3, score: 13 }
+        { stars: 1, score: 10 },
+        { stars: 2, score: 11 },
+        { stars: 3, score: 12 }
       ],
       tools: [
         {
@@ -227,8 +228,8 @@ let settings = {
       ],
       starRating: [
         { stars: 1, score: 10 },
-        { stars: 2, score: 11 },
-        { stars: 3, score: 12 }
+        { stars: 2, score: 12 },
+        { stars: 3, score: 16 }
       ],
       hasLargePrize: {
         prize: "lion",
@@ -292,9 +293,9 @@ let settings = {
         }
       ],
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 14 },
+        { stars: 2, score: 18 },
+        { stars: 3, score: 24 }
       ],
       help: {
         boardHelpText: function* gen(){
@@ -355,9 +356,9 @@ let settings = {
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 10 },
+        { stars: 2, score: 14 },
+        { stars: 3, score: 16 }
       ],
       tipsPage: {
         heading: "how to",
@@ -382,22 +383,16 @@ let settings = {
           box: "box0",
           toughness: 1
         }, {
-          box: "box5",
-          toughness: 1
-        }, {
           box: "box30",
-          toughness: 1
-        }, {
-          box: "box35",
           toughness: 1
         }
       ],
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 10 },
+        { stars: 2, score: 12 },
+        { stars: 3, score: 14 }
       ],
       tools: [
         {
@@ -435,9 +430,9 @@ let settings = {
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 14 },
+        { stars: 2, score: 16 },
+        { stars: 3, score: 20 }
       ],
       tools: [
         {
@@ -469,9 +464,9 @@ let settings = {
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 12 },
+        { stars: 2, score: 14 },
+        { stars: 3, score: 16 }
       ],
       tools: [
         {
@@ -489,9 +484,9 @@ let settings = {
       initialBombs: [],
       bombsToLay: 0,
       starRating: [
-        { stars: 1, score: 8 },
-        { stars: 2, score: 9 },
-        { stars: 3, score: 10 }
+        { stars: 1, score: 16 },
+        { stars: 2, score: 18 },
+        { stars: 3, score: 20 }
       ],
       tools: [
         {

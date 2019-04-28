@@ -2,7 +2,7 @@ const soundEffects = {
   play: (path) => {
     const audio = new Audio(`./soundEffects/voices/${path}`);
     // const audio = new Audio('./soundEffects/voices/jasmin/i see u.m4a');
-    audio.volume = settings.hasMutedSound ? 0 : 1;
+    // audio.volume = settings.hasMutedSound ? 0 : 1;
     audio.play();
   },
   playExplosionSound: () => {
@@ -63,6 +63,7 @@ const soundEffects = {
     run();
   },
   playBoardMusic: () => {
+    if(settings.hasMutedMusic) return null;
     const audio = new Audio('./soundEffects/Song_Beat/Zazah beat 22.mp3');
     audio.volume = settings.hasMutedMusic ? 0 : 0.08;
     $(document).on("click", ".boardBackButton", () => {

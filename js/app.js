@@ -73,7 +73,7 @@ let currentPage = "homePage";
 // used for difficulty
 let chanceToGiveAWayPoint;
 
-let reset_settings = false;
+let reset_settings = true;
 //determines if we are on the game board
 let on_game_board = false;
 

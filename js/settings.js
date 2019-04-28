@@ -364,7 +364,14 @@ let settings = {
         text: "Go to the store to purchase items when you need to win",
         img_src: "./img/tips/store.png",
         height: "74%"
-      }
+      },
+      tools: [
+        {
+          name: "cheetah",
+          src: "./img/color_animals/asset_cheetah.png",
+          count: 1
+        }
+      ],
     },
     {
       isLocked: true,
@@ -391,7 +398,14 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
-      ]
+      ],
+      tools: [
+        {
+          name: "panther",
+          src: "./img/color_animals/asset_panther.png",
+          count: 1
+        }
+      ],
     },
     {
       isLocked: true,
@@ -399,18 +413,6 @@ let settings = {
       stars: 0,
       lockBoxes: [
         {
-          box: "box2",
-          toughness: 1
-        }, {
-          box: "box3",
-          toughness: 1
-        }, {
-          box: "box8",
-          toughness: 1
-        }, {
-          box: "box9",
-          toughness: 1
-        }, {
           box: "box20",
           toughness: 1
         }, {
@@ -436,7 +438,14 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
-      ]
+      ],
+      tools: [
+        {
+          name: "lion",
+          src: "./img/color_animals/asset_lion.png",
+          count: 1
+        }
+      ],
     },
     {
       isLocked: true,
@@ -444,18 +453,6 @@ let settings = {
       stars: 0,
       lockBoxes: [
         {
-          box: "box0",
-          toughness: 1
-        }, {
-          box: "box6",
-          toughness: 1
-        }, {
-          box: "box5",
-          toughness: 1
-        }, {
-          box: "box11",
-          toughness: 1
-        }, {
           box: "box24",
           toughness: 1
         }, {
@@ -475,6 +472,13 @@ let settings = {
         { stars: 1, score: 8 },
         { stars: 2, score: 9 },
         { stars: 3, score: 10 }
+      ],
+      tools: [
+        {
+          name: "cheetah",
+          src: "./img/color_animals/asset_cheetah.png",
+          count: 1
+        }
       ]
     },
     {
@@ -494,13 +498,15 @@ let settings = {
           count: 1,
           name: "queen_makeda",
           src: "./img/queens/asset_queen_makeda.png"
+        },
+        {
+          name: "panther",
+          src: "./img/color_animals/asset_panther.png",
+          count: 1
         }
       ],
       lockBoxes: [
         {
-          box: "box6",
-          toughness: 1
-        }, {
           box: "box7",
           toughness: 1
         }, {
@@ -529,9 +535,6 @@ let settings = {
           toughness: 1
         }, {
           box: "box17",
-          toughness: 1
-        }, {
-          box: "box18",
           toughness: 1
         }, {
           box: "box19",
@@ -563,7 +566,7 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_cheetah",
       lockedImgClass: "buy_cheetah_dark",
-      cost: "20",
+      cost: "10",
       quantity: 0,
       imgBackgroundClass: "isCheetahExplosion"
     },
@@ -571,7 +574,7 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_lion",
       lockedImgClass: "buy_lion_dark",
-      cost: "20",
+      cost: "10",
       quantity: 0,
       imgBackgroundClass: "isLionExplosion"
     },
@@ -579,7 +582,7 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_panther",
       lockedImgClass: "buy_panther_dark",
-      cost: "20",
+      cost: "10",
       quantity: 0,
       imgBackgroundClass: "isPantherExplosion"
     },
@@ -627,7 +630,7 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_candace",
       lockedImgClass: "buy_queen_candace_dark",
-      cost: "100",
+      cost: "50",
       quantity: 0,
       imgBackgroundClass: "isQueenCandaceExplosion"
     },
@@ -635,7 +638,7 @@ let settings = {
       hasUnlocked: false,
       unlockedImgClass: "buy_queen_makeda",
       lockedImgClass: "buy_queen_makeda_dark",
-      cost: "100",
+      cost: "50",
       quantity: 0,
       imgBackgroundClass: "isQueenMakedaExplosion"
     }

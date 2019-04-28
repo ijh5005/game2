@@ -83,6 +83,7 @@ const ui = {
     return length;
   },
   chooseBoard: () => {
+    if(settings.endGame) return null;
     track.goToPage("levelsPage");
     document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
     const node = document.getElementsByClassName("levelsHolder")[0];

@@ -65,6 +65,10 @@ const task = {
     if(totalPointsScored === gameBoardLength){
       clearInterval(task.endGameChecker);
       if(playerOneScore > playerTwoScore){
+        settings.endGame = true;
+        setTimeout(() => {
+          settings.endGame = false;
+        }, 4000)
         ui.showCompleteScreen();
       } else if(playerOneScore === playerTwoScore){
         boardText.showOnBoard("DRAW", 5000);
@@ -142,9 +146,9 @@ const task = {
     task.setTurnIndicator();
   },
   saveToLocalStorage: (key, obj) => {
-    localStorage['boxes'] = JSON.stringify({
+    window.localStorage.setItem("boxes", JSON.stringify({
       [key]: obj
-    });
+    }));
   },
   setFromLocalStorage: () => {
     setTimeout(() => {

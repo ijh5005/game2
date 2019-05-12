@@ -8,13 +8,13 @@ const boardText = {
     excellent: ["Ooo Yes"]
   },
   getBadText: () => {
-    return task.getRandomIndexInArray(boardText.text.bad);
+    return gametask.getRandomIndexInArray(boardText.text.bad);
   },
   getGoodText: () => {
-    return task.getRandomIndexInArray(boardText.text.good);
+    return gametask.getRandomIndexInArray(boardText.text.good);
   },
   getExcellentText: () => {
-    return task.getRandomIndexInArray(boardText.text.excellent);
+    return gametask.getRandomIndexInArray(boardText.text.excellent);
   },
   showText: (type) => {
     let text;
@@ -35,11 +35,11 @@ const boardText = {
     boardText.showOnBoard(text, 2000);
   },
   showOnBoard: (text, adjustTimeout) => {
-    task.addTextByQuerySelector(".interactiveText p", text);
-    task.addClassByQuerySelector(".interactiveText p", "showText")
+    gametask.addTextByQuerySelector(".interactiveText p", text);
+    gametask.addClassByQuerySelector(".interactiveText p", "showText")
     setTimeout(() => {
-      task.addTextByQuerySelector(".interactiveText p", "");
-      task.removeClassByQuerySelector(".interactiveText p", "showText")
+      gametask.addTextByQuerySelector(".interactiveText p", "");
+      gametask.removeClassByQuerySelector(".interactiveText p", "showText")
     }, adjustTimeout || 2000);
   }
 }

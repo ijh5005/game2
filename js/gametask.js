@@ -1,28 +1,28 @@
-const task = {
+const gametask = {
   endTurnTasks: () => {
     setTimeout(() => {
-      task.setTurnPlayer();
+      gametask.setTurnPlayer();
     })
   },
   endGameChecker: 0,
   startEndGameInterval: () => {
-    clearInterval(task.endGameChecker);
-    task.endGameChecker = setInterval(() => {
-      task.isGameOver();
+    clearInterval(gametask.endGameChecker);
+    gametask.endGameChecker = setInterval(() => {
+      gametask.isGameOver();
     }, 1000)
   },
   setTurnPlayer: () => {
     setTimeout(() => {
       const noMoreLinesToClick =
-        (twoBorderBoxes.length === 0) && (noBorders.length === 0) &&
-        (oneBorderBoxes.length === 0) && (threeBorderBoxes.length !== 0);
+        (app.twoBorderBoxes.length === 0) && (app.noBorders.length === 0) &&
+        (app.oneBorderBoxes.length === 0) && (app.threeBorderBoxes.length !== 0);
       const hasLockedBoxes = (lockBombLocations.length > 0);
       if(noMoreLinesToClick && hasLockedBoxes){
         console.log("game over");
       }
     })
 
-    task.resetAllRestrictions();
+    gametask.resetAllRestrictions();
 
     let incrementTurn = true;;
     if(takeAnotherTurn && isFirstPlayerTurn){
@@ -40,7 +40,7 @@ const task = {
       soundEffects.playLineClickSound();
     }
 
-    task.setTurnIndicator();
+    gametask.setTurnIndicator();
 
     setTimeout(() => {
       if(incrementTurn){
@@ -58,12 +58,12 @@ const task = {
   isGameOver: () => {
     totalPointsScored = 0;
     Object.keys(gameBoard).forEach(box => {
-      const firstPlayerScored = task.hasClassByQuerySelector(`.${box}`, "firstPlayerScored");
-      const secondPlayerScored = task.hasClassByQuerySelector(`.${box}`, "secondPlayerScored");
+      const firstPlayerScored = gametask.hasClassByQuerySelector(`.${box}`, "firstPlayerScored");
+      const secondPlayerScored = gametask.hasClassByQuerySelector(`.${box}`, "secondPlayerScored");
       if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
     });
     if(totalPointsScored === gameBoardLength){
-      clearInterval(task.endGameChecker);
+      clearInterval(gametask.endGameChecker);
       settings.endGame = true;
       setTimeout(() => {
         settings.endGame = false;
@@ -78,9 +78,9 @@ const task = {
         isFirstPlayerTurn = true;
       }
     } else {
-      const hasNoBorderBoxes = noBorders.length === 0;
-      const hasTwoBorderBoxes = twoBorderBoxes.length === 0;
-      const hasThreeBorderBoxes = threeBorderBoxes.length === 0;
+      const hasNoBorderBoxes = app.noBorders.length === 0;
+      const hasTwoBorderBoxes = app.twoBorderBoxes.length === 0;
+      const hasThreeBorderBoxes = app.threeBorderBoxes.length === 0;
       const noBoxesLeft = hasNoBorderBoxes && hasTwoBorderBoxes && hasThreeBorderBoxes;
       if(noBoxesLeft){
 
@@ -99,9 +99,9 @@ const task = {
   },
   setGameLevelAndTips: (level) => {
     gameLevel = level - 1;
-    task.setGameLevelObj();
+    gametask.setGameLevelObj();
     track.goToPage('tipsPage');
-    task.setTips(level);
+    gametask.setTips(level);
   },
   setTips: (level) => {
     if(!getGameLevelObj.tipsPage){
@@ -112,15 +112,15 @@ const task = {
       heading, text, img_src, height
     } = getGameLevelObj.tipsPage || settings.level_data[0].tipsPage;
 
-    task.addTextByQuerySelector("#tipHeading", heading);
-    task.addTextByQuerySelector("#tipText", text);
+    gametask.addTextByQuerySelector("#tipHeading", heading);
+    gametask.addTextByQuerySelector("#tipText", text);
     document.getElementById("tipImage").src = img_src;
     document.getElementById("tipImage").style.height = height;
   },
   setDifficulty: (difficulty) => {
-    if (difficulty === "easy") { chanceToGiveAWayPoint = 0.4 }
-    else if (difficulty === "medium") { chanceToGiveAWayPoint = 0.2 }
-    else if (difficulty === "hard") { chanceToGiveAWayPoint = 0.01 }
+    if (difficulty === "easy") { app.chanceToGiveAWayPoint = 0.4 }
+    else if (difficulty === "medium") { app.chanceToGiveAWayPoint = 0.2 }
+    else if (difficulty === "hard") { app.chanceToGiveAWayPoint = 0.01 }
   },
   clearBoard: () => {
     // document.getElementsByClassName("box")[0].remove();
@@ -148,17 +148,17 @@ const task = {
     return noDublicates;
   },
   isSelected: () => {
-    return task.getLengthOfElement(".tool.selected") === 1
+    return gametask.getLengthOfElement(".tool.selected") === 1
   },
   resetScore: () => {
     playerOneScore = 0;
     playerTwoScore = 0;
-    task.addTextByQuerySelector(".playerOneScore", playerOneScore);
-    task.addTextByQuerySelector(".playerTwoScore", playerTwoScore);
+    gametask.addTextByQuerySelector(".playerOneScore", playerOneScore);
+    gametask.addTextByQuerySelector(".playerTwoScore", playerTwoScore);
   },
   resetPlayerTurn: () => {
     isFirstPlayerTurn = true;
-    task.setTurnIndicator();
+    gametask.setTurnIndicator();
   },
   saveToLocalStorage: (key, obj) => {
     window.localStorage.setItem("boxes", JSON.stringify({
@@ -167,8 +167,8 @@ const task = {
   },
   setFromLocalStorage: () => {
     setTimeout(() => {
-      if(!localStorage.boxes || reset_settings){
-        task.saveToLocalStorage("settings", settings)
+      if(!localStorage.boxes || app.reset_settings){
+        gametask.saveToLocalStorage("settings", settings)
       } else {
         const storage = JSON.parse(localStorage.boxes)
         settings = storage.settings;
@@ -182,42 +182,42 @@ const task = {
     })
   },
   changeTitleColor: () => {
-    task.addClassByClassName("title", "transitionColor");
+    gametask.addClassByClassName("title", "transitionColor");
     setInterval(function () {
-      const hasColorChangheClass = task.hasClassByClassName("title", "colorChange");
+      const hasColorChangheClass = gametask.hasClassByClassName("title", "colorChange");
       if(hasColorChangheClass){
-        task.removeClassByClassName("title", "colorChange");
-        task.removeClassByClassName("africa", "lighter");
-        task.addClassByClassName("ripple", "active");
+        gametask.removeClassByClassName("title", "colorChange");
+        gametask.removeClassByClassName("africa", "lighter");
+        gametask.addClassByClassName("ripple", "active");
         setTimeout(() => {
-          task.removeClassByClassName("ripple", "active");
+          gametask.removeClassByClassName("ripple", "active");
         }, 100)
       } else {
-        task.addClassByClassName("title", "colorChange");
-        task.addClassByClassName("africa", "lighter");
+        gametask.addClassByClassName("title", "colorChange");
+        gametask.addClassByClassName("africa", "lighter");
       }
     }, 4000);
   },
   passTurn: () => {
     isFirstPlayerTurn = !isFirstPlayerTurn;
-    task.setTurnIndicator();
+    gametask.setTurnIndicator();
     if(!isFirstPlayerTurn){
       computerMove.setMakeComputerMove();
     }
   },
   resizeBoard: () => {
     setTimeout(() => {
-      const boardSize = task.getWidthWithId("board");
+      const boardSize = gametask.getWidthWithId("board");
       const gridWidth = boardSize/6;
-      task.setHeightWithClassName("box", gridWidth - 6);
-      task.setWidthWithClassName("box", gridWidth - 6);
+      gametask.setHeightWithClassName("box", gridWidth - 6);
+      gametask.setWidthWithClassName("box", gridWidth - 6);
     })
   },
   getTools: () => {
-    return getGameLevelObj.tools ? task.breakRefAndCopy(getGameLevelObj.tools) : [];
+    return getGameLevelObj.tools ? gametask.breakRefAndCopy(getGameLevelObj.tools) : [];
   },
   setGameLevelObj: () => {
-    getGameLevelObj = task.getGameLevelObj();
+    getGameLevelObj = gametask.getGameLevelObj();
   },
   getGameLevelObj: () => {
     return settings.level_data[gameLevel];
@@ -343,19 +343,19 @@ const task = {
   },
   setStarsForWinner: (stars) => {
     settings.level_data[gameLevel].stars = stars;
-    task.saveToLocalStorage("settings", settings);
+    gametask.saveToLocalStorage("settings", settings);
   },
   openNextBoard: (stars) => {
     const nextLevel = settings.level_data[gameLevel + 1];
     if(stars > 0 && nextLevel){
       nextLevel.isLocked = false;
-      task.saveToLocalStorage("settings", settings);
+      gametask.saveToLocalStorage("settings", settings);
     }
   },
   setTurnIndicator: () => {
-    task.removeClassByClassName("scoreHolder", "thisPlayerTurn");
-    if(isFirstPlayerTurn){ task.addClassByQuerySelector(".firstPlayerTurnHolder", "thisPlayerTurn") }
-    else { task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
+    gametask.removeClassByClassName("scoreHolder", "thisPlayerTurn");
+    if(isFirstPlayerTurn){ gametask.addClassByQuerySelector(".firstPlayerTurnHolder", "thisPlayerTurn") }
+    else { gametask.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn") }
   },
   setTurnRestrictions: () => {
     const { trainingRestrictions } = settings.level_data[gameLevel];
@@ -372,83 +372,83 @@ const task = {
         } = restriction;
         const onRestrictionTurn = track.turn === turn;
         if(onRestrictionTurn){
-          task.resetAllRestrictions();
+          gametask.resetAllRestrictions();
           if(type === "highLightLine"){
-            restrictionLineClicks = [boxOne, boxTwo];
-            task.highlightLine();
+            app.restrictionLineClicks = [boxOne, boxTwo];
+            gametask.highlightLine();
           } else if (type === "clickBox") {
-            restrictionClickBox = clickBox;
+            app.restrictionClickBox = clickBox;
             setTimeout(() => {
-              task.addClassByClassName(clickBox, "clickBox");
+              gametask.addClassByClassName(clickBox, "clickBox");
             }, 500)
           } else if (type === "layBomb") {
-            restrictionLayBomb = clickBox;
+            app.restrictionLayBomb = clickBox;
             const boxToClick = settings.level_data[gameLevel].clickAnimal;
             setTimeout(() => {
-              task.addClassByQuerySelector(`.tool.${boxToClick}`, "clickBox");
+              gametask.addClassByQuerySelector(`.tool.${boxToClick}`, "clickBox");
             })
           }
           if(then){
-            nextRestriction = then;
+            app.nextRestriction = then;
           }
         }
       })
     }
   },
   highlightLine: () => {
-    const restrict = task.breakRefAndCopy(restrictionLineClicks);
+    const restrict = gametask.breakRefAndCopy(app.restrictionLineClicks);
     setTimeout(() => {
       restrict.forEach(data => {
         if(data.side === "top"){
-          task.addClassByClassName(data.box, "clickTopLine")
+          gametask.addClassByClassName(data.box, "clickTopLine")
         } else if (data.side === "right") {
-          task.addClassByClassName(data.box, "clickRightLine")
+          gametask.addClassByClassName(data.box, "clickRightLine")
         } else if (data.side === "bottom") {
-          task.addClassByClassName(data.box, "clickBottomLine")
+          gametask.addClassByClassName(data.box, "clickBottomLine")
         } else if (data.side === "left") {
-          task.addClassByClassName(data.box, "clickLeftLine")
+          gametask.addClassByClassName(data.box, "clickLeftLine")
         }
       })
     }, 500)
   },
   resetAllRestrictions: () => {
-    restrictionLineClicks = null;
-    restrictionClickBox = null;
-    restrictionLayBomb = null;
-    nextRestriction = null;
+    app.restrictionLineClicks = null;
+    app.restrictionClickBox = null;
+    app.restrictionLayBomb = null;
+    app.nextRestriction = null;
     setTimeout(() => {
-      task.removeClassByClassName("box", "clickTopLine");
-      task.removeClassByClassName("box", "clickRightLine");
-      task.removeClassByClassName("box", "clickBottomLine");
-      task.removeClassByClassName("box", "clickLeftLine");
+      gametask.removeClassByClassName("box", "clickTopLine");
+      gametask.removeClassByClassName("box", "clickRightLine");
+      gametask.removeClassByClassName("box", "clickBottomLine");
+      gametask.removeClassByClassName("box", "clickLeftLine");
     }, 500)
   },
   onRestrictionTurn: () => {
-    return restrictionLineClicks || restrictionClickBox;
+    return app.restrictionLineClicks || app.restrictionClickBox;
   },
   hasPassedTrainingRestriction: (boxNumber, lineClicked) => {
     let hasPassed = true;
-    if(restrictionLineClicks){
+    if(app.restrictionLineClicks){
       hasPassed = false;
-      restrictionLineClicks.forEach(restriction => {
+      app.restrictionLineClicks.forEach(restriction => {
         const { box, side } = restriction;
         if(box === boxNumber && side === lineClicked){
           hasPassed = true;
         }
       })
-    } else if (restrictionClickBox) {
+    } else if (app.restrictionClickBox) {
       hasPassed = false;
-      if(restrictionClickBox.includes(boxNumber) && !lineClicked){
+      if(app.restrictionClickBox.includes(boxNumber) && !lineClicked){
         hasPassed = true;
       }
-    } else if(restrictionLayBomb) {
+    } else if(app.restrictionLayBomb) {
       hasPassed = false;
-      if(restrictionLayBomb.includes("any box") || restrictionLayBomb.includes(boxNumber)){
+      if(app.restrictionLayBomb.includes("any box") || app.restrictionLayBomb.includes(boxNumber)){
         if(!lineClicked){
           hasPassed = true;
-          restrictionLayBomb = null;
+          app.restrictionLayBomb = null;
 
-          if(nextRestriction){
+          if(app.nextRestriction){
             const {
               turn,
               type,
@@ -457,31 +457,31 @@ const task = {
               clickBox,
               then,
               withClickBox
-            } = nextRestriction;
+            } = app.nextRestriction;
             if(type === "highLightLine"){
               setTimeout(() => {
-                restrictionLineClicks = [boxOne, boxTwo];
-                task.highlightLine();
+                app.restrictionLineClicks = [boxOne, boxTwo];
+                gametask.highlightLine();
               }, 500)
             } else if (type === "clickBox") {
               if(withClickBox){
                 setTimeout(() => {
-                  restrictionClickBox = [...clickBox, boxNumber];
-                  restrictionClickBox.forEach(data => {
-                    task.addClassByClassName(data, "clickBox");
+                  app.restrictionClickBox = [...clickBox, boxNumber];
+                  app.restrictionClickBox.forEach(data => {
+                    gametask.addClassByClassName(data, "clickBox");
                   })
                 }, 500)
               } else {
                 setTimeout(() => {
-                  restrictionClickBox = [...clickBox];
-                  restrictionClickBox.forEach(data => {
-                    task.addClassByClassName(data, "clickBox");
+                  app.restrictionClickBox = [...clickBox];
+                  app.restrictionClickBox.forEach(data => {
+                    gametask.addClassByClassName(data, "clickBox");
                   })
                 }, 500)
               }
             } else if (type === "layBomb") {
               setTimeout(() => {
-                restrictionLayBomb = clickBox;
+                app.restrictionLayBomb = clickBox;
               })
             }
           }
@@ -521,12 +521,12 @@ const task = {
   },
   setToolClickEvent: () => {
     $(document).on("click", ".tool.clickBox", () => {
-      task.removeClassByClassName(".tool", "keepSelected");
+      gametask.removeClassByClassName(".tool", "keepSelected");
       const clickBox = settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
       clickBox.forEach(box => {
-        task.addClassByQuerySelector(".tool.clickBox", "keepSelected");
-        task.removeClassByQuerySelector(".tool.clickBox", "clickBox");
-        task.addClassByClassName(box, "clickBox");
+        gametask.addClassByQuerySelector(".tool.clickBox", "keepSelected");
+        gametask.removeClassByQuerySelector(".tool.clickBox", "clickBox");
+        gametask.addClassByClassName(box, "clickBox");
       })
     })
   },
@@ -540,9 +540,9 @@ const task = {
   selectStoreItem: (item, cost) => {
     const currentGold = settings.gold;
     if(currentGold >= cost){
-      for (var x in storeItemSelected) delete storeItemSelected[x];
-      storeItemSelected.item = item;
-      storeItemSelected.cost = cost;
+      for (var x in app.storeItemSelected) delete app.storeItemSelected[x];
+      app.storeItemSelected.item = item;
+      app.storeItemSelected.cost = cost;
       ui.toggleConfirmScreen();
     } else {
       soundEffects.playWrongSound();
@@ -550,15 +550,15 @@ const task = {
   },
   buyItem: () => {
     const currentGold = settings.gold;
-    settings.gold = currentGold - storeItemSelected.cost;
-    settings.itemsPurchased.push(storeItemSelected.item);
-    const newQuantity = settings.store[storeItemSelected.item].quantity + 1;
-    settings.store[storeItemSelected.item].quantity = newQuantity;
-    task.saveToLocalStorage("settings", settings)
+    settings.gold = currentGold - app.storeItemSelected.cost;
+    settings.itemsPurchased.push(app.storeItemSelected.item);
+    const newQuantity = settings.store[app.storeItemSelected.item].quantity + 1;
+    settings.store[app.storeItemSelected.item].quantity = newQuantity;
+    gametask.saveToLocalStorage("settings", settings)
     ui.toggleConfirmScreen();
     document.getElementById("goldAmount").innerText = settings.gold;
     ui.populateStore();
   }
 }
 
-module.exports = task;
+module.exports = gametask;

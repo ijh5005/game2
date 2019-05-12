@@ -27,22 +27,10 @@ const config = {
       level8: "./gameBoards/level8.js",
       level9: "./gameBoards/level9.js",
       level10: "./gameBoards/level10.js",
-      ui: "./ui.js",
       whoClickTheLine: "./whoClickTheLine.js",
       settings: "./settings.js",
-      soundEffects: "./soundEffects.js",
-      lineClickAction: "./lineClickAction.js",
-      computerMove: "./computerMove.js",
-      task: "./task.js",
-      boxInfo: "./boxInfo.js",
-      bomb: "./bomb.js",
-      lockBoxes: "./lockBoxes.js",
-      animalExplosions: "./animalExplosions.js",
-      boardText: "./boardText.js",
       animalExplosionSquares: "./animalExplosionSquares.js",
-      helpTextArray: "./helpTextArray.js",
-      app: "./app.js",
-      track: "./track.js"
+      helpTextArray: "./helpTextArray.js"
     })
   ]
 }

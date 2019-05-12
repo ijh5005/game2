@@ -47,7 +47,7 @@ const bomb = {
   },
   showExplosionInBox: (box, type, seconds) => {
     if(type !== "smoke") bomb.explodeLockBoxIfHit(box);
-    task.removeClassByQuerySelector(`.${box}Explosion`, "hideExplosion");
+    gametask.removeClassByQuerySelector(`.${box}Explosion`, "hideExplosion");
     document.querySelector(`.${box}Explosion`).src = `./gifs/${type}.gif`;
     setTimeout(() => {
       explodingBoxes.pop();
@@ -73,7 +73,7 @@ const bomb = {
               }
             })
             lockBombLocations.splice(newIndex, 1);
-            task.removeClassByQuerySelector(`.box.${box}`, "locked")
+            gametask.removeClassByQuerySelector(`.box.${box}`, "locked")
           }, 300);
         }
       }
@@ -192,21 +192,21 @@ const bomb = {
   },
   isExploding: [],
   showSpriteExplosion: (box) => {
-    task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
+    gametask.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
     setTimeout(() => {
-      task.addClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
+      gametask.addClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
     })
     setTimeout(() => {
-      task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
+      gametask.removeClassByQuerySelector(`.${box} > .spriteSheet`, "explosionGif");
       // remove the box from the exploding array
       bomb.isExploding.pop();
     }, 800);
     bomb.explodeLockBoxIfHit(box);
   },
   showSpriteSmoke: (box) => {
-    task.addClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
+    gametask.addClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
     setTimeout(() => {
-      task.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
+      gametask.removeClassByQuerySelector(`.${box} > .spriteSheet`, "smokeGif");
     }, 800);
   }
 }

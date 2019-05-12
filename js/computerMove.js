@@ -7,7 +7,7 @@ const computerMove = {
     })
   },
   makeComputerMove: () => {
-    const hasAPreMadeMove = task.hasAPreMadeMove();
+    const hasAPreMadeMove = gametask.hasAPreMadeMove();
     if(hasAPreMadeMove.hasPreMadeMove){
       const { box, line } = hasAPreMadeMove.moveToMake;
       setTimeout(() => {
@@ -22,8 +22,8 @@ const computerMove = {
     setTimeout(() => { // makes the computer delay before making a move
       //wait for explosions to stop before making computer move
       if(bomb.isExploding.length === 0){
-        const existsTwoBorderBoxes = twoBorderBoxes.length !== 0;
-        const noThreeBorderBoxes = !(threeBorderBoxes.length > 0);
+        const existsTwoBorderBoxes = app.twoBorderBoxes.length !== 0;
+        const noThreeBorderBoxes = !(app.threeBorderBoxes.length > 0);
         if (existsTwoBorderBoxes && noThreeBorderBoxes && computerMove.giveAWayABox()) {
           computerMove.clickInATwoBorderBox();
           ui.populateTheUI();
@@ -37,23 +37,23 @@ const computerMove = {
     }, settings.level_data[gameLevel].computerSpeed || 500);
   },
   makeMoveInSafeBox: () => { // make a computer move that doesn't allow opponent the score
-    if (threeBorderBoxes.length !== 0) computerMove.getAFreeBox();
-    else if (noBorders.length !== 0) computerMove.clickInANoBorderBox();
-    else if (oneBorderBoxes.length !== 0) computerMove.clickInAOneBorderBox();
-    else if (twoBorderBoxes.length !== 0) computerMove.clickInATwoBorderBox();
+    if (app.threeBorderBoxes.length !== 0) computerMove.getAFreeBox();
+    else if (app.noBorders.length !== 0) computerMove.clickInANoBorderBox();
+    else if (app.oneBorderBoxes.length !== 0) computerMove.clickInAOneBorderBox();
+    else if (app.twoBorderBoxes.length !== 0) computerMove.clickInATwoBorderBox();
     ui.populateTheUI();
   },
   getAFreeBox: () => {
-    const clickBox = task.getRandomIndexInArray(threeBorderBoxes);
+    const clickBox = gametask.getRandomIndexInArray(app.threeBorderBoxes);
     Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(data => {
       if(!bomb.allExplodingBoxes.length > 0){
         const borderCanBeClicked = !boxInfo.getGameBoardClickBox(clickBox).borders[data];
         if (borderCanBeClicked && !isFirstPlayerTurn) {
           if(boxInfo.isAdjBoxALockBox(clickBox, data)){
-            threeBorderBoxes.splice(threeBorderBoxes.indexOf(clickBox), 1);
+            app.threeBorderBoxes.splice(app.threeBorderBoxes.indexOf(clickBox), 1);
             computerMove.makeMoveInSafeBox();
           } else {
-            if(noBorders.length > 0 && !showTextUsed){
+            if(app.noBorders.length > 0 && !app.showTextUsed){
               track.screenText();
               // show text on board
               boardText.showText("bad");
@@ -69,19 +69,19 @@ const computerMove = {
     let keepGoing = true;
     while (keepGoing) {
       // choose a randon box in the array containing box with no border
-      const clickBox = task.getRandomIndexInArray(noBorders);
+      const clickBox = gametask.getRandomIndexInArray(app.noBorders);
       //remove that box from that array to avoid checking it multiple times
-      noBorders.splice(noBorders.indexOf(clickBox), 1);
+      app.noBorders.splice(app.noBorders.indexOf(clickBox), 1);
       // get the boxes around it that only has one or less borders already selected
       const oneOrLessBorderSurroundingBoxes = boxInfo.getLessThanOneBorderNonConnectedSurroundingBoxes(clickBox);
       // choose a random box of the potential boxes to click
-      const selectedBox = task.getRandomIndexInArray(oneOrLessBorderSurroundingBoxes);
+      const selectedBox = gametask.getRandomIndexInArray(oneOrLessBorderSurroundingBoxes);
       // cache the line between the two boxes to use when clicking
       const lineBetweenBoxes = boxInfo.getLineBetweenBoxes(clickBox, selectedBox);
       // is the box on the edge of the gameboard and has no adjcent box
       const edgeBox = boxInfo.edgeBox(clickBox);
-      // if the noBorders array is empty all avaible chooses are not safe to click
-      if (noBorders.length === 0) {
+      // if the app.noBorders array is empty all avaible chooses are not safe to click
+      if (app.noBorders.length === 0) {
         keepGoing = false;
       }
 
@@ -111,7 +111,7 @@ const computerMove = {
   clickInAOneBorderBox: () => {
     const safeClickBoxWithSide = boxInfo.getSafeBoxes();
     if (safeClickBoxWithSide.length !== 0) {
-      const clickBoxObj = task.getRandomIndexInArray(safeClickBoxWithSide);
+      const clickBoxObj = gametask.getRandomIndexInArray(safeClickBoxWithSide);
       lineClickAction.clickOnBorder(clickBoxObj.clickBox, clickBoxObj.clickSide);
     } else {
       computerMove.makeMoveInSafeBox();
@@ -174,11 +174,11 @@ const computerMove = {
   combineCircleAndStraigthPathCombinations: (connectedBoxCombinations) => {
     const replacements = [];
     boxInfo.adjustBorderCountArrays();
-    if (oneBorderBoxes.length !== 0) {
-      oneBorderBoxes.forEach(box => {
+    if (app.oneBorderBoxes.length !== 0) {
+      app.oneBorderBoxes.forEach(box => {
         const connectedBoxes = boxInfo.getConnectedBoxes(box);
         connectedBoxCombinations.forEach((paths, index) => {
-          if (task.hasTwoInArray(connectedBoxes, paths)) {
+          if (gametask.hasTwoInArray(connectedBoxes, paths)) {
             let allPathsHere = [];
             connectedBoxes.forEach(eachBox => {
               connectedBoxCombinations.forEach(pathsToGetPathsFrom => {
@@ -187,7 +187,7 @@ const computerMove = {
                 }
               })
             })
-            const withRemovedDoubles = task.removedDoublesFromArray(allPathsHere);
+            const withRemovedDoubles = gametask.removedDoublesFromArray(allPathsHere);
             replacements.push({
               array: withRemovedDoubles,
               index
@@ -204,7 +204,7 @@ const computerMove = {
     const length = multiScoreBoxPaths.length;
     const pathsToClickABox = multiScoreBoxPaths.sort((a, b) => a.length - b.length);
     while(keepGoing){
-      const boxToClick = task.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
+      const boxToClick = gametask.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
       let lineClick;
       const borders = boxInfo.getGameBoardClickBox(boxToClick).borders;
       Object.keys(borders).forEach((data, index) => {
@@ -231,7 +231,7 @@ const computerMove = {
   shouldLetHaveBox: () => {
     let onePathHasTwoBoxes = false;
     const pathsToClickABox = computerMove.getPathBoxes();
-    if ((pathsToClickABox.length === 2) && (threeBorderBoxes.length === 1)) {
+    if ((pathsToClickABox.length === 2) && (app.threeBorderBoxes.length === 1)) {
       pathsToClickABox.forEach(path => {
         if (path.length === 1) {
           onePathHasTwoBoxes = !onePathHasTwoBoxes;
@@ -260,7 +260,7 @@ const computerMove = {
     };
   },
   giveAWayABox: () => {
-    return (Math.random() < chanceToGiveAWayPoint);
+    return (Math.random() < app.chanceToGiveAWayPoint);
   }
 }
 

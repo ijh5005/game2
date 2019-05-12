@@ -2,10 +2,10 @@ const lineClickAction = {
   highlightClickedBorder: (offsetX, offsetY, boxNumber, board) => {
     lineClickAction.removeLineClickHighlights();
 
-    const height = task.getHeightWithClassName("box");
-    const upperOutOfBoundsNumber = height - lineClickOffset;
-    const lowerOutOfBoundsNumber = lineClickOffset;
-    const meetsBombLayingConditions = task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber);
+    const height = gametask.getHeightWithClassName("box");
+    const upperOutOfBoundsNumber = height - app.lineClickOffset;
+    const lowerOutOfBoundsNumber = app.lineClickOffset;
+    const meetsBombLayingConditions = gametask.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber);
     let hasMadeMove = false;
     // check to see if a line is clicked
     const isALineClicked = lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
@@ -13,7 +13,7 @@ const lineClickAction = {
       // the line thats clicked
       const lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
       // are we following the training rules
-      const followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, lineClicked);
+      const followingTrainingRulesIfAny = gametask.hasPassedTrainingRestriction(boxNumber, lineClicked);
       // prevent multiple click to the same border
       const lineIsAlreadyClick = boxInfo.hasClickBorderPreviously(boxNumber, lineClicked);
       // is the line click part of a lock box
@@ -21,24 +21,24 @@ const lineClickAction = {
       hasMadeMove = true;
       // prevent the line if these conditions are met
       if(!followingTrainingRulesIfAny){
-        return task.incorrectClick()
+        return gametask.incorrectClick()
       }
 
       if(lineIsAlreadyClick){
         ui.showText("line is taken! chose another..");
-        return task.incorrectClick()
+        return gametask.incorrectClick()
       }
 
       if(isLockBoxLineClick){
         ui.showText("destroy the item to click this line!");
-        return task.incorrectClick(boxNumber, lineClicked)
+        return gametask.incorrectClick(boxNumber, lineClicked)
       }
 
       lineClickAction.clickOnBorder(boxNumber, lineClicked);
     } else if(meetsBombLayingConditions){
       // are we following the training rules
-      const followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, null);
-      if(!followingTrainingRulesIfAny) return task.incorrectClick();
+      const followingTrainingRulesIfAny = gametask.hasPassedTrainingRestriction(boxNumber, null);
+      if(!followingTrainingRulesIfAny) return gametask.incorrectClick();
       // takeAnotherTurn = true;
       hasMadeMove = true;
       layedBomb = true;
@@ -48,17 +48,17 @@ const lineClickAction = {
       bomb.showSpriteSmoke(boxNumber);
       ui.showHelper(boxNumber);
       ui.populateTheUI();
-      task.endTurnTasks();
-      const highlightDropBox = task.shouldHighlightLayedBomb();
+      gametask.endTurnTasks();
+      const highlightDropBox = gametask.shouldHighlightLayedBomb();
       if(highlightDropBox){
         ui.addHighlightToClickBox(boxNumber);
       }
     } else if(bomb.isExplosionBox(boxNumber)){
-      if(!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
+      if(!gametask.hasPassedTrainingRestriction(boxNumber, null)) return null;
       clickedExplosion = true;
       bomb.explodeBoxes(boxNumber);
-      task.endTurnTasks();
-    } else if(!task.onRestrictionTurn()) {
+      gametask.endTurnTasks();
+    } else if(!gametask.onRestrictionTurn()) {
       soundEffects.playWrongSound();
       const help = settings.level_data[gameLevel].help;
       if(help && !help.helpTurns.includes(track.turn)){
@@ -79,7 +79,7 @@ const lineClickAction = {
       const pageClickPositionX = e.pageX;
       const clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
       if(clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn){
-        const heightOfBoxes = task.getHeightWithClassName("box13");
+        const heightOfBoxes = gametask.getHeightWithClassName("box13");
         const positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
         const rowInformation = boxInfo.getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes);
         const edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
@@ -89,7 +89,7 @@ const lineClickAction = {
 
             const { boxClicked, sideClicked } = edgeBoxClicked;
 
-            const hasPassed = task.hasPassedTrainingRestriction(boxClicked, sideClicked);
+            const hasPassed = gametask.hasPassedTrainingRestriction(boxClicked, sideClicked);
             if(hasPassed){
               lineClickAction.clickOnBorder(boxClicked, sideClicked);
               ui.populateTheUI();
@@ -131,20 +131,20 @@ const lineClickAction = {
     const scoreParams = [boxNumber, `box${adjacentBox}`].filter(data => data !== "boxnull");
     track.adjustScore(...scoreParams); // adjust the score
     lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, boxInfo.complementBorder[`${lineClicked}`]);
-    task.endTurnTasks();
+    gametask.endTurnTasks();
   },
   removeLineClickHighlights: () => {
-    task.removeClassByClassName("box", "topLineClicked");
-    task.removeClassByClassName("box", "rightLineClicked");
-    task.removeClassByClassName("box", "bottomLineClicked");
-    task.removeClassByClassName("box", "leftLineClicked");
+    gametask.removeClassByClassName("box", "topLineClicked");
+    gametask.removeClassByClassName("box", "rightLineClicked");
+    gametask.removeClassByClassName("box", "bottomLineClicked");
+    gametask.removeClassByClassName("box", "leftLineClicked");
   },
   changeLineColorOfLastClickedBox: (boxNumber, lineClicked, adjBoxNumber, adjBoxLine) => {
     if(!isFirstPlayerTurn){
       setTimeout(() => {
-        task.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
+        gametask.addClassByClassName(boxNumber, `${lineClicked}LineClicked`);
         if(adjBoxNumber){
-          task.addClassByClassName(adjBoxNumber, `${adjBoxLine}LineClicked`);
+          gametask.addClassByClassName(adjBoxNumber, `${adjBoxLine}LineClicked`);
         }
       }, 500);
     }

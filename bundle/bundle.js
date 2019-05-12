@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 358);
+/******/ 	return __webpack_require__(__webpack_require__.s = 347);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -178,8 +178,8 @@ module.exports = function (it) {
 "use strict";
 
 
-var store = __webpack_require__(55)('wks');
-var uid = __webpack_require__(43);
+var store = __webpack_require__(50)('wks');
+var uid = __webpack_require__(41);
 var _Symbol = __webpack_require__(2).Symbol;
 var USE_SYMBOL = typeof _Symbol == 'function';
 
@@ -225,7 +225,7 @@ module.exports = !__webpack_require__(3)(function () {
 
 
 var anObject = __webpack_require__(1);
-var IE8_DOM_DEFINE = __webpack_require__(114);
+var IE8_DOM_DEFINE = __webpack_require__(103);
 var toPrimitive = __webpack_require__(26);
 var dP = Object.defineProperty;
 
@@ -274,7 +274,7 @@ module.exports = function (it) {
 
 
 var dP = __webpack_require__(8);
-var createDesc = __webpack_require__(39);
+var createDesc = __webpack_require__(37);
 module.exports = __webpack_require__(7) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -292,8 +292,8 @@ module.exports = __webpack_require__(7) ? function (object, key, value) {
 var global = __webpack_require__(2);
 var hide = __webpack_require__(11);
 var has = __webpack_require__(14);
-var SRC = __webpack_require__(43)('src');
-var $toString = __webpack_require__(162);
+var SRC = __webpack_require__(41)('src');
+var $toString = __webpack_require__(151);
 var TO_STRING = 'toString';
 var TPL = ('' + $toString).split(TO_STRING);
 
@@ -367,12 +367,12 @@ module.exports = function (it, key) {
 "use strict";
 
 
-var pIE = __webpack_require__(54);
-var createDesc = __webpack_require__(39);
+var pIE = __webpack_require__(49);
+var createDesc = __webpack_require__(37);
 var toIObject = __webpack_require__(17);
 var toPrimitive = __webpack_require__(26);
 var has = __webpack_require__(14);
-var IE8_DOM_DEFINE = __webpack_require__(114);
+var IE8_DOM_DEFINE = __webpack_require__(103);
 var gOPD = Object.getOwnPropertyDescriptor;
 
 exports.f = __webpack_require__(7) ? gOPD : function getOwnPropertyDescriptor(O, P) {
@@ -394,7 +394,7 @@ exports.f = __webpack_require__(7) ? gOPD : function getOwnPropertyDescriptor(O,
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(14);
 var toObject = __webpack_require__(9);
-var IE_PROTO = __webpack_require__(93)('IE_PROTO');
+var IE_PROTO = __webpack_require__(84)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function (O) {
@@ -413,7 +413,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(53);
+var IObject = __webpack_require__(48);
 var defined = __webpack_require__(24);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -518,10 +518,10 @@ module.exports = function (it) {
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx = __webpack_require__(20);
-var IObject = __webpack_require__(53);
+var IObject = __webpack_require__(48);
 var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
-var asc = __webpack_require__(77);
+var asc = __webpack_require__(68);
 module.exports = function (TYPE, $create) {
   var IS_MAP = TYPE == 1;
   var IS_FILTER = TYPE == 2;
@@ -618,580 +618,14 @@ module.exports = function (it, S) {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(soundEffects, track, ui, computerMove, settings, boardText, helpTextArray) {
-
-var _task;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var task = (_task = {
-  endTurnTasks: function endTurnTasks() {
-    setTimeout(function () {
-      task.setTurnPlayer();
-    });
-  },
-  endGameChecker: 0,
-  startEndGameInterval: function startEndGameInterval() {
-    clearInterval(task.endGameChecker);
-    task.endGameChecker = setInterval(function () {
-      task.isGameOver();
-    }, 1000);
-  },
-  setTurnPlayer: function setTurnPlayer() {
-    setTimeout(function () {
-      var noMoreLinesToClick = twoBorderBoxes.length === 0 && noBorders.length === 0 && oneBorderBoxes.length === 0 && threeBorderBoxes.length !== 0;
-      var hasLockedBoxes = lockBombLocations.length > 0;
-      if (noMoreLinesToClick && hasLockedBoxes) {
-        console.log("game over");
-      }
-    });
-
-    task.resetAllRestrictions();
-
-    var incrementTurn = true;;
-    if (takeAnotherTurn && isFirstPlayerTurn) {
-      takeAnotherTurn = false;
-    } else if (takeAnotherTurn && !isFirstPlayerTurn) {
-      takeAnotherTurn = false;
-    } else if (layedBomb) {
-      layedBomb = false;
-      incrementTurn = false;
-    } else if (clickedExplosion) {
-      clickedExplosion = false;
-      isFirstPlayerTurn = !isFirstPlayerTurn;
-    } else if (!takeAnotherTurn) {
-      isFirstPlayerTurn = !isFirstPlayerTurn;
-      soundEffects.playLineClickSound();
-    }
-
-    task.setTurnIndicator();
-
-    setTimeout(function () {
-      if (incrementTurn) {
-        track.incrementTurn();
-      }
-      ui.populateTheUI();
-      ui.startLevelText();
-      setTimeout(function () {
-        if (!isFirstPlayerTurn) {
-          computerMove.makeComputerMove();
-        }
-      }, 100);
-    });
-  },
-  isGameOver: function isGameOver() {
-    totalPointsScored = 0;
-    Object.keys(gameBoard).forEach(function (box) {
-      var firstPlayerScored = task.hasClassByQuerySelector("." + box, "firstPlayerScored");
-      var secondPlayerScored = task.hasClassByQuerySelector("." + box, "secondPlayerScored");
-      if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
-    });
-    if (totalPointsScored === gameBoardLength) {
-      clearInterval(task.endGameChecker);
-      settings.endGame = true;
-      setTimeout(function () {
-        settings.endGame = false;
-      }, 4000);
-      if (playerOneScore > playerTwoScore) {
-        ui.showCompleteScreen();
-      } else if (playerOneScore === playerTwoScore) {
-        boardText.showOnBoard("DRAW", 5000);
-        isFirstPlayerTurn = true;
-      } else {
-        boardText.showOnBoard("Aint nobody got time for that!", 5000);
-        isFirstPlayerTurn = true;
-      }
-    } else {
-      var hasNoBorderBoxes = noBorders.length === 0;
-      var hasTwoBorderBoxes = twoBorderBoxes.length === 0;
-      var hasThreeBorderBoxes = threeBorderBoxes.length === 0;
-      var noBoxesLeft = hasNoBorderBoxes && hasTwoBorderBoxes && hasThreeBorderBoxes;
-      if (noBoxesLeft) {
-
-        settings.endGame = true;
-        setTimeout(function () {
-          settings.endGame = false;
-        }, 4000);
-
-        boardText.showOnBoard("Game Over! Blow up the foot of oppression to win", 6000);
-        isFirstPlayerTurn = true;
-      }
-    }
-  },
-  getRandomIndexInArray: function getRandomIndexInArray(boxArray) {
-    return boxArray[Math.floor(Math.random() * boxArray.length)];
-  },
-  setGameLevelAndTips: function setGameLevelAndTips(level) {
-    gameLevel = level - 1;
-    task.setGameLevelObj();
-    track.goToPage('tipsPage');
-    task.setTips(level);
-  },
-  setTips: function setTips(level) {
-    if (!getGameLevelObj.tipsPage) {
-      ui.startGame();
-    }
-
-    var _ref = getGameLevelObj.tipsPage || settings.level_data[0].tipsPage,
-        heading = _ref.heading,
-        text = _ref.text,
-        img_src = _ref.img_src,
-        height = _ref.height;
-
-    task.addTextByQuerySelector("#tipHeading", heading);
-    task.addTextByQuerySelector("#tipText", text);
-    document.getElementById("tipImage").src = img_src;
-    document.getElementById("tipImage").style.height = height;
-  },
-  setDifficulty: function setDifficulty(difficulty) {
-    if (difficulty === "easy") {
-      chanceToGiveAWayPoint = 0.4;
-    } else if (difficulty === "medium") {
-      chanceToGiveAWayPoint = 0.2;
-    } else if (difficulty === "hard") {
-      chanceToGiveAWayPoint = 0.01;
-    }
-  },
-  clearBoard: function clearBoard() {
-    // document.getElementsByClassName("box")[0].remove();
-    ui.startGame(gameLevel + 1); // add one for the index
-  },
-  breakRefAndCopy: function breakRefAndCopy(obj) {
-    return JSON.parse(JSON.stringify(obj));
-  },
-  hasTwoInArray: function hasTwoInArray(array, arrayToCheckIn) {
-    var numberInside = 0;
-    array.forEach(function (arr) {
-      if (arrayToCheckIn.includes(arr)) {
-        numberInside++;
-      }
-    });
-    return numberInside === 2;
-  },
-  removedDoublesFromArray: function removedDoublesFromArray(arr) {
-    var noDublicates = [];
-    arr.forEach(function (item) {
-      if (!noDublicates.includes(item)) {
-        noDublicates.push(item);
-      }
-    });
-    return noDublicates;
-  },
-  isSelected: function isSelected() {
-    return task.getLengthOfElement(".tool.selected") === 1;
-  },
-  resetScore: function resetScore() {
-    playerOneScore = 0;
-    playerTwoScore = 0;
-    task.addTextByQuerySelector(".playerOneScore", playerOneScore);
-    task.addTextByQuerySelector(".playerTwoScore", playerTwoScore);
-  },
-  resetPlayerTurn: function resetPlayerTurn() {
-    isFirstPlayerTurn = true;
-    task.setTurnIndicator();
-  },
-  saveToLocalStorage: function saveToLocalStorage(key, obj) {
-    window.localStorage.setItem("boxes", JSON.stringify(_defineProperty({}, key, obj)));
-  },
-  setFromLocalStorage: function setFromLocalStorage() {
-    setTimeout(function () {
-      if (!localStorage.boxes || reset_settings) {
-        task.saveToLocalStorage("settings", settings);
-      } else {
-        var storage = JSON.parse(localStorage.boxes);
-        settings = storage.settings;
-      }
-      settings.level_data.forEach(function (data, index) {
-        if (data.help) {
-          data.help.boardHelpText = helpTextArray[index].help.boardHelpText;
-          data.help.helpTurns = helpTextArray[index].help.helpTurns;
-        }
-      });
-    });
-  },
-  changeTitleColor: function changeTitleColor() {
-    task.addClassByClassName("title", "transitionColor");
-    setInterval(function () {
-      var hasColorChangheClass = task.hasClassByClassName("title", "colorChange");
-      if (hasColorChangheClass) {
-        task.removeClassByClassName("title", "colorChange");
-        task.removeClassByClassName("africa", "lighter");
-        task.addClassByClassName("ripple", "active");
-        setTimeout(function () {
-          task.removeClassByClassName("ripple", "active");
-        }, 100);
-      } else {
-        task.addClassByClassName("title", "colorChange");
-        task.addClassByClassName("africa", "lighter");
-      }
-    }, 4000);
-  },
-  passTurn: function passTurn() {
-    isFirstPlayerTurn = !isFirstPlayerTurn;
-    task.setTurnIndicator();
-    if (!isFirstPlayerTurn) {
-      computerMove.setMakeComputerMove();
-    }
-  },
-  resizeBoard: function resizeBoard() {
-    setTimeout(function () {
-      var boardSize = task.getWidthWithId("board");
-      var gridWidth = boardSize / 6;
-      task.setHeightWithClassName("box", gridWidth - 6);
-      task.setWidthWithClassName("box", gridWidth - 6);
-    });
-  },
-  getTools: function getTools() {
-    return getGameLevelObj.tools ? task.breakRefAndCopy(getGameLevelObj.tools) : [];
-  },
-  setGameLevelObj: function setGameLevelObj() {
-    getGameLevelObj = task.getGameLevelObj();
-  },
-  getGameLevelObj: function getGameLevelObj() {
-    return settings.level_data[gameLevel];
-  },
-  addTextByQuerySelector: function addTextByQuerySelector(selector, text) {
-    var element = document.querySelectorAll(selector);
-    var length = element.length;
-    if (element) {
-      for (var i = 0; i < length; i++) {
-        element[i].innerText = text;
-      }
-    }
-  },
-  addHTMLByQuerySelector: function addHTMLByQuerySelector(selector, html) {
-    var element = document.querySelectorAll(selector);
-    var length = element.length;
-    if (element) {
-      for (var i = 0; i < length; i++) {
-        element[i].innerHTML = html;
-      }
-    }
-  },
-  getTextByQuerySelector: function getTextByQuerySelector(selector) {
-    var element = document.querySelectorAll(selector)[0];
-    return element.innerText;
-  },
-  addClassByQuerySelector: function addClassByQuerySelector(selector, classToRemove) {
-    var element = document.querySelectorAll(selector);
-    var length = element.length;
-    if (element) {
-      for (var i = 0; i < length; i++) {
-        element[i].classList.add(classToRemove);
-      }
-    }
-  },
-  removeClassByQuerySelector: function removeClassByQuerySelector(selector, classToRemove) {
-    var element = document.querySelectorAll(selector);
-    var length = element.length;
-    if (element) {
-      for (var i = 0; i < length; i++) {
-        element[i].classList.remove(classToRemove);
-      }
-    }
-  }
-}, _defineProperty(_task, "removeClassByQuerySelector", function removeClassByQuerySelector(selector, classToRemove) {
-  var element = document.querySelectorAll(selector);
-  var length = element.length;
-  if (element) {
-    for (var i = 0; i < length; i++) {
-      element[i].classList.remove(classToRemove);
-    }
-  }
-}), _defineProperty(_task, "removeClassByClassName", function removeClassByClassName(selector, classToRemove) {
-  var element = document.getElementsByClassName(selector);
-  var length = element.length;
-  if (element) {
-    for (var i = 0; i < length; i++) {
-      element[i].classList.remove(classToRemove);
-    }
-  }
-}), _defineProperty(_task, "addClassByClassName", function addClassByClassName(selector, classToAdd) {
-  var element = document.getElementsByClassName(selector);
-  var length = element.length;
-  if (element) {
-    for (var i = 0; i < length; i++) {
-      element[i].classList.add(classToAdd);
-    }
-  }
-}), _defineProperty(_task, "hasClassByClassName", function hasClassByClassName(selector, classToCheckFor) {
-  var element = document.getElementsByClassName(selector)[0];
-  if (element) {
-    return element.classList.contains(classToCheckFor);
-  }
-}), _defineProperty(_task, "hasClassByQuerySelector", function hasClassByQuerySelector(selector, classToCheckFor) {
-  var hasClass = false;
-  var element = document.querySelectorAll(selector);
-  var length = element.length;
-  if (element) {
-    for (var i = 0; i < length; i++) {
-      if (element[i].classList.contains(classToCheckFor)) {
-        hasClass = true;
-      }
-    }
-  }
-  return hasClass;
-}), _defineProperty(_task, "getHeightWithClassName", function getHeightWithClassName(selector) {
-  return document.getElementsByClassName(selector)[0].clientHeight;
-}), _defineProperty(_task, "getWidthWithClassName", function getWidthWithClassName(selector) {
-  return document.getElementsByClassName(selector)[0].clientWidth;
-}), _defineProperty(_task, "getWidthWithId", function getWidthWithId(selector) {
-  return document.getElementById(selector).clientWidth;
-}), _defineProperty(_task, "setHeightWithClassName", function setHeightWithClassName(selector, height) {
-  var sel = document.getElementsByClassName(selector);
-  var length = sel.length;
-  for (var i = 0; i < length; i++) {
-    sel[i].style.height = height + "px";
-  }
-}), _defineProperty(_task, "setWidthWithClassName", function setWidthWithClassName(selector, width) {
-  var sel = document.getElementsByClassName(selector);
-  var length = sel.length;
-  for (var i = 0; i < length; i++) {
-    sel[i].style.width = width + "px";
-  }
-}), _defineProperty(_task, "getLengthOfElement", function getLengthOfElement(selector) {
-  var query = document.querySelectorAll(selector);
-  return query.length;
-}), _defineProperty(_task, "getStarsForWinner", function getStarsForWinner(score) {
-  var starRubric = getGameLevelObj.starRating || [];
-  if (score >= starRubric[2].score) {
-    return 3;
-  } else if (score >= starRubric[1].score) {
-    return 2;
-  } else if (score >= starRubric[0].score) {
-    return 1;
-  }
-}), _defineProperty(_task, "setStarsForWinner", function setStarsForWinner(stars) {
-  settings.level_data[gameLevel].stars = stars;
-  task.saveToLocalStorage("settings", settings);
-}), _defineProperty(_task, "openNextBoard", function openNextBoard(stars) {
-  var nextLevel = settings.level_data[gameLevel + 1];
-  if (stars > 0 && nextLevel) {
-    nextLevel.isLocked = false;
-    task.saveToLocalStorage("settings", settings);
-  }
-}), _defineProperty(_task, "setTurnIndicator", function setTurnIndicator() {
-  task.removeClassByClassName("scoreHolder", "thisPlayerTurn");
-  if (isFirstPlayerTurn) {
-    task.addClassByQuerySelector(".firstPlayerTurnHolder", "thisPlayerTurn");
-  } else {
-    task.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn");
-  }
-}), _defineProperty(_task, "setTurnRestrictions", function setTurnRestrictions() {
-  var trainingRestrictions = settings.level_data[gameLevel].trainingRestrictions;
-
-  if (trainingRestrictions) {
-    var restrictions = settings.level_data[gameLevel].trainingRestrictions.restrictions;
-
-    restrictions.forEach(function (restriction) {
-      var turn = restriction.turn,
-          type = restriction.type,
-          boxOne = restriction.boxOne,
-          boxTwo = restriction.boxTwo,
-          clickBox = restriction.clickBox,
-          then = restriction.then;
-
-      var onRestrictionTurn = track.turn === turn;
-      if (onRestrictionTurn) {
-        task.resetAllRestrictions();
-        if (type === "highLightLine") {
-          restrictionLineClicks = [boxOne, boxTwo];
-          task.highlightLine();
-        } else if (type === "clickBox") {
-          restrictionClickBox = clickBox;
-          setTimeout(function () {
-            task.addClassByClassName(clickBox, "clickBox");
-          }, 500);
-        } else if (type === "layBomb") {
-          restrictionLayBomb = clickBox;
-          var boxToClick = settings.level_data[gameLevel].clickAnimal;
-          setTimeout(function () {
-            task.addClassByQuerySelector(".tool." + boxToClick, "clickBox");
-          });
-        }
-        if (then) {
-          nextRestriction = then;
-        }
-      }
-    });
-  }
-}), _defineProperty(_task, "highlightLine", function highlightLine() {
-  var restrict = task.breakRefAndCopy(restrictionLineClicks);
-  setTimeout(function () {
-    restrict.forEach(function (data) {
-      if (data.side === "top") {
-        task.addClassByClassName(data.box, "clickTopLine");
-      } else if (data.side === "right") {
-        task.addClassByClassName(data.box, "clickRightLine");
-      } else if (data.side === "bottom") {
-        task.addClassByClassName(data.box, "clickBottomLine");
-      } else if (data.side === "left") {
-        task.addClassByClassName(data.box, "clickLeftLine");
-      }
-    });
-  }, 500);
-}), _defineProperty(_task, "resetAllRestrictions", function resetAllRestrictions() {
-  restrictionLineClicks = null;
-  restrictionClickBox = null;
-  restrictionLayBomb = null;
-  nextRestriction = null;
-  setTimeout(function () {
-    task.removeClassByClassName("box", "clickTopLine");
-    task.removeClassByClassName("box", "clickRightLine");
-    task.removeClassByClassName("box", "clickBottomLine");
-    task.removeClassByClassName("box", "clickLeftLine");
-  }, 500);
-}), _defineProperty(_task, "onRestrictionTurn", function onRestrictionTurn() {
-  return restrictionLineClicks || restrictionClickBox;
-}), _defineProperty(_task, "hasPassedTrainingRestriction", function hasPassedTrainingRestriction(boxNumber, lineClicked) {
-  var hasPassed = true;
-  if (restrictionLineClicks) {
-    hasPassed = false;
-    restrictionLineClicks.forEach(function (restriction) {
-      var box = restriction.box,
-          side = restriction.side;
-
-      if (box === boxNumber && side === lineClicked) {
-        hasPassed = true;
-      }
-    });
-  } else if (restrictionClickBox) {
-    hasPassed = false;
-    if (restrictionClickBox.includes(boxNumber) && !lineClicked) {
-      hasPassed = true;
-    }
-  } else if (restrictionLayBomb) {
-    hasPassed = false;
-    if (restrictionLayBomb.includes("any box") || restrictionLayBomb.includes(boxNumber)) {
-      if (!lineClicked) {
-        hasPassed = true;
-        restrictionLayBomb = null;
-
-        if (nextRestriction) {
-          var _nextRestriction = nextRestriction,
-              turn = _nextRestriction.turn,
-              type = _nextRestriction.type,
-              boxOne = _nextRestriction.boxOne,
-              boxTwo = _nextRestriction.boxTwo,
-              clickBox = _nextRestriction.clickBox,
-              then = _nextRestriction.then,
-              withClickBox = _nextRestriction.withClickBox;
-
-          if (type === "highLightLine") {
-            setTimeout(function () {
-              restrictionLineClicks = [boxOne, boxTwo];
-              task.highlightLine();
-            }, 500);
-          } else if (type === "clickBox") {
-            if (withClickBox) {
-              setTimeout(function () {
-                restrictionClickBox = [].concat(_toConsumableArray(clickBox), [boxNumber]);
-                restrictionClickBox.forEach(function (data) {
-                  task.addClassByClassName(data, "clickBox");
-                });
-              }, 500);
-            } else {
-              setTimeout(function () {
-                restrictionClickBox = [].concat(_toConsumableArray(clickBox));
-                restrictionClickBox.forEach(function (data) {
-                  task.addClassByClassName(data, "clickBox");
-                });
-              }, 500);
-            }
-          } else if (type === "layBomb") {
-            setTimeout(function () {
-              restrictionLayBomb = clickBox;
-            });
-          }
-        }
-      }
-    }
-  }
-
-  if (!hasPassed) {
-    soundEffects.playWrongSound();
-  }
-
-  return hasPassed;
-}), _defineProperty(_task, "hasAPreMadeMove", function hasAPreMadeMove() {
-  var hasPreMadeMove = false;
-  var moveToMake = "";
-  var computerMoves = settings.level_data[gameLevel].computerMoves;
-
-  if (computerMoves) {
-    computerMoves.forEach(function (move) {
-      if (move.turn === track.turn) {
-        hasPreMadeMove = true;
-        moveToMake = move;
-      }
-    });
-  }
-  return {
-    hasPreMadeMove: hasPreMadeMove,
-    moveToMake: moveToMake
-  };
-}), _defineProperty(_task, "incorrectClick", function incorrectClick(boxNumber, lineClicked) {
-  if (boxNumber && lineClicked) {
-    // turns the line red to indicate that it cant be clicked
-    ui.displayNoClickIndicator(boxNumber, lineClicked);
-  }
-  soundEffects.playWrongSound();
-}), _defineProperty(_task, "setToolClickEvent", function setToolClickEvent() {
-  $(document).on("click", ".tool.clickBox", function () {
-    task.removeClassByClassName(".tool", "keepSelected");
-    var clickBox = settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
-    clickBox.forEach(function (box) {
-      task.addClassByQuerySelector(".tool.clickBox", "keepSelected");
-      task.removeClassByQuerySelector(".tool.clickBox", "clickBox");
-      task.addClassByClassName(box, "clickBox");
-    });
-  });
-}), _defineProperty(_task, "shouldHighlightLayedBomb", function shouldHighlightLayedBomb() {
-  if (!settings.level_data[gameLevel].trainingRestrictions) {
-    return null;
-  }
-  return settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn] && settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
-}), _defineProperty(_task, "selectStoreItem", function selectStoreItem(item, cost) {
-  var currentGold = settings.gold;
-  if (currentGold >= cost) {
-    for (var x in storeItemSelected) {
-      delete storeItemSelected[x];
-    }storeItemSelected.item = item;
-    storeItemSelected.cost = cost;
-    ui.toggleConfirmScreen();
-  } else {
-    soundEffects.playWrongSound();
-  }
-}), _defineProperty(_task, "buyItem", function buyItem() {
-  var currentGold = settings.gold;
-  settings.gold = currentGold - storeItemSelected.cost;
-  settings.itemsPurchased.push(storeItemSelected.item);
-  var newQuantity = settings.store[storeItemSelected.item].quantity + 1;
-  settings.store[storeItemSelected.item].quantity = newQuantity;
-  task.saveToLocalStorage("settings", settings);
-  ui.toggleConfirmScreen();
-  document.getElementById("goldAmount").innerText = settings.gold;
-  ui.populateStore();
-}), _task);
-
-module.exports = task;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45), __webpack_require__(46), __webpack_require__(33), __webpack_require__(143), __webpack_require__(51), __webpack_require__(74), __webpack_require__(154)))
-
-/***/ },
-/* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var Map = __webpack_require__(136);
+var Map = __webpack_require__(125);
 var $export = __webpack_require__(0);
-var shared = __webpack_require__(55)('metadata');
-var store = shared.store || (shared.store = new (__webpack_require__(140))());
+var shared = __webpack_require__(50)('metadata');
+var store = shared.store || (shared.store = new (__webpack_require__(129))());
 
 var getOrCreateMetadataMap = function getOrCreateMetadataMap(target, targetKey, create) {
   var targetMetadata = store.get(target);
@@ -1243,7 +677,7 @@ module.exports = {
 };
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1252,42 +686,42 @@ module.exports = {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 if (__webpack_require__(7)) {
-  var LIBRARY = __webpack_require__(31);
+  var LIBRARY = __webpack_require__(30);
   var global = __webpack_require__(2);
   var fails = __webpack_require__(3);
   var $export = __webpack_require__(0);
-  var $typed = __webpack_require__(72);
-  var $buffer = __webpack_require__(98);
+  var $typed = __webpack_require__(64);
+  var $buffer = __webpack_require__(89);
   var ctx = __webpack_require__(20);
-  var anInstance = __webpack_require__(34);
-  var propertyDesc = __webpack_require__(39);
+  var anInstance = __webpack_require__(32);
+  var propertyDesc = __webpack_require__(37);
   var hide = __webpack_require__(11);
-  var redefineAll = __webpack_require__(40);
+  var redefineAll = __webpack_require__(38);
   var toInteger = __webpack_require__(22);
   var toLength = __webpack_require__(6);
-  var toIndex = __webpack_require__(134);
-  var toAbsoluteIndex = __webpack_require__(42);
+  var toIndex = __webpack_require__(123);
+  var toAbsoluteIndex = __webpack_require__(40);
   var toPrimitive = __webpack_require__(26);
   var has = __webpack_require__(14);
-  var classof = __webpack_require__(47);
+  var classof = __webpack_require__(43);
   var isObject = __webpack_require__(4);
   var toObject = __webpack_require__(9);
-  var isArrayIter = __webpack_require__(84);
-  var create = __webpack_require__(36);
+  var isArrayIter = __webpack_require__(75);
+  var create = __webpack_require__(34);
   var getPrototypeOf = __webpack_require__(16);
-  var gOPN = __webpack_require__(37).f;
-  var getIterFn = __webpack_require__(100);
-  var uid = __webpack_require__(43);
+  var gOPN = __webpack_require__(35).f;
+  var getIterFn = __webpack_require__(91);
+  var uid = __webpack_require__(41);
   var wks = __webpack_require__(5);
   var createArrayMethod = __webpack_require__(23);
-  var createArrayIncludes = __webpack_require__(60);
-  var speciesConstructor = __webpack_require__(56);
-  var ArrayIterators = __webpack_require__(101);
-  var Iterators = __webpack_require__(48);
-  var $iterDetect = __webpack_require__(65);
-  var setSpecies = __webpack_require__(41);
-  var arrayFill = __webpack_require__(76);
-  var arrayCopyWithin = __webpack_require__(106);
+  var createArrayIncludes = __webpack_require__(52);
+  var speciesConstructor = __webpack_require__(51);
+  var ArrayIterators = __webpack_require__(92);
+  var Iterators = __webpack_require__(44);
+  var $iterDetect = __webpack_require__(57);
+  var setSpecies = __webpack_require__(39);
+  var arrayFill = __webpack_require__(67);
+  var arrayCopyWithin = __webpack_require__(95);
   var $DP = __webpack_require__(8);
   var $GOPD = __webpack_require__(15);
   var dP = $DP.f;
@@ -1732,7 +1166,7 @@ if (__webpack_require__(7)) {
 } else module.exports = function () {/* empty */};
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1747,7 +1181,7 @@ module.exports = function (key) {
 };
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1756,7 +1190,7 @@ module.exports = function (key) {
 module.exports = false;
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1764,7 +1198,7 @@ module.exports = false;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var META = __webpack_require__(43)('meta');
+var META = __webpack_require__(41)('meta');
 var isObject = __webpack_require__(4);
 var has = __webpack_require__(14);
 var setDesc = __webpack_require__(8).f;
@@ -1819,840 +1253,7 @@ var meta = module.exports = {
 };
 
 /***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, settings, track, whoClickTheLine, lockBoxes, boxInfo, bomb, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, lineClickAction, boardText) {
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var ui = {
-  startGame: function startGame() {
-    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
-    selectBombScreen.classList.remove("playGame");
-
-    task.removeClassByClassName("helpTextP", "showHelpText");
-
-    restrictionLineClicks = null;
-    restrictionClickBox = null;
-    restrictionLayBomb = null;
-    nextRestriction = null;
-
-    settings.itemsSelected = [];
-
-    task.startEndGameInterval();
-    track.turn = 0;
-    pointsInArow = 0;
-    whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
-    textType = null;
-    app.on_game_board = true;
-    task.resetPlayerTurn();
-    task.resetScore();
-    track.goToPage(settings.startUpPage);
-    task.setDifficulty(settings.difficulty);
-    initialBombs = getGameLevelObj.initialBombs ? task.breakRefAndCopy(getGameLevelObj.initialBombs) : [];
-    bombsToLay = getGameLevelObj.bombsToLay ? task.breakRefAndCopy(getGameLevelObj.bombsToLay) : 0;
-    // track.setRemainingBombs();
-    lockBombLocations = getGameLevelObj.lockBoxes ? task.breakRefAndCopy(getGameLevelObj.lockBoxes) : [];
-
-    gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj["level" + (gameLevel + 1)]);
-    gameBoardLength = ui.getGameBoardLength();
-
-    var lockBoxesAmount = lockBoxes[gameLevel];
-    for (var i = 0; i < 36; i++) {
-      if (!boxInfo.isBoxDisabled("box" + i)) {
-        possibleBombs.push("box" + i);
-      }
-    }
-
-    possibleBombs.forEach(function (data, index) {
-      if (index < lockBoxesAmount) {
-        var box = task.getRandomIndexInArray(possibleBombs);
-        var _index = possibleBombs.indexOf(box);
-        possibleBombs.splice(_index, 1);
-      }
-    });
-
-    ui.addInitialBombs();
-    ui.fillPreFilledBoxes();
-    ui.populateTheUI();
-    bomb.fillPopulationData();
-    ui.startLevelText();
-  },
-  redo: function redo() {
-    task.clearBoard();
-    track.goToPage('gameBoardPage');
-  },
-  gameBoardMapperObj: {
-    level1: level1,
-    level2: level2,
-    level3: level3,
-    level4: level4,
-    level5: level5,
-    level6: level6,
-    level7: level7,
-    level8: level8,
-    level9: level9,
-    level10: level10
-  },
-  addInitialBombs: function addInitialBombs() {
-    initialBombs.forEach(function (data) {
-      gameBoard[data.box][data.bombType] = true;
-    });
-  },
-  getGameBoardLength: function getGameBoardLength() {
-    var length = 0;
-    for (var box in gameBoard) {
-      if (!gameBoard[box].disabled) {
-        length++;
-      }
-    }
-    return length;
-  },
-  chooseBoard: function chooseBoard() {
-    if (settings.endGame) return null;
-    track.goToPage("levelsPage");
-    document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
-    var node = document.getElementsByClassName("levelsHolder")[0];
-    settings.level_data.forEach(function (data) {
-      data.isLocked ? node.insertAdjacentHTML('beforeend', ui.uiComponents.lockedBoardBox()) : node.insertAdjacentHTML('beforeend', ui.uiComponents.boardBox(data));
-    });
-  },
-  populateBoard: function populateBoard() {
-    // populate the gameboard into the UI
-    if (document.getElementsByClassName("box").length > 0) {
-      var boxes = document.getElementsByClassName("box");
-      ui.removeAllLockBoxes();
-      for (var i = 0; i < boxes.length; i++) {
-        var _gridBox$classList;
-
-        ui.addLockBox("box" + i);
-        var gridBox = boxes[i];
-        gridBox.className = "";
-        (_gridBox$classList = gridBox.classList).add.apply(_gridBox$classList, _toConsumableArray(boxInfo.getAllBoxClasses("box" + i)));
-      }
-    } else {
-      var _loop = function _loop(box) {
-        var _gridBox$classList2;
-
-        ui.addLockBox(box);
-
-        var topRightDot = document.createElement("div");
-        var topLeftDot = document.createElement("div");
-        var bottomRightDot = document.createElement("div");
-        var bottomLeftDot = document.createElement("div");
-        topRightDot.classList.add("topRightDot");
-        topLeftDot.classList.add("topLeftDot");
-        bottomRightDot.classList.add("bottomRightDot");
-        bottomLeftDot.classList.add("bottomLeftDot");
-
-        var pointer = document.getElementsByClassName("helpPointer")[0];
-        var clone = pointer.cloneNode(true);
-
-        var gridBox = document.createElement("div");
-
-        gridBox.appendChild(topRightDot);
-        gridBox.appendChild(topLeftDot);
-        gridBox.appendChild(bottomRightDot);
-        gridBox.appendChild(bottomLeftDot);
-
-        gridBox.appendChild(clone);
-
-        (_gridBox$classList2 = gridBox.classList).add.apply(_gridBox$classList2, _toConsumableArray(boxInfo.getAllBoxClasses(box)));
-        gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));
-        gridBox.addEventListener("mousedown", function (e) {
-          // add a click event to the box click on borders
-          if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
-          lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
-        });
-        var node = document.getElementById("board");
-        node.appendChild(gridBox); // add the box to the game board
-      };
-
-      for (var box in gameBoard) {
-        _loop(box);
-      }
-    }
-    track.setScores();
-    boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
-    ui.populateHelpers();
-  },
-  populateHelpers: function populateHelpers() {
-    //set helpers
-    if (!tools) {
-      tools = task.getTools();
-    }
-
-    //empty any helpers still on the board
-    var nodes = document.getElementsByClassName("bombToolsBar");
-    nodes[0].innerHTML = "";
-
-    //populate board with helps
-    tools.forEach(function (data) {
-      var tool = document.querySelectorAll(".tool." + data.name);
-      var toolExists = tool.length > 0;
-      if (data.count !== 0 && !toolExists) {
-        var _tool = ui.uiComponents.helper(data);
-        var node = document.getElementsByClassName("bombToolsBar")[0];
-        node.insertAdjacentHTML('beforeend', _tool);
-      } else if (data.count !== 0) {
-        task.addTextByQuerySelector("." + data.name + "p", data.count);
-      } else if (data.count === 0 && toolExists) {
-        tool[0].remove();
-      }
-    });
-  },
-  removeAllLockBoxes: function removeAllLockBoxes() {
-    task.removeClassByClassName("box", "locked");
-    for (var data in gameBoard) {
-      gameBoard[data].isLocked = false;
-    }
-  },
-  addLockBox: function addLockBox(box) {
-    if (boxInfo.isALockBox(box) && !boxInfo.isBoxDisabled(box)) {
-      gameBoard[box].isLocked = true;
-    }
-  },
-  removeScoreColorIfRemovingBorder: function removeScoreColorIfRemovingBorder(box) {
-    gameBoard[box].whoScored = null;
-    task.removeClassByClassName("." + box, "firstPlayerScored");
-    task.removeClassByClassName("." + box, "secondPlayerScored");
-  },
-  closeTheBoxConnection: function closeTheBoxConnection(closeTheBoxConnectionParams) {
-    var boxNumber = closeTheBoxConnectionParams.boxNumber,
-        adjacentBox = closeTheBoxConnectionParams.adjacentBox,
-        boxNumberClosedBorder = closeTheBoxConnectionParams.boxNumberClosedBorder,
-        adjacentBoxClosedBorder = closeTheBoxConnectionParams.adjacentBoxClosedBorder;
-
-    if (gameBoard[boxNumber].surroundingBoxes[boxNumberClosedBorder + "Box"]) gameBoard[boxNumber].surroundingBoxes[boxNumberClosedBorder + "Box"].isConnected = false;
-    if (adjacentBox && gameBoard[adjacentBox].surroundingBoxes[adjacentBoxClosedBorder + "Box"]) gameBoard[adjacentBox].surroundingBoxes[adjacentBoxClosedBorder + "Box"].isConnected = false;
-  },
-  selectHelper: function selectHelper(bombFunction) {
-    var hasSelected = document.querySelector(".tool[class*=" + bombFunction + "]").classList.contains("selected");
-    var keepSelected = document.querySelector("keepSelected");
-    if (hasSelected && keepSelected) {
-      var helperDisabled = keepSelected.length > 0;
-      if (helperDisabled) return null;
-      task.removeClassByClassName("tool", "selected");
-    } else {
-      task.removeClassByClassName("tool", "selected");
-      task.addClassByQuerySelector(".tool[class*=" + bombFunction + "]", "selected");
-      selectedBombFunction = bombFunction;
-    }
-  },
-  populateStore: function populateStore() {
-    task.addTextByQuerySelector("#goldAmount", settings.gold);
-    var merchHolder = document.getElementsByClassName("merchHolder")[0];
-    merchHolder.innerHTML = "";
-    var _settings = settings,
-        store = _settings.store;
-
-    for (var item in store) {
-      var animalBox = ui.uiComponents.getStoreItem(store[item]);
-      merchHolder.append(animalBox);
-    }
-  },
-  populateBombSelectionScreen: function populateBombSelectionScreen() {
-    var selectBomb = document.getElementsByClassName("selectBomb")[0];
-    selectBomb.innerHTML = "";
-    var populated = [];
-    settings.itemsPurchased.forEach(function (data) {
-      if (!populated.includes(data)) {
-        var animalSelectBox = ui.uiComponents.getAnimalSelectBox(data);
-        selectBomb.append(animalSelectBox);
-        populated.push(data);
-      }
-    });
-    var hasTakenLayTutorial = gameLevel > 4;
-    if (populated.length === 0 || !hasTakenLayTutorial) {
-      ui.doneBombSelected();
-    }
-  },
-  uiComponents: {
-    boardBox: function boardBox(data) {
-      var stars = "";
-      for (var i = 0; i < data.stars; i++) {
-        stars += "<img class=\"star" + i + "\" src=\"./img/star.png\" alt=\"\">";
-      }
-      return "\n        <div class=\"level flexCol playBoardButton\" onclick=\"task.setGameLevelAndTips(" + data.levelNumber + ")\">\n          <p>" + data.levelNumber + "</p>\n          <div class=\"stars flexRow\">\n            " + stars + "\n          </div>\n        </div>\n      ";
-    },
-    spriteSheet: function spriteSheet(box) {
-      return "<div class='spriteSheet'></div>";
-    },
-    lockedBoardBox: function lockedBoardBox() {
-      return "\n        <div class=\"level flexCol\">\n          <div class=\"boardLock\">\n            <svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"lock\" class=\"svg-inline--fa fa-lock fa-w-14\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\"><path fill=\"currentColor\" d=\"M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z\"></path></svg>\n          </div>\n        </div>\n      ";
-    },
-    helper: function helper(data) {
-      return "<div class=\"tool flexRow " + data.name + "\" onclick=\"ui.selectHelper('" + data.name + "')\">\n        <img src=" + data.src + " alt=\"\">\n        <svg class=\"helpPointer\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"hand-point-down\" class=\"svg-inline--fa fa-hand-point-down fa-w-12\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 384 512\"><path fill=\"currentColor\" d=\"M91.826 467.2V317.966c-8.248 5.841-16.558 10.57-24.918 14.153C35.098 345.752-.014 322.222 0 288c.008-18.616 10.897-32.203 29.092-40 28.286-12.122 64.329-78.648 77.323-107.534 7.956-17.857 25.479-28.453 43.845-28.464l.001-.002h171.526c11.812 0 21.897 8.596 23.703 20.269 7.25 46.837 38.483 61.76 38.315 123.731-.007 2.724.195 13.254.195 16 0 50.654-22.122 81.574-71.263 72.6-9.297 18.597-39.486 30.738-62.315 16.45-21.177 24.645-53.896 22.639-70.944 6.299V467.2c0 24.15-20.201 44.8-43.826 44.8-23.283 0-43.826-21.35-43.826-44.8zM112 72V24c0-13.255 10.745-24 24-24h192c13.255 0 24 10.745 24 24v48c0 13.255-10.745 24-24 24H136c-13.255 0-24-10.745-24-24zm212-24c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z\"></path></svg>\n      </div>";
-    },
-    getStoreItem: function getStoreItem(item) {
-      var _animalBox$classList, _animal$classList, _price$classList, _goldMoney$classList, _totalForItem$classLi, _totalForItemP$classL;
-
-      var hasUnlocked = item.hasUnlocked,
-          unlockedImgClass = item.unlockedImgClass,
-          lockedImgClass = item.lockedImgClass;
-
-      var animalBoxClasses = ["animalBox", "flexCol"];
-      var animalClasses = ["animal", hasUnlocked ? unlockedImgClass : lockedImgClass];
-      var priceClasses = ["price", "flexRow"];
-      var goldMoneyClasses = ["goldMoney"];
-      var totalForItemClasses = ["totalForItem"];
-      var totalForItemPClasses = ["totalForItemP"];
-      var costLabel = item.hasUnlocked ? item.cost : "?";
-
-      var animalBox = document.createElement("div");
-      var animal = document.createElement("div");
-      var price = document.createElement("div");
-      var goldMoney = document.createElement("div");
-      var cost = document.createElement("span");
-      var totalForItem = document.createElement("div");
-      var totalForItemP = document.createElement("p");
-
-      cost.innerText = costLabel;
-      totalForItemP.innerText = item.hasUnlocked ? item.quantity : "";
-      (_animalBox$classList = animalBox.classList).add.apply(_animalBox$classList, animalBoxClasses);
-      (_animal$classList = animal.classList).add.apply(_animal$classList, animalClasses);
-      (_price$classList = price.classList).add.apply(_price$classList, priceClasses);
-      (_goldMoney$classList = goldMoney.classList).add.apply(_goldMoney$classList, goldMoneyClasses);
-      (_totalForItem$classLi = totalForItem.classList).add.apply(_totalForItem$classLi, totalForItemClasses);
-      (_totalForItemP$classL = totalForItemP.classList).add.apply(_totalForItemP$classL, totalForItemPClasses);
-
-      price.append(cost);
-      price.append(goldMoney);
-      animalBox.append(animal);
-      animalBox.append(price);
-      totalForItem.append(totalForItemP);
-      animalBox.append(totalForItem);
-
-      animalBox.addEventListener("click", function () {
-        var animal = item.unlockedImgClass.replace("buy_", "");
-        var cost = price.innerText === "?" ? 10000000 : parseInt(item.cost);
-        task.selectStoreItem(animal, cost);
-      });
-
-      return animalBox;
-    },
-    getAnimalSelectBox: function getAnimalSelectBox(animal) {
-      var _animalBox$classList2;
-
-      var animalBoxClasses = ["animalBombSelectBox", "buy_" + animal];
-      var animalBox = document.createElement("div");
-      (_animalBox$classList2 = animalBox.classList).add.apply(_animalBox$classList2, animalBoxClasses);
-      animalBox.addEventListener("click", function () {
-        ui.selectPregameBomb("buy_" + animal);
-      });
-      return animalBox;
-    }
-  },
-  tools: [{
-    name: "lion",
-    src: "./img/color_animals/asset_lion.png",
-    count: 1
-  }, {
-    name: "cheetah",
-    src: "./img/color_animals/asset_cheetah.png",
-    count: 1
-  }, {
-    name: "panther",
-    src: "./img/color_animals/asset_panther.png",
-    count: 1
-  }],
-  changeDifficulty: function changeDifficulty(diff) {
-    settings.difficulty = diff;
-    task.saveToLocalStorage("settings", settings);
-    ui.setDifficulty();
-  },
-  setDifficulty: function setDifficulty() {
-    task.removeClassByClassName("diff", "selectedSetting");
-    task.addClassByClassName(settings.difficulty, "selectedSetting");
-  },
-  toggleSound: function toggleSound() {
-    settings.hasMutedSound = !settings.hasMutedSound;
-    task.saveToLocalStorage("settings", settings);
-    ui.setSound();
-  },
-  setSound: function setSound() {
-    task.removeClassByClassName("sound", "selectedSetting");
-    if (settings.hasMutedSound) {
-      task.addClassByQuerySelector(".sound.sOptions.off", "selectedSetting");
-    } else {
-      task.addClassByQuerySelector(".sound.sOptions.on", "selectedSetting");
-    }
-  },
-  toggleMusic: function toggleMusic() {
-    settings.hasMutedMusic = !settings.hasMutedMusic;
-    task.saveToLocalStorage("settings", settings);
-    ui.setMusic();
-  },
-  setMusic: function setMusic() {
-    task.removeClassByClassName("music", "selectedSetting");
-    if (settings.hasMutedMusic) {
-      task.addClassByQuerySelector(".music.mOptions.off", "selectedSetting");
-    } else {
-      task.addClassByQuerySelector(".music.mOptions.on", "selectedSetting");
-    }
-  },
-  showHint: function showHint() {
-    var index = task.getRandomIndexInArray(noBorders);
-    var box = noBorders[index];
-    task.addClassByClassName(box, "hint");
-    setTimeout(function () {
-      task.removeClassByClassName(box, "hint");
-    }, 600);
-  },
-  setSettingsIfOnSettingsPage: function setSettingsIfOnSettingsPage(page) {
-    if (page === "settingsPage") {
-      ui.setDifficulty();
-      ui.setSound();
-      ui.setMusic();
-    }
-  },
-  animateScore: function animateScore(prize, starTimeout) {
-    var remainingGold = parseInt(task.getTextByQuerySelector(".remainingGold"));
-    var hasScore = remainingGold !== 0;
-    if (hasScore) {
-      var changeNumber = function changeNumber() {
-        var gold = remainingGold;
-        starTimeout += 100;
-        setTimeout(function () {
-          // task.addTextByQuerySelector(".remainingGold", gold);
-          var currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
-          task.addTextByQuerySelector(".currentGoldCount", currectGold);
-          settings.gold = currectGold;
-        }, starTimeout);
-        remainingGold--;
-        if (remainingGold > 0) {
-          changeNumber();
-        }
-      };
-      changeNumber();
-    }
-    setTimeout(function () {
-      ui.showGift(prize, starTimeout);
-    }, starTimeout);
-  },
-  showGift: function showGift(prize, starTimeout) {
-    if (prize) {
-      setTimeout(function () {
-        var hasClaimed = getGameLevelObj.hasLargePrize && getGameLevelObj.hasLargePrize.hasClaimed;
-        if (!getGameLevelObj.hasLargePrize || hasClaimed) {
-          task.addClassByClassName("goldScreen", "smallPrize");
-        } else {
-          settings.level_data[gameLevel].hasLargePrize.hasClaimed = true;
-          task.saveToLocalStorage("settings", settings);
-          task.removeClassByClassName("goldScreen", "smallPrize");
-          var _prize = getGameLevelObj.hasLargePrize.prize;
-          var img = document.querySelector(".goldScreen img");
-          img.src = "./img/rewards/" + _prize + "_reward.png";
-          var currentClass = img.classList[0];
-          img.classList.remove(currentClass);
-          img.classList.add(_prize + "_reward");
-          settings.store[_prize].hasUnlocked = true;
-          var currentQuantity = settings.store[_prize].quantity;
-          settings.store[_prize].quantity = currentQuantity + 1;
-          settings.itemsPurchased.push(_prize);
-          task.saveToLocalStorage("settings", settings);
-        }
-        task.addClassByClassName("rewardScreen", "showPrice");
-        setTimeout(function () {
-          task.addClassByQuerySelector("svg.redoBtn", "showBtn");
-          if (settings.level_data[gameLevel + 1]) {
-            task.addClassByQuerySelector("svg.nextBtn", "showBtn");
-          }
-        }, 1000);
-      }, 200);
-    }
-  },
-  showEndGameScreen: function showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize) {
-    task.resetPlayerTurn();
-    task.removeClassByClassName("gameCompleteBox", "hideGameComplete");
-    task.addTextByQuerySelector(".yourScore", yourScore);
-    task.addTextByQuerySelector(".computerScore", computerScore);
-    var remainingGold = parseInt(yourScore) - parseInt(computerScore);
-    task.addTextByQuerySelector(".remainingGold", remainingGold);
-    task.addTextByQuerySelector(".currentGoldCount", currentGoldCount);
-    setTimeout(function () {
-      document.getElementsByClassName("rewardScreen")[0].style.opacity = 1;
-    }, 1000);
-    var starTimeout = 200;
-    var showStars = function showStars(count) {
-      var starCount = count + 1;
-      setTimeout(function () {
-        document.getElementsByClassName("completeStar" + starCount)[0].style.opacity = 1;
-      }, starTimeout);
-      starTimeout += 200;
-    };
-    setTimeout(function () {
-      for (var i = 0; i < stars; i++) {
-        showStars(i);
-      }
-      ui.animateScore(prize, starTimeout);
-    }, starTimeout);
-  },
-  showCompleteScreen: function showCompleteScreen() {
-    setTimeout(function () {
-      var stars = task.getStarsForWinner(playerOneScore);
-      task.setStarsForWinner(stars);
-      task.openNextBoard(stars);
-      var yourScore = playerOneScore;
-      var computerScore = playerTwoScore;
-      var currentGoldCount = settings.gold;
-      var prize = "cheetah";
-      ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
-    }, 500);
-  },
-  showTextTimeout: 0,
-  showText: function showText(text) {
-    task.removeClassByClassName("helpTextP", "showHelpText");
-    clearTimeout(ui.showTextTimeout);
-    ui.showTextTimeout = setTimeout(function () {
-      task.addHTMLByQuerySelector(".helpTextP", text);
-      task.addClassByClassName("helpTextP", "showHelpText");
-    }, 500);
-  },
-  startLevelText: function startLevelText() {
-    if (!getGameLevelObj["help"]) {
-      task.removeClassByQuerySelector(".helpTextP", "showHelpText");
-      return null;
-    };
-
-    var levelText = getGameLevelObj["help"]["boardHelpText"]();
-    var turnsToShowText = levelText ? getGameLevelObj["help"]["helpTurns"] : [];
-
-    if (track.turn === 0) {
-      helpText = levelText;
-    }
-
-    if (!helpText && levelText && turnsToShowText.includes(track.turn)) {
-      var text = helpText.next().value;
-      ui.showText(text || "");
-    } else if (helpText && turnsToShowText.includes(track.turn)) {
-      var _text = helpText.next().value;
-      ui.showText(_text || "");
-    }
-    if (turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1) {
-      setTimeout(function () {
-        ui.showText("");
-      }, 8000);
-    }
-  },
-  fillPreFilledBoxes: function fillPreFilledBoxes() {
-    var _getGameLevelObj = getGameLevelObj,
-        prefilledBoxes = _getGameLevelObj.prefilledBoxes;
-
-    if (prefilledBoxes) {
-      for (var box in gameBoard) {
-        if (prefilledBoxes.includes(box)) {
-          // fill box
-          gameBoard[box].borders.top = true;
-          gameBoard[box].borders.right = true;
-          gameBoard[box].borders.bottom = true;
-          gameBoard[box].borders.left = true;
-          gameBoard[box].whoScored = "secondPlayerScored";
-          // fill adj box
-          var topAdj = boxInfo.getAdjBoxBySide(box, "top");
-          var rightAdj = boxInfo.getAdjBoxBySide(box, "right");
-          var leftAdj = boxInfo.getAdjBoxBySide(box, "left");
-          var bottomAdj = boxInfo.getAdjBoxBySide(box, "bottom");
-          if (topAdj) {
-            gameBoard[topAdj].borders.bottom = true;
-          }
-          if (rightAdj) {
-            gameBoard[rightAdj].borders.left = true;
-          }
-          if (bottomAdj) {
-            gameBoard[bottomAdj].borders.top = true;
-          }
-          if (leftAdj) {
-            gameBoard[leftAdj].borders.right = true;
-          }
-        }
-      }
-    }
-  },
-  undoFinishScreen: function undoFinishScreen() {
-    task.addClassByClassName("gameCompleteBox", "hideGameComplete");
-    task.addTextByQuerySelector(".yourScore", 0);
-    task.addTextByQuerySelector(".computerScore", 0);
-    task.addTextByQuerySelector(".remainingGold", 0);
-    task.addTextByQuerySelector(".currentGoldCount", 0);
-    document.getElementsByClassName("rewardScreen")[0].style.opacity = 0;
-    document.getElementsByClassName("completeStar1")[0].style.opacity = 0;
-    document.getElementsByClassName("completeStar2")[0].style.opacity = 0;
-    document.getElementsByClassName("completeStar3")[0].style.opacity = 0;
-    task.removeClassByClassName("rewardScreen", "showPrice");
-    task.removeClassByQuerySelector("svg.redoBtn", "showBtn");
-    task.removeClassByQuerySelector("svg.nextBtn", "showBtn");
-  },
-  redoBorder: function redoBorder() {
-    if (currentPage !== "gameBoardPage") return null;
-    ui.undoFinishScreen();
-    var click = ui.click();
-    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
-    gameLevel++;
-    task.setGameLevelAndTips(gameLevel);
-  },
-  nextBoard: function nextBoard() {
-    var notOnBoard = currentPage !== "gameBoardPage";
-    var hasAnotherLevel = gameLevel && settings.level_data[gameLevel + 1];
-    if (notOnBoard || hasAnotherLevel === false) return null;
-    ui.undoFinishScreen();
-    var click = ui.click();
-    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
-    gameLevel += 2;
-    task.setGameLevelAndTips(gameLevel);
-  },
-  click: function click() {
-    return clickEvent = new MouseEvent("click", {
-      "view": window,
-      "bubbles": true,
-      "cancelable": false
-    });
-  },
-  checkForGameBoardTextConditions: function checkForGameBoardTextConditions() {
-    if (pointsInArow > 10) {
-      boardText.showText("excellent");
-    } else if (pointsInArow > 5) {
-      boardText.showText("good");
-    }
-  },
-  animateBombMovement: function animateBombMovement(boxNumber) {
-    var helper = document.querySelectorAll(".tool.selected > img")[0];
-    var box = document.querySelectorAll("." + boxNumber)[0];
-    var boardHolder = document.getElementById("boardHolder");
-    var src = helper.src,
-        offsetHeight = helper.offsetHeight,
-        offsetWidth = helper.offsetWidth,
-        x = helper.x,
-        y = helper.y;
-
-    // position the image
-
-    var node = document.createElement("img");
-    document.getElementById("gameScreen").appendChild(node);
-    node.id = "helperMovingImage";
-    node.src = src;
-    node.style.position = "absolute";
-    node.style.left = x + "px";
-    node.style.top = y + "px";
-    node.style.height = offsetHeight + "px";
-    node.style.width = offsetWidth + "px";
-    node.style.transform = "scale(2)";
-    node.style.transition = "all 0.15s";
-
-    // get position of box
-    var rect = box.getBoundingClientRect();
-    var position = {
-      top: rect.top + window.pageYOffset,
-      left: rect.left + window.pageXOffset
-    };
-
-    // move the image to the box
-    var helperMovingImage = document.getElementById("helperMovingImage");
-    helperMovingImage.style.transform = "scale(1.1)";
-    helperMovingImage.style.left = position.left + "px";
-    helperMovingImage.style.top = position.top + "px";
-
-    setTimeout(function () {
-      helperMovingImage.remove();
-      if (boxInfo.getBorderCount(boxNumber) === 4) {
-        bomb.explodeBoxes(boxNumber);
-      }
-    }, 250);
-  },
-  animateStars: function animateStars() {
-    setInterval(function () {
-      var timeoutToNext = 0;
-      var nums = [0, 1, 2];
-      nums.forEach(function (num) {
-        timeoutToNext += 100;
-        setTimeout(function () {
-          task.addClassByClassName("star" + num, "up");
-          setTimeout(function () {
-            task.removeClassByClassName("star" + num, "up");
-          }, 400);
-        }, timeoutToNext);
-      });
-    }, 4000);
-  },
-  animateDots: function animateDots() {
-    setInterval(function () {
-      var topRightDot = document.querySelectorAll(".topRightDot");
-      var topLeftDot = document.querySelectorAll(".topLeftDot");
-      var bottomRightDot = document.querySelectorAll(".bottomRightDot");
-      var bottomLeftDot = document.querySelectorAll(".bottomLeftDot");
-      var length = 36;
-      for (var i = 0; i < length; i++) {
-        if (Math.random() < 0.5) {
-          topRightDot[i].classList.add("lighterDot");
-          topLeftDot[i].classList.add("lighterDot");
-          bottomRightDot[i].classList.add("lighterDot");
-          bottomLeftDot[i].classList.add("lighterDot");
-        } else {
-          topRightDot[i].classList.remove("lighterDot");
-          topLeftDot[i].classList.remove("lighterDot");
-          bottomRightDot[i].classList.remove("lighterDot");
-          bottomLeftDot[i].classList.remove("lighterDot");
-        }
-      }
-    }, 2000);
-  },
-  displayNoClickIndicator: function displayNoClickIndicator(boxNumber, lineClicked) {
-    var incorrectLineClick = function incorrectLineClick(box, classToAdd) {
-      task.addClassByClassName(box, classToAdd);
-      setTimeout(function () {
-        task.removeClassByClassName(box, classToAdd);
-      }, 1000);
-    };
-
-    var lineClickClass = {
-      top: {
-        thisBox: "cantClickTop",
-        adjBox: "cantClickBottom"
-      },
-      right: {
-        thisBox: "cantClickRight",
-        adjBox: "cantClickLeft"
-      },
-      bottom: {
-        thisBox: "cantClickBottom",
-        adjBox: "cantClickTop"
-      },
-      left: {
-        thisBox: "cantClickLeft",
-        adjBox: "cantClickRight"
-      }
-    };
-
-    incorrectLineClick(boxNumber, lineClickClass[lineClicked].thisBox);
-
-    var adjacentBox = null;
-    var adjBoxNumber = null;
-    var hasAdjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"] !== null && gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"] !== undefined;
-    if (hasAdjacentBox) {
-      adjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"].boxNumber;
-      adjBoxNumber = "box" + adjacentBox;
-      incorrectLineClick(adjBoxNumber, lineClickClass[lineClicked].adjBox);
-    }
-  },
-  togglePregameScreen: function togglePregameScreen() {
-    if (task.hasClassByQuerySelector(".silverScreen", "hidePregameScreen")) {
-      task.removeClassByClassName("silverScreen", "hidePregameScreen");
-    } else {
-      task.addClassByClassName("silverScreen", "hidePregameScreen");
-    }
-  },
-  uiPopulater: null,
-  populateTheUI: function populateTheUI() {
-    if (ui.uiPopulater === null) {
-      ui.populateBoard();
-      ui.uiPopulater = 1;
-    } else {
-      clearTimeout(ui.uiPopulater);
-      ui.uiPopulater = setTimeout(function () {
-        ui.populateBoard();
-      });
-    }
-    task.setTurnRestrictions();
-    track.adjustScore();
-  },
-  showHelper: function showHelper(boxNumber) {
-    tools.forEach(function (data) {
-      if (data.name === selectedBombFunction) data.count--;
-    });
-    var explosionType = void 0;
-    if (selectedBombFunction === "lion") explosionType = "isLionExplosion";
-    if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
-    if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
-    if (selectedBombFunction === "queen_makeda") explosionType = "isQueenMakedaExplosion";
-    if (explosionType) gameBoard[boxNumber][explosionType] = true;
-  },
-  addHighlightToClickBox: function addHighlightToClickBox(clickBox) {
-    setTimeout(function () {
-      task.addClassByClassName(clickBox, "clickBox");
-    }, 500);
-  },
-  toggleBombSelected: function toggleBombSelected() {
-    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
-    var classList = selectBombScreen.classList;
-    if (classList.contains("showBoard")) {
-      selectBombScreen.classList.remove("showBoard");
-    } else {
-      selectBombScreen.classList.add("showBoard");
-    }
-  },
-  doneBombSelected: function doneBombSelected() {
-    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
-    selectBombScreen.classList.remove("showBoard");
-    selectBombScreen.classList.add("playGame");
-    if (!tools) {
-      tools = task.getTools();
-    }
-    var used = [];
-    settings.itemsSelected.forEach(function (item) {
-      var animalName = item.replace("buy_", "");
-      var animal = void 0;
-      if (animalName.includes("queen")) {
-        animal = {
-          name: animalName,
-          src: "./img/queens/asset_" + animalName + ".png",
-          count: 1
-        };
-      } else {
-        animal = {
-          name: animalName,
-          src: "./img/color_animals/asset_" + animalName + ".png",
-          count: 1
-        };
-      }
-      var isInTools = false;
-      tools.forEach(function (data) {
-        if (data.name === animalName) {
-          isInTools = true;
-        }
-      });
-      if (!isInTools) {
-        tools = [].concat(_toConsumableArray(tools), [animal]);
-        used.push(item);
-      }
-    });
-    used.forEach(function (data) {
-      var animalName = data.replace("buy_", "");
-      var index = settings.itemsPurchased.indexOf(animalName);
-      settings.itemsPurchased.splice(index, 1);
-      var currentQuantity = settings.store[animalName].quantity;
-      settings.store[animalName].quantity = currentQuantity - 1;
-    });
-    task.saveToLocalStorage("settings", settings);
-    settings.itemsSelected = [];
-    ui.populateHelpers();
-  },
-  selectPregameBomb: function selectPregameBomb(selected) {
-    var animal = document.querySelector("." + selected + ".selectedBombForBoard");
-    if (animal) {
-      task.removeClassByQuerySelector(".animalBombSelectBox." + selected, "selectedBombForBoard");
-      var index = settings.itemsSelected.indexOf(selected);
-      settings.itemsSelected.splice(index, 1);
-    } else {
-      task.addClassByQuerySelector(".animalBombSelectBox." + selected, "selectedBombForBoard");
-      settings.itemsSelected.push(selected);
-    }
-  },
-  toggleConfirmScreen: function toggleConfirmScreen() {
-    if (task.hasClassByClassName("buyItemContainer", "hidePurchaseScreen")) {
-      task.removeClassByClassName("buyItemContainer", "hidePurchaseScreen");
-    } else {
-      task.addClassByClassName("buyItemContainer", "hidePurchaseScreen");
-    }
-  }
-};
-
-module.exports = ui;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(51), __webpack_require__(46), __webpack_require__(104), __webpack_require__(155), __webpack_require__(58), __webpack_require__(57), __webpack_require__(144), __webpack_require__(146), __webpack_require__(147), __webpack_require__(148), __webpack_require__(149), __webpack_require__(150), __webpack_require__(151), __webpack_require__(152), __webpack_require__(153), __webpack_require__(145), __webpack_require__(59), __webpack_require__(74)))
-
-/***/ },
-/* 34 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2665,18 +1266,18 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 };
 
 /***/ },
-/* 35 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var ctx = __webpack_require__(20);
-var call = __webpack_require__(117);
-var isArrayIter = __webpack_require__(84);
+var call = __webpack_require__(106);
+var isArrayIter = __webpack_require__(75);
 var anObject = __webpack_require__(1);
 var toLength = __webpack_require__(6);
-var getIterFn = __webpack_require__(100);
+var getIterFn = __webpack_require__(91);
 var BREAK = {};
 var RETURN = {};
 var _exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
@@ -2700,7 +1301,7 @@ _exports.BREAK = BREAK;
 _exports.RETURN = RETURN;
 
 /***/ },
-/* 36 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2708,22 +1309,22 @@ _exports.RETURN = RETURN;
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(1);
-var dPs = __webpack_require__(123);
-var enumBugKeys = __webpack_require__(80);
-var IE_PROTO = __webpack_require__(93)('IE_PROTO');
+var dPs = __webpack_require__(112);
+var enumBugKeys = __webpack_require__(71);
+var IE_PROTO = __webpack_require__(84)('IE_PROTO');
 var Empty = function Empty() {/* empty */};
 var PROTOTYPE = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var _createDict = function createDict() {
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(79)('iframe');
+  var iframe = __webpack_require__(70)('iframe');
   var i = enumBugKeys.length;
   var lt = '<';
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(82).appendChild(iframe);
+  __webpack_require__(73).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -2750,37 +1351,37 @@ module.exports = Object.create || function create(O, Properties) {
 };
 
 /***/ },
-/* 37 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(125);
-var hiddenKeys = __webpack_require__(80).concat('length', 'prototype');
+var $keys = __webpack_require__(114);
+var hiddenKeys = __webpack_require__(71).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
 /***/ },
-/* 38 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(125);
-var enumBugKeys = __webpack_require__(80);
+var $keys = __webpack_require__(114);
+var enumBugKeys = __webpack_require__(71);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
 };
 
 /***/ },
-/* 39 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2796,7 +1397,7 @@ module.exports = function (bitmap, value) {
 };
 
 /***/ },
-/* 40 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2810,7 +1411,7 @@ module.exports = function (target, src, safe) {
 };
 
 /***/ },
-/* 41 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2832,7 +1433,7 @@ module.exports = function (KEY) {
 };
 
 /***/ },
-/* 42 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2847,7 +1448,7 @@ module.exports = function (index, length) {
 };
 
 /***/ },
-/* 43 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2860,7 +1461,7 @@ module.exports = function (key) {
 };
 
 /***/ },
-/* 44 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2873,250 +1474,7 @@ module.exports = function (it, TYPE) {
 };
 
 /***/ },
-/* 45 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(settings, task) {
-
-var soundEffects = {
-  play: function play(path) {
-    var audio = new Audio('./soundEffects/voices/' + path);
-    // const audio = new Audio('./soundEffects/voices/jasmin/i see u.m4a');
-    // audio.volume = settings.hasMutedSound ? 0 : 1;
-    audio.play();
-  },
-  playExplosionSound: function playExplosionSound() {
-    var audio = new Audio('./soundEffects/purchased/Mine Explosion 1.wav');
-    audio.volume = settings.hasMutedSound ? 0 : 0.2;
-    audio.play();
-  },
-  playShowBombSound: function playShowBombSound() {
-    var audio = new Audio('./soundEffects/showBomb.mp3');
-    audio.volume = settings.hasMutedSound ? 0 : 0.2;
-    audio.play();
-  },
-  playLineClickSound: function playLineClickSound() {
-    var audio = new Audio('./soundEffects/purchased/Balloon_Pop-by_YIO.wav');
-    audio.volume = settings.hasMutedSound ? 0 : 0.1;
-    audio.play();
-  },
-  playEraseBombSound: function playEraseBombSound() {
-    var audio = new Audio('./soundEffects/eraseBomb.mp3');
-    audio.volume = settings.hasMutedSound ? 0 : 0.4;
-    audio.play();
-  },
-  playScoreSound: function playScoreSound() {
-    var audio = new Audio('./soundEffects/purchased/Button Menu Application SFX 57.mp3');
-    audio.volume = settings.hasMutedSound ? 0 : 0.03;
-    audio.play();
-  },
-  playWrongSound: function playWrongSound() {
-    var audio = new Audio('./soundEffects/purchased/Wrong.wav');
-    audio.volume = settings.hasMutedSound ? 0 : 0.2;
-    audio.play();
-  },
-  runSpeaker: function runSpeaker(audio) {
-    var hasCancelledMusic = false;
-    var speaker = function speaker() {
-      if (settings.hasMutedMusic) {
-        hasCancelledMusic = true;
-        return;
-      };
-      if (!hasCancelledMusic) {
-        task.addClassByQuerySelector(".title img", "big");
-        setTimeout(function () {
-          task.removeClassByQuerySelector(".title img", "big");
-        }, 200);
-      }
-    };
-    var timeOuts = [0, 434, 869, 1303, 1737, 1986, 2256];
-    var count = 1;
-    var run = function run() {
-      count++;
-      if (count <= 17 && !app.on_game_board) {
-        timeOuts.forEach(function (time) {
-          setTimeout(function () {
-            speaker();
-          }, time);
-        });
-        setTimeout(function () {
-          run();
-        }, 4340);
-      }
-    };
-    run();
-  },
-  playBoardMusic: function playBoardMusic() {
-    if (settings.hasMutedMusic) return null;
-    var audio = new Audio('./soundEffects/Song_Beat/Zazah beat 22.mp3');
-    audio.volume = settings.hasMutedMusic ? 0 : 0.08;
-    $(document).on("click", ".boardBackButton", function () {
-      audio.currentTime = 0;
-      audio.pause();
-    });
-    audio.play().then(function () {
-      // playing music
-      soundEffects.replayWhenDone(audio);
-    }).catch(function (e) {
-      return console.log(e);
-    });
-  },
-  replayWhenDone: function replayWhenDone(audio) {
-    audio.addEventListener('ended', function () {
-      var _this = this;
-
-      setTimeout(function () {
-        _this.currentTime = 0;
-        _this.play();
-      }, 1000);
-    }, false);
-  },
-  playMusicClicked: false,
-  playGameMusic: function playGameMusic() {
-    var clickFunction = function clickFunction(playSong) {
-      if (soundEffects.playMusicClicked) return null;
-
-      var playVolume = 0.4;
-      var audio = new Audio('./soundEffects/Song_Beat/ZazahBeatSlow.mp3');
-      soundEffects.runSpeaker(audio);
-      audio.volume = settings.hasMutedMusic ? 0 : playVolume;
-      audio.play().then(function () {
-        soundEffects.replayWhenDone(audio);
-        // Video playback started ;)
-        document.getElementById("gameScreen").removeEventListener("click", clickFunction);
-        $(document).on("click", ".mOptions.off", function () {
-          audio.pause();
-        });
-        $(document).on("click", ".mOptions.on", function () {
-          if (!settings.hasMutedMusic) {
-            audio.currentTime = 0;
-            audio.volume = playVolume;
-            soundEffects.runSpeaker();
-            audio.play();
-          }
-        });
-        // adjust volume on game play
-        $(document).on("click", ".tipsText", function () {
-          audio.pause();
-          soundEffects.playBoardMusic();
-        });
-        $(document).on("click", ".tipsImages", function () {
-          audio.pause();
-          soundEffects.playBoardMusic();
-        });
-        $(document).on("click", ".boardBackButton", function () {
-          audio.currentTime = 0;
-          if (!settings.hasMutedMusic) audio.play();
-        });
-      }).catch(function (e) {
-        // Video playback failed ;(
-        console.log(e);
-      });
-    };
-    document.getElementById("gameScreen").addEventListener("click", clickFunction);
-  }
-};
-
-module.exports = soundEffects;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51), __webpack_require__(27)))
-
-/***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(app, ui, task, bomb) {
-
-var track = {
-  turn: 0,
-  incrementTurn: function incrementTurn() {
-    track.turn++;
-  },
-  goToPage: function goToPage(page) {
-    app.tools = null;
-    app.currentPage = page;
-    var allPages = document.getElementsByClassName("page");
-    for (var i = 0; i < allPages.length; i++) {
-      allPages[i].classList.add("removePage");
-    }
-    var pageToShow = document.getElementsByClassName(page)[0];
-    pageToShow.classList.remove("removePage");
-    ui.setSettingsIfOnSettingsPage(page);
-    if (page === "gameBoardPage") {
-      task.resizeBoard();
-      ui.populateBombSelectionScreen();
-    } else {
-      app.on_game_board = false;
-    }
-
-    if (page === "storePage") {
-      ui.populateStore();
-    }
-  },
-  youLose: function youLose() {
-    console.log("you lose");
-  },
-  setScores: function setScores() {
-    playerOneScore = 0;
-    playerTwoScore = 0;
-    for (var box in gameBoard) {
-      var personToScore = gameBoard[box].whoScored;
-      if (personToScore === "firstPlayerScored") {
-        playerOneScore++;
-      } else if (personToScore === "secondPlayerScored") {
-        playerTwoScore++;
-      }
-    }
-  },
-  adjustScore: function adjustScore(boxNumber, adjacentBoxNumber) {
-    track.setScores();
-
-    document.getElementsByClassName("playerOneScore")[0].innerText = playerOneScore;
-    document.getElementsByClassName("playerTwoScore")[0].innerText = playerTwoScore;
-
-    var score = function score(box) {
-      if (!track.hasScored(box)) return null; // check to see if player scored a point
-      bomb.explodeBoxes(box);
-    };
-
-    if (boxNumber) score(boxNumber);
-    if (adjacentBoxNumber) score(adjacentBoxNumber);
-  },
-  hasScored: function hasScored(boxNumber) {
-    var isTopClicked = gameBoard[boxNumber].borders.top;
-    var isRightClicked = gameBoard[boxNumber].borders.right;
-    var isBottomClicked = gameBoard[boxNumber].borders.bottom;
-    var isLeftClicked = gameBoard[boxNumber].borders.left;
-    return isTopClicked && isRightClicked && isBottomClicked && isLeftClicked;
-  },
-  decrementBombCount: function decrementBombCount() {
-    bombsToLay--;
-    // track.setRemainingBombs();
-  },
-  setRemainingBombs: function setRemainingBombs() {
-    task.addTextByQuerySelector(".remainingBombs", bombsToLay);
-  },
-  incrementMissedBombCount: function incrementMissedBombCount() {
-    var text = task.getTextByQuerySelector(".missedBombs");
-    var missedBombs = parseInt(text);
-    missedBombs++;
-    task.addTextByQuerySelector(".missedBombs", missedBombs);
-    track.decrementBombCount();
-  },
-  screenText: function screenText() {
-    showTextUsed = true;
-    setTimeout(function () {
-      showTextUsed = false; // prevents multiple calls for screen text
-    }, timeToWaitBetweenText);
-  }
-};
-
-module.exports = track;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(102), __webpack_require__(33), __webpack_require__(27), __webpack_require__(57)))
-
-/***/ },
-/* 47 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3149,7 +1507,7 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 48 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3158,7 +1516,7 @@ module.exports = function (it) {
 module.exports = {};
 
 /***/ },
-/* 49 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3173,7 +1531,7 @@ module.exports = function (it, tag, stat) {
 };
 
 /***/ },
-/* 50 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3182,7 +1540,7 @@ module.exports = function (it, tag, stat) {
 var $export = __webpack_require__(0);
 var defined = __webpack_require__(24);
 var fails = __webpack_require__(3);
-var spaces = __webpack_require__(96);
+var spaces = __webpack_require__(87);
 var space = '[' + spaces + ']';
 var non = '\u200B\x85';
 var ltrim = RegExp('^' + space + space + '*');
@@ -3211,646 +1569,7 @@ var trim = exporter.trim = function (string, TYPE) {
 module.exports = exporter;
 
 /***/ },
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _ref;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var settings = {
-  version: 1,
-  difficulty: "easy", // options: easy, medium, hard
-  hasMutedMusic: false,
-  hasMutedSound: false,
-  startUpPage: "gameBoardPage",
-  level_data: [{
-    computerSpeed: 1500,
-    isLocked: false,
-    levelNumber: 1,
-    stars: 0,
-    starRating: [{ stars: 1, score: 8 }, { stars: 2, score: 9 }, { stars: 3, score: 10 }],
-    help: {
-      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
-        return regeneratorRuntime.wrap(function gen$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return "create a <span class='highlightText'>box</span> to score";
-
-              case 2:
-                _context.next = 4;
-                return "take <span class='highlightText'>another turn</span> because you scored!";
-
-              case 4:
-                _context.next = 6;
-                return "your turn!";
-
-              case 6:
-                _context.next = 8;
-                return "";
-
-              case 8:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, gen, this);
-      }),
-      // helpTurns: [0, 2, 4, 5, 6]
-      helpTurns: [4, 5, 7, 8]
-    },
-    trainingRestrictions: {
-      restrictions: [{
-        type: "highLightLine",
-        turn: 0,
-        boxOne: {
-          box: "box15",
-          side: "left"
-        },
-        boxTwo: {
-          box: "box14",
-          side: "right"
-        }
-      }, {
-        type: "highLightLine",
-        turn: 2,
-        boxOne: {
-          box: "box20",
-          side: "bottom"
-        },
-        boxTwo: {
-          box: "box26",
-          side: "top"
-        }
-      }, {
-        type: "highLightLine",
-        turn: 4,
-        boxOne: {
-          box: "box15",
-          side: "right"
-        },
-        boxTwo: {
-          box: "box16",
-          side: "left"
-        }
-      }, {
-        type: "highLightLine",
-        turn: 5,
-        boxOne: {
-          box: "box21",
-          side: "bottom"
-        },
-        boxTwo: {
-          box: "box27",
-          side: "top"
-        }
-      }]
-    },
-    computerMoves: [{
-      turn: 1,
-      box: "box9",
-      line: "bottom"
-    }, {
-      turn: 3,
-      box: "box15",
-      line: "bottom"
-    }],
-    tipsPage: {
-      heading: "how to",
-      text: "Complete a box to score. You get another turn by scoring.",
-      img_src: "./img/tips/howto.gif",
-      height: "30%"
-    }
-  }, {
-    computerSpeed: 1000,
-    isLocked: true,
-    levelNumber: 2,
-    stars: 0,
-    prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
-    hasLargePrize: {
-      prize: "cheetah",
-      quantity: 1,
-      hasClaimed: false
-    },
-    initialBombs: [{
-      box: "box9",
-      bombType: "isCheetahExplosion"
-    }, {
-      box: "box26",
-      bombType: "isCheetahExplosion"
-    }],
-    starRating: [{ stars: 1, score: 8 }, { stars: 2, score: 9 }, { stars: 3, score: 10 }],
-    help: {
-      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
-        return regeneratorRuntime.wrap(function gen$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return "the cheetah explodes the <span class='highlightText'>row</span>";
-
-              case 2:
-                _context2.next = 4;
-                return "if the cheetah is in a <span class='highlightText'>box</span> it explodes";
-
-              case 4:
-                _context2.next = 6;
-                return "";
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, gen, this);
-      }),
-      // helpTurns: [0, 1, 3, 5]
-      helpTurns: [0, 1, 3, 5]
-    },
-    trainingRestrictions: {
-      restrictions: [{
-        type: "clickBox",
-        turn: 0,
-        clickBox: ["box9"]
-      }, {
-        type: "highLightLine",
-        turn: 2,
-        boxOne: {
-          box: "box20",
-          side: "bottom"
-        },
-        boxTwo: {
-          box: "box26",
-          side: "top"
-        }
-      }]
-    },
-    computerMoves: [{
-      turn: 1,
-      box: "box26",
-      line: "bottom"
-    }],
-    tipsPage: {
-      heading: "how to",
-      text: "Exploding opponent's boxes decrease their score",
-      img_src: "./img/tips/bomb_example.gif",
-      height: "30%"
-    }
-  }, {
-    isLocked: true,
-    levelNumber: 3,
-    stars: 0,
-    prefilledBoxes: ["box9", "box15", "box27"],
-    clickAnimal: "panther",
-    hasLargePrize: {
-      prize: "panther",
-      quantity: 1,
-      hasClaimed: false
-    },
-    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 11 }, { stars: 3, score: 12 }],
-    tools: [{
-      name: "panther",
-      src: "./img/color_animals/asset_panther.png",
-      count: 1
-    }],
-    help: {
-      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
-        return regeneratorRuntime.wrap(function gen$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return "the panther explodes the <span class='highlightText'>column</span>";
-
-              case 2:
-                _context3.next = 4;
-                return "";
-
-              case 4:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, gen, this);
-      }),
-      helpTurns: [2, 4]
-    },
-    trainingRestrictions: {
-      restrictions: [{
-        type: "layBomb",
-        turn: 0,
-        clickBox: ["box21"],
-        clickWhenLayed: true
-      }]
-    },
-    tipsPage: {
-      heading: "how to",
-      text: "place the bomb on the board by selecting it first. Then selecting a box",
-      img_src: "./img/tips/drop_example.png",
-      height: "64%"
-    }
-  }, {
-    isLocked: true,
-    levelNumber: 4,
-    stars: 0,
-    initialBombs: [{
-      box: "box21",
-      bombType: "isLionExplosion"
-    }],
-    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 12 }, { stars: 3, score: 16 }],
-    hasLargePrize: {
-      prize: "lion",
-      quantity: 1,
-      hasClaimed: false
-    },
-    tools: [{
-      name: "cheetah",
-      src: "./img/color_animals/asset_cheetah.png",
-      count: 1
-    }],
-    clickAnimal: "cheetah",
-    help: {
-      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
-        return regeneratorRuntime.wrap(function gen$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return "that was a <span class='highlightText'>chain explosion</span>!";
-
-              case 2:
-                _context4.next = 4;
-                return "the <span class='highlightText'>lion</span> explodes surrounding boxes!";
-
-              case 4:
-                _context4.next = 6;
-                return "";
-
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, gen, this);
-      }),
-      helpTurns: [1, 3, 5]
-    },
-    trainingRestrictions: {
-      restrictions: [{
-        type: "layBomb",
-        turn: 0,
-        clickBox: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"],
-        then: {
-          type: "clickBox",
-          clickBox: ["box21"]
-          // withClickBox: true
-        }
-      }]
-    }
-  }, {
-    isLocked: true,
-    levelNumber: 5,
-    stars: 0,
-    lockBoxes: [{
-      box: "box14",
-      toughness: 1
-    }, {
-      box: "box15",
-      toughness: 1
-    }, {
-      box: "box20",
-      toughness: 1
-    }, {
-      box: "box21",
-      toughness: 1
-    }],
-    initialBombs: [{
-      box: "box27",
-      bombType: "isPantherExplosion"
-    }],
-    starRating: [{ stars: 1, score: 14 }, { stars: 2, score: 18 }, { stars: 3, score: 24 }],
-    help: {
-      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
-        return regeneratorRuntime.wrap(function gen$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return "explode the <span class='highlightText'>Foot Of Oppression</span>";
-
-              case 2:
-                _context5.next = 4;
-                return "You <span class='highlightText'>cannot</span> click lines <span class='highlightText'>around</span> The Foot Of Oppression";
-
-              case 4:
-                _context5.next = 6;
-                return "If The Foot Of Oppression <span class='highlightText'>is not</span> destroyed You Lose";
-
-              case 6:
-                _context5.next = 8;
-                return "";
-
-              case 8:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, gen, this);
-      }),
-      helpTurns: [0, 1, 3, 5]
-    },
-    tools: [{
-      name: "lion",
-      src: "./img/color_animals/asset_lion.png",
-      count: 1
-    }, {
-      name: "cheetah",
-      src: "./img/color_animals/asset_cheetah.png",
-      count: 1
-    }],
-    trainingRestrictions: {
-      restrictions: [{
-        type: "clickBox",
-        turn: 0,
-        clickBox: ["box27"]
-      }]
-    },
-    tipsPage: {
-      heading: "how to",
-      text: "There comes a time when people get tired of being trampled by the iron foot of oppression. - MLK Jr.",
-      img_src: "./img/tips/foot.png",
-      height: "50%"
-    }
-  }, {
-    isLocked: true,
-    levelNumber: 6,
-    stars: 0,
-    lockBoxes: [{
-      box: "box28",
-      toughness: 1
-    }, {
-      box: "box29",
-      toughness: 1
-    }, {
-      box: "box34",
-      toughness: 1
-    }, {
-      box: "box35",
-      toughness: 1
-    }],
-    initialBombs: [],
-    bombsToLay: 0,
-    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 14 }, { stars: 3, score: 16 }],
-    tipsPage: {
-      heading: "how to",
-      text: "Go to the store to purchase items when you need to win",
-      img_src: "./img/tips/store.png",
-      height: "74%"
-    },
-    tools: [{
-      name: "cheetah",
-      src: "./img/color_animals/asset_cheetah.png",
-      count: 1
-    }]
-  }, {
-    isLocked: true,
-    levelNumber: 7,
-    stars: 0,
-    lockBoxes: [{
-      box: "box0",
-      toughness: 1
-    }, {
-      box: "box30",
-      toughness: 1
-    }],
-    initialBombs: [],
-    bombsToLay: 0,
-    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 12 }, { stars: 3, score: 14 }],
-    tools: [{
-      name: "panther",
-      src: "./img/color_animals/asset_panther.png",
-      count: 1
-    }]
-  }, {
-    isLocked: true,
-    levelNumber: 8,
-    stars: 0,
-    lockBoxes: [{
-      box: "box20",
-      toughness: 1
-    }, {
-      box: "box21",
-      toughness: 1
-    }, {
-      box: "box26",
-      toughness: 1
-    }, {
-      box: "box27",
-      toughness: 1
-    }, {
-      box: "box32",
-      toughness: 1
-    }, {
-      box: "box33",
-      toughness: 1
-    }],
-    initialBombs: [],
-    bombsToLay: 0,
-    starRating: [{ stars: 1, score: 14 }, { stars: 2, score: 16 }, { stars: 3, score: 20 }],
-    tools: [{
-      name: "lion",
-      src: "./img/color_animals/asset_lion.png",
-      count: 1
-    }]
-  }, {
-    isLocked: true,
-    levelNumber: 9,
-    stars: 0,
-    lockBoxes: [{
-      box: "box24",
-      toughness: 1
-    }, {
-      box: "box30",
-      toughness: 1
-    }, {
-      box: "box29",
-      toughness: 1
-    }, {
-      box: "box35",
-      toughness: 1
-    }],
-    initialBombs: [],
-    bombsToLay: 0,
-    starRating: [{ stars: 1, score: 12 }, { stars: 2, score: 14 }, { stars: 3, score: 16 }],
-    tools: [{
-      name: "cheetah",
-      src: "./img/color_animals/asset_cheetah.png",
-      count: 1
-    }]
-  }, (_ref = {
-    isLocked: true,
-    levelNumber: 10,
-    stars: 0,
-    lockBoxes: [],
-    initialBombs: [],
-    bombsToLay: 0,
-    starRating: [{ stars: 1, score: 16 }, { stars: 2, score: 18 }, { stars: 3, score: 20 }],
-    tools: [{
-      count: 1,
-      name: "queen_makeda",
-      src: "./img/queens/asset_queen_makeda.png"
-    }, {
-      name: "panther",
-      src: "./img/color_animals/asset_panther.png",
-      count: 1
-    }]
-  }, _defineProperty(_ref, "lockBoxes", [{
-    box: "box7",
-    toughness: 1
-  }, {
-    box: "box8",
-    toughness: 1
-  }, {
-    box: "box9",
-    toughness: 1
-  }, {
-    box: "box10",
-    toughness: 1
-  }, {
-    box: "box11",
-    toughness: 1
-  }, {
-    box: "box12",
-    toughness: 1
-  }, {
-    box: "box13",
-    toughness: 1
-  }, {
-    box: "box14",
-    toughness: 1
-  }, {
-    box: "box15",
-    toughness: 1
-  }, {
-    box: "box17",
-    toughness: 1
-  }, {
-    box: "box19",
-    toughness: 1
-  }, {
-    box: "box20",
-    toughness: 1
-  }, {
-    box: "box21",
-    toughness: 1
-  }, {
-    box: "box22",
-    toughness: 1
-  }, {
-    box: "box23",
-    toughness: 1
-  }]), _defineProperty(_ref, "tipsPage", {
-    heading: "history",
-    text: "Queen Makeda could make a small kingdom the most revered kingdom in the world",
-    img_src: "./img/tips/asset_queen_makeda.png",
-    height: "40%"
-  }), _ref)],
-  store: {
-    cheetah: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_cheetah",
-      lockedImgClass: "buy_cheetah_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isCheetahExplosion"
-    },
-    lion: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_lion",
-      lockedImgClass: "buy_lion_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isLionExplosion"
-    },
-    panther: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_panther",
-      lockedImgClass: "buy_panther_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isPantherExplosion"
-    },
-    elephant: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_elephant",
-      lockedImgClass: "buy_elephant_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isElephantExplosion"
-    },
-    giraffe: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_giraffe",
-      lockedImgClass: "buy_giraffe_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isGiraffeExplosion"
-    },
-    gorilla: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_gorilla",
-      lockedImgClass: "buy_gorilla_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isGorillaExplosion"
-    },
-    redtailedmonkey: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_redtailedmonkey",
-      lockedImgClass: "buy_redtailedmonkey_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isRedTailedMonkeyExplosion"
-    },
-    rhino: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_rhino",
-      lockedImgClass: "buy_rhino_dark",
-      cost: "10",
-      quantity: 0,
-      imgBackgroundClass: "isRhinoExplosion"
-    },
-    queen_candace: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_queen_candace",
-      lockedImgClass: "buy_queen_candace_dark",
-      cost: "50",
-      quantity: 0,
-      imgBackgroundClass: "isQueenCandaceExplosion"
-    },
-    queen_makeda: {
-      hasUnlocked: false,
-      unlockedImgClass: "buy_queen_makeda",
-      lockedImgClass: "buy_queen_makeda_dark",
-      cost: "50",
-      quantity: 0,
-      imgBackgroundClass: "isQueenMakedaExplosion"
-    }
-  },
-  gold: 0,
-  itemsPurchased: [],
-  itemsSelected: []
-};
-
-module.exports = settings;
-
-/***/ },
-/* 52 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3870,7 +1589,7 @@ module.exports = function () {
 };
 
 /***/ },
-/* 53 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3884,7 +1603,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 };
 
 /***/ },
-/* 54 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3893,7 +1612,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 exports.f = {}.propertyIsEnumerable;
 
 /***/ },
-/* 55 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3908,12 +1627,12 @@ var store = global[SHARED] || (global[SHARED] = {});
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
   version: core.version,
-  mode: __webpack_require__(31) ? 'pure' : 'global',
+  mode: __webpack_require__(30) ? 'pure' : 'global',
   copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 });
 
 /***/ },
-/* 56 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3930,1029 +1649,7 @@ module.exports = function (O, D) {
 };
 
 /***/ },
-/* 57 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(track, boxInfo, task, soundEffects, ui, animalExplosions, lineClickAction) {
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var bomb = {
-  types: [{ key: "isLionExplosion", class: "isLionExplosion" }, { key: "isCheetahExplosion", class: "isCheetahExplosion" }, { key: "isPantherExplosion", class: "isPantherExplosion" }, { key: "isQueenMakedaExplosion", class: "isQueenMakedaExplosion" }],
-  isExplosionBox: function isExplosionBox(box) {
-    var isBombBox = false;
-    bomb.types.forEach(function (data) {
-      var className = data.class;
-      var isBomb = document.getElementsByClassName(box)[0] ? document.getElementsByClassName(box)[0].classList.contains(className) : false;
-      if (isBomb) isBombBox = true;
-    });
-    return isBombBox;
-  },
-  populationData: [],
-  fillPopulationData: function fillPopulationData() {
-    bomb.populationData = [];
-    var useTurns = [];
-    if (bombsToLay > 0) {
-      while (useTurns.length < bombsToLay * 2) {
-        var randomNumber = Math.floor(Math.random() * 30) + track.turn;
-        var filtered = [];
-        for (var box in gameBoard) {
-          if (!gameBoard[box].disabled) filtered.push(box);
-        }
-        var boxNumber = filtered[Math.floor(Math.random() * (gameBoardLength - 1))];
-        if (!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)) {
-          useTurns = [].concat(_toConsumableArray(useTurns), [boxNumber, randomNumber]);
-          bomb.populationData.push({ randomNumber: randomNumber, boxNumber: boxNumber });
-        }
-      }
-    }
-  },
-  bombPopulation: function bombPopulation() {
-    var boxNumber = void 0;
-    bomb.populationData.some(function (data) {
-      boxNumber = data.randomNumber === track.turn ? data.boxNumber : boxNumber;
-      return data.randomNumber === track.turn;
-    });
-    if (boxNumber && boxInfo.getBorderCount(boxNumber) !== 4) {
-      bomb.placeBomb(boxNumber);
-    }
-  },
-  showExplosionInBox: function showExplosionInBox(box, type, seconds) {
-    if (type !== "smoke") bomb.explodeLockBoxIfHit(box);
-    task.removeClassByQuerySelector("." + box + "Explosion", "hideExplosion");
-    document.querySelector("." + box + "Explosion").src = "./gifs/" + type + ".gif";
-    setTimeout(function () {
-      explodingBoxes.pop();
-      taks.addClassByClassName(box + "Explosion", "hideExplosion");
-    }, seconds);
-  },
-  explodeLockBoxIfHit: function explodeLockBoxIfHit(box) {
-    if (boxInfo.isALockBox(box)) {
-      var index = void 0;
-      lockBombLocations.forEach(function (data, i) {
-        if (data.box === box) {
-          index = i;
-        }
-      });
-      if (index || index === 0) {
-        lockBombLocations[index].toughness--;
-        if (lockBombLocations[index].toughness <= 0) {
-          setTimeout(function () {
-            var newIndex = void 0;
-            lockBombLocations.forEach(function (data, index) {
-              if (data.box === box) {
-                newIndex = index;
-              }
-            });
-            lockBombLocations.splice(newIndex, 1);
-            task.removeClassByQuerySelector(".box." + box, "locked");
-          }, 300);
-        }
-      }
-    };
-  },
-  placeBomb: function placeBomb(boxNumber) {
-    //wait for explosions to stop before placing bomb
-    if (bomb.isExploding.length === 0) {
-      setTimeout(function () {
-        var explosion = bomb.types[0];
-        var number = Math.floor(Math.random() * 100);
-        if (number > 66) {
-          explosion = bomb.types[0];
-        } else if (number > 33) {
-          explosion = bomb.types[1];
-        } else {
-          explosion = bomb.types[2];
-        }
-        if (!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)) {
-          // track.decrementBombCount();
-          soundEffects.playShowBombSound();
-          document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
-          bomb.showSpriteSmoke(boxNumber);
-          setTimeout(function () {
-            gameBoard[boxNumber][explosion.key] = true;
-            ui.populateTheUI();
-          }, 100);
-        } else {
-          // track.incrementMissedBombCount();
-          var missedBox = {
-            missedBox: true,
-            box: boxNumber
-          };
-        }
-      }, 400);
-    } else {
-      bomb.placeBomb();
-    }
-  },
-  explodeBoxes: function explodeBoxes(box) {
-    if (gameBoard[box].isLionExplosion) {
-      var _explodingBoxes;
-
-      // removes the bomb image from the box after the ui is populated
-      gameBoard[box].isLionExplosion = false;
-
-      var _animalExplosions$lio = animalExplosions.lion.boxes(box),
-          boxesToExplode = _animalExplosions$lio.boxesToExplode,
-          linesToRemove = _animalExplosions$lio.linesToRemove;
-
-      (_explodingBoxes = explodingBoxes).push.apply(_explodingBoxes, _toConsumableArray(boxesToExplode));
-      // make boxes explode
-      bomb.explodeBoxesFromArray(linesToRemove, box);
-      bomb.checkForChainReactions(boxesToExplode);
-      soundEffects.playExplosionSound();
-    } else if (gameBoard[box].isCheetahExplosion) {
-      var _explodingBoxes2;
-
-      // removes the bomb image from the box after the ui is populated
-      gameBoard[box].isCheetahExplosion = false;
-
-      var _animalExplosions$che = animalExplosions.cheetah.boxes(box),
-          _boxesToExplode = _animalExplosions$che.boxesToExplode,
-          _linesToRemove = _animalExplosions$che.linesToRemove;
-
-      (_explodingBoxes2 = explodingBoxes).push.apply(_explodingBoxes2, _toConsumableArray(_boxesToExplode));
-      // make boxes explode
-      bomb.explodeBoxesFromArray(_linesToRemove, box);
-      bomb.checkForChainReactions(_boxesToExplode);
-      soundEffects.playExplosionSound();
-    } else if (gameBoard[box].isPantherExplosion) {
-      var _explodingBoxes3;
-
-      // removes the bomb image from the box after the ui is populated
-      gameBoard[box].isPantherExplosion = false;
-
-      var _animalExplosions$pan = animalExplosions.panther.boxes(box),
-          _boxesToExplode2 = _animalExplosions$pan.boxesToExplode,
-          _linesToRemove2 = _animalExplosions$pan.linesToRemove;
-
-      (_explodingBoxes3 = explodingBoxes).push.apply(_explodingBoxes3, _toConsumableArray(_boxesToExplode2));
-      // make boxes explode
-      bomb.explodeBoxesFromArray(_linesToRemove2, box);
-      bomb.checkForChainReactions(_boxesToExplode2);
-      soundEffects.playExplosionSound();
-    } else if (gameBoard[box].isQueenMakedaExplosion) {
-      var _explodingBoxes4;
-
-      // removes the bomb image from the box after the ui is populated
-      gameBoard[box].isQueenMakedaExplosion = false;
-
-      var _animalExplosions$que = animalExplosions.queen_makeda.boxes(box),
-          _boxesToExplode3 = _animalExplosions$que.boxesToExplode,
-          _linesToRemove3 = _animalExplosions$que.linesToRemove;
-
-      (_explodingBoxes4 = explodingBoxes).push.apply(_explodingBoxes4, _toConsumableArray(_boxesToExplode3));
-      // make boxes explode
-      bomb.explodeBoxesFromArray(_linesToRemove3, box);
-      bomb.checkForChainReactions(_boxesToExplode3);
-      soundEffects.playExplosionSound();
-    }
-    ui.populateTheUI();
-  },
-  checkForChainReactions: function checkForChainReactions(boxesToCheck) {
-    setTimeout(function () {
-      boxesToCheck.forEach(function (box) {
-        if (box) {
-          bomb.explodeBoxes(box);
-        }
-      });
-    }, 80 * 4);
-  },
-  allExplodingBoxes: [],
-  fillExplodingBoxes: function fillExplodingBoxes(box) {
-    bomb.allExplodingBoxes.push(box);
-    setTimeout(function () {
-      bomb.allExplodingBoxes.pop();
-    });
-  },
-  explodeBoxesFromArray: function explodeBoxesFromArray(linesToRemove, box) {
-    linesToRemove.forEach(function (item) {
-      if (item.box) {
-        bomb.fillExplodingBoxes(item.box);
-        lineClickAction.removeBorders(item.box, item.lines);
-        ui.removeScoreColorIfRemovingBorder(item.box);
-        if (!bomb.isExploding.includes(item.box)) {
-          bomb.isExploding.push(item.box);
-          bomb.showSpriteExplosion(item.box);
-        }
-      }
-    });
-  },
-  isExploding: [],
-  showSpriteExplosion: function showSpriteExplosion(box) {
-    task.removeClassByQuerySelector("." + box + " > .spriteSheet", "smokeGif");
-    setTimeout(function () {
-      task.addClassByQuerySelector("." + box + " > .spriteSheet", "explosionGif");
-    });
-    setTimeout(function () {
-      task.removeClassByQuerySelector("." + box + " > .spriteSheet", "explosionGif");
-      // remove the box from the exploding array
-      bomb.isExploding.pop();
-    }, 800);
-    bomb.explodeLockBoxIfHit(box);
-  },
-  showSpriteSmoke: function showSpriteSmoke(box) {
-    task.addClassByQuerySelector("." + box + " > .spriteSheet", "smokeGif");
-    setTimeout(function () {
-      task.removeClassByQuerySelector("." + box + " > .spriteSheet", "smokeGif");
-    }, 800);
-  }
-};
-
-module.exports = bomb;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(46), __webpack_require__(58), __webpack_require__(27), __webpack_require__(45), __webpack_require__(33), __webpack_require__(142), __webpack_require__(59)))
-
-/***/ },
-/* 58 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, ui, soundEffects) {
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var boxInfo = {
-  getGameBoardClickBox: function getGameBoardClickBox(clickBox) {
-    return gameBoard[clickBox];
-  },
-  getSurroundingBoxesInfo: function getSurroundingBoxesInfo(clickBox, boxSide) {
-    return gameBoard[clickBox].surroundingBoxes[boxSide];
-  },
-  getSurroundingBoxesKeys: function getSurroundingBoxesKeys(clickBox) {
-    if (!Object.keys(boxInfo.getGameBoardClickBox(clickBox))) {
-      return null;
-    }
-    return Object.keys(boxInfo.getGameBoardClickBox(clickBox).surroundingBoxes);
-  },
-  isBoxDisabled: function isBoxDisabled(box) {
-    return gameBoard[box].disabled === true;
-  },
-  getBorderCount: function getBorderCount(box) {
-    var borders = gameBoard[box].borders;
-    var count = 0;
-    Object.keys(borders).forEach(function (data) {
-      if (borders[data]) count++;
-    });
-    return count;
-  },
-  getSafeBoxes: function getSafeBoxes() {
-    var safeClickBoxWithSide = [];
-    var oneBorder = [].concat(_toConsumableArray(oneBorderBoxes));
-    oneBorder.forEach(function (box) {
-      oneBorderBoxes.splice(oneBorderBoxes.indexOf(box), 1);
-      var edgeBox = boxInfo.edgeBox(box);
-      if (edgeBox.hasEdgeBox) {
-        // task takes care of the corner cases by clicked its empty side
-        safeClickBoxWithSide.push({
-          clickBox: box,
-          clickSide: edgeBox.clickSide
-        });
-      } else {
-        var surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(function (data) {
-          return oneBorderBoxes.includes(data);
-        });
-        surroundingOnBorderBoxes.forEach(function (data) {
-          var adjObj = boxInfo.isAdjacentBoxesConnected(box, data);
-          if (adjObj.isConnected) {
-            safeClickBoxWithSide.push({
-              clickBox: box,
-              clickSide: adjObj.side
-            });
-          }
-        });
-      }
-    });
-    return safeClickBoxWithSide;
-  },
-  getAllBoxClasses: function getAllBoxClasses(box) {
-    var classesToAdd = ["box", "flexRow", box];
-
-    if (gameBoard[box].borders.top) {
-      if (whoClickedLine[box].top === "computer") {
-        classesToAdd.push("borderTopComputer");
-      } else {
-        classesToAdd.push("borderTop");
-      }
-    }
-    if (gameBoard[box].borders.right) {
-      if (whoClickedLine[box].right === "computer") {
-        classesToAdd.push("borderRightComputer");
-      } else {
-        classesToAdd.push("borderRight");
-      }
-    }
-    if (gameBoard[box].borders.bottom) {
-      if (whoClickedLine[box].bottom === "computer") {
-        classesToAdd.push("borderBottomComputer");
-      } else {
-        classesToAdd.push("borderBottom");
-      }
-    }
-    if (gameBoard[box].borders.left) {
-      if (whoClickedLine[box].left === "computer") {
-        classesToAdd.push("borderLeftComputer");
-      } else {
-        classesToAdd.push("borderLeft");
-      }
-    }
-
-    if (gameBoard[box].whoScored) classesToAdd.push(gameBoard[box].whoScored);
-
-    if (gameBoard[box].isLionExplosion) {
-      classesToAdd.push("isLionExplosion");
-    } else if (gameBoard[box].isCheetahExplosion) {
-      classesToAdd.push("isCheetahExplosion");
-    } else if (gameBoard[box].isPantherExplosion) {
-      classesToAdd.push("isPantherExplosion");
-    } else if (gameBoard[box].isQueenMakedaExplosion) {
-      classesToAdd.push("isQueenMakedaExplosion");
-    }
-
-    var sideClasses = ["isTopRightCornerBox", "isTopLeftCornerBox", "isBottomRightCornerBox", "isBottomLeftCornerBox", "isTopSideRow", "isRightSideRow", "isBottomSideRow", "isLeftSideRow"];
-
-    sideClasses.forEach(function (className) {
-      if (gameBoard[box][className]) {
-        classesToAdd.push(className);
-      }
-    });
-
-    if (gameBoard[box].isLocked === true) {
-      classesToAdd.push("locked");
-    }
-
-    if (boxInfo.isBoxDisabled(box)) {
-      classesToAdd.push("disabled");
-    }
-
-    return classesToAdd;
-  },
-  getUnclickedBorders: function getUnclickedBorders(box) {
-    var bordersArray = [];
-    var borders = gameBoard[box].borders;
-    Object.keys(borders).forEach(function (data) {
-      if (!borders[data]) bordersArray.push(data);
-    });
-    return bordersArray;
-  },
-  getClickedBorders: function getClickedBorders(box) {
-    var bordersArray = [];
-    var borders = gameBoard[box].borders;
-    Object.keys(borders).forEach(function (data) {
-      if (borders[data]) bordersArray.push(data);
-    });
-    return bordersArray;
-  },
-  adjustBorderCountArrays: function adjustBorderCountArrays() {
-    boxInfo.clearBorderArrays();
-    for (var box in gameBoard) {
-      if (!boxInfo.isBoxDisabled(box)) {
-        var borderCount = boxInfo.getBorderCount(box);
-        if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box);else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
-      }
-    }
-  },
-  countsAsNoBorders: function countsAsNoBorders(box, borderCount) {
-    if (boxInfo.isALockBox(box)) return false;
-    return borderCount === 0;
-  },
-  countsAsOneBorders: function countsAsOneBorders(box, borderCount) {
-    if (boxInfo.isALockBox(box)) return false;
-    return borderCount === 1;
-  },
-  countsAsTwoBorders: function countsAsTwoBorders(box, borderCount) {
-    if (boxInfo.isALockBox(box)) return false;
-    return borderCount === 2;
-  },
-  countsAsThreeBorders: function countsAsThreeBorders(box, borderCount) {
-    if (boxInfo.isALockBox(box)) return false;
-    return borderCount === 3;
-  },
-  isAdjBoxALockBox: function isAdjBoxALockBox(box, side) {
-    var adjBox = boxInfo.getAdjBoxBySide(box, side);
-    return boxInfo.isALockBox(adjBox);
-  },
-  getAdjBoxBySide: function getAdjBoxBySide(box, side) {
-    var boxNumber = parseInt(box.replace("box", ""));
-    var adjBox = void 0;
-    if (side === "top") {
-      adjBox = boxInfo.getTopBox(boxNumber);
-    } else if (side === "left") {
-      adjBox = boxInfo.getLeftBox(boxNumber);
-    } else if (side === "bottom") {
-      adjBox = boxInfo.getBottomBox(boxNumber);
-    } else if (side === "right") {
-      adjBox = boxInfo.getRightBox(boxNumber);
-    }
-    return adjBox;
-  },
-  isALockBox: function isALockBox(box) {
-    var allBombs = [];
-    lockBombLocations.forEach(function (data) {
-      return allBombs.push(data.box);
-    });
-    return allBombs.includes(box);
-  },
-  clearBorderArrays: function clearBorderArrays() {
-    noBorders.length = 0;
-    oneBorderBoxes.length = 0;
-    twoBorderBoxes.length = 0;
-    threeBorderBoxes.length = 0;
-  },
-  isAdjacentBoxesConnected: function isAdjacentBoxesConnected(box1, box2) {
-    var adjObj = {
-      isConnected: false
-    };
-    var bordersBox2 = boxInfo.getGameBoardClickBox(box2).borders;
-    var surroundingBoxes = boxInfo.getGameBoardClickBox(box1).surroundingBoxes;
-    boxInfo.getSurroundingBoxesKeys(box1).forEach(function (data) {
-      var complement = boxInfo.complementBorder[data.replace("Box", "")];
-      if (surroundingBoxes[data] && "box" + surroundingBoxes[data].boxNumber === box2 && bordersBox2[complement] === null) {
-        adjObj.isConnected = true;
-        adjObj.side = data.replace("Box", "");
-      }
-    });
-    return adjObj;
-  },
-  edgeBox: function edgeBox(clickBox) {
-    // return an edge box
-    var edgeBox = {
-      hasEdgeBox: false,
-      clickSide: null
-    };
-    var surroundingBoxesKeys = boxInfo.getSurroundingBoxesKeys(clickBox);
-    var clickBoxObj = boxInfo.getGameBoardClickBox(clickBox);
-    surroundingBoxesKeys.forEach(function (data) {
-      if (clickBoxObj.surroundingBoxes[data] === null && clickBoxObj.borders[data.replace("Box", "")] === null) {
-        edgeBox.hasEdgeBox = true;
-        edgeBox.clickSide = data.replace("Box", "");
-      }
-    });
-    return edgeBox;
-  },
-  isEdgeBox: function isEdgeBox(box) {
-    var boxInfo = gameBoard[box];
-    if (boxInfo.disabled) return false;
-
-    if (boxInfo.isTopRightCornerBox || boxInfo.isTopLeftCornerBox || boxInfo.isBottomRightCornerBox || boxInfo.isBottomLeftCornerBox || boxInfo.isTopSideRow || boxInfo.isRightSideRow || boxInfo.isBottomSideRow || boxInfo.isLeftSideRow) {
-      return true;
-    }
-
-    return false;
-  },
-  getLineBetweenBoxes: function getLineBetweenBoxes(clickBox, selectedBox) {
-    var selectedSide = null;
-    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(function (data) {
-      var number = boxInfo.getSurroundingBoxesInfo(clickBox, data) ? boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber : null;
-      if (selectedBox === "box" + number) {
-        selectedSide = data;
-      }
-    });
-    return selectedSide;
-  },
-  getLessThanOneBorderNonConnectedSurroundingBoxes: function getLessThanOneBorderNonConnectedSurroundingBoxes(clickBox) {
-    var surroundingBoxes = boxInfo.getSurroundingBoxes(clickBox);
-    var matchingBoxes = [];
-    surroundingBoxes.map(function (data) {
-      var borders = boxInfo.getBorderCount(data);
-      if (borders <= 1) matchingBoxes.push(data);
-    });
-    return matchingBoxes;
-  },
-  getSurroundingBoxes: function getSurroundingBoxes(clickBox) {
-    var surroundingBoxes = [];
-    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(function (data) {
-      if (boxInfo.getSurroundingBoxesInfo(clickBox, data)) surroundingBoxes.push(boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber);
-    });
-    return surroundingBoxes.filter(function (data) {
-      return data;
-    }).map(function (box) {
-      return "box" + box;
-    });
-  },
-  getOneBorderConnectedSurroundingBoxes: function getOneBorderConnectedSurroundingBoxes(box) {
-    var oneBorderConnectedSurroundingBoxes = [];
-    var connectedSurroundingBoxes = boxInfo.getSurroundingBoxes(box).filter(function (adjBox) {
-      return boxInfo.isAdjacentBoxesConnected(box, adjBox).isConnected;
-    });
-    connectedSurroundingBoxes.forEach(function (surBox) {
-      if (boxInfo.getBorderCount(surBox) === 1) {
-        oneBorderConnectedSurroundingBoxes.push(surBox);
-      }
-    });
-    return oneBorderConnectedSurroundingBoxes;
-  },
-  getConnectedBoxes: function getConnectedBoxes(box) {
-    var connectedBoxes = [];
-    var surroundingBoxes = boxInfo.getSurroundingBoxes(box);
-    surroundingBoxes.forEach(function (surBox) {
-      if (boxInfo.isAdjacentBoxesConnected(box, surBox).isConnected) {
-        connectedBoxes.push(surBox);
-      }
-    });
-    return connectedBoxes;
-  },
-  getAllBorders: function getAllBorders(box) {
-    return {
-      topRightBoxNumber: boxInfo.getTopRightBoxNumber(box),
-      topLeftBoxNumber: boxInfo.getTopLeftBoxNumber(box),
-      bottomRightBoxNumber: boxInfo.getBottomRightBoxNumber(box),
-      bottomLeftBoxNumber: boxInfo.getBottomLeftBoxNumber(box),
-      topBox: boxInfo.getTopBox(box),
-      leftBox: boxInfo.getLeftBox(box),
-      bottomBox: boxInfo.getBottomBox(box),
-      rightBox: boxInfo.getRightBox(box)
-    };
-  },
-  getTopRightBoxNumber: function getTopRightBoxNumber(box) {
-    var topRightBoxNumber = box - (rowLength - 1);
-    return boxInfo.hasTopRightBoxNumber("box" + topRightBoxNumber, "box" + box) ? "box" + topRightBoxNumber : false;
-  },
-  getTopLeftBoxNumber: function getTopLeftBoxNumber(box) {
-    var topLeftBoxNumber = box - (rowLength + 1);
-    return boxInfo.hasTopLeftBoxNumber("box" + topLeftBoxNumber, "box" + box) ? "box" + topLeftBoxNumber : false;
-  },
-  getBottomRightBoxNumber: function getBottomRightBoxNumber(box) {
-    var bottomRightBoxNumber = box + (rowLength + 1);
-    return boxInfo.hasBottomRightBoxNumber("box" + bottomRightBoxNumber, "box" + box) ? "box" + bottomRightBoxNumber : false;
-  },
-  getBottomLeftBoxNumber: function getBottomLeftBoxNumber(box) {
-    var bottomLeftBoxNumber = box + (rowLength - 1);
-    return boxInfo.hasBottomLeftBoxNumber("box" + bottomLeftBoxNumber, "box" + box) ? "box" + bottomLeftBoxNumber : false;
-  },
-  getTopBox: function getTopBox(box) {
-    var topBox = box - rowLength;
-    return boxInfo.hasTopBox("box" + topBox, "box" + box) ? "box" + topBox : false;
-  },
-  getLeftBox: function getLeftBox(box) {
-    var leftBox = box - 1;
-    return boxInfo.hasLeftBox("box" + leftBox, "box" + box) ? "box" + leftBox : false;
-  },
-  getBottomBox: function getBottomBox(box) {
-    var bottomBox = box + rowLength;
-    return boxInfo.hasBottomBox("box" + bottomBox, "box" + box) ? "box" + bottomBox : false;
-  },
-  getRightBox: function getRightBox(box) {
-    var rightBox = box + 1;
-    return boxInfo.hasRightBox("box" + rightBox, "box" + box) ? "box" + rightBox : false;
-  },
-  hasTopRightBoxNumber: function hasTopRightBoxNumber(topRightBoxNumber, box) {
-    return gameBoard[topRightBoxNumber] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox;
-  },
-  hasTopLeftBoxNumber: function hasTopLeftBoxNumber(topLeftBoxNumber, box) {
-    return gameBoard[topLeftBoxNumber] && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox;
-  },
-  hasBottomRightBoxNumber: function hasBottomRightBoxNumber(bottomRightBoxNumber, box) {
-    return gameBoard[bottomRightBoxNumber] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomLeftCornerBox;
-  },
-  hasBottomLeftBoxNumber: function hasBottomLeftBoxNumber(bottomLeftBoxNumber, box) {
-    return gameBoard[bottomLeftBoxNumber] && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomRightCornerBox;
-  },
-  hasTopBox: function hasTopBox(topBox, box) {
-    return gameBoard[topBox] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox;
-  },
-  hasLeftBox: function hasLeftBox(leftBox, box) {
-    return gameBoard[leftBox] && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox;
-  },
-  hasBottomBox: function hasBottomBox(bottomBox, box) {
-    return gameBoard[bottomBox] && !gameBoard[box].isBottomLeftCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomRightCornerBox;
-  },
-  hasRightBox: function hasRightBox(rightBox, box) {
-    return gameBoard[rightBox] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox;
-  },
-  getBordersToRemove: function getBordersToRemove(box, _ref) {
-    var topRightBoxNumber = _ref.topRightBoxNumber,
-        topLeftBoxNumber = _ref.topLeftBoxNumber,
-        bottomRightBoxNumber = _ref.bottomRightBoxNumber,
-        bottomLeftBoxNumber = _ref.bottomLeftBoxNumber,
-        topBox = _ref.topBox,
-        leftBox = _ref.leftBox,
-        bottomBox = _ref.bottomBox,
-        rightBox = _ref.rightBox;
-
-    return [{
-      box: box,
-      lines: ["top", "right", "bottom", "left"]
-    }, {
-      box: topRightBoxNumber,
-      lines: ["bottom", "left"]
-    }, {
-      box: topLeftBoxNumber,
-      lines: ["right", "bottom"]
-    }, {
-      box: bottomRightBoxNumber,
-      lines: ["top", "left"]
-    }, {
-      box: bottomLeftBoxNumber,
-      lines: ["top", "right"]
-    }, {
-      box: topBox,
-      lines: ["right", "bottom", "left"]
-    }, {
-      box: leftBox,
-      lines: ["top", "right", "bottom"]
-    }, {
-      box: bottomBox,
-      lines: ["top", "right", "left"]
-    }, {
-      box: rightBox,
-      lines: ["top", "bottom", "left"]
-    }];
-  },
-  getRowClick: function getRowClick(positionFromTopOfGameBoard, heightOfBoxes) {
-    var row = positionFromTopOfGameBoard / heightOfBoxes;
-    // collaboration of row
-    if (row < 0.9) {
-      row = 0;
-    } else if (row < 1 && row > 0.9) {
-      row = 1;
-    } else if (row < 2 && row > 1.88) {
-      row = 2;
-    } else if (row < 3 && row > 2.85) {
-      row = 3;
-    } else if (row < 4 && row > 3.76) {
-      row = 4;
-    }
-    return Math.floor(row);
-  },
-  getEdgeBoxClickPosition: function getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes) {
-    var row = boxInfo.getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
-    var rowInformation = {
-      row0: [], row1: [], row2: [],
-      row3: [], row4: [], row5: []
-    };
-    for (var i = 0; i < 36; i++) {
-      var box = "box" + i;
-      if (!boxInfo.isEdgeBox(box)) continue;
-      if (i < 6) {
-        rowInformation.row0.push(box);
-      } else if (i < 12) {
-        rowInformation.row1.push(box);
-      } else if (i < 18) {
-        rowInformation.row2.push(box);
-      } else if (i < 24) {
-        rowInformation.row3.push(box);
-      } else if (i < 30) {
-        rowInformation.row4.push(box);
-      } else if (i < 36) {
-        rowInformation.row5.push(box);
-      }
-    }
-    var rowInfoWithEdgePositions = [];
-    for (var fullRow in rowInformation) {
-      if (rowInformation[fullRow].length === 0) continue;
-      rowInformation[fullRow].forEach(function (thisBox) {
-        var positionClickInfo = {};
-        positionClickInfo.box = thisBox;
-        var box = document.getElementsByClassName(thisBox);
-        var zoom = 0.96;
-        var gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
-        var gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
-        var height = task.getHeightWithClassName(thisBox);
-        var width = task.getWidthWithClassName(thisBox);
-        var boardHolderWidth = task.getWidthWithId("boardHolder");
-        var offset = lineClickOffset;
-
-        var topClickOffset = {
-          xRange: { min: gameBoardPositionX, max: gameBoardPositionX + width },
-          yRange: { min: gameBoardPositionY - offset, max: gameBoardPositionY }
-        };
-        var rightClickOffset = {
-          xRange: { min: gameBoardPositionX + width, max: gameBoardPositionX + width + offset },
-          yRange: { min: gameBoardPositionY, max: gameBoardPositionY + height }
-        };
-        var bottomClickOffset = {
-          xRange: { min: gameBoardPositionX, max: gameBoardPositionX + width },
-          yRange: { min: gameBoardPositionY + height, max: gameBoardPositionY + height + offset }
-        };
-        var leftClickOffset = {
-          xRange: { min: gameBoardPositionX - offset, max: gameBoardPositionX },
-          yRange: { min: gameBoardPositionY, max: gameBoardPositionY + height }
-        };
-
-        var boxInfo = gameBoard[thisBox];
-
-        if (boxInfo.isTopRightCornerBox) {
-          positionClickInfo.ySide = "top";
-          positionClickInfo.xSide = "right";
-          positionClickInfo.outsideClickRange = [rightClickOffset, topClickOffset];
-        }
-        if (boxInfo.isTopLeftCornerBox) {
-          positionClickInfo.ySide = "top";
-          positionClickInfo.xSide = "left";
-          positionClickInfo.outsideClickRange = [leftClickOffset, topClickOffset];
-        }
-        if (boxInfo.isBottomRightCornerBox) {
-          positionClickInfo.xSide = "right";
-          positionClickInfo.ySide = "bottom";
-          positionClickInfo.outsideClickRange = [rightClickOffset, bottomClickOffset];
-        }
-        if (boxInfo.isBottomLeftCornerBox) {
-          positionClickInfo.ySide = "bottom";
-          positionClickInfo.xSide = "left";
-          positionClickInfo.outsideClickRange = [leftClickOffset, bottomClickOffset];
-        }
-        if (boxInfo.isTopSideRow) {
-          positionClickInfo.ySide = "top";
-          positionClickInfo.outsideClickRange = [null, topClickOffset];
-        }
-        if (boxInfo.isRightSideRow) {
-          positionClickInfo.xSide = "right";
-          positionClickInfo.outsideClickRange = [rightClickOffset, null];
-        }
-        if (boxInfo.isBottomSideRow) {
-          positionClickInfo.ySide = "bottom";
-          positionClickInfo.outsideClickRange = [null, bottomClickOffset];
-        }
-        if (boxInfo.isLeftSideRow) {
-          positionClickInfo.xSide = "left";
-          positionClickInfo.outsideClickRange = [leftClickOffset, null];
-        }
-
-        rowInfoWithEdgePositions.push(positionClickInfo);
-      });
-    }
-    return rowInfoWithEdgePositions;
-  },
-  getEdgeBoxClicked: function getEdgeBoxClicked(rowInfoWithEdgePositions, pageClickPositionX, pageClickPositionY) {
-    var boxClicked = false;
-    var sideClicked = false;
-    var length = rowInfoWithEdgePositions.length;
-    for (var i = 0; i < length; i++) {
-      var edgeBoxObject = rowInfoWithEdgePositions[i];
-      var outsideClickRange = edgeBoxObject.outsideClickRange;
-      var len = outsideClickRange.length;
-      for (var j = 0; j < len; j++) {
-        if (outsideClickRange[j]) {
-          var _outsideClickRange$j = outsideClickRange[j],
-              xRange = _outsideClickRange$j.xRange,
-              yRange = _outsideClickRange$j.yRange;
-
-          var isInXRange = xRange.min < pageClickPositionX && xRange.max > pageClickPositionX;
-          var isInYRange = yRange.min < pageClickPositionY && yRange.max > pageClickPositionY;
-          if (isInXRange && isInYRange) {
-            boxClicked = rowInfoWithEdgePositions[i].box;
-            sideClicked = j === 0 ? rowInfoWithEdgePositions[i].xSide : rowInfoWithEdgePositions[i].ySide;
-          }
-        }
-      }
-    }
-    return {
-      boxClicked: boxClicked,
-      sideClicked: sideClicked
-    };
-  },
-  complementBorder: {
-    top: "bottom",
-    right: "left",
-    bottom: "top",
-    left: "right"
-  },
-  getBoxNumberFromBoxX: function getBoxNumberFromBoxX(box) {
-    return parseInt(box.replace("box", ""));
-  },
-  isABomb: function isABomb(box) {
-    var hasExplosion = false;
-    var classes = document.querySelector("." + box).classList;
-    for (index in classes) {
-      var num = parseInt(index);
-      var isIndex = isNaN(num);
-      var hasAnExplosion = !isIndex ? classes[index].indexOf("Explosion") : false;
-      if (hasAnExplosion && hasAnExplosion !== -1) {
-        hasExplosion = true;
-      }
-    }
-    return hasExplosion;
-  },
-  hasClickBorderPreviously: function hasClickBorderPreviously(boxNumber, lineClicked) {
-    return gameBoard[boxNumber].borders[lineClicked] === true;
-  },
-  setLineAsClicked: function setLineAsClicked(boxNumber, lineClicked) {
-    gameBoard[boxNumber].borders[lineClicked] = true;
-  },
-  setLineColor: function setLineColor(boxNumber, lineClicked) {
-    if (!isFirstPlayerTurn) {
-      whoClickedLine[boxNumber][lineClicked] = "computer";
-    }
-  },
-  highlightBoxIfScored: function highlightBoxIfScored(boxNumber) {
-    if (boxInfo.getBorderCount(boxNumber) === 4) {
-      if (!boxInfo.isABomb(boxNumber)) {
-        takeAnotherTurn = true;
-      } else {
-        takeAnotherTurn = false;
-      }
-      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
-      if (isFirstPlayerTurn) {
-        pointsInArow++;
-        ui.checkForGameBoardTextConditions();
-      }
-      soundEffects.playScoreSound();
-    }
-  }
-};
-
-module.exports = boxInfo;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(33), __webpack_require__(45)))
-
-/***/ },
-/* 59 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, boxInfo, ui, soundEffects, bomb, settings, track) {
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var lineClickAction = {
-  highlightClickedBorder: function highlightClickedBorder(offsetX, offsetY, boxNumber, board) {
-    lineClickAction.removeLineClickHighlights();
-
-    var height = task.getHeightWithClassName("box");
-    var upperOutOfBoundsNumber = height - lineClickOffset;
-    var lowerOutOfBoundsNumber = lineClickOffset;
-    var meetsBombLayingConditions = task.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber);
-    var hasMadeMove = false;
-    // check to see if a line is clicked
-    var isALineClicked = lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
-    if (isALineClicked) {
-      // the line thats clicked
-      var lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
-      // are we following the training rules
-      var followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, lineClicked);
-      // prevent multiple click to the same border
-      var lineIsAlreadyClick = boxInfo.hasClickBorderPreviously(boxNumber, lineClicked);
-      // is the line click part of a lock box
-      var isLockBoxLineClick = lineClickAction.isALockedBoxClick(boxNumber, lineClicked);
-      hasMadeMove = true;
-      // prevent the line if these conditions are met
-      if (!followingTrainingRulesIfAny) {
-        return task.incorrectClick();
-      }
-
-      if (lineIsAlreadyClick) {
-        ui.showText("line is taken! chose another..");
-        return task.incorrectClick();
-      }
-
-      if (isLockBoxLineClick) {
-        ui.showText("destroy the item to click this line!");
-        return task.incorrectClick(boxNumber, lineClicked);
-      }
-
-      lineClickAction.clickOnBorder(boxNumber, lineClicked);
-    } else if (meetsBombLayingConditions) {
-      // are we following the training rules
-      var _followingTrainingRulesIfAny = task.hasPassedTrainingRestriction(boxNumber, null);
-      if (!_followingTrainingRulesIfAny) return task.incorrectClick();
-      // takeAnotherTurn = true;
-      hasMadeMove = true;
-      layedBomb = true;
-      // show smoke when help enters the field
-      ui.animateBombMovement(boxNumber);
-      soundEffects.playShowBombSound();
-      bomb.showSpriteSmoke(boxNumber);
-      ui.showHelper(boxNumber);
-      ui.populateTheUI();
-      task.endTurnTasks();
-      var highlightDropBox = task.shouldHighlightLayedBomb();
-      if (highlightDropBox) {
-        ui.addHighlightToClickBox(boxNumber);
-      }
-    } else if (bomb.isExplosionBox(boxNumber)) {
-      if (!task.hasPassedTrainingRestriction(boxNumber, null)) return null;
-      clickedExplosion = true;
-      bomb.explodeBoxes(boxNumber);
-      task.endTurnTasks();
-    } else if (!task.onRestrictionTurn()) {
-      soundEffects.playWrongSound();
-      var help = settings.level_data[gameLevel].help;
-      if (help && !help.helpTurns.includes(track.turn)) {
-        ui.showText("Tap directly between the dots!");
-        setTimeout(function () {
-          ui.showText("");
-        }, 4000);
-      }
-    } else {
-      soundEffects.playWrongSound();
-    }
-  },
-  setEdgeBoxClickEvent: function setEdgeBoxClickEvent() {
-    document.getElementById("gameBoardPage").addEventListener("click", function (e) {
-      var board = document.getElementById("board");
-      var gameBoardPosition = board.getBoundingClientRect();
-      var pageClickPositionY = e.pageY;
-      var pageClickPositionX = e.pageX;
-      var clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
-      if (clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn) {
-        var heightOfBoxes = task.getHeightWithClassName("box13");
-        var positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
-        var rowInformation = boxInfo.getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes);
-        var edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
-        if (edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked) {
-          var hasClickBorderPreviously = gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true;
-          if (!hasClickBorderPreviously) {
-            var boxClicked = edgeBoxClicked.boxClicked,
-                sideClicked = edgeBoxClicked.sideClicked;
-
-
-            var hasPassed = task.hasPassedTrainingRestriction(boxClicked, sideClicked);
-            if (hasPassed) {
-              lineClickAction.clickOnBorder(boxClicked, sideClicked);
-              ui.populateTheUI();
-            }
-          }
-        }
-      }
-    });
-  },
-  clickOnBorder: function clickOnBorder(boxNumber, lineClicked) {
-    var _track;
-
-    var adjacentBox = null;
-    var adjBoxNumber = null;
-
-    bomb.bombPopulation();
-    boxInfo.setLineAsClicked(boxNumber, lineClicked);
-
-    boxInfo.setLineColor(boxNumber, lineClicked);
-    boxInfo.highlightBoxIfScored(boxNumber);
-
-    var hasAdjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"] !== null && gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"] !== undefined;
-    if (hasAdjacentBox) {
-      adjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + "Box"].boxNumber;
-      gameBoard["box" + adjacentBox].borders[boxInfo.complementBorder["" + lineClicked]] = true;
-      boxInfo.highlightBoxIfScored("box" + adjacentBox);
-      adjBoxNumber = "box" + adjacentBox;
-      boxInfo.setLineColor(adjBoxNumber, boxInfo.complementBorder["" + lineClicked]);
-    }
-
-    if (adjacentBox) {
-      boxInfo.setLineAsClicked(boxNumber, lineClicked);
-    }
-    ui.closeTheBoxConnection({
-      boxNumber: boxNumber,
-      adjacentBox: adjBoxNumber,
-      boxNumberClosedBorder: lineClicked,
-      adjacentBoxClosedBorder: boxInfo.complementBorder["" + lineClicked]
-    });
-    var scoreParams = [boxNumber, "box" + adjacentBox].filter(function (data) {
-      return data !== "boxnull";
-    });
-    (_track = track).adjustScore.apply(_track, _toConsumableArray(scoreParams)); // adjust the score
-    lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, boxInfo.complementBorder["" + lineClicked]);
-    task.endTurnTasks();
-  },
-  removeLineClickHighlights: function removeLineClickHighlights() {
-    task.removeClassByClassName("box", "topLineClicked");
-    task.removeClassByClassName("box", "rightLineClicked");
-    task.removeClassByClassName("box", "bottomLineClicked");
-    task.removeClassByClassName("box", "leftLineClicked");
-  },
-  changeLineColorOfLastClickedBox: function changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, adjBoxLine) {
-    if (!isFirstPlayerTurn) {
-      setTimeout(function () {
-        task.addClassByClassName(boxNumber, lineClicked + "LineClicked");
-        if (adjBoxNumber) {
-          task.addClassByClassName(adjBoxNumber, adjBoxLine + "LineClicked");
-        }
-      }, 500);
-    }
-  },
-  isALockedBoxClick: function isALockedBoxClick(box, lineClicked) {
-    var adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
-    var includesLocked = boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox);
-    return includesLocked;
-  },
-  isALineClick: function isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) {
-    var inUpperOutOfBounds = offsetX > upperOutOfBoundsNumber || offsetY > upperOutOfBoundsNumber;
-    var inLowerOutOfBounds = offsetX < lowerOutOfBoundsNumber || offsetY < lowerOutOfBoundsNumber;
-    var inTopLeftCorner = offsetX < lowerOutOfBoundsNumber && offsetY < lowerOutOfBoundsNumber;
-    var inBottomLeftCorner = offsetX < lowerOutOfBoundsNumber && offsetY > upperOutOfBoundsNumber;
-    var inTopRightCorner = offsetX > upperOutOfBoundsNumber && offsetY < lowerOutOfBoundsNumber;
-    var inBottomRightCorner = offsetX > upperOutOfBoundsNumber && offsetY > upperOutOfBoundsNumber;
-    var hasClickedACorner = inTopLeftCorner || inBottomLeftCorner || inTopRightCorner || inBottomRightCorner;
-    return (inUpperOutOfBounds || inLowerOutOfBounds) && !hasClickedACorner;
-  },
-  getLineClicked: function getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) {
-    if (offsetX > upperOutOfBoundsNumber) return "right";
-    if (offsetX < lowerOutOfBoundsNumber) return "left";
-    if (offsetY > upperOutOfBoundsNumber) return "bottom";
-    if (offsetY < lowerOutOfBoundsNumber) return "top";
-  },
-  removeBorders: function removeBorders(box, borders) {
-    borders.forEach(function (border) {
-      gameBoard[box].borders[border] = null;
-    });
-    ui.populateTheUI();
-  }
-};
-
-module.exports = lineClickAction;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(58), __webpack_require__(33), __webpack_require__(45), __webpack_require__(57), __webpack_require__(51), __webpack_require__(46)))
-
-/***/ },
-/* 60 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4962,7 +1659,7 @@ module.exports = lineClickAction;
 // true  -> Array#includes
 var toIObject = __webpack_require__(17);
 var toLength = __webpack_require__(6);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -4985,7 +1682,7 @@ module.exports = function (IS_INCLUDES) {
 };
 
 /***/ },
-/* 61 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4994,15 +1691,15 @@ module.exports = function (IS_INCLUDES) {
 var global = __webpack_require__(2);
 var $export = __webpack_require__(0);
 var redefine = __webpack_require__(12);
-var redefineAll = __webpack_require__(40);
-var meta = __webpack_require__(32);
-var forOf = __webpack_require__(35);
-var anInstance = __webpack_require__(34);
+var redefineAll = __webpack_require__(38);
+var meta = __webpack_require__(31);
+var forOf = __webpack_require__(33);
+var anInstance = __webpack_require__(32);
 var isObject = __webpack_require__(4);
 var fails = __webpack_require__(3);
-var $iterDetect = __webpack_require__(65);
-var setToStringTag = __webpack_require__(49);
-var inheritIfRequired = __webpack_require__(83);
+var $iterDetect = __webpack_require__(57);
+var setToStringTag = __webpack_require__(45);
+var inheritIfRequired = __webpack_require__(74);
 
 module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
   var Base = global[NAME];
@@ -5083,19 +1780,19 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 };
 
 /***/ },
-/* 62 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(137);
+__webpack_require__(126);
 var redefine = __webpack_require__(12);
 var hide = __webpack_require__(11);
 var fails = __webpack_require__(3);
 var defined = __webpack_require__(24);
 var wks = __webpack_require__(5);
-var regexpExec = __webpack_require__(91);
+var regexpExec = __webpack_require__(82);
 
 var SPECIES = wks('species');
 
@@ -5187,7 +1884,7 @@ module.exports = function (KEY, length, exec) {
 };
 
 /***/ },
-/* 63 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5200,7 +1897,7 @@ module.exports = Array.isArray || function isArray(arg) {
 };
 
 /***/ },
-/* 64 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5216,7 +1913,7 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 65 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5254,14 +1951,14 @@ module.exports = function (exec, skipClosing) {
 };
 
 /***/ },
-/* 66 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // Forced replacement prototype accessors methods
 
-module.exports = __webpack_require__(31) || !__webpack_require__(3)(function () {
+module.exports = __webpack_require__(30) || !__webpack_require__(3)(function () {
   var K = Math.random();
   // In FF throws only define methods
   // eslint-disable-next-line no-undef, no-useless-call
@@ -5270,7 +1967,7 @@ module.exports = __webpack_require__(31) || !__webpack_require__(3)(function () 
 });
 
 /***/ },
-/* 67 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5279,7 +1976,7 @@ module.exports = __webpack_require__(31) || !__webpack_require__(3)(function () 
 exports.f = Object.getOwnPropertySymbols;
 
 /***/ },
-/* 68 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5287,7 +1984,7 @@ exports.f = Object.getOwnPropertySymbols;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var classof = __webpack_require__(47);
+var classof = __webpack_require__(43);
 var builtinExec = RegExp.prototype.exec;
 
 // `RegExpExec` abstract operation
@@ -5308,7 +2005,7 @@ module.exports = function (R, S) {
 };
 
 /***/ },
-/* 69 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5318,7 +2015,7 @@ module.exports = function (R, S) {
 var $export = __webpack_require__(0);
 var aFunction = __webpack_require__(10);
 var ctx = __webpack_require__(20);
-var forOf = __webpack_require__(35);
+var forOf = __webpack_require__(33);
 
 module.exports = function (COLLECTION) {
   $export($export.S, COLLECTION, { from: function from(source /* , mapFn, thisArg */) {
@@ -5343,7 +2040,7 @@ module.exports = function (COLLECTION) {
 };
 
 /***/ },
-/* 70 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5363,7 +2060,7 @@ module.exports = function (COLLECTION) {
 };
 
 /***/ },
-/* 71 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5386,7 +2083,7 @@ module.exports = function (TO_STRING) {
 };
 
 /***/ },
-/* 72 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5394,7 +2091,7 @@ module.exports = function (TO_STRING) {
 
 var global = __webpack_require__(2);
 var hide = __webpack_require__(11);
-var uid = __webpack_require__(43);
+var uid = __webpack_require__(41);
 var TYPED = uid('typed_array');
 var VIEW = uid('view');
 var ABV = !!(global.ArrayBuffer && global.DataView);
@@ -5420,7 +2117,7 @@ module.exports = {
 };
 
 /***/ },
-/* 73 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5432,69 +2129,13 @@ var navigator = global.navigator;
 module.exports = navigator && navigator.userAgent || '';
 
 /***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, soundEffects) {
-
-var boardText = {
-  text: {
-    // bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin", "Bruh"],
-    bad: ["Haah... got em"],
-    // good: ["I see u", "Lets get it", "Chill", "Iiight"],
-    good: ["I see u"],
-    // excellent: ["Okurrrr", "Yarrrrpp", "Aaaaaa", "You hyyyype"]
-    excellent: ["Ooo Yes"]
-  },
-  getBadText: function getBadText() {
-    return task.getRandomIndexInArray(boardText.text.bad);
-  },
-  getGoodText: function getGoodText() {
-    return task.getRandomIndexInArray(boardText.text.good);
-  },
-  getExcellentText: function getExcellentText() {
-    return task.getRandomIndexInArray(boardText.text.excellent);
-  },
-  showText: function showText(type) {
-    var text = void 0;
-    if (type === "bad") {
-      if (textType === "bad") return null;
-      text = boardText.getBadText();
-      soundEffects.play("got em/got em.m4a");
-    } else if (type === "good") {
-      if (textType === "good") return null;
-      text = boardText.getGoodText();
-      soundEffects.play("jasmin/i see u.m4a");
-    } else if (type === "excellent") {
-      if (textType === "excellent") return null;
-      text = boardText.getExcellentText();
-      soundEffects.play("jasmin/yes.m4a");
-    }
-    textType = type;
-    boardText.showOnBoard(text, 2000);
-  },
-  showOnBoard: function showOnBoard(text, adjustTimeout) {
-    task.addTextByQuerySelector(".interactiveText p", text);
-    task.addClassByQuerySelector(".interactiveText p", "showText");
-    setTimeout(function () {
-      task.addTextByQuerySelector(".interactiveText p", "");
-      task.removeClassByQuerySelector(".interactiveText p", "showText");
-    }, adjustTimeout || 2000);
-  }
-};
-
-module.exports = boardText;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(45)))
-
-/***/ },
-/* 75 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var at = __webpack_require__(71)(true);
+var at = __webpack_require__(63)(true);
 
 // `AdvanceStringIndex` abstract operation
 // https://tc39.github.io/ecma262/#sec-advancestringindex
@@ -5503,7 +2144,7 @@ module.exports = function (S, index, unicode) {
 };
 
 /***/ },
-/* 76 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5511,7 +2152,7 @@ module.exports = function (S, index, unicode) {
 
 
 var toObject = __webpack_require__(9);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 var toLength = __webpack_require__(6);
 module.exports = function fill(value /* , start = 0, end = @length */) {
   var O = toObject(this);
@@ -5526,35 +2167,35 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 };
 
 /***/ },
-/* 77 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(158);
+var speciesConstructor = __webpack_require__(147);
 
 module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
 };
 
 /***/ },
-/* 78 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $defineProperty = __webpack_require__(8);
-var createDesc = __webpack_require__(39);
+var createDesc = __webpack_require__(37);
 
 module.exports = function (object, index, value) {
   if (index in object) $defineProperty.f(object, index, createDesc(0, value));else object[index] = value;
 };
 
 /***/ },
-/* 79 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5569,7 +2210,7 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 80 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5579,7 +2220,7 @@ module.exports = function (it) {
 module.exports = 'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'.split(',');
 
 /***/ },
-/* 81 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5599,7 +2240,7 @@ module.exports = function (KEY) {
 };
 
 /***/ },
-/* 82 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5609,14 +2250,14 @@ var document = __webpack_require__(2).document;
 module.exports = document && document.documentElement;
 
 /***/ },
-/* 83 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var isObject = __webpack_require__(4);
-var setPrototypeOf = __webpack_require__(92).set;
+var setPrototypeOf = __webpack_require__(83).set;
 module.exports = function (that, target, C) {
   var S = target.constructor;
   var P;
@@ -5626,14 +2267,14 @@ module.exports = function (that, target, C) {
 };
 
 /***/ },
-/* 84 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // check on default Array iterator
-var Iterators = __webpack_require__(48);
+var Iterators = __webpack_require__(44);
 var ITERATOR = __webpack_require__(5)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -5642,15 +2283,15 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 85 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var create = __webpack_require__(36);
-var descriptor = __webpack_require__(39);
-var setToStringTag = __webpack_require__(49);
+var create = __webpack_require__(34);
+var descriptor = __webpack_require__(37);
+var setToStringTag = __webpack_require__(45);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -5664,19 +2305,19 @@ module.exports = function (Constructor, NAME, next) {
 };
 
 /***/ },
-/* 86 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var LIBRARY = __webpack_require__(31);
+var LIBRARY = __webpack_require__(30);
 var $export = __webpack_require__(0);
 var redefine = __webpack_require__(12);
 var hide = __webpack_require__(11);
-var Iterators = __webpack_require__(48);
-var $iterCreate = __webpack_require__(85);
-var setToStringTag = __webpack_require__(49);
+var Iterators = __webpack_require__(44);
+var $iterCreate = __webpack_require__(76);
+var setToStringTag = __webpack_require__(45);
 var getPrototypeOf = __webpack_require__(16);
 var ITERATOR = __webpack_require__(5)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
@@ -5752,7 +2393,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 };
 
 /***/ },
-/* 87 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5769,7 +2410,7 @@ module.exports = !$expm1
 } : $expm1;
 
 /***/ },
-/* 88 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5782,14 +2423,14 @@ module.exports = Math.sign || function sign(x) {
 };
 
 /***/ },
-/* 89 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var global = __webpack_require__(2);
-var macrotask = __webpack_require__(97).set;
+var macrotask = __webpack_require__(88).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
@@ -5858,7 +2499,7 @@ module.exports = function () {
 };
 
 /***/ },
-/* 90 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5883,13 +2524,13 @@ module.exports.f = function (C) {
 };
 
 /***/ },
-/* 91 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var regexpFlags = __webpack_require__(52);
+var regexpFlags = __webpack_require__(47);
 
 var nativeExec = RegExp.prototype.exec;
 // This always refers to the native implementation, because the
@@ -5947,7 +2588,7 @@ if (PATCH) {
 module.exports = patchedExec;
 
 /***/ },
-/* 92 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5981,27 +2622,27 @@ module.exports = {
 };
 
 /***/ },
-/* 93 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var shared = __webpack_require__(55)('keys');
-var uid = __webpack_require__(43);
+var shared = __webpack_require__(50)('keys');
+var uid = __webpack_require__(41);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
 /***/ },
-/* 94 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // helper for String#{startsWith, endsWith, includes}
-var isRegExp = __webpack_require__(64);
+var isRegExp = __webpack_require__(56);
 var defined = __webpack_require__(24);
 
 module.exports = function (that, searchString, NAME) {
@@ -6010,7 +2651,7 @@ module.exports = function (that, searchString, NAME) {
 };
 
 /***/ },
-/* 95 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6030,7 +2671,7 @@ module.exports = function repeat(count) {
 };
 
 /***/ },
-/* 96 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6039,16 +2680,16 @@ module.exports = function repeat(count) {
 module.exports = '\t\n\x0B\f\r \xA0\u1680\u180E\u2000\u2001\u2002\u2003' + '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 /***/ },
-/* 97 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var ctx = __webpack_require__(20);
-var invoke = __webpack_require__(115);
-var html = __webpack_require__(82);
-var cel = __webpack_require__(79);
+var invoke = __webpack_require__(104);
+var html = __webpack_require__(73);
+var cel = __webpack_require__(70);
 var global = __webpack_require__(2);
 var process = global.process;
 var setTask = global.setImmediate;
@@ -6132,7 +2773,7 @@ module.exports = {
 };
 
 /***/ },
-/* 98 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6140,19 +2781,19 @@ module.exports = {
 
 var global = __webpack_require__(2);
 var DESCRIPTORS = __webpack_require__(7);
-var LIBRARY = __webpack_require__(31);
-var $typed = __webpack_require__(72);
+var LIBRARY = __webpack_require__(30);
+var $typed = __webpack_require__(64);
 var hide = __webpack_require__(11);
-var redefineAll = __webpack_require__(40);
+var redefineAll = __webpack_require__(38);
 var fails = __webpack_require__(3);
-var anInstance = __webpack_require__(34);
+var anInstance = __webpack_require__(32);
 var toInteger = __webpack_require__(22);
 var toLength = __webpack_require__(6);
-var toIndex = __webpack_require__(134);
-var gOPN = __webpack_require__(37).f;
+var toIndex = __webpack_require__(123);
+var gOPN = __webpack_require__(35).f;
 var dP = __webpack_require__(8).f;
-var arrayFill = __webpack_require__(76);
-var setToStringTag = __webpack_require__(49);
+var arrayFill = __webpack_require__(67);
+var setToStringTag = __webpack_require__(45);
 var ARRAY_BUFFER = 'ArrayBuffer';
 var DATA_VIEW = 'DataView';
 var PROTOTYPE = 'prototype';
@@ -6419,7 +3060,7 @@ exports[ARRAY_BUFFER] = $ArrayBuffer;
 exports[DATA_VIEW] = $DataView;
 
 /***/ },
-/* 99 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6427,8 +3068,8 @@ exports[DATA_VIEW] = $DataView;
 
 var global = __webpack_require__(2);
 var core = __webpack_require__(19);
-var LIBRARY = __webpack_require__(31);
-var wksExt = __webpack_require__(135);
+var LIBRARY = __webpack_require__(30);
+var wksExt = __webpack_require__(124);
 var defineProperty = __webpack_require__(8).f;
 module.exports = function (name) {
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -6436,36 +3077,36 @@ module.exports = function (name) {
 };
 
 /***/ },
-/* 100 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var classof = __webpack_require__(47);
+var classof = __webpack_require__(43);
 var ITERATOR = __webpack_require__(5)('iterator');
-var Iterators = __webpack_require__(48);
+var Iterators = __webpack_require__(44);
 module.exports = __webpack_require__(19).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR] || it['@@iterator'] || Iterators[classof(it)];
 };
 
 /***/ },
-/* 101 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var addToUnscopables = __webpack_require__(30);
-var step = __webpack_require__(118);
-var Iterators = __webpack_require__(48);
+var addToUnscopables = __webpack_require__(29);
+var step = __webpack_require__(107);
+var Iterators = __webpack_require__(44);
 var toIObject = __webpack_require__(17);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(86)(Array, 'Array', function (iterated, kind) {
+module.exports = __webpack_require__(77)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0; // next index
   this._k = kind; // kind
@@ -6491,141 +3132,17 @@ addToUnscopables('values');
 addToUnscopables('entries');
 
 /***/ },
-/* 102 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, whoClickTheLine, lineClickAction, track, soundEffects, ui) {
-
-__webpack_require__(103);
-
-'use strict';
-// will contain boxes with no lines clicked
-var noBorders = [];
-// will contain boxes with one line clicked
-var oneBorderBoxes = [];
-// will contain boxes with two lines clicked
-var twoBorderBoxes = [];
-// will contain boxes with three lines clicked
-var threeBorderBoxes = [];
-
-//store item selected
-var storeItemSelected = {};
-
-// offset from line to be considered a line click
-var lineClickOffset = 12;
-
-// tracks who click the line
-var whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
-
-// this is the selected animal to be placed on the board from the help section
-var selectedBombFunction = void 0;
-
-// these are the players' scores
-var playerOneScore = 0;
-var playerTwoScore = 0;
-
-// the amount of boxes on the board
-var gameBoardLength = void 0;
-//tot maximum amount of the boxes in each row
-var rowLength = 6;
-// the ibformtaion for each box on the game board
-var gameBoard = void 0;
-// the current game level we are on
-var gameLevel = void 0;
-// all infoemation for the current level
-var getGameLevelObj = void 0;
-
-// trcak if a play has score (used to determin the player turn)
-var takeAnotherTurn = false;
-// will be tru if first player turn
-var isFirstPlayerTurn = true;
-// disable the computer while debugging
-var disableComputer = false;
-// track previously used boardtext type to avoid resaying the same type in a row
-var textType = void 0;
-// help to take another turn after laying a bomb
-var layedBomb = void 0;
-// has clicked a bomb
-var clickedExplosion = void 0;
-// help to passTurn during computer move
-var computerHasScored = false;
-
-// tracks points scored and used with gameBoardLength to determine if the game is over
-var totalPointsScored = 0;
-// tools that are being use in game
-var tools = void 0;
-// this is the currently exploding boex
-var explodingBoxes = [];
-// amount aof bomb that will be layed in the game
-var bombsToLay = 0;
-// all lock box locations on the board
-var lockBombLocations = [];
-// possible bombs to lay
-var possibleBombs = [];
-// initial bomb on the screen
-var initialBombs = void 0;
-// number of points scored in a row by isFirstPlayerTurn
-var pointsInArow = 0;
-
-// current page we are on
-var currentPage = "homePage";
-
-// used for difficulty
-var chanceToGiveAWayPoint = void 0;
-
-var reset_settings = true;
-//determines if we are on the game board
-var app.on_game_board = false;
-
-// used to prevent multiple game board text showing on board
-var showTextUsed = false;
-// time to wait before show more game board text
-var timeToWaitBetweenText = 8000;
-
-// help text shown when learning on the game board
-var helpText = void 0;
-
-// traning helping variable
-var restrictionLineClicks = void 0;
-var restrictionClickBox = void 0;
-var restrictionLayBomb = void 0;
-var nextRestriction = void 0;
-
-// set any saved field in local storage
-task.setFromLocalStorage();
-
-// adjust click event for edge boxes
-lineClickAction.setEdgeBoxClickEvent();
-
-// star of on the home screen
-track.goToPage("homePage");
-
-// set game music event listener
-soundEffects.playGameMusic();
-
-// animal text on home screen
-task.changeTitleColor();
-
-// animate the board selecting page stars
-ui.animateStars();
-// ui.animateDots();
-
-task.setToolClickEvent();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(104), __webpack_require__(59), __webpack_require__(46), __webpack_require__(45), __webpack_require__(33)))
-
-/***/ },
-/* 103 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-__webpack_require__(356);
+__webpack_require__(345);
 
-__webpack_require__(156);
+__webpack_require__(145);
 
-__webpack_require__(157);
+__webpack_require__(146);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -6647,239 +3164,10 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(141)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(130)))
 
 /***/ },
-/* 104 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// tracks who clicked on each line
-var whoClickTheLine = {
-  box0: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box1: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box2: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box3: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box4: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box5: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box6: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box7: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box8: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box9: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box10: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box11: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box12: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box13: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box14: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box15: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box16: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box17: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box18: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box19: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box20: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box21: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box22: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box23: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box24: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box25: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box26: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box27: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box28: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box29: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box30: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box31: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box32: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box33: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box34: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  },
-  box35: {
-    top: null,
-    right: null,
-    bottom: null,
-    left: null
-  }
-};
-
-module.exports = whoClickTheLine;
-
-/***/ },
-/* 105 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6892,7 +3180,7 @@ module.exports = function (it, msg) {
 };
 
 /***/ },
-/* 106 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6900,7 +3188,7 @@ module.exports = function (it, msg) {
 
 
 var toObject = __webpack_require__(9);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 var toLength = __webpack_require__(6);
 
 module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /* = 0, end = @length */) {
@@ -6924,13 +3212,13 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
 };
 
 /***/ },
-/* 107 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var forOf = __webpack_require__(35);
+var forOf = __webpack_require__(33);
 
 module.exports = function (iter, ITERATOR) {
   var result = [];
@@ -6939,7 +3227,7 @@ module.exports = function (iter, ITERATOR) {
 };
 
 /***/ },
-/* 108 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6947,7 +3235,7 @@ module.exports = function (iter, ITERATOR) {
 
 var aFunction = __webpack_require__(10);
 var toObject = __webpack_require__(9);
-var IObject = __webpack_require__(53);
+var IObject = __webpack_require__(48);
 var toLength = __webpack_require__(6);
 
 module.exports = function (that, callbackfn, aLen, memo, isRight) {
@@ -6976,7 +3264,7 @@ module.exports = function (that, callbackfn, aLen, memo, isRight) {
 };
 
 /***/ },
-/* 109 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6984,7 +3272,7 @@ module.exports = function (that, callbackfn, aLen, memo, isRight) {
 
 var aFunction = __webpack_require__(10);
 var isObject = __webpack_require__(4);
-var invoke = __webpack_require__(115);
+var invoke = __webpack_require__(104);
 var arraySlice = [].slice;
 var factories = {};
 
@@ -7009,24 +3297,24 @@ module.exports = Function.bind || function bind(that /* , ...args */) {
 };
 
 /***/ },
-/* 110 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var dP = __webpack_require__(8).f;
-var create = __webpack_require__(36);
-var redefineAll = __webpack_require__(40);
+var create = __webpack_require__(34);
+var redefineAll = __webpack_require__(38);
 var ctx = __webpack_require__(20);
-var anInstance = __webpack_require__(34);
-var forOf = __webpack_require__(35);
-var $iterDefine = __webpack_require__(86);
-var step = __webpack_require__(118);
-var setSpecies = __webpack_require__(41);
+var anInstance = __webpack_require__(32);
+var forOf = __webpack_require__(33);
+var $iterDefine = __webpack_require__(77);
+var step = __webpack_require__(107);
+var setSpecies = __webpack_require__(39);
 var DESCRIPTORS = __webpack_require__(7);
-var fastKey = __webpack_require__(32).fastKey;
-var validate = __webpack_require__(44);
+var fastKey = __webpack_require__(31).fastKey;
+var validate = __webpack_require__(42);
 var SIZE = DESCRIPTORS ? '_s' : 'size';
 
 var getEntry = function getEntry(that, key) {
@@ -7163,15 +3451,15 @@ module.exports = {
 };
 
 /***/ },
-/* 111 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(47);
-var from = __webpack_require__(107);
+var classof = __webpack_require__(43);
+var from = __webpack_require__(96);
 module.exports = function (NAME) {
   return function toJSON() {
     if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
@@ -7180,21 +3468,21 @@ module.exports = function (NAME) {
 };
 
 /***/ },
-/* 112 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var redefineAll = __webpack_require__(40);
-var getWeak = __webpack_require__(32).getWeak;
+var redefineAll = __webpack_require__(38);
+var getWeak = __webpack_require__(31).getWeak;
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
-var anInstance = __webpack_require__(34);
-var forOf = __webpack_require__(35);
+var anInstance = __webpack_require__(32);
+var forOf = __webpack_require__(33);
 var createArrayMethod = __webpack_require__(23);
 var $has = __webpack_require__(14);
-var validate = __webpack_require__(44);
+var validate = __webpack_require__(42);
 var arrayFind = createArrayMethod(5);
 var arrayFindIndex = createArrayMethod(6);
 var id = 0;
@@ -7270,14 +3558,14 @@ module.exports = {
 };
 
 /***/ },
-/* 113 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/proposal-flatMap/#sec-FlattenIntoArray
 
-var isArray = __webpack_require__(63);
+var isArray = __webpack_require__(55);
 var isObject = __webpack_require__(4);
 var toLength = __webpack_require__(6);
 var ctx = __webpack_require__(20);
@@ -7316,20 +3604,20 @@ function flattenIntoArray(target, original, source, sourceLen, start, depth, map
 module.exports = flattenIntoArray;
 
 /***/ },
-/* 114 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = !__webpack_require__(7) && !__webpack_require__(3)(function () {
-  return Object.defineProperty(__webpack_require__(79)('div'), 'a', { get: function get() {
+  return Object.defineProperty(__webpack_require__(70)('div'), 'a', { get: function get() {
       return 7;
     } }).a != 7;
 });
 
 /***/ },
-/* 115 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7353,7 +3641,7 @@ module.exports = function (fn, args, that) {
 };
 
 /***/ },
-/* 116 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7367,7 +3655,7 @@ module.exports = function isInteger(it) {
 };
 
 /***/ },
-/* 117 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7387,7 +3675,7 @@ module.exports = function (iterator, fn, value, entries) {
 };
 
 /***/ },
-/* 118 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7398,14 +3686,14 @@ module.exports = function (done, value) {
 };
 
 /***/ },
-/* 119 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // 20.2.2.16 Math.fround(x)
-var sign = __webpack_require__(88);
+var sign = __webpack_require__(79);
 var pow = Math.pow;
 var EPSILON = pow(2, -52);
 var EPSILON32 = pow(2, -23);
@@ -7429,7 +3717,7 @@ module.exports = Math.fround || function fround(x) {
 };
 
 /***/ },
-/* 120 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7441,7 +3729,7 @@ module.exports = Math.log1p || function log1p(x) {
 };
 
 /***/ },
-/* 121 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7465,18 +3753,18 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 };
 
 /***/ },
-/* 122 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
 
-var getKeys = __webpack_require__(38);
-var gOPS = __webpack_require__(67);
-var pIE = __webpack_require__(54);
+var getKeys = __webpack_require__(36);
+var gOPS = __webpack_require__(59);
+var pIE = __webpack_require__(49);
 var toObject = __webpack_require__(9);
-var IObject = __webpack_require__(53);
+var IObject = __webpack_require__(48);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -7511,7 +3799,7 @@ module.exports = !$assign || __webpack_require__(3)(function () {
 } : $assign;
 
 /***/ },
-/* 123 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7519,7 +3807,7 @@ module.exports = !$assign || __webpack_require__(3)(function () {
 
 var dP = __webpack_require__(8);
 var anObject = __webpack_require__(1);
-var getKeys = __webpack_require__(38);
+var getKeys = __webpack_require__(36);
 
 module.exports = __webpack_require__(7) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
@@ -7533,7 +3821,7 @@ module.exports = __webpack_require__(7) ? Object.defineProperties : function def
 };
 
 /***/ },
-/* 124 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7543,7 +3831,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(17);
-var gOPN = __webpack_require__(37).f;
+var gOPN = __webpack_require__(35).f;
 var toString = {}.toString;
 
 var windowNames = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) == 'object' && window && Object.getOwnPropertyNames ? Object.getOwnPropertyNames(window) : [];
@@ -7561,7 +3849,7 @@ module.exports.f = function getOwnPropertyNames(it) {
 };
 
 /***/ },
-/* 125 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7569,8 +3857,8 @@ module.exports.f = function getOwnPropertyNames(it) {
 
 var has = __webpack_require__(14);
 var toIObject = __webpack_require__(17);
-var arrayIndexOf = __webpack_require__(60)(false);
-var IE_PROTO = __webpack_require__(93)('IE_PROTO');
+var arrayIndexOf = __webpack_require__(52)(false);
+var IE_PROTO = __webpack_require__(84)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -7588,15 +3876,15 @@ module.exports = function (object, names) {
 };
 
 /***/ },
-/* 126 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var getKeys = __webpack_require__(38);
+var getKeys = __webpack_require__(36);
 var toIObject = __webpack_require__(17);
-var isEnum = __webpack_require__(54).f;
+var isEnum = __webpack_require__(49).f;
 module.exports = function (isEntries) {
   return function (it) {
     var O = toIObject(it);
@@ -7614,15 +3902,15 @@ module.exports = function (isEntries) {
 };
 
 /***/ },
-/* 127 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // all object keys, includes non-enumerable and symbols
-var gOPN = __webpack_require__(37);
-var gOPS = __webpack_require__(67);
+var gOPN = __webpack_require__(35);
+var gOPS = __webpack_require__(59);
 var anObject = __webpack_require__(1);
 var Reflect = __webpack_require__(2).Reflect;
 module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
@@ -7632,31 +3920,31 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it) {
 };
 
 /***/ },
-/* 128 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $parseFloat = __webpack_require__(2).parseFloat;
-var $trim = __webpack_require__(50).trim;
+var $trim = __webpack_require__(46).trim;
 
-module.exports = 1 / $parseFloat(__webpack_require__(96) + '-0') !== -Infinity ? function parseFloat(str) {
+module.exports = 1 / $parseFloat(__webpack_require__(87) + '-0') !== -Infinity ? function parseFloat(str) {
   var string = $trim(String(str), 3);
   var result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
 } : $parseFloat;
 
 /***/ },
-/* 129 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $parseInt = __webpack_require__(2).parseInt;
-var $trim = __webpack_require__(50).trim;
-var ws = __webpack_require__(96);
+var $trim = __webpack_require__(46).trim;
+var ws = __webpack_require__(87);
 var hex = /^[-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
@@ -7665,7 +3953,7 @@ module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? f
 } : $parseInt;
 
 /***/ },
-/* 130 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7680,7 +3968,7 @@ module.exports = function (exec) {
 };
 
 /***/ },
-/* 131 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7688,7 +3976,7 @@ module.exports = function (exec) {
 
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
-var newPromiseCapability = __webpack_require__(90);
+var newPromiseCapability = __webpack_require__(81);
 
 module.exports = function (C, x) {
   anObject(C);
@@ -7700,7 +3988,7 @@ module.exports = function (C, x) {
 };
 
 /***/ },
-/* 132 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7713,7 +4001,7 @@ module.exports = Object.is || function is(x, y) {
 };
 
 /***/ },
-/* 133 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7721,7 +4009,7 @@ module.exports = Object.is || function is(x, y) {
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = __webpack_require__(6);
-var repeat = __webpack_require__(95);
+var repeat = __webpack_require__(86);
 var defined = __webpack_require__(24);
 
 module.exports = function (that, maxLength, fillString, left) {
@@ -7737,7 +4025,7 @@ module.exports = function (that, maxLength, fillString, left) {
 };
 
 /***/ },
-/* 134 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7755,7 +4043,7 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 135 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7764,18 +4052,18 @@ module.exports = function (it) {
 exports.f = __webpack_require__(5);
 
 /***/ },
-/* 136 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var strong = __webpack_require__(110);
-var validate = __webpack_require__(44);
+var strong = __webpack_require__(99);
+var validate = __webpack_require__(42);
 var MAP = 'Map';
 
 // 23.1 Map Objects
-module.exports = __webpack_require__(61)(MAP, function (get) {
+module.exports = __webpack_require__(53)(MAP, function (get) {
   return function Map() {
     return get(this, arguments.length > 0 ? arguments[0] : undefined);
   };
@@ -7792,13 +4080,13 @@ module.exports = __webpack_require__(61)(MAP, function (get) {
 }, strong, true);
 
 /***/ },
-/* 137 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var regexpExec = __webpack_require__(91);
+var regexpExec = __webpack_require__(82);
 __webpack_require__(0)({
   target: 'RegExp',
   proto: true,
@@ -7808,7 +4096,7 @@ __webpack_require__(0)({
 });
 
 /***/ },
-/* 138 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7817,22 +4105,22 @@ __webpack_require__(0)({
 // 21.2.5.3 get RegExp.prototype.flags()
 if (__webpack_require__(7) && /./g.flags != 'g') __webpack_require__(8).f(RegExp.prototype, 'flags', {
   configurable: true,
-  get: __webpack_require__(52)
+  get: __webpack_require__(47)
 });
 
 /***/ },
-/* 139 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var strong = __webpack_require__(110);
-var validate = __webpack_require__(44);
+var strong = __webpack_require__(99);
+var validate = __webpack_require__(42);
 var SET = 'Set';
 
 // 23.2 Set Objects
-module.exports = __webpack_require__(61)(SET, function (get) {
+module.exports = __webpack_require__(53)(SET, function (get) {
   return function Set() {
     return get(this, arguments.length > 0 ? arguments[0] : undefined);
   };
@@ -7844,7 +4132,7 @@ module.exports = __webpack_require__(61)(SET, function (get) {
 }, strong);
 
 /***/ },
-/* 140 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7853,12 +4141,12 @@ module.exports = __webpack_require__(61)(SET, function (get) {
 var global = __webpack_require__(2);
 var each = __webpack_require__(23)(0);
 var redefine = __webpack_require__(12);
-var meta = __webpack_require__(32);
-var assign = __webpack_require__(122);
-var weak = __webpack_require__(112);
+var meta = __webpack_require__(31);
+var assign = __webpack_require__(111);
+var weak = __webpack_require__(101);
 var isObject = __webpack_require__(4);
-var validate = __webpack_require__(44);
-var NATIVE_WEAK_MAP = __webpack_require__(44);
+var validate = __webpack_require__(42);
+var NATIVE_WEAK_MAP = __webpack_require__(42);
 var IS_IE11 = !global.ActiveXObject && 'ActiveXObject' in global;
 var WEAK_MAP = 'WeakMap';
 var getWeak = meta.getWeak;
@@ -7888,7 +4176,7 @@ var methods = {
 };
 
 // 23.3 WeakMap Objects
-var $WeakMap = module.exports = __webpack_require__(61)(WEAK_MAP, wrapper, methods, weak, true, true);
+var $WeakMap = module.exports = __webpack_require__(53)(WEAK_MAP, wrapper, methods, weak, true, true);
 
 // IE11 WeakMap frozen keys fix
 if (NATIVE_WEAK_MAP && IS_IE11) {
@@ -7911,7 +4199,7 @@ if (NATIVE_WEAK_MAP && IS_IE11) {
 }
 
 /***/ },
-/* 141 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7941,151 +4229,346 @@ try {
 module.exports = g;
 
 /***/ },
-/* 142 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(settings, helpTextArray, whoClickTheLine, level1, level2, level3, level4, level5, level6, level7, level8, level9, level10) {
 
+var _window$gametask;
 
-// this file contains the exploding patterns of the animal bombs
-var animalExplosions = {
-  lion: { // exploding pattern for the lion
-    boxes: function boxes(box) {
-      /*
-        explodes around animal
-        ex:    6   7   8
-              12  13  14
-              18  19  20
-      */
-
-      // cache every box that will be exploded
-      var temp = lionSquares[box].filter(function (data) {
-        return data !== null;
-      });
-      var boxesToExplode = temp.map(function (data) {
-        return "box" + data;
-      });
-
-      var topLeftBoxNumber = lionSquares[box][0];
-      var topBox = lionSquares[box][1];
-      var topRightBoxNumber = lionSquares[box][2];
-      var leftBox = lionSquares[box][3];
-      var thisBox = lionSquares[box][4];
-      var rightBox = lionSquares[box][5];
-      var bottomLeftBoxNumber = lionSquares[box][6];
-      var bottomBox = lionSquares[box][7];
-      var bottomRightBoxNumber = lionSquares[box][8];
-
-      // match the boxes with the lines that will be remove and a result of the explosion
-      var linesToRemove = [{ box: "box" + topRightBoxNumber, lines: ["bottom", "left"] }, { box: "box" + topLeftBoxNumber, lines: ["bottom", "right"] }, { box: "box" + bottomRightBoxNumber, lines: ["top", "left"] }, { box: "box" + bottomLeftBoxNumber, lines: ["top", "right"] }, { box: "box" + topBox, lines: ["right", "bottom", "left"] }, { box: "box" + rightBox, lines: ["top", "bottom", "left"] }, { box: "box" + bottomBox, lines: ["top", "right", "left"] }, { box: "box" + leftBox, lines: ["top", "right", "bottom"] }, { box: "box" + thisBox, lines: ["top", "right", "bottom", "left"] }].filter(function (data) {
-        return data.box !== "boxnull";
-      });
-
-      return {
-        linesToRemove: linesToRemove,
-        boxesToExplode: boxesToExplode
-      };
-    }
-  },
-  cheetah: {
-    boxes: function boxes(box) {
-      /*
-        explodes animal column
-        ex:    0 1 2 3 4 5
-      */
-
-      var temp = cheetahSquares[box].filter(function (data) {
-        return data !== null;
-      });
-      var boxesToExplode = temp.map(function (data) {
-        return "box" + data;
-      });
-
-      var linesToRemove = [];
-      boxesToExplode.forEach(function (data) {
-        linesToRemove.push({
-          box: data,
-          lines: ["right", "left"]
-        });
-      });
-
-      return {
-        linesToRemove: linesToRemove,
-        boxesToExplode: boxesToExplode
-      };
-    }
-  },
-  panther: {
-    boxes: function boxes(box) {
-      /*
-        explodes animal row
-        ex:    0
-               6
-              12
-              18
-              24
-              30
-      */
-
-      var temp = pantherSquares[box].filter(function (data) {
-        return data !== null;
-      });
-      var boxesToExplode = temp.map(function (data) {
-        return "box" + data;
-      });
-
-      var linesToRemove = [];
-      boxesToExplode.forEach(function (data) {
-        linesToRemove.push({
-          box: data,
-          lines: ["top", "bottom"]
-        });
-      });
-
-      return {
-        linesToRemove: linesToRemove,
-        boxesToExplode: boxesToExplode
-      };
-    }
-  },
-  queen_makeda: {
-    boxes: function boxes(box) {
-      var temp = queen_makedaSquares[box].filter(function (data) {
-        return data !== null;
-      });
-      var boxesToExplode = temp.map(function (data) {
-        return "box" + data;
-      });
-
-      var linesToRemove = [];
-      boxesToExplode.forEach(function (data, index) {
-        var lines = index < 6 ? ["left", "right"] : ["top", "bottom"];
-        linesToRemove.push({
-          box: data,
-          lines: lines
-        });
-      });
-
-      return {
-        linesToRemove: linesToRemove,
-        boxesToExplode: boxesToExplode
-      };
-    }
-  }
-};
-
-module.exports = animalExplosions;
-
-/***/ },
-/* 143 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(task, lineClickAction, settings, bomb, ui, boxInfo, track, boardText) {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var computerMove = {
+__webpack_require__(93);
+
+'use strict';
+
+window.soundEffects = {
+  play: function play(path) {
+    var audio = new Audio('./soundEffects/voices/' + path);
+    // const audio = new Audio('./soundEffects/voices/jasmin/i see u.m4a');
+    // audio.volume = settings.hasMutedSound ? 0 : 1;
+    audio.play();
+  },
+  playExplosionSound: function playExplosionSound() {
+    var audio = new Audio('./soundEffects/purchased/Mine Explosion 1.wav');
+    audio.volume = settings.hasMutedSound ? 0 : 0.2;
+    audio.play();
+  },
+  playShowBombSound: function playShowBombSound() {
+    var audio = new Audio('./soundEffects/showBomb.mp3');
+    audio.volume = settings.hasMutedSound ? 0 : 0.2;
+    audio.play();
+  },
+  playLineClickSound: function playLineClickSound() {
+    var audio = new Audio('./soundEffects/purchased/Balloon_Pop-by_YIO.wav');
+    audio.volume = settings.hasMutedSound ? 0 : 0.1;
+    audio.play();
+  },
+  playEraseBombSound: function playEraseBombSound() {
+    var audio = new Audio('./soundEffects/eraseBomb.mp3');
+    audio.volume = settings.hasMutedSound ? 0 : 0.4;
+    audio.play();
+  },
+  playScoreSound: function playScoreSound() {
+    var audio = new Audio('./soundEffects/purchased/Button Menu Application SFX 57.mp3');
+    audio.volume = settings.hasMutedSound ? 0 : 0.03;
+    audio.play();
+  },
+  playWrongSound: function playWrongSound() {
+    var audio = new Audio('./soundEffects/purchased/Wrong.wav');
+    audio.volume = settings.hasMutedSound ? 0 : 0.2;
+    audio.play();
+  },
+  runSpeaker: function runSpeaker(audio) {
+    var hasCancelledMusic = false;
+    var speaker = function speaker() {
+      if (settings.hasMutedMusic) {
+        hasCancelledMusic = true;
+        return;
+      };
+      if (!hasCancelledMusic) {
+        gametask.addClassByQuerySelector(".title img", "big");
+        setTimeout(function () {
+          gametask.removeClassByQuerySelector(".title img", "big");
+        }, 200);
+      }
+    };
+    var timeOuts = [0, 434, 869, 1303, 1737, 1986, 2256];
+    var count = 1;
+    var run = function run() {
+      count++;
+      if (count <= 17 && !on_game_board) {
+        timeOuts.forEach(function (time) {
+          setTimeout(function () {
+            speaker();
+          }, time);
+        });
+        setTimeout(function () {
+          run();
+        }, 4340);
+      }
+    };
+    run();
+  },
+  playBoardMusic: function playBoardMusic() {
+    if (settings.hasMutedMusic) return null;
+    var audio = new Audio('./soundEffects/Song_Beat/Zazah beat 22.mp3');
+    audio.volume = settings.hasMutedMusic ? 0 : 0.08;
+    $(document).on("click", ".boardBackButton", function () {
+      audio.currentTime = 0;
+      audio.pause();
+    });
+    audio.play().then(function () {
+      // playing music
+      soundEffects.replayWhenDone(audio);
+    }).catch(function (e) {
+      return console.log(e);
+    });
+  },
+  replayWhenDone: function replayWhenDone(audio) {
+    audio.addEventListener('ended', function () {
+      var _this = this;
+
+      setTimeout(function () {
+        _this.currentTime = 0;
+        _this.play();
+      }, 1000);
+    }, false);
+  },
+  playMusicClicked: false,
+  playGameMusic: function playGameMusic() {
+    var clickFunction = function clickFunction(playSong) {
+      if (soundEffects.playMusicClicked) return null;
+
+      var playVolume = 0.4;
+      var audio = new Audio('./soundEffects/Song_Beat/ZazahBeatSlow.mp3');
+      soundEffects.runSpeaker(audio);
+      audio.volume = settings.hasMutedMusic ? 0 : playVolume;
+      audio.play().then(function () {
+        soundEffects.replayWhenDone(audio);
+        // Video playback started ;)
+        document.getElementById("gameScreen").removeEventListener("click", clickFunction);
+        $(document).on("click", ".mOptions.off", function () {
+          audio.pause();
+        });
+        $(document).on("click", ".mOptions.on", function () {
+          if (!settings.hasMutedMusic) {
+            audio.currentTime = 0;
+            audio.volume = playVolume;
+            soundEffects.runSpeaker();
+            audio.play();
+          }
+        });
+        // adjust volume on game play
+        $(document).on("click", ".tipsText", function () {
+          audio.pause();
+          soundEffects.playBoardMusic();
+        });
+        $(document).on("click", ".tipsImages", function () {
+          audio.pause();
+          soundEffects.playBoardMusic();
+        });
+        $(document).on("click", ".boardBackButton", function () {
+          audio.currentTime = 0;
+          if (!settings.hasMutedMusic) audio.play();
+        });
+      }).catch(function (e) {
+        // Video playback failed ;(
+        console.log(e);
+      });
+    };
+    document.getElementById("gameScreen").addEventListener("click", clickFunction);
+  }
+};
+
+window.lineClickAction = {
+  highlightClickedBorder: function highlightClickedBorder(offsetX, offsetY, boxNumber, board) {
+    lineClickAction.removeLineClickHighlights();
+
+    var height = gametask.getHeightWithClassName("box");
+    var upperOutOfBoundsNumber = height - lineClickOffset;
+    var lowerOutOfBoundsNumber = lineClickOffset;
+    var meetsBombLayingConditions = gametask.isSelected() && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber);
+    var hasMadeMove = false;
+    // check to see if a line is clicked
+    var isALineClicked = lineClickAction.isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
+    if (isALineClicked) {
+      // the line thats clicked
+      var lineClicked = lineClickAction.getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber);
+      // are we following the training rules
+      var followingTrainingRulesIfAny = gametask.hasPassedTrainingRestriction(boxNumber, lineClicked);
+      // prevent multiple click to the same border
+      var lineIsAlreadyClick = boxInfo.hasClickBorderPreviously(boxNumber, lineClicked);
+      // is the line click part of a lock box
+      var isLockBoxLineClick = lineClickAction.isALockedBoxClick(boxNumber, lineClicked);
+      hasMadeMove = true;
+      // prevent the line if these conditions are met
+      if (!followingTrainingRulesIfAny) {
+        return gametask.incorrectClick();
+      }
+
+      if (lineIsAlreadyClick) {
+        ui.showText("line is taken! chose another..");
+        return gametask.incorrectClick();
+      }
+
+      if (isLockBoxLineClick) {
+        ui.showText("destroy the item to click this line!");
+        return gametask.incorrectClick(boxNumber, lineClicked);
+      }
+
+      lineClickAction.clickOnBorder(boxNumber, lineClicked);
+    } else if (meetsBombLayingConditions) {
+      // are we following the training rules
+      var _followingTrainingRulesIfAny = gametask.hasPassedTrainingRestriction(boxNumber, null);
+      if (!_followingTrainingRulesIfAny) return gametask.incorrectClick();
+      // takeAnotherTurn = true;
+      hasMadeMove = true;
+      layedBomb = true;
+      // show smoke when help enters the field
+      ui.animateBombMovement(boxNumber);
+      soundEffects.playShowBombSound();
+      bomb.showSpriteSmoke(boxNumber);
+      ui.showHelper(boxNumber);
+      ui.populateTheUI();
+      gametask.endTurnTasks();
+      var highlightDropBox = gametask.shouldHighlightLayedBomb();
+      if (highlightDropBox) {
+        ui.addHighlightToClickBox(boxNumber);
+      }
+    } else if (bomb.isExplosionBox(boxNumber)) {
+      if (!gametask.hasPassedTrainingRestriction(boxNumber, null)) return null;
+      clickedExplosion = true;
+      bomb.explodeBoxes(boxNumber);
+      gametask.endTurnTasks();
+    } else if (!gametask.onRestrictionTurn()) {
+      soundEffects.playWrongSound();
+      var help = settings.level_data[gameLevel].help;
+      if (help && !help.helpTurns.includes(track.turn)) {
+        ui.showText("Tap directly between the dots!");
+        setTimeout(function () {
+          ui.showText("");
+        }, 4000);
+      }
+    } else {
+      soundEffects.playWrongSound();
+    }
+  },
+  setEdgeBoxClickEvent: function setEdgeBoxClickEvent() {
+    document.getElementById("gameBoardPage").addEventListener("click", function (e) {
+      var board = document.getElementById("board");
+      var gameBoardPosition = board.getBoundingClientRect();
+      var pageClickPositionY = e.pageY;
+      var pageClickPositionX = e.pageX;
+      var clickedGameBoard = pageClickPositionY >= gameBoardPosition.y;
+      if (clickedGameBoard && currentPage === "gameBoardPage" && isFirstPlayerTurn) {
+        var heightOfBoxes = gametask.getHeightWithClassName("box13");
+        var positionFromTopOfGameBoard = pageClickPositionY - gameBoardPosition.y;
+        var rowInformation = boxInfo.getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes);
+        var edgeBoxClicked = boxInfo.getEdgeBoxClicked(rowInformation, pageClickPositionX, pageClickPositionY);
+        if (edgeBoxClicked.boxClicked && edgeBoxClicked.sideClicked) {
+          var hasClickBorderPreviously = gameBoard[edgeBoxClicked.boxClicked].borders[edgeBoxClicked.sideClicked] === true;
+          if (!hasClickBorderPreviously) {
+            var boxClicked = edgeBoxClicked.boxClicked,
+                sideClicked = edgeBoxClicked.sideClicked;
+
+
+            var hasPassed = gametask.hasPassedTrainingRestriction(boxClicked, sideClicked);
+            if (hasPassed) {
+              lineClickAction.clickOnBorder(boxClicked, sideClicked);
+              ui.populateTheUI();
+            }
+          }
+        }
+      }
+    });
+  },
+  clickOnBorder: function clickOnBorder(boxNumber, lineClicked) {
+    var _track;
+
+    var adjacentBox = null;
+    var adjBoxNumber = null;
+
+    bomb.bombPopulation();
+    boxInfo.setLineAsClicked(boxNumber, lineClicked);
+
+    boxInfo.setLineColor(boxNumber, lineClicked);
+    boxInfo.highlightBoxIfScored(boxNumber);
+
+    var hasAdjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'] !== null && gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'] !== undefined;
+    if (hasAdjacentBox) {
+      adjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'].boxNumber;
+      gameBoard['box' + adjacentBox].borders[boxInfo.complementBorder['' + lineClicked]] = true;
+      boxInfo.highlightBoxIfScored('box' + adjacentBox);
+      adjBoxNumber = 'box' + adjacentBox;
+      boxInfo.setLineColor(adjBoxNumber, boxInfo.complementBorder['' + lineClicked]);
+    }
+
+    if (adjacentBox) {
+      boxInfo.setLineAsClicked(boxNumber, lineClicked);
+    }
+    ui.closeTheBoxConnection({
+      boxNumber: boxNumber,
+      adjacentBox: adjBoxNumber,
+      boxNumberClosedBorder: lineClicked,
+      adjacentBoxClosedBorder: boxInfo.complementBorder['' + lineClicked]
+    });
+    var scoreParams = [boxNumber, 'box' + adjacentBox].filter(function (data) {
+      return data !== "boxnull";
+    });
+    (_track = track).adjustScore.apply(_track, _toConsumableArray(scoreParams)); // adjust the score
+    lineClickAction.changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, boxInfo.complementBorder['' + lineClicked]);
+    gametask.endTurnTasks();
+  },
+  removeLineClickHighlights: function removeLineClickHighlights() {
+    gametask.removeClassByClassName("box", "topLineClicked");
+    gametask.removeClassByClassName("box", "rightLineClicked");
+    gametask.removeClassByClassName("box", "bottomLineClicked");
+    gametask.removeClassByClassName("box", "leftLineClicked");
+  },
+  changeLineColorOfLastClickedBox: function changeLineColorOfLastClickedBox(boxNumber, lineClicked, adjBoxNumber, adjBoxLine) {
+    if (!isFirstPlayerTurn) {
+      setTimeout(function () {
+        gametask.addClassByClassName(boxNumber, lineClicked + 'LineClicked');
+        if (adjBoxNumber) {
+          gametask.addClassByClassName(adjBoxNumber, adjBoxLine + 'LineClicked');
+        }
+      }, 500);
+    }
+  },
+  isALockedBoxClick: function isALockedBoxClick(box, lineClicked) {
+    var adjBox = boxInfo.getAdjBoxBySide(box, lineClicked);
+    var includesLocked = boxInfo.isALockBox(box) || boxInfo.isALockBox(adjBox);
+    return includesLocked;
+  },
+  isALineClick: function isALineClick(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) {
+    var inUpperOutOfBounds = offsetX > upperOutOfBoundsNumber || offsetY > upperOutOfBoundsNumber;
+    var inLowerOutOfBounds = offsetX < lowerOutOfBoundsNumber || offsetY < lowerOutOfBoundsNumber;
+    var inTopLeftCorner = offsetX < lowerOutOfBoundsNumber && offsetY < lowerOutOfBoundsNumber;
+    var inBottomLeftCorner = offsetX < lowerOutOfBoundsNumber && offsetY > upperOutOfBoundsNumber;
+    var inTopRightCorner = offsetX > upperOutOfBoundsNumber && offsetY < lowerOutOfBoundsNumber;
+    var inBottomRightCorner = offsetX > upperOutOfBoundsNumber && offsetY > upperOutOfBoundsNumber;
+    var hasClickedACorner = inTopLeftCorner || inBottomLeftCorner || inTopRightCorner || inBottomRightCorner;
+    return (inUpperOutOfBounds || inLowerOutOfBounds) && !hasClickedACorner;
+  },
+  getLineClicked: function getLineClicked(offsetX, offsetY, upperOutOfBoundsNumber, lowerOutOfBoundsNumber) {
+    if (offsetX > upperOutOfBoundsNumber) return "right";
+    if (offsetX < lowerOutOfBoundsNumber) return "left";
+    if (offsetY > upperOutOfBoundsNumber) return "bottom";
+    if (offsetY < lowerOutOfBoundsNumber) return "top";
+  },
+  removeBorders: function removeBorders(box, borders) {
+    borders.forEach(function (border) {
+      gameBoard[box].borders[border] = null;
+    });
+    ui.populateTheUI();
+  }
+};
+
+window.computerMove = {
   computerMoveSetter: 0,
   setMakeComputerMove: function setMakeComputerMove() {
     clearTimeout(computerMove.computerMoveSetter);
@@ -8094,7 +4577,7 @@ var computerMove = {
     });
   },
   makeComputerMove: function makeComputerMove() {
-    var hasAPreMadeMove = task.hasAPreMadeMove();
+    var hasAPreMadeMove = gametask.hasAPreMadeMove();
     if (hasAPreMadeMove.hasPreMadeMove) {
       var _hasAPreMadeMove$move = hasAPreMadeMove.moveToMake,
           box = _hasAPreMadeMove$move.box,
@@ -8132,7 +4615,7 @@ var computerMove = {
     ui.populateTheUI();
   },
   getAFreeBox: function getAFreeBox() {
-    var clickBox = task.getRandomIndexInArray(threeBorderBoxes);
+    var clickBox = gametask.getRandomIndexInArray(threeBorderBoxes);
     Object.keys(boxInfo.getGameBoardClickBox(clickBox).borders).forEach(function (data) {
       if (!bomb.allExplodingBoxes.length > 0) {
         var borderCanBeClicked = !boxInfo.getGameBoardClickBox(clickBox).borders[data];
@@ -8157,13 +4640,13 @@ var computerMove = {
     var keepGoing = true;
     while (keepGoing) {
       // choose a randon box in the array containing box with no border
-      var clickBox = task.getRandomIndexInArray(noBorders);
+      var clickBox = gametask.getRandomIndexInArray(noBorders);
       //remove that box from that array to avoid checking it multiple times
       noBorders.splice(noBorders.indexOf(clickBox), 1);
       // get the boxes around it that only has one or less borders already selected
       var oneOrLessBorderSurroundingBoxes = boxInfo.getLessThanOneBorderNonConnectedSurroundingBoxes(clickBox);
       // choose a random box of the potential boxes to click
-      var selectedBox = task.getRandomIndexInArray(oneOrLessBorderSurroundingBoxes);
+      var selectedBox = gametask.getRandomIndexInArray(oneOrLessBorderSurroundingBoxes);
       // cache the line between the two boxes to use when clicking
       var lineBetweenBoxes = boxInfo.getLineBetweenBoxes(clickBox, selectedBox);
       // is the box on the edge of the gameboard and has no adjcent box
@@ -8199,7 +4682,7 @@ var computerMove = {
   clickInAOneBorderBox: function clickInAOneBorderBox() {
     var safeClickBoxWithSide = boxInfo.getSafeBoxes();
     if (safeClickBoxWithSide.length !== 0) {
-      var clickBoxObj = task.getRandomIndexInArray(safeClickBoxWithSide);
+      var clickBoxObj = gametask.getRandomIndexInArray(safeClickBoxWithSide);
       lineClickAction.clickOnBorder(clickBoxObj.clickBox, clickBoxObj.clickSide);
     } else {
       computerMove.makeMoveInSafeBox();
@@ -8279,7 +4762,7 @@ var computerMove = {
       oneBorderBoxes.forEach(function (box) {
         var connectedBoxes = boxInfo.getConnectedBoxes(box);
         connectedBoxCombinations.forEach(function (paths, index) {
-          if (task.hasTwoInArray(connectedBoxes, paths)) {
+          if (gametask.hasTwoInArray(connectedBoxes, paths)) {
             var allPathsHere = [];
             connectedBoxes.forEach(function (eachBox) {
               connectedBoxCombinations.forEach(function (pathsToGetPathsFrom) {
@@ -8288,7 +4771,7 @@ var computerMove = {
                 }
               });
             });
-            var withRemovedDoubles = task.removedDoublesFromArray(allPathsHere);
+            var withRemovedDoubles = gametask.removedDoublesFromArray(allPathsHere);
             replacements.push({
               array: withRemovedDoubles,
               index: index
@@ -8308,7 +4791,7 @@ var computerMove = {
     });
 
     var _loop2 = function _loop2() {
-      var boxToClick = task.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
+      var boxToClick = gametask.getRandomIndexInArray(pathsToClickABox[arrayIndex]);
       var lineClick = void 0;
       var borders = boxInfo.getGameBoardClickBox(boxToClick).borders;
       Object.keys(borders).forEach(function (data, index) {
@@ -8374,11 +4857,2555 @@ var computerMove = {
   }
 };
 
-module.exports = computerMove;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27), __webpack_require__(59), __webpack_require__(51), __webpack_require__(57), __webpack_require__(33), __webpack_require__(58), __webpack_require__(46), __webpack_require__(74)))
+window.gametask = (_window$gametask = {
+  endTurnTasks: function endTurnTasks() {
+    setTimeout(function () {
+      gametask.setTurnPlayer();
+    });
+  },
+  endGameChecker: 0,
+  startEndGameInterval: function startEndGameInterval() {
+    clearInterval(gametask.endGameChecker);
+    gametask.endGameChecker = setInterval(function () {
+      gametask.isGameOver();
+    }, 1000);
+  },
+  setTurnPlayer: function setTurnPlayer() {
+    setTimeout(function () {
+      var noMoreLinesToClick = twoBorderBoxes.length === 0 && noBorders.length === 0 && oneBorderBoxes.length === 0 && threeBorderBoxes.length !== 0;
+      var hasLockedBoxes = lockBombLocations.length > 0;
+      if (noMoreLinesToClick && hasLockedBoxes) {
+        console.log("game over");
+      }
+    });
+
+    gametask.resetAllRestrictions();
+
+    var incrementTurn = true;;
+    if (takeAnotherTurn && isFirstPlayerTurn) {
+      takeAnotherTurn = false;
+    } else if (takeAnotherTurn && !isFirstPlayerTurn) {
+      takeAnotherTurn = false;
+    } else if (layedBomb) {
+      layedBomb = false;
+      incrementTurn = false;
+    } else if (clickedExplosion) {
+      clickedExplosion = false;
+      isFirstPlayerTurn = !isFirstPlayerTurn;
+    } else if (!takeAnotherTurn) {
+      isFirstPlayerTurn = !isFirstPlayerTurn;
+      soundEffects.playLineClickSound();
+    }
+
+    gametask.setTurnIndicator();
+
+    setTimeout(function () {
+      if (incrementTurn) {
+        track.incrementTurn();
+      }
+      ui.populateTheUI();
+      ui.startLevelText();
+      setTimeout(function () {
+        if (!isFirstPlayerTurn) {
+          computerMove.makeComputerMove();
+        }
+      }, 100);
+    });
+  },
+  isGameOver: function isGameOver() {
+    totalPointsScored = 0;
+    Object.keys(gameBoard).forEach(function (box) {
+      var firstPlayerScored = gametask.hasClassByQuerySelector('.' + box, "firstPlayerScored");
+      var secondPlayerScored = gametask.hasClassByQuerySelector('.' + box, "secondPlayerScored");
+      if (firstPlayerScored || secondPlayerScored) totalPointsScored++;
+    });
+    if (totalPointsScored === gameBoardLength) {
+      clearInterval(gametask.endGameChecker);
+      settings.endGame = true;
+      setTimeout(function () {
+        settings.endGame = false;
+      }, 4000);
+      if (playerOneScore > playerTwoScore) {
+        ui.showCompleteScreen();
+      } else if (playerOneScore === playerTwoScore) {
+        boardText.showOnBoard("DRAW", 5000);
+        isFirstPlayerTurn = true;
+      } else {
+        boardText.showOnBoard("Aint nobody got time for that!", 5000);
+        isFirstPlayerTurn = true;
+      }
+    } else {
+      var hasNoBorderBoxes = noBorders.length === 0;
+      var hasTwoBorderBoxes = twoBorderBoxes.length === 0;
+      var hasThreeBorderBoxes = threeBorderBoxes.length === 0;
+      var noBoxesLeft = hasNoBorderBoxes && hasTwoBorderBoxes && hasThreeBorderBoxes;
+      if (noBoxesLeft) {
+
+        settings.endGame = true;
+        setTimeout(function () {
+          settings.endGame = false;
+        }, 4000);
+
+        boardText.showOnBoard("Game Over! Blow up the foot of oppression to win", 6000);
+        isFirstPlayerTurn = true;
+      }
+    }
+  },
+  getRandomIndexInArray: function getRandomIndexInArray(boxArray) {
+    return boxArray[Math.floor(Math.random() * boxArray.length)];
+  },
+  setGameLevelAndTips: function setGameLevelAndTips(level) {
+    gameLevel = level - 1;
+    gametask.setGameLevelObj();
+    track.goToPage('tipsPage');
+    gametask.setTips(level);
+  },
+  setTips: function setTips(level) {
+    if (!getGameLevelObj.tipsPage) {
+      ui.startGame();
+    }
+
+    var _ref = getGameLevelObj.tipsPage || settings.level_data[0].tipsPage,
+        heading = _ref.heading,
+        text = _ref.text,
+        img_src = _ref.img_src,
+        height = _ref.height;
+
+    gametask.addTextByQuerySelector("#tipHeading", heading);
+    gametask.addTextByQuerySelector("#tipText", text);
+    document.getElementById("tipImage").src = img_src;
+    document.getElementById("tipImage").style.height = height;
+  },
+  setDifficulty: function setDifficulty(difficulty) {
+    if (difficulty === "easy") {
+      chanceToGiveAWayPoint = 0.4;
+    } else if (difficulty === "medium") {
+      chanceToGiveAWayPoint = 0.2;
+    } else if (difficulty === "hard") {
+      chanceToGiveAWayPoint = 0.01;
+    }
+  },
+  clearBoard: function clearBoard() {
+    // document.getElementsByClassName("box")[0].remove();
+    ui.startGame(gameLevel + 1); // add one for the index
+  },
+  breakRefAndCopy: function breakRefAndCopy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  },
+  hasTwoInArray: function hasTwoInArray(array, arrayToCheckIn) {
+    var numberInside = 0;
+    array.forEach(function (arr) {
+      if (arrayToCheckIn.includes(arr)) {
+        numberInside++;
+      }
+    });
+    return numberInside === 2;
+  },
+  removedDoublesFromArray: function removedDoublesFromArray(arr) {
+    var noDublicates = [];
+    arr.forEach(function (item) {
+      if (!noDublicates.includes(item)) {
+        noDublicates.push(item);
+      }
+    });
+    return noDublicates;
+  },
+  isSelected: function isSelected() {
+    return gametask.getLengthOfElement(".tool.selected") === 1;
+  },
+  resetScore: function resetScore() {
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    gametask.addTextByQuerySelector(".playerOneScore", playerOneScore);
+    gametask.addTextByQuerySelector(".playerTwoScore", playerTwoScore);
+  },
+  resetPlayerTurn: function resetPlayerTurn() {
+    isFirstPlayerTurn = true;
+    gametask.setTurnIndicator();
+  },
+  saveToLocalStorage: function saveToLocalStorage(key, obj) {
+    window.localStorage.setItem("boxes", JSON.stringify(_defineProperty({}, key, obj)));
+  },
+  setFromLocalStorage: function setFromLocalStorage() {
+    setTimeout(function () {
+      if (!localStorage.boxes || reset_settings) {
+        gametask.saveToLocalStorage("settings", settings);
+      } else {
+        var storage = JSON.parse(localStorage.boxes);
+        settings = storage.settings;
+      }
+      settings.level_data.forEach(function (data, index) {
+        if (data.help) {
+          data.help.boardHelpText = helpTextArray[index].help.boardHelpText;
+          data.help.helpTurns = helpTextArray[index].help.helpTurns;
+        }
+      });
+    });
+  },
+  changeTitleColor: function changeTitleColor() {
+    gametask.addClassByClassName("title", "transitionColor");
+    setInterval(function () {
+      var hasColorChangheClass = gametask.hasClassByClassName("title", "colorChange");
+      if (hasColorChangheClass) {
+        gametask.removeClassByClassName("title", "colorChange");
+        gametask.removeClassByClassName("africa", "lighter");
+        gametask.addClassByClassName("ripple", "active");
+        setTimeout(function () {
+          gametask.removeClassByClassName("ripple", "active");
+        }, 100);
+      } else {
+        gametask.addClassByClassName("title", "colorChange");
+        gametask.addClassByClassName("africa", "lighter");
+      }
+    }, 4000);
+  },
+  passTurn: function passTurn() {
+    isFirstPlayerTurn = !isFirstPlayerTurn;
+    gametask.setTurnIndicator();
+    if (!isFirstPlayerTurn) {
+      computerMove.setMakeComputerMove();
+    }
+  },
+  resizeBoard: function resizeBoard() {
+    setTimeout(function () {
+      var boardSize = gametask.getWidthWithId("board");
+      var gridWidth = boardSize / 6;
+      gametask.setHeightWithClassName("box", gridWidth - 6);
+      gametask.setWidthWithClassName("box", gridWidth - 6);
+    });
+  },
+  getTools: function getTools() {
+    return getGameLevelObj.tools ? gametask.breakRefAndCopy(getGameLevelObj.tools) : [];
+  },
+  setGameLevelObj: function setGameLevelObj() {
+    getGameLevelObj = gametask.getGameLevelObj();
+  },
+  getGameLevelObj: function getGameLevelObj() {
+    return settings.level_data[gameLevel];
+  },
+  addTextByQuerySelector: function addTextByQuerySelector(selector, text) {
+    var element = document.querySelectorAll(selector);
+    var length = element.length;
+    if (element) {
+      for (var i = 0; i < length; i++) {
+        element[i].innerText = text;
+      }
+    }
+  },
+  addHTMLByQuerySelector: function addHTMLByQuerySelector(selector, html) {
+    var element = document.querySelectorAll(selector);
+    var length = element.length;
+    if (element) {
+      for (var i = 0; i < length; i++) {
+        element[i].innerHTML = html;
+      }
+    }
+  },
+  getTextByQuerySelector: function getTextByQuerySelector(selector) {
+    var element = document.querySelectorAll(selector)[0];
+    return element.innerText;
+  },
+  addClassByQuerySelector: function addClassByQuerySelector(selector, classToRemove) {
+    var element = document.querySelectorAll(selector);
+    var length = element.length;
+    if (element) {
+      for (var i = 0; i < length; i++) {
+        element[i].classList.add(classToRemove);
+      }
+    }
+  },
+  removeClassByQuerySelector: function removeClassByQuerySelector(selector, classToRemove) {
+    var element = document.querySelectorAll(selector);
+    var length = element.length;
+    if (element) {
+      for (var i = 0; i < length; i++) {
+        element[i].classList.remove(classToRemove);
+      }
+    }
+  }
+}, _defineProperty(_window$gametask, 'removeClassByQuerySelector', function removeClassByQuerySelector(selector, classToRemove) {
+  var element = document.querySelectorAll(selector);
+  var length = element.length;
+  if (element) {
+    for (var i = 0; i < length; i++) {
+      element[i].classList.remove(classToRemove);
+    }
+  }
+}), _defineProperty(_window$gametask, 'removeClassByClassName', function removeClassByClassName(selector, classToRemove) {
+  var element = document.getElementsByClassName(selector);
+  var length = element.length;
+  if (element) {
+    for (var i = 0; i < length; i++) {
+      element[i].classList.remove(classToRemove);
+    }
+  }
+}), _defineProperty(_window$gametask, 'addClassByClassName', function addClassByClassName(selector, classToAdd) {
+  var element = document.getElementsByClassName(selector);
+  var length = element.length;
+  if (element) {
+    for (var i = 0; i < length; i++) {
+      element[i].classList.add(classToAdd);
+    }
+  }
+}), _defineProperty(_window$gametask, 'hasClassByClassName', function hasClassByClassName(selector, classToCheckFor) {
+  var element = document.getElementsByClassName(selector)[0];
+  if (element) {
+    return element.classList.contains(classToCheckFor);
+  }
+}), _defineProperty(_window$gametask, 'hasClassByQuerySelector', function hasClassByQuerySelector(selector, classToCheckFor) {
+  var hasClass = false;
+  var element = document.querySelectorAll(selector);
+  var length = element.length;
+  if (element) {
+    for (var i = 0; i < length; i++) {
+      if (element[i].classList.contains(classToCheckFor)) {
+        hasClass = true;
+      }
+    }
+  }
+  return hasClass;
+}), _defineProperty(_window$gametask, 'getHeightWithClassName', function getHeightWithClassName(selector) {
+  return document.getElementsByClassName(selector)[0].clientHeight;
+}), _defineProperty(_window$gametask, 'getWidthWithClassName', function getWidthWithClassName(selector) {
+  return document.getElementsByClassName(selector)[0].clientWidth;
+}), _defineProperty(_window$gametask, 'getWidthWithId', function getWidthWithId(selector) {
+  return document.getElementById(selector).clientWidth;
+}), _defineProperty(_window$gametask, 'setHeightWithClassName', function setHeightWithClassName(selector, height) {
+  var sel = document.getElementsByClassName(selector);
+  var length = sel.length;
+  for (var i = 0; i < length; i++) {
+    sel[i].style.height = height + 'px';
+  }
+}), _defineProperty(_window$gametask, 'setWidthWithClassName', function setWidthWithClassName(selector, width) {
+  var sel = document.getElementsByClassName(selector);
+  var length = sel.length;
+  for (var i = 0; i < length; i++) {
+    sel[i].style.width = width + 'px';
+  }
+}), _defineProperty(_window$gametask, 'getLengthOfElement', function getLengthOfElement(selector) {
+  var query = document.querySelectorAll(selector);
+  return query.length;
+}), _defineProperty(_window$gametask, 'getStarsForWinner', function getStarsForWinner(score) {
+  var starRubric = getGameLevelObj.starRating || [];
+  if (score >= starRubric[2].score) {
+    return 3;
+  } else if (score >= starRubric[1].score) {
+    return 2;
+  } else if (score >= starRubric[0].score) {
+    return 1;
+  }
+}), _defineProperty(_window$gametask, 'setStarsForWinner', function setStarsForWinner(stars) {
+  settings.level_data[gameLevel].stars = stars;
+  gametask.saveToLocalStorage("settings", settings);
+}), _defineProperty(_window$gametask, 'openNextBoard', function openNextBoard(stars) {
+  var nextLevel = settings.level_data[gameLevel + 1];
+  if (stars > 0 && nextLevel) {
+    nextLevel.isLocked = false;
+    gametask.saveToLocalStorage("settings", settings);
+  }
+}), _defineProperty(_window$gametask, 'setTurnIndicator', function setTurnIndicator() {
+  gametask.removeClassByClassName("scoreHolder", "thisPlayerTurn");
+  if (isFirstPlayerTurn) {
+    gametask.addClassByQuerySelector(".firstPlayerTurnHolder", "thisPlayerTurn");
+  } else {
+    gametask.addClassByQuerySelector(".secondPlayerTurnHolder", "thisPlayerTurn");
+  }
+}), _defineProperty(_window$gametask, 'setTurnRestrictions', function setTurnRestrictions() {
+  var trainingRestrictions = settings.level_data[gameLevel].trainingRestrictions;
+
+  if (trainingRestrictions) {
+    var restrictions = settings.level_data[gameLevel].trainingRestrictions.restrictions;
+
+    restrictions.forEach(function (restriction) {
+      var turn = restriction.turn,
+          type = restriction.type,
+          boxOne = restriction.boxOne,
+          boxTwo = restriction.boxTwo,
+          clickBox = restriction.clickBox,
+          then = restriction.then;
+
+      var onRestrictionTurn = track.turn === turn;
+      if (onRestrictionTurn) {
+        gametask.resetAllRestrictions();
+        if (type === "highLightLine") {
+          restrictionLineClicks = [boxOne, boxTwo];
+          gametask.highlightLine();
+        } else if (type === "clickBox") {
+          restrictionClickBox = clickBox;
+          setTimeout(function () {
+            gametask.addClassByClassName(clickBox, "clickBox");
+          }, 500);
+        } else if (type === "layBomb") {
+          restrictionLayBomb = clickBox;
+          var _boxToClick = settings.level_data[gameLevel].clickAnimal;
+          setTimeout(function () {
+            gametask.addClassByQuerySelector('.tool.' + _boxToClick, "clickBox");
+          });
+        }
+        if (then) {
+          nextRestriction = then;
+        }
+      }
+    });
+  }
+}), _defineProperty(_window$gametask, 'highlightLine', function highlightLine() {
+  var restrict = gametask.breakRefAndCopy(restrictionLineClicks);
+  setTimeout(function () {
+    restrict.forEach(function (data) {
+      if (data.side === "top") {
+        gametask.addClassByClassName(data.box, "clickTopLine");
+      } else if (data.side === "right") {
+        gametask.addClassByClassName(data.box, "clickRightLine");
+      } else if (data.side === "bottom") {
+        gametask.addClassByClassName(data.box, "clickBottomLine");
+      } else if (data.side === "left") {
+        gametask.addClassByClassName(data.box, "clickLeftLine");
+      }
+    });
+  }, 500);
+}), _defineProperty(_window$gametask, 'resetAllRestrictions', function resetAllRestrictions() {
+  restrictionLineClicks = null;
+  restrictionClickBox = null;
+  restrictionLayBomb = null;
+  nextRestriction = null;
+  setTimeout(function () {
+    gametask.removeClassByClassName("box", "clickTopLine");
+    gametask.removeClassByClassName("box", "clickRightLine");
+    gametask.removeClassByClassName("box", "clickBottomLine");
+    gametask.removeClassByClassName("box", "clickLeftLine");
+  }, 500);
+}), _defineProperty(_window$gametask, 'onRestrictionTurn', function onRestrictionTurn() {
+  return restrictionLineClicks || restrictionClickBox;
+}), _defineProperty(_window$gametask, 'hasPassedTrainingRestriction', function hasPassedTrainingRestriction(boxNumber, lineClicked) {
+  var hasPassed = true;
+  if (restrictionLineClicks) {
+    hasPassed = false;
+    restrictionLineClicks.forEach(function (restriction) {
+      var box = restriction.box,
+          side = restriction.side;
+
+      if (box === boxNumber && side === lineClicked) {
+        hasPassed = true;
+      }
+    });
+  } else if (restrictionClickBox) {
+    hasPassed = false;
+    if (restrictionClickBox.includes(boxNumber) && !lineClicked) {
+      hasPassed = true;
+    }
+  } else if (restrictionLayBomb) {
+    hasPassed = false;
+    if (restrictionLayBomb.includes("any box") || restrictionLayBomb.includes(boxNumber)) {
+      if (!lineClicked) {
+        hasPassed = true;
+        restrictionLayBomb = null;
+
+        if (nextRestriction) {
+          var _nextRestriction = nextRestriction,
+              turn = _nextRestriction.turn,
+              type = _nextRestriction.type,
+              boxOne = _nextRestriction.boxOne,
+              boxTwo = _nextRestriction.boxTwo,
+              clickBox = _nextRestriction.clickBox,
+              then = _nextRestriction.then,
+              withClickBox = _nextRestriction.withClickBox;
+
+          if (type === "highLightLine") {
+            setTimeout(function () {
+              restrictionLineClicks = [boxOne, boxTwo];
+              gametask.highlightLine();
+            }, 500);
+          } else if (type === "clickBox") {
+            if (withClickBox) {
+              setTimeout(function () {
+                restrictionClickBox = [].concat(_toConsumableArray(clickBox), [boxNumber]);
+                restrictionClickBox.forEach(function (data) {
+                  gametask.addClassByClassName(data, "clickBox");
+                });
+              }, 500);
+            } else {
+              setTimeout(function () {
+                restrictionClickBox = [].concat(_toConsumableArray(clickBox));
+                restrictionClickBox.forEach(function (data) {
+                  gametask.addClassByClassName(data, "clickBox");
+                });
+              }, 500);
+            }
+          } else if (type === "layBomb") {
+            setTimeout(function () {
+              restrictionLayBomb = clickBox;
+            });
+          }
+        }
+      }
+    }
+  }
+
+  if (!hasPassed) {
+    soundEffects.playWrongSound();
+  }
+
+  return hasPassed;
+}), _defineProperty(_window$gametask, 'hasAPreMadeMove', function hasAPreMadeMove() {
+  var hasPreMadeMove = false;
+  var moveToMake = "";
+  var computerMoves = settings.level_data[gameLevel].computerMoves;
+
+  if (computerMoves) {
+    computerMoves.forEach(function (move) {
+      if (move.turn === track.turn) {
+        hasPreMadeMove = true;
+        moveToMake = move;
+      }
+    });
+  }
+  return {
+    hasPreMadeMove: hasPreMadeMove,
+    moveToMake: moveToMake
+  };
+}), _defineProperty(_window$gametask, 'incorrectClick', function incorrectClick(boxNumber, lineClicked) {
+  if (boxNumber && lineClicked) {
+    // turns the line red to indicate that it cant be clicked
+    ui.displayNoClickIndicator(boxNumber, lineClicked);
+  }
+  soundEffects.playWrongSound();
+}), _defineProperty(_window$gametask, 'setToolClickEvent', function setToolClickEvent() {
+  $(document).on("click", ".tool.clickBox", function () {
+    gametask.removeClassByClassName(".tool", "keepSelected");
+    var clickBox = settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickBox;
+    clickBox.forEach(function (box) {
+      gametask.addClassByQuerySelector(".tool.clickBox", "keepSelected");
+      gametask.removeClassByQuerySelector(".tool.clickBox", "clickBox");
+      gametask.addClassByClassName(box, "clickBox");
+    });
+  });
+}), _defineProperty(_window$gametask, 'shouldHighlightLayedBomb', function shouldHighlightLayedBomb() {
+  if (!settings.level_data[gameLevel].trainingRestrictions) {
+    return null;
+  }
+  return settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn] && settings.level_data[gameLevel].trainingRestrictions.restrictions[track.turn].clickWhenLayed;
+}), _defineProperty(_window$gametask, 'selectStoreItem', function selectStoreItem(item, cost) {
+  var currentGold = settings.gold;
+  if (currentGold >= cost) {
+    for (var x in storeItemSelected) {
+      delete storeItemSelected[x];
+    }storeItemSelected.item = item;
+    storeItemSelected.cost = cost;
+    ui.toggleConfirmScreen();
+  } else {
+    soundEffects.playWrongSound();
+  }
+}), _defineProperty(_window$gametask, 'buyItem', function buyItem() {
+  var currentGold = settings.gold;
+  settings.gold = currentGold - storeItemSelected.cost;
+  settings.itemsPurchased.push(storeItemSelected.item);
+  var newQuantity = settings.store[storeItemSelected.item].quantity + 1;
+  settings.store[storeItemSelected.item].quantity = newQuantity;
+  gametask.saveToLocalStorage("settings", settings);
+  ui.toggleConfirmScreen();
+  document.getElementById("goldAmount").innerText = settings.gold;
+  ui.populateStore();
+}), _window$gametask);
+
+window.ui = {
+  startGame: function startGame() {
+    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    selectBombScreen.classList.remove("playGame");
+
+    gametask.removeClassByClassName("helpTextP", "showHelpText");
+
+    restrictionLineClicks = null;
+    restrictionClickBox = null;
+    restrictionLayBomb = null;
+    nextRestriction = null;
+
+    settings.itemsSelected = [];
+
+    gametask.startEndGameInterval();
+    track.turn = 0;
+    pointsInArow = 0;
+    whoClickedLine = gametask.breakRefAndCopy(whoClickTheLine);
+    textType = null;
+    on_game_board = true;
+    gametask.resetPlayerTurn();
+    gametask.resetScore();
+    track.goToPage(settings.startUpPage);
+    gametask.setDifficulty(settings.difficulty);
+    initialBombs = getGameLevelObj.initialBombs ? gametask.breakRefAndCopy(getGameLevelObj.initialBombs) : [];
+    bombsToLay = getGameLevelObj.bombsToLay ? gametask.breakRefAndCopy(getGameLevelObj.bombsToLay) : 0;
+    // track.setRemainingBombs();
+    lockBombLocations = getGameLevelObj.lockBoxes ? gametask.breakRefAndCopy(getGameLevelObj.lockBoxes) : [];
+
+    gameBoard = gametask.breakRefAndCopy(ui.gameBoardMapperObj['level' + (gameLevel + 1)]);
+    gameBoardLength = ui.getGameBoardLength();
+
+    var lockBoxesAmount = lockBoxes[gameLevel];
+    for (var i = 0; i < 36; i++) {
+      if (!boxInfo.isBoxDisabled('box' + i)) {
+        possibleBombs.push('box' + i);
+      }
+    }
+
+    possibleBombs.forEach(function (data, index) {
+      if (index < lockBoxesAmount) {
+        var box = gametask.getRandomIndexInArray(possibleBombs);
+        var _index = possibleBombs.indexOf(box);
+        possibleBombs.splice(_index, 1);
+      }
+    });
+
+    ui.addInitialBombs();
+    ui.fillPreFilledBoxes();
+    ui.populateTheUI();
+    bomb.fillPopulationData();
+    ui.startLevelText();
+  },
+  redo: function redo() {
+    gametask.clearBoard();
+    track.goToPage('gameBoardPage');
+  },
+  gameBoardMapperObj: {
+    level1: level1,
+    level2: level2,
+    level3: level3,
+    level4: level4,
+    level5: level5,
+    level6: level6,
+    level7: level7,
+    level8: level8,
+    level9: level9,
+    level10: level10
+  },
+  addInitialBombs: function addInitialBombs() {
+    initialBombs.forEach(function (data) {
+      gameBoard[data.box][data.bombType] = true;
+    });
+  },
+  getGameBoardLength: function getGameBoardLength() {
+    var length = 0;
+    for (var box in gameBoard) {
+      if (!gameBoard[box].disabled) {
+        length++;
+      }
+    }
+    return length;
+  },
+  chooseBoard: function chooseBoard() {
+    if (settings.endGame) return null;
+    track.goToPage("levelsPage");
+    document.querySelectorAll(".levelsHolder")[0].innerHTML = "";
+    var node = document.getElementsByClassName("levelsHolder")[0];
+    settings.level_data.forEach(function (data) {
+      data.isLocked ? node.insertAdjacentHTML('beforeend', ui.uiComponents.lockedBoardBox()) : node.insertAdjacentHTML('beforeend', ui.uiComponents.boardBox(data));
+    });
+  },
+  populateBoard: function populateBoard() {
+    // populate the gameboard into the UI
+    if (document.getElementsByClassName("box").length > 0) {
+      var boxes = document.getElementsByClassName("box");
+      ui.removeAllLockBoxes();
+      for (var i = 0; i < boxes.length; i++) {
+        var _gridBox$classList;
+
+        ui.addLockBox('box' + i);
+        var gridBox = boxes[i];
+        gridBox.className = "";
+        (_gridBox$classList = gridBox.classList).add.apply(_gridBox$classList, _toConsumableArray(boxInfo.getAllBoxClasses('box' + i)));
+      }
+    } else {
+      var _loop3 = function _loop3(box) {
+        var _gridBox$classList2;
+
+        ui.addLockBox(box);
+
+        var topRightDot = document.createElement("div");
+        var topLeftDot = document.createElement("div");
+        var bottomRightDot = document.createElement("div");
+        var bottomLeftDot = document.createElement("div");
+        topRightDot.classList.add("topRightDot");
+        topLeftDot.classList.add("topLeftDot");
+        bottomRightDot.classList.add("bottomRightDot");
+        bottomLeftDot.classList.add("bottomLeftDot");
+
+        var pointer = document.getElementsByClassName("helpPointer")[0];
+        var clone = pointer.cloneNode(true);
+
+        var gridBox = document.createElement("div");
+
+        gridBox.appendChild(topRightDot);
+        gridBox.appendChild(topLeftDot);
+        gridBox.appendChild(bottomRightDot);
+        gridBox.appendChild(bottomLeftDot);
+
+        gridBox.appendChild(clone);
+
+        (_gridBox$classList2 = gridBox.classList).add.apply(_gridBox$classList2, _toConsumableArray(boxInfo.getAllBoxClasses(box)));
+        gridBox.insertAdjacentHTML('beforeend', ui.uiComponents.spriteSheet(box));
+        gridBox.addEventListener("mousedown", function (e) {
+          // add a click event to the box click on borders
+          if (!isFirstPlayerTurn || boxInfo.isBoxDisabled(box)) return null; // prevent out of turn clicks
+          lineClickAction.highlightClickedBorder(e.offsetX, e.offsetY, box, board);
+        });
+        var node = document.getElementById("board");
+        node.appendChild(gridBox); // add the box to the game board
+      };
+
+      for (var box in gameBoard) {
+        _loop3(box);
+      }
+    }
+    track.setScores();
+    boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
+    ui.populateHelpers();
+  },
+  populateHelpers: function populateHelpers() {
+    //set helpers
+    if (!tools) {
+      tools = gametask.getTools();
+    }
+
+    //empty any helpers still on the board
+    var nodes = document.getElementsByClassName("bombToolsBar");
+    nodes[0].innerHTML = "";
+
+    //populate board with helps
+    tools.forEach(function (data) {
+      var tool = document.querySelectorAll('.tool.' + data.name);
+      var toolExists = tool.length > 0;
+      if (data.count !== 0 && !toolExists) {
+        var _tool = ui.uiComponents.helper(data);
+        var node = document.getElementsByClassName("bombToolsBar")[0];
+        node.insertAdjacentHTML('beforeend', _tool);
+      } else if (data.count !== 0) {
+        gametask.addTextByQuerySelector('.' + data.name + 'p', data.count);
+      } else if (data.count === 0 && toolExists) {
+        tool[0].remove();
+      }
+    });
+  },
+  removeAllLockBoxes: function removeAllLockBoxes() {
+    gametask.removeClassByClassName("box", "locked");
+    for (var data in gameBoard) {
+      gameBoard[data].isLocked = false;
+    }
+  },
+  addLockBox: function addLockBox(box) {
+    if (boxInfo.isALockBox(box) && !boxInfo.isBoxDisabled(box)) {
+      gameBoard[box].isLocked = true;
+    }
+  },
+  removeScoreColorIfRemovingBorder: function removeScoreColorIfRemovingBorder(box) {
+    gameBoard[box].whoScored = null;
+    gametask.removeClassByClassName('.' + box, "firstPlayerScored");
+    gametask.removeClassByClassName('.' + box, "secondPlayerScored");
+  },
+  closeTheBoxConnection: function closeTheBoxConnection(closeTheBoxConnectionParams) {
+    var boxNumber = closeTheBoxConnectionParams.boxNumber,
+        adjacentBox = closeTheBoxConnectionParams.adjacentBox,
+        boxNumberClosedBorder = closeTheBoxConnectionParams.boxNumberClosedBorder,
+        adjacentBoxClosedBorder = closeTheBoxConnectionParams.adjacentBoxClosedBorder;
+
+    if (gameBoard[boxNumber].surroundingBoxes[boxNumberClosedBorder + 'Box']) gameBoard[boxNumber].surroundingBoxes[boxNumberClosedBorder + 'Box'].isConnected = false;
+    if (adjacentBox && gameBoard[adjacentBox].surroundingBoxes[adjacentBoxClosedBorder + 'Box']) gameBoard[adjacentBox].surroundingBoxes[adjacentBoxClosedBorder + 'Box'].isConnected = false;
+  },
+  selectHelper: function selectHelper(bombFunction) {
+    var hasSelected = document.querySelector('.tool[class*=' + bombFunction + ']').classList.contains("selected");
+    var keepSelected = document.querySelector("keepSelected");
+    if (hasSelected && keepSelected) {
+      var helperDisabled = keepSelected.length > 0;
+      if (helperDisabled) return null;
+      gametask.removeClassByClassName("tool", "selected");
+    } else {
+      gametask.removeClassByClassName("tool", "selected");
+      gametask.addClassByQuerySelector('.tool[class*=' + bombFunction + ']', "selected");
+      selectedBombFunction = bombFunction;
+    }
+  },
+  populateStore: function populateStore() {
+    gametask.addTextByQuerySelector("#goldAmount", settings.gold);
+    var merchHolder = document.getElementsByClassName("merchHolder")[0];
+    merchHolder.innerHTML = "";
+    var _settings = settings,
+        store = _settings.store;
+
+    for (var item in store) {
+      var animalBox = ui.uiComponents.getStoreItem(store[item]);
+      merchHolder.append(animalBox);
+    }
+  },
+  populateBombSelectionScreen: function populateBombSelectionScreen() {
+    var selectBomb = document.getElementsByClassName("selectBomb")[0];
+    selectBomb.innerHTML = "";
+    var populated = [];
+    settings.itemsPurchased.forEach(function (data) {
+      if (!populated.includes(data)) {
+        var animalSelectBox = ui.uiComponents.getAnimalSelectBox(data);
+        selectBomb.append(animalSelectBox);
+        populated.push(data);
+      }
+    });
+    var hasTakenLayTutorial = gameLevel > 4;
+    if (populated.length === 0 || !hasTakenLayTutorial) {
+      ui.doneBombSelected();
+    }
+  },
+  uiComponents: {
+    boardBox: function boardBox(data) {
+      var stars = "";
+      for (var i = 0; i < data.stars; i++) {
+        stars += '<img class="star' + i + '" src="./img/star.png" alt="">';
+      }
+      return '\n        <div class="level flexCol playBoardButton" onclick="gametask.setGameLevelAndTips(' + data.levelNumber + ')">\n          <p>' + data.levelNumber + '</p>\n          <div class="stars flexRow">\n            ' + stars + '\n          </div>\n        </div>\n      ';
+    },
+    spriteSheet: function spriteSheet(box) {
+      return "<div class='spriteSheet'></div>";
+    },
+    lockedBoardBox: function lockedBoardBox() {
+      return '\n        <div class="level flexCol">\n          <div class="boardLock">\n            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" class="svg-inline--fa fa-lock fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>\n          </div>\n        </div>\n      ';
+    },
+    helper: function helper(data) {
+      return '<div class="tool flexRow ' + data.name + '" onclick="ui.selectHelper(\'' + data.name + '\')">\n        <img src=' + data.src + ' alt="">\n        <svg class="helpPointer" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-point-down" class="svg-inline--fa fa-hand-point-down fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M91.826 467.2V317.966c-8.248 5.841-16.558 10.57-24.918 14.153C35.098 345.752-.014 322.222 0 288c.008-18.616 10.897-32.203 29.092-40 28.286-12.122 64.329-78.648 77.323-107.534 7.956-17.857 25.479-28.453 43.845-28.464l.001-.002h171.526c11.812 0 21.897 8.596 23.703 20.269 7.25 46.837 38.483 61.76 38.315 123.731-.007 2.724.195 13.254.195 16 0 50.654-22.122 81.574-71.263 72.6-9.297 18.597-39.486 30.738-62.315 16.45-21.177 24.645-53.896 22.639-70.944 6.299V467.2c0 24.15-20.201 44.8-43.826 44.8-23.283 0-43.826-21.35-43.826-44.8zM112 72V24c0-13.255 10.745-24 24-24h192c13.255 0 24 10.745 24 24v48c0 13.255-10.745 24-24 24H136c-13.255 0-24-10.745-24-24zm212-24c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z"></path></svg>\n      </div>';
+    },
+    getStoreItem: function getStoreItem(item) {
+      var _animalBox$classList, _animal$classList, _price$classList, _goldMoney$classList, _totalForItem$classLi, _totalForItemP$classL;
+
+      var hasUnlocked = item.hasUnlocked,
+          unlockedImgClass = item.unlockedImgClass,
+          lockedImgClass = item.lockedImgClass;
+
+      var animalBoxClasses = ["animalBox", "flexCol"];
+      var animalClasses = ["animal", hasUnlocked ? unlockedImgClass : lockedImgClass];
+      var priceClasses = ["price", "flexRow"];
+      var goldMoneyClasses = ["goldMoney"];
+      var totalForItemClasses = ["totalForItem"];
+      var totalForItemPClasses = ["totalForItemP"];
+      var costLabel = item.hasUnlocked ? item.cost : "?";
+
+      var animalBox = document.createElement("div");
+      var animal = document.createElement("div");
+      var price = document.createElement("div");
+      var goldMoney = document.createElement("div");
+      var cost = document.createElement("span");
+      var totalForItem = document.createElement("div");
+      var totalForItemP = document.createElement("p");
+
+      cost.innerText = costLabel;
+      totalForItemP.innerText = item.hasUnlocked ? item.quantity : "";
+      (_animalBox$classList = animalBox.classList).add.apply(_animalBox$classList, animalBoxClasses);
+      (_animal$classList = animal.classList).add.apply(_animal$classList, animalClasses);
+      (_price$classList = price.classList).add.apply(_price$classList, priceClasses);
+      (_goldMoney$classList = goldMoney.classList).add.apply(_goldMoney$classList, goldMoneyClasses);
+      (_totalForItem$classLi = totalForItem.classList).add.apply(_totalForItem$classLi, totalForItemClasses);
+      (_totalForItemP$classL = totalForItemP.classList).add.apply(_totalForItemP$classL, totalForItemPClasses);
+
+      price.append(cost);
+      price.append(goldMoney);
+      animalBox.append(animal);
+      animalBox.append(price);
+      totalForItem.append(totalForItemP);
+      animalBox.append(totalForItem);
+
+      animalBox.addEventListener("click", function () {
+        var animal = item.unlockedImgClass.replace("buy_", "");
+        var cost = price.innerText === "?" ? 10000000 : parseInt(item.cost);
+        gametask.selectStoreItem(animal, cost);
+      });
+
+      return animalBox;
+    },
+    getAnimalSelectBox: function getAnimalSelectBox(animal) {
+      var _animalBox$classList2;
+
+      var animalBoxClasses = ["animalBombSelectBox", 'buy_' + animal];
+      var animalBox = document.createElement("div");
+      (_animalBox$classList2 = animalBox.classList).add.apply(_animalBox$classList2, animalBoxClasses);
+      animalBox.addEventListener("click", function () {
+        ui.selectPregameBomb('buy_' + animal);
+      });
+      return animalBox;
+    }
+  },
+  tools: [{
+    name: "lion",
+    src: "./img/color_animals/asset_lion.png",
+    count: 1
+  }, {
+    name: "cheetah",
+    src: "./img/color_animals/asset_cheetah.png",
+    count: 1
+  }, {
+    name: "panther",
+    src: "./img/color_animals/asset_panther.png",
+    count: 1
+  }],
+  changeDifficulty: function changeDifficulty(diff) {
+    settings.difficulty = diff;
+    gametask.saveToLocalStorage("settings", settings);
+    ui.setDifficulty();
+  },
+  setDifficulty: function setDifficulty() {
+    gametask.removeClassByClassName("diff", "selectedSetting");
+    gametask.addClassByClassName(settings.difficulty, "selectedSetting");
+  },
+  toggleSound: function toggleSound() {
+    settings.hasMutedSound = !settings.hasMutedSound;
+    gametask.saveToLocalStorage("settings", settings);
+    ui.setSound();
+  },
+  setSound: function setSound() {
+    gametask.removeClassByClassName("sound", "selectedSetting");
+    if (settings.hasMutedSound) {
+      gametask.addClassByQuerySelector(".sound.sOptions.off", "selectedSetting");
+    } else {
+      gametask.addClassByQuerySelector(".sound.sOptions.on", "selectedSetting");
+    }
+  },
+  toggleMusic: function toggleMusic() {
+    settings.hasMutedMusic = !settings.hasMutedMusic;
+    gametask.saveToLocalStorage("settings", settings);
+    ui.setMusic();
+  },
+  setMusic: function setMusic() {
+    gametask.removeClassByClassName("music", "selectedSetting");
+    if (settings.hasMutedMusic) {
+      gametask.addClassByQuerySelector(".music.mOptions.off", "selectedSetting");
+    } else {
+      gametask.addClassByQuerySelector(".music.mOptions.on", "selectedSetting");
+    }
+  },
+  showHint: function showHint() {
+    var index = gametask.getRandomIndexInArray(noBorders);
+    var box = noBorders[index];
+    gametask.addClassByClassName(box, "hint");
+    setTimeout(function () {
+      gametask.removeClassByClassName(box, "hint");
+    }, 600);
+  },
+  setSettingsIfOnSettingsPage: function setSettingsIfOnSettingsPage(page) {
+    if (page === "settingsPage") {
+      ui.setDifficulty();
+      ui.setSound();
+      ui.setMusic();
+    }
+  },
+  animateScore: function animateScore(prize, starTimeout) {
+    var remainingGold = parseInt(gametask.getTextByQuerySelector(".remainingGold"));
+    var hasScore = remainingGold !== 0;
+    if (hasScore) {
+      var changeNumber = function changeNumber() {
+        var gold = remainingGold;
+        starTimeout += 100;
+        setTimeout(function () {
+          // gametask.addTextByQuerySelector(".remainingGold", gold);
+          var currectGold = parseInt(gametask.getTextByQuerySelector(".currentGoldCount")) + 1;
+          gametask.addTextByQuerySelector(".currentGoldCount", currectGold);
+          settings.gold = currectGold;
+        }, starTimeout);
+        remainingGold--;
+        if (remainingGold > 0) {
+          changeNumber();
+        }
+      };
+      changeNumber();
+    }
+    setTimeout(function () {
+      ui.showGift(prize, starTimeout);
+    }, starTimeout);
+  },
+  showGift: function showGift(prize, starTimeout) {
+    if (prize) {
+      setTimeout(function () {
+        var hasClaimed = getGameLevelObj.hasLargePrize && getGameLevelObj.hasLargePrize.hasClaimed;
+        if (!getGameLevelObj.hasLargePrize || hasClaimed) {
+          gametask.addClassByClassName("goldScreen", "smallPrize");
+        } else {
+          settings.level_data[gameLevel].hasLargePrize.hasClaimed = true;
+          gametask.saveToLocalStorage("settings", settings);
+          gametask.removeClassByClassName("goldScreen", "smallPrize");
+          var _prize = getGameLevelObj.hasLargePrize.prize;
+          var img = document.querySelector(".goldScreen img");
+          img.src = './img/rewards/' + _prize + '_reward.png';
+          var currentClass = img.classList[0];
+          img.classList.remove(currentClass);
+          img.classList.add(_prize + '_reward');
+          settings.store[_prize].hasUnlocked = true;
+          var currentQuantity = settings.store[_prize].quantity;
+          settings.store[_prize].quantity = currentQuantity + 1;
+          settings.itemsPurchased.push(_prize);
+          gametask.saveToLocalStorage("settings", settings);
+        }
+        gametask.addClassByClassName("rewardScreen", "showPrice");
+        setTimeout(function () {
+          gametask.addClassByQuerySelector("svg.redoBtn", "showBtn");
+          if (settings.level_data[gameLevel + 1]) {
+            gametask.addClassByQuerySelector("svg.nextBtn", "showBtn");
+          }
+        }, 1000);
+      }, 200);
+    }
+  },
+  showEndGameScreen: function showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize) {
+    gametask.resetPlayerTurn();
+    gametask.removeClassByClassName("gameCompleteBox", "hideGameComplete");
+    gametask.addTextByQuerySelector(".yourScore", yourScore);
+    gametask.addTextByQuerySelector(".computerScore", computerScore);
+    var remainingGold = parseInt(yourScore) - parseInt(computerScore);
+    gametask.addTextByQuerySelector(".remainingGold", remainingGold);
+    gametask.addTextByQuerySelector(".currentGoldCount", currentGoldCount);
+    setTimeout(function () {
+      document.getElementsByClassName("rewardScreen")[0].style.opacity = 1;
+    }, 1000);
+    var starTimeout = 200;
+    var showStars = function showStars(count) {
+      var starCount = count + 1;
+      setTimeout(function () {
+        document.getElementsByClassName('completeStar' + starCount)[0].style.opacity = 1;
+      }, starTimeout);
+      starTimeout += 200;
+    };
+    setTimeout(function () {
+      for (var i = 0; i < stars; i++) {
+        showStars(i);
+      }
+      ui.animateScore(prize, starTimeout);
+    }, starTimeout);
+  },
+  showCompleteScreen: function showCompleteScreen() {
+    setTimeout(function () {
+      var stars = gametask.getStarsForWinner(playerOneScore);
+      gametask.setStarsForWinner(stars);
+      gametask.openNextBoard(stars);
+      var yourScore = playerOneScore;
+      var computerScore = playerTwoScore;
+      var currentGoldCount = settings.gold;
+      var prize = "cheetah";
+      ui.showEndGameScreen(stars, yourScore, computerScore, currentGoldCount, prize);
+    }, 500);
+  },
+  showTextTimeout: 0,
+  showText: function showText(text) {
+    gametask.removeClassByClassName("helpTextP", "showHelpText");
+    clearTimeout(ui.showTextTimeout);
+    ui.showTextTimeout = setTimeout(function () {
+      gametask.addHTMLByQuerySelector(".helpTextP", text);
+      gametask.addClassByClassName("helpTextP", "showHelpText");
+    }, 500);
+  },
+  startLevelText: function startLevelText() {
+    if (!getGameLevelObj["help"]) {
+      gametask.removeClassByQuerySelector(".helpTextP", "showHelpText");
+      return null;
+    };
+
+    var levelText = getGameLevelObj["help"]["boardHelpText"]();
+    var turnsToShowText = levelText ? getGameLevelObj["help"]["helpTurns"] : [];
+
+    if (track.turn === 0) {
+      helpText = levelText;
+    }
+
+    if (!helpText && levelText && turnsToShowText.includes(track.turn)) {
+      var text = helpText.next().value;
+      ui.showText(text || "");
+    } else if (helpText && turnsToShowText.includes(track.turn)) {
+      var _text = helpText.next().value;
+      ui.showText(_text || "");
+    }
+    if (turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1) {
+      setTimeout(function () {
+        ui.showText("");
+      }, 8000);
+    }
+  },
+  fillPreFilledBoxes: function fillPreFilledBoxes() {
+    var _getGameLevelObj = getGameLevelObj,
+        prefilledBoxes = _getGameLevelObj.prefilledBoxes;
+
+    if (prefilledBoxes) {
+      for (var box in gameBoard) {
+        if (prefilledBoxes.includes(box)) {
+          // fill box
+          gameBoard[box].borders.top = true;
+          gameBoard[box].borders.right = true;
+          gameBoard[box].borders.bottom = true;
+          gameBoard[box].borders.left = true;
+          gameBoard[box].whoScored = "secondPlayerScored";
+          // fill adj box
+          var topAdj = boxInfo.getAdjBoxBySide(box, "top");
+          var rightAdj = boxInfo.getAdjBoxBySide(box, "right");
+          var leftAdj = boxInfo.getAdjBoxBySide(box, "left");
+          var bottomAdj = boxInfo.getAdjBoxBySide(box, "bottom");
+          if (topAdj) {
+            gameBoard[topAdj].borders.bottom = true;
+          }
+          if (rightAdj) {
+            gameBoard[rightAdj].borders.left = true;
+          }
+          if (bottomAdj) {
+            gameBoard[bottomAdj].borders.top = true;
+          }
+          if (leftAdj) {
+            gameBoard[leftAdj].borders.right = true;
+          }
+        }
+      }
+    }
+  },
+  undoFinishScreen: function undoFinishScreen() {
+    gametask.addClassByClassName("gameCompleteBox", "hideGameComplete");
+    gametask.addTextByQuerySelector(".yourScore", 0);
+    gametask.addTextByQuerySelector(".computerScore", 0);
+    gametask.addTextByQuerySelector(".remainingGold", 0);
+    gametask.addTextByQuerySelector(".currentGoldCount", 0);
+    document.getElementsByClassName("rewardScreen")[0].style.opacity = 0;
+    document.getElementsByClassName('completeStar1')[0].style.opacity = 0;
+    document.getElementsByClassName('completeStar2')[0].style.opacity = 0;
+    document.getElementsByClassName('completeStar3')[0].style.opacity = 0;
+    gametask.removeClassByClassName("rewardScreen", "showPrice");
+    gametask.removeClassByQuerySelector("svg.redoBtn", "showBtn");
+    gametask.removeClassByQuerySelector("svg.nextBtn", "showBtn");
+  },
+  redoBorder: function redoBorder() {
+    if (currentPage !== "gameBoardPage") return null;
+    ui.undoFinishScreen();
+    var click = ui.click();
+    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
+    gameLevel++;
+    gametask.setGameLevelAndTips(gameLevel);
+  },
+  nextBoard: function nextBoard() {
+    var notOnBoard = currentPage !== "gameBoardPage";
+    var hasAnotherLevel = gameLevel && settings.level_data[gameLevel + 1];
+    if (notOnBoard || hasAnotherLevel === false) return null;
+    ui.undoFinishScreen();
+    var click = ui.click();
+    document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
+    gameLevel += 2;
+    gametask.setGameLevelAndTips(gameLevel);
+  },
+  click: function click() {
+    return clickEvent = new MouseEvent("click", {
+      "view": window,
+      "bubbles": true,
+      "cancelable": false
+    });
+  },
+  checkForGameBoardTextConditions: function checkForGameBoardTextConditions() {
+    if (pointsInArow > 10) {
+      boardText.showText("excellent");
+    } else if (pointsInArow > 5) {
+      boardText.showText("good");
+    }
+  },
+  animateBombMovement: function animateBombMovement(boxNumber) {
+    var helper = document.querySelectorAll(".tool.selected > img")[0];
+    var box = document.querySelectorAll('.' + boxNumber)[0];
+    var boardHolder = document.getElementById("boardHolder");
+    var src = helper.src,
+        offsetHeight = helper.offsetHeight,
+        offsetWidth = helper.offsetWidth,
+        x = helper.x,
+        y = helper.y;
+
+    // position the image
+
+    var node = document.createElement("img");
+    document.getElementById("gameScreen").appendChild(node);
+    node.id = "helperMovingImage";
+    node.src = src;
+    node.style.position = "absolute";
+    node.style.left = x + 'px';
+    node.style.top = y + 'px';
+    node.style.height = offsetHeight + 'px';
+    node.style.width = offsetWidth + 'px';
+    node.style.transform = "scale(2)";
+    node.style.transition = "all 0.15s";
+
+    // get position of box
+    var rect = box.getBoundingClientRect();
+    var position = {
+      top: rect.top + window.pageYOffset,
+      left: rect.left + window.pageXOffset
+    };
+
+    // move the image to the box
+    var helperMovingImage = document.getElementById("helperMovingImage");
+    helperMovingImage.style.transform = "scale(1.1)";
+    helperMovingImage.style.left = position.left + 'px';
+    helperMovingImage.style.top = position.top + 'px';
+
+    setTimeout(function () {
+      helperMovingImage.remove();
+      if (boxInfo.getBorderCount(boxNumber) === 4) {
+        bomb.explodeBoxes(boxNumber);
+      }
+    }, 250);
+  },
+  animateStars: function animateStars() {
+    setInterval(function () {
+      var timeoutToNext = 0;
+      var nums = [0, 1, 2];
+      nums.forEach(function (num) {
+        timeoutToNext += 100;
+        setTimeout(function () {
+          gametask.addClassByClassName('star' + num, 'up');
+          setTimeout(function () {
+            gametask.removeClassByClassName('star' + num, 'up');
+          }, 400);
+        }, timeoutToNext);
+      });
+    }, 4000);
+  },
+  animateDots: function animateDots() {
+    setInterval(function () {
+      var topRightDot = document.querySelectorAll(".topRightDot");
+      var topLeftDot = document.querySelectorAll(".topLeftDot");
+      var bottomRightDot = document.querySelectorAll(".bottomRightDot");
+      var bottomLeftDot = document.querySelectorAll(".bottomLeftDot");
+      var length = 36;
+      for (var i = 0; i < length; i++) {
+        if (Math.random() < 0.5) {
+          topRightDot[i].classList.add("lighterDot");
+          topLeftDot[i].classList.add("lighterDot");
+          bottomRightDot[i].classList.add("lighterDot");
+          bottomLeftDot[i].classList.add("lighterDot");
+        } else {
+          topRightDot[i].classList.remove("lighterDot");
+          topLeftDot[i].classList.remove("lighterDot");
+          bottomRightDot[i].classList.remove("lighterDot");
+          bottomLeftDot[i].classList.remove("lighterDot");
+        }
+      }
+    }, 2000);
+  },
+  displayNoClickIndicator: function displayNoClickIndicator(boxNumber, lineClicked) {
+    var incorrectLineClick = function incorrectLineClick(box, classToAdd) {
+      gametask.addClassByClassName(box, classToAdd);
+      setTimeout(function () {
+        gametask.removeClassByClassName(box, classToAdd);
+      }, 1000);
+    };
+
+    var lineClickClass = {
+      top: {
+        thisBox: "cantClickTop",
+        adjBox: "cantClickBottom"
+      },
+      right: {
+        thisBox: "cantClickRight",
+        adjBox: "cantClickLeft"
+      },
+      bottom: {
+        thisBox: "cantClickBottom",
+        adjBox: "cantClickTop"
+      },
+      left: {
+        thisBox: "cantClickLeft",
+        adjBox: "cantClickRight"
+      }
+    };
+
+    incorrectLineClick(boxNumber, lineClickClass[lineClicked].thisBox);
+
+    var adjacentBox = null;
+    var adjBoxNumber = null;
+    var hasAdjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'] !== null && gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'] !== undefined;
+    if (hasAdjacentBox) {
+      adjacentBox = gameBoard[boxNumber].surroundingBoxes[lineClicked + 'Box'].boxNumber;
+      adjBoxNumber = 'box' + adjacentBox;
+      incorrectLineClick(adjBoxNumber, lineClickClass[lineClicked].adjBox);
+    }
+  },
+  togglePregameScreen: function togglePregameScreen() {
+    if (gametask.hasClassByQuerySelector(".silverScreen", "hidePregameScreen")) {
+      gametask.removeClassByClassName("silverScreen", "hidePregameScreen");
+    } else {
+      gametask.addClassByClassName("silverScreen", "hidePregameScreen");
+    }
+  },
+  uiPopulater: null,
+  populateTheUI: function populateTheUI() {
+    if (ui.uiPopulater === null) {
+      ui.populateBoard();
+      ui.uiPopulater = 1;
+    } else {
+      clearTimeout(ui.uiPopulater);
+      ui.uiPopulater = setTimeout(function () {
+        ui.populateBoard();
+      });
+    }
+    gametask.setTurnRestrictions();
+    track.adjustScore();
+  },
+  showHelper: function showHelper(boxNumber) {
+    tools.forEach(function (data) {
+      if (data.name === selectedBombFunction) data.count--;
+    });
+    var explosionType = void 0;
+    if (selectedBombFunction === "lion") explosionType = "isLionExplosion";
+    if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
+    if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
+    if (selectedBombFunction === "queen_makeda") explosionType = "isQueenMakedaExplosion";
+    if (explosionType) gameBoard[boxNumber][explosionType] = true;
+  },
+  addHighlightToClickBox: function addHighlightToClickBox(clickBox) {
+    setTimeout(function () {
+      gametask.addClassByClassName(clickBox, "clickBox");
+    }, 500);
+  },
+  toggleBombSelected: function toggleBombSelected() {
+    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    var classList = selectBombScreen.classList;
+    if (classList.contains("showBoard")) {
+      selectBombScreen.classList.remove("showBoard");
+    } else {
+      selectBombScreen.classList.add("showBoard");
+    }
+  },
+  doneBombSelected: function doneBombSelected() {
+    var selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
+    selectBombScreen.classList.remove("showBoard");
+    selectBombScreen.classList.add("playGame");
+    if (!tools) {
+      tools = gametask.getTools();
+    }
+    var used = [];
+    settings.itemsSelected.forEach(function (item) {
+      var animalName = item.replace("buy_", "");
+      var animal = void 0;
+      if (animalName.includes("queen")) {
+        animal = {
+          name: animalName,
+          src: './img/queens/asset_' + animalName + '.png',
+          count: 1
+        };
+      } else {
+        animal = {
+          name: animalName,
+          src: './img/color_animals/asset_' + animalName + '.png',
+          count: 1
+        };
+      }
+      var isInTools = false;
+      tools.forEach(function (data) {
+        if (data.name === animalName) {
+          isInTools = true;
+        }
+      });
+      if (!isInTools) {
+        tools = [].concat(_toConsumableArray(tools), [animal]);
+        used.push(item);
+      }
+    });
+    used.forEach(function (data) {
+      var animalName = data.replace("buy_", "");
+      var index = settings.itemsPurchased.indexOf(animalName);
+      settings.itemsPurchased.splice(index, 1);
+      var currentQuantity = settings.store[animalName].quantity;
+      settings.store[animalName].quantity = currentQuantity - 1;
+    });
+    gametask.saveToLocalStorage("settings", settings);
+    settings.itemsSelected = [];
+    ui.populateHelpers();
+  },
+  selectPregameBomb: function selectPregameBomb(selected) {
+    var animal = document.querySelector('.' + selected + '.selectedBombForBoard');
+    if (animal) {
+      gametask.removeClassByQuerySelector('.animalBombSelectBox.' + selected, "selectedBombForBoard");
+      var _index2 = settings.itemsSelected.indexOf(selected);
+      settings.itemsSelected.splice(_index2, 1);
+    } else {
+      gametask.addClassByQuerySelector('.animalBombSelectBox.' + selected, "selectedBombForBoard");
+      settings.itemsSelected.push(selected);
+    }
+  },
+  toggleConfirmScreen: function toggleConfirmScreen() {
+    if (gametask.hasClassByClassName("buyItemContainer", "hidePurchaseScreen")) {
+      gametask.removeClassByClassName("buyItemContainer", "hidePurchaseScreen");
+    } else {
+      gametask.addClassByClassName("buyItemContainer", "hidePurchaseScreen");
+    }
+  }
+};
+
+window.boxInfo = {
+  getGameBoardClickBox: function getGameBoardClickBox(clickBox) {
+    return gameBoard[clickBox];
+  },
+  getSurroundingBoxesInfo: function getSurroundingBoxesInfo(clickBox, boxSide) {
+    return gameBoard[clickBox].surroundingBoxes[boxSide];
+  },
+  getSurroundingBoxesKeys: function getSurroundingBoxesKeys(clickBox) {
+    if (!Object.keys(boxInfo.getGameBoardClickBox(clickBox))) {
+      return null;
+    }
+    return Object.keys(boxInfo.getGameBoardClickBox(clickBox).surroundingBoxes);
+  },
+  isBoxDisabled: function isBoxDisabled(box) {
+    return gameBoard[box].disabled === true;
+  },
+  getBorderCount: function getBorderCount(box) {
+    var borders = gameBoard[box].borders;
+    var count = 0;
+    Object.keys(borders).forEach(function (data) {
+      if (borders[data]) count++;
+    });
+    return count;
+  },
+  getSafeBoxes: function getSafeBoxes() {
+    var safeClickBoxWithSide = [];
+    var oneBorder = [].concat(oneBorderBoxes);
+    oneBorder.forEach(function (box) {
+      oneBorderBoxes.splice(oneBorderBoxes.indexOf(box), 1);
+      var edgeBox = boxInfo.edgeBox(box);
+      if (edgeBox.hasEdgeBox) {
+        // task takes care of the corner cases by clicked its empty side
+        safeClickBoxWithSide.push({
+          clickBox: box,
+          clickSide: edgeBox.clickSide
+        });
+      } else {
+        var surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(function (data) {
+          return oneBorderBoxes.includes(data);
+        });
+        surroundingOnBorderBoxes.forEach(function (data) {
+          var adjObj = boxInfo.isAdjacentBoxesConnected(box, data);
+          if (adjObj.isConnected) {
+            safeClickBoxWithSide.push({
+              clickBox: box,
+              clickSide: adjObj.side
+            });
+          }
+        });
+      }
+    });
+    return safeClickBoxWithSide;
+  },
+  getAllBoxClasses: function getAllBoxClasses(box) {
+    var classesToAdd = ["box", "flexRow", box];
+
+    if (gameBoard[box].borders.top) {
+      if (whoClickedLine[box].top === "computer") {
+        classesToAdd.push("borderTopComputer");
+      } else {
+        classesToAdd.push("borderTop");
+      }
+    }
+    if (gameBoard[box].borders.right) {
+      if (whoClickedLine[box].right === "computer") {
+        classesToAdd.push("borderRightComputer");
+      } else {
+        classesToAdd.push("borderRight");
+      }
+    }
+    if (gameBoard[box].borders.bottom) {
+      if (whoClickedLine[box].bottom === "computer") {
+        classesToAdd.push("borderBottomComputer");
+      } else {
+        classesToAdd.push("borderBottom");
+      }
+    }
+    if (gameBoard[box].borders.left) {
+      if (whoClickedLine[box].left === "computer") {
+        classesToAdd.push("borderLeftComputer");
+      } else {
+        classesToAdd.push("borderLeft");
+      }
+    }
+
+    if (gameBoard[box].whoScored) classesToAdd.push(gameBoard[box].whoScored);
+
+    if (gameBoard[box].isLionExplosion) {
+      classesToAdd.push("isLionExplosion");
+    } else if (gameBoard[box].isCheetahExplosion) {
+      classesToAdd.push("isCheetahExplosion");
+    } else if (gameBoard[box].isPantherExplosion) {
+      classesToAdd.push("isPantherExplosion");
+    } else if (gameBoard[box].isQueenMakedaExplosion) {
+      classesToAdd.push("isQueenMakedaExplosion");
+    }
+
+    var sideClasses = ["isTopRightCornerBox", "isTopLeftCornerBox", "isBottomRightCornerBox", "isBottomLeftCornerBox", "isTopSideRow", "isRightSideRow", "isBottomSideRow", "isLeftSideRow"];
+
+    sideClasses.forEach(function (className) {
+      if (gameBoard[box][className]) {
+        classesToAdd.push(className);
+      }
+    });
+
+    if (gameBoard[box].isLocked === true) {
+      classesToAdd.push("locked");
+    }
+
+    if (boxInfo.isBoxDisabled(box)) {
+      classesToAdd.push("disabled");
+    }
+
+    return classesToAdd;
+  },
+  getUnclickedBorders: function getUnclickedBorders(box) {
+    var bordersArray = [];
+    var borders = gameBoard[box].borders;
+    Object.keys(borders).forEach(function (data) {
+      if (!borders[data]) bordersArray.push(data);
+    });
+    return bordersArray;
+  },
+  getClickedBorders: function getClickedBorders(box) {
+    var bordersArray = [];
+    var borders = gameBoard[box].borders;
+    Object.keys(borders).forEach(function (data) {
+      if (borders[data]) bordersArray.push(data);
+    });
+    return bordersArray;
+  },
+  adjustBorderCountArrays: function adjustBorderCountArrays() {
+    boxInfo.clearBorderArrays();
+    for (var box in gameBoard) {
+      if (!boxInfo.isBoxDisabled(box)) {
+        var borderCount = boxInfo.getBorderCount(box);
+        if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box);else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
+      }
+    }
+  },
+  countsAsNoBorders: function countsAsNoBorders(box, borderCount) {
+    if (boxInfo.isALockBox(box)) return false;
+    return borderCount === 0;
+  },
+  countsAsOneBorders: function countsAsOneBorders(box, borderCount) {
+    if (boxInfo.isALockBox(box)) return false;
+    return borderCount === 1;
+  },
+  countsAsTwoBorders: function countsAsTwoBorders(box, borderCount) {
+    if (boxInfo.isALockBox(box)) return false;
+    return borderCount === 2;
+  },
+  countsAsThreeBorders: function countsAsThreeBorders(box, borderCount) {
+    if (boxInfo.isALockBox(box)) return false;
+    return borderCount === 3;
+  },
+  isAdjBoxALockBox: function isAdjBoxALockBox(box, side) {
+    var adjBox = boxInfo.getAdjBoxBySide(box, side);
+    return boxInfo.isALockBox(adjBox);
+  },
+  getAdjBoxBySide: function getAdjBoxBySide(box, side) {
+    var boxNumber = parseInt(box.replace("box", ""));
+    var adjBox = void 0;
+    if (side === "top") {
+      adjBox = boxInfo.getTopBox(boxNumber);
+    } else if (side === "left") {
+      adjBox = boxInfo.getLeftBox(boxNumber);
+    } else if (side === "bottom") {
+      adjBox = boxInfo.getBottomBox(boxNumber);
+    } else if (side === "right") {
+      adjBox = boxInfo.getRightBox(boxNumber);
+    }
+    return adjBox;
+  },
+  isALockBox: function isALockBox(box) {
+    var allBombs = [];
+    lockBombLocations.forEach(function (data) {
+      return allBombs.push(data.box);
+    });
+    return allBombs.includes(box);
+  },
+  clearBorderArrays: function clearBorderArrays() {
+    noBorders.length = 0;
+    oneBorderBoxes.length = 0;
+    twoBorderBoxes.length = 0;
+    threeBorderBoxes.length = 0;
+  },
+  isAdjacentBoxesConnected: function isAdjacentBoxesConnected(box1, box2) {
+    var adjObj = {
+      isConnected: false
+    };
+    var bordersBox2 = boxInfo.getGameBoardClickBox(box2).borders;
+    var surroundingBoxes = boxInfo.getGameBoardClickBox(box1).surroundingBoxes;
+    boxInfo.getSurroundingBoxesKeys(box1).forEach(function (data) {
+      var complement = boxInfo.complementBorder[data.replace("Box", "")];
+      if (surroundingBoxes[data] && 'box' + surroundingBoxes[data].boxNumber === box2 && bordersBox2[complement] === null) {
+        adjObj.isConnected = true;
+        adjObj.side = data.replace("Box", "");
+      }
+    });
+    return adjObj;
+  },
+  edgeBox: function edgeBox(clickBox) {
+    // return an edge box
+    var edgeBox = {
+      hasEdgeBox: false,
+      clickSide: null
+    };
+    var surroundingBoxesKeys = boxInfo.getSurroundingBoxesKeys(clickBox);
+    var clickBoxObj = boxInfo.getGameBoardClickBox(clickBox);
+    surroundingBoxesKeys.forEach(function (data) {
+      if (clickBoxObj.surroundingBoxes[data] === null && clickBoxObj.borders[data.replace("Box", "")] === null) {
+        edgeBox.hasEdgeBox = true;
+        edgeBox.clickSide = data.replace("Box", "");
+      }
+    });
+    return edgeBox;
+  },
+  isEdgeBox: function isEdgeBox(box) {
+    var boxInfo = gameBoard[box];
+    if (boxInfo.disabled) return false;
+
+    if (boxInfo.isTopRightCornerBox || boxInfo.isTopLeftCornerBox || boxInfo.isBottomRightCornerBox || boxInfo.isBottomLeftCornerBox || boxInfo.isTopSideRow || boxInfo.isRightSideRow || boxInfo.isBottomSideRow || boxInfo.isLeftSideRow) {
+      return true;
+    }
+
+    return false;
+  },
+  getLineBetweenBoxes: function getLineBetweenBoxes(clickBox, selectedBox) {
+    var selectedSide = null;
+    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(function (data) {
+      var number = boxInfo.getSurroundingBoxesInfo(clickBox, data) ? boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber : null;
+      if (selectedBox === 'box' + number) {
+        selectedSide = data;
+      }
+    });
+    return selectedSide;
+  },
+  getLessThanOneBorderNonConnectedSurroundingBoxes: function getLessThanOneBorderNonConnectedSurroundingBoxes(clickBox) {
+    var surroundingBoxes = boxInfo.getSurroundingBoxes(clickBox);
+    var matchingBoxes = [];
+    surroundingBoxes.map(function (data) {
+      var borders = boxInfo.getBorderCount(data);
+      if (borders <= 1) matchingBoxes.push(data);
+    });
+    return matchingBoxes;
+  },
+  getSurroundingBoxes: function getSurroundingBoxes(clickBox) {
+    var surroundingBoxes = [];
+    boxInfo.getSurroundingBoxesKeys(clickBox).forEach(function (data) {
+      if (boxInfo.getSurroundingBoxesInfo(clickBox, data)) surroundingBoxes.push(boxInfo.getSurroundingBoxesInfo(clickBox, data).boxNumber);
+    });
+    return surroundingBoxes.filter(function (data) {
+      return data;
+    }).map(function (box) {
+      return 'box' + box;
+    });
+  },
+  getOneBorderConnectedSurroundingBoxes: function getOneBorderConnectedSurroundingBoxes(box) {
+    var oneBorderConnectedSurroundingBoxes = [];
+    var connectedSurroundingBoxes = boxInfo.getSurroundingBoxes(box).filter(function (adjBox) {
+      return boxInfo.isAdjacentBoxesConnected(box, adjBox).isConnected;
+    });
+    connectedSurroundingBoxes.forEach(function (surBox) {
+      if (boxInfo.getBorderCount(surBox) === 1) {
+        oneBorderConnectedSurroundingBoxes.push(surBox);
+      }
+    });
+    return oneBorderConnectedSurroundingBoxes;
+  },
+  getConnectedBoxes: function getConnectedBoxes(box) {
+    var connectedBoxes = [];
+    var surroundingBoxes = boxInfo.getSurroundingBoxes(box);
+    surroundingBoxes.forEach(function (surBox) {
+      if (boxInfo.isAdjacentBoxesConnected(box, surBox).isConnected) {
+        connectedBoxes.push(surBox);
+      }
+    });
+    return connectedBoxes;
+  },
+  getAllBorders: function getAllBorders(box) {
+    return {
+      topRightBoxNumber: boxInfo.getTopRightBoxNumber(box),
+      topLeftBoxNumber: boxInfo.getTopLeftBoxNumber(box),
+      bottomRightBoxNumber: boxInfo.getBottomRightBoxNumber(box),
+      bottomLeftBoxNumber: boxInfo.getBottomLeftBoxNumber(box),
+      topBox: boxInfo.getTopBox(box),
+      leftBox: boxInfo.getLeftBox(box),
+      bottomBox: boxInfo.getBottomBox(box),
+      rightBox: boxInfo.getRightBox(box)
+    };
+  },
+  getTopRightBoxNumber: function getTopRightBoxNumber(box) {
+    var topRightBoxNumber = box - (rowLength - 1);
+    return boxInfo.hasTopRightBoxNumber('box' + topRightBoxNumber, 'box' + box) ? 'box' + topRightBoxNumber : false;
+  },
+  getTopLeftBoxNumber: function getTopLeftBoxNumber(box) {
+    var topLeftBoxNumber = box - (rowLength + 1);
+    return boxInfo.hasTopLeftBoxNumber('box' + topLeftBoxNumber, 'box' + box) ? 'box' + topLeftBoxNumber : false;
+  },
+  getBottomRightBoxNumber: function getBottomRightBoxNumber(box) {
+    var bottomRightBoxNumber = box + (rowLength + 1);
+    return boxInfo.hasBottomRightBoxNumber('box' + bottomRightBoxNumber, 'box' + box) ? 'box' + bottomRightBoxNumber : false;
+  },
+  getBottomLeftBoxNumber: function getBottomLeftBoxNumber(box) {
+    var bottomLeftBoxNumber = box + (rowLength - 1);
+    return boxInfo.hasBottomLeftBoxNumber('box' + bottomLeftBoxNumber, 'box' + box) ? 'box' + bottomLeftBoxNumber : false;
+  },
+  getTopBox: function getTopBox(box) {
+    var topBox = box - rowLength;
+    return boxInfo.hasTopBox('box' + topBox, 'box' + box) ? 'box' + topBox : false;
+  },
+  getLeftBox: function getLeftBox(box) {
+    var leftBox = box - 1;
+    return boxInfo.hasLeftBox('box' + leftBox, 'box' + box) ? 'box' + leftBox : false;
+  },
+  getBottomBox: function getBottomBox(box) {
+    var bottomBox = box + rowLength;
+    return boxInfo.hasBottomBox('box' + bottomBox, 'box' + box) ? 'box' + bottomBox : false;
+  },
+  getRightBox: function getRightBox(box) {
+    var rightBox = box + 1;
+    return boxInfo.hasRightBox('box' + rightBox, 'box' + box) ? 'box' + rightBox : false;
+  },
+  hasTopRightBoxNumber: function hasTopRightBoxNumber(topRightBoxNumber, box) {
+    return gameBoard[topRightBoxNumber] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox;
+  },
+  hasTopLeftBoxNumber: function hasTopLeftBoxNumber(topLeftBoxNumber, box) {
+    return gameBoard[topLeftBoxNumber] && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox;
+  },
+  hasBottomRightBoxNumber: function hasBottomRightBoxNumber(bottomRightBoxNumber, box) {
+    return gameBoard[bottomRightBoxNumber] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomLeftCornerBox;
+  },
+  hasBottomLeftBoxNumber: function hasBottomLeftBoxNumber(bottomLeftBoxNumber, box) {
+    return gameBoard[bottomLeftBoxNumber] && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomRightCornerBox;
+  },
+  hasTopBox: function hasTopBox(topBox, box) {
+    return gameBoard[topBox] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isTopSideRow && !gameBoard[box].isTopLeftCornerBox;
+  },
+  hasLeftBox: function hasLeftBox(leftBox, box) {
+    return gameBoard[leftBox] && !gameBoard[box].isTopLeftCornerBox && !gameBoard[box].isLeftSideRow && !gameBoard[box].isBottomLeftCornerBox;
+  },
+  hasBottomBox: function hasBottomBox(bottomBox, box) {
+    return gameBoard[bottomBox] && !gameBoard[box].isBottomLeftCornerBox && !gameBoard[box].isBottomSideRow && !gameBoard[box].isBottomRightCornerBox;
+  },
+  hasRightBox: function hasRightBox(rightBox, box) {
+    return gameBoard[rightBox] && !gameBoard[box].isTopRightCornerBox && !gameBoard[box].isRightSideRow && !gameBoard[box].isBottomRightCornerBox;
+  },
+  getBordersToRemove: function getBordersToRemove(box, _ref2) {
+    var topRightBoxNumber = _ref2.topRightBoxNumber,
+        topLeftBoxNumber = _ref2.topLeftBoxNumber,
+        bottomRightBoxNumber = _ref2.bottomRightBoxNumber,
+        bottomLeftBoxNumber = _ref2.bottomLeftBoxNumber,
+        topBox = _ref2.topBox,
+        leftBox = _ref2.leftBox,
+        bottomBox = _ref2.bottomBox,
+        rightBox = _ref2.rightBox;
+
+    return [{
+      box: box,
+      lines: ["top", "right", "bottom", "left"]
+    }, {
+      box: topRightBoxNumber,
+      lines: ["bottom", "left"]
+    }, {
+      box: topLeftBoxNumber,
+      lines: ["right", "bottom"]
+    }, {
+      box: bottomRightBoxNumber,
+      lines: ["top", "left"]
+    }, {
+      box: bottomLeftBoxNumber,
+      lines: ["top", "right"]
+    }, {
+      box: topBox,
+      lines: ["right", "bottom", "left"]
+    }, {
+      box: leftBox,
+      lines: ["top", "right", "bottom"]
+    }, {
+      box: bottomBox,
+      lines: ["top", "right", "left"]
+    }, {
+      box: rightBox,
+      lines: ["top", "bottom", "left"]
+    }];
+  },
+  getRowClick: function getRowClick(positionFromTopOfGameBoard, heightOfBoxes) {
+    var row = positionFromTopOfGameBoard / heightOfBoxes;
+    // collaboration of row
+    if (row < 0.9) {
+      row = 0;
+    } else if (row < 1 && row > 0.9) {
+      row = 1;
+    } else if (row < 2 && row > 1.88) {
+      row = 2;
+    } else if (row < 3 && row > 2.85) {
+      row = 3;
+    } else if (row < 4 && row > 3.76) {
+      row = 4;
+    }
+    return Math.floor(row);
+  },
+  getEdgeBoxClickPosition: function getEdgeBoxClickPosition(positionFromTopOfGameBoard, heightOfBoxes) {
+    var row = boxInfo.getRowClick(positionFromTopOfGameBoard, heightOfBoxes);
+    var rowInformation = {
+      row0: [], row1: [], row2: [],
+      row3: [], row4: [], row5: []
+    };
+    for (var i = 0; i < 36; i++) {
+      var box = 'box' + i;
+      if (!boxInfo.isEdgeBox(box)) continue;
+      if (i < 6) {
+        rowInformation.row0.push(box);
+      } else if (i < 12) {
+        rowInformation.row1.push(box);
+      } else if (i < 18) {
+        rowInformation.row2.push(box);
+      } else if (i < 24) {
+        rowInformation.row3.push(box);
+      } else if (i < 30) {
+        rowInformation.row4.push(box);
+      } else if (i < 36) {
+        rowInformation.row5.push(box);
+      }
+    }
+    var rowInfoWithEdgePositions = [];
+    for (var fullRow in rowInformation) {
+      if (rowInformation[fullRow].length === 0) continue;
+      rowInformation[fullRow].forEach(function (thisBox) {
+        var positionClickInfo = {};
+        positionClickInfo.box = thisBox;
+        var box = document.getElementsByClassName(thisBox);
+        var zoom = 0.96;
+        var gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
+        var gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
+        var height = gametask.getHeightWithClassName(thisBox);
+        var width = gametask.getWidthWithClassName(thisBox);
+        var boardHolderWidth = gametask.getWidthWithId("boardHolder");
+        var offset = lineClickOffset;
+
+        var topClickOffset = {
+          xRange: { min: gameBoardPositionX, max: gameBoardPositionX + width },
+          yRange: { min: gameBoardPositionY - offset, max: gameBoardPositionY }
+        };
+        var rightClickOffset = {
+          xRange: { min: gameBoardPositionX + width, max: gameBoardPositionX + width + offset },
+          yRange: { min: gameBoardPositionY, max: gameBoardPositionY + height }
+        };
+        var bottomClickOffset = {
+          xRange: { min: gameBoardPositionX, max: gameBoardPositionX + width },
+          yRange: { min: gameBoardPositionY + height, max: gameBoardPositionY + height + offset }
+        };
+        var leftClickOffset = {
+          xRange: { min: gameBoardPositionX - offset, max: gameBoardPositionX },
+          yRange: { min: gameBoardPositionY, max: gameBoardPositionY + height }
+        };
+
+        var boxInfo = gameBoard[thisBox];
+
+        if (boxInfo.isTopRightCornerBox) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.xSide = "right";
+          positionClickInfo.outsideClickRange = [rightClickOffset, topClickOffset];
+        }
+        if (boxInfo.isTopLeftCornerBox) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, topClickOffset];
+        }
+        if (boxInfo.isBottomRightCornerBox) {
+          positionClickInfo.xSide = "right";
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.outsideClickRange = [rightClickOffset, bottomClickOffset];
+        }
+        if (boxInfo.isBottomLeftCornerBox) {
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, bottomClickOffset];
+        }
+        if (boxInfo.isTopSideRow) {
+          positionClickInfo.ySide = "top";
+          positionClickInfo.outsideClickRange = [null, topClickOffset];
+        }
+        if (boxInfo.isRightSideRow) {
+          positionClickInfo.xSide = "right";
+          positionClickInfo.outsideClickRange = [rightClickOffset, null];
+        }
+        if (boxInfo.isBottomSideRow) {
+          positionClickInfo.ySide = "bottom";
+          positionClickInfo.outsideClickRange = [null, bottomClickOffset];
+        }
+        if (boxInfo.isLeftSideRow) {
+          positionClickInfo.xSide = "left";
+          positionClickInfo.outsideClickRange = [leftClickOffset, null];
+        }
+
+        rowInfoWithEdgePositions.push(positionClickInfo);
+      });
+    }
+    return rowInfoWithEdgePositions;
+  },
+  getEdgeBoxClicked: function getEdgeBoxClicked(rowInfoWithEdgePositions, pageClickPositionX, pageClickPositionY) {
+    var boxClicked = false;
+    var sideClicked = false;
+    var length = rowInfoWithEdgePositions.length;
+    for (var i = 0; i < length; i++) {
+      var edgeBoxObject = rowInfoWithEdgePositions[i];
+      var outsideClickRange = edgeBoxObject.outsideClickRange;
+      var len = outsideClickRange.length;
+      for (var j = 0; j < len; j++) {
+        if (outsideClickRange[j]) {
+          var _outsideClickRange$j = outsideClickRange[j],
+              xRange = _outsideClickRange$j.xRange,
+              yRange = _outsideClickRange$j.yRange;
+
+          var isInXRange = xRange.min < pageClickPositionX && xRange.max > pageClickPositionX;
+          var isInYRange = yRange.min < pageClickPositionY && yRange.max > pageClickPositionY;
+          if (isInXRange && isInYRange) {
+            boxClicked = rowInfoWithEdgePositions[i].box;
+            sideClicked = j === 0 ? rowInfoWithEdgePositions[i].xSide : rowInfoWithEdgePositions[i].ySide;
+          }
+        }
+      }
+    }
+    return {
+      boxClicked: boxClicked,
+      sideClicked: sideClicked
+    };
+  },
+  complementBorder: {
+    top: "bottom",
+    right: "left",
+    bottom: "top",
+    left: "right"
+  },
+  getBoxNumberFromBoxX: function getBoxNumberFromBoxX(box) {
+    return parseInt(box.replace("box", ""));
+  },
+  isABomb: function isABomb(box) {
+    var hasExplosion = false;
+    var classes = document.querySelector('.' + box).classList;
+    for (index in classes) {
+      var num = parseInt(index);
+      var isIndex = isNaN(num);
+      var hasAnExplosion = !isIndex ? classes[index].indexOf("Explosion") : false;
+      if (hasAnExplosion && hasAnExplosion !== -1) {
+        hasExplosion = true;
+      }
+    }
+    return hasExplosion;
+  },
+  hasClickBorderPreviously: function hasClickBorderPreviously(boxNumber, lineClicked) {
+    return gameBoard[boxNumber].borders[lineClicked] === true;
+  },
+  setLineAsClicked: function setLineAsClicked(boxNumber, lineClicked) {
+    gameBoard[boxNumber].borders[lineClicked] = true;
+  },
+  setLineColor: function setLineColor(boxNumber, lineClicked) {
+    if (!isFirstPlayerTurn) {
+      whoClickedLine[boxNumber][lineClicked] = "computer";
+    }
+  },
+  highlightBoxIfScored: function highlightBoxIfScored(boxNumber) {
+    if (boxInfo.getBorderCount(boxNumber) === 4) {
+      if (!boxInfo.isABomb(boxNumber)) {
+        takeAnotherTurn = true;
+      } else {
+        takeAnotherTurn = false;
+      }
+      gameBoard[boxNumber].whoScored = isFirstPlayerTurn ? "firstPlayerScored" : "secondPlayerScored";
+      if (isFirstPlayerTurn) {
+        pointsInArow++;
+        ui.checkForGameBoardTextConditions();
+      }
+      soundEffects.playScoreSound();
+    }
+  }
+};
+
+window.bomb = {
+  types: [{ key: "isLionExplosion", class: "isLionExplosion" }, { key: "isCheetahExplosion", class: "isCheetahExplosion" }, { key: "isPantherExplosion", class: "isPantherExplosion" }, { key: "isQueenMakedaExplosion", class: "isQueenMakedaExplosion" }],
+  isExplosionBox: function isExplosionBox(box) {
+    var isBombBox = false;
+    bomb.types.forEach(function (data) {
+      var className = data.class;
+      var isBomb = document.getElementsByClassName(box)[0] ? document.getElementsByClassName(box)[0].classList.contains(className) : false;
+      if (isBomb) isBombBox = true;
+    });
+    return isBombBox;
+  },
+  populationData: [],
+  fillPopulationData: function fillPopulationData() {
+    bomb.populationData = [];
+    var useTurns = [];
+    if (bombsToLay > 0) {
+      while (useTurns.length < bombsToLay * 2) {
+        var randomNumber = Math.floor(Math.random() * 30) + track.turn;
+        var filtered = [];
+        for (var box in gameBoard) {
+          if (!gameBoard[box].disabled) filtered.push(box);
+        }
+        var boxNumber = filtered[Math.floor(Math.random() * (gameBoardLength - 1))];
+        if (!useTurns.includes(randomNumber) && !useTurns.includes(boxNumber)) {
+          useTurns = [].concat(_toConsumableArray(useTurns), [boxNumber, randomNumber]);
+          bomb.populationData.push({ randomNumber: randomNumber, boxNumber: boxNumber });
+        }
+      }
+    }
+  },
+  bombPopulation: function bombPopulation() {
+    var boxNumber = void 0;
+    bomb.populationData.some(function (data) {
+      boxNumber = data.randomNumber === track.turn ? data.boxNumber : boxNumber;
+      return data.randomNumber === track.turn;
+    });
+    if (boxNumber && boxInfo.getBorderCount(boxNumber) !== 4) {
+      bomb.placeBomb(boxNumber);
+    }
+  },
+  showExplosionInBox: function showExplosionInBox(box, type, seconds) {
+    if (type !== "smoke") bomb.explodeLockBoxIfHit(box);
+    gametask.removeClassByQuerySelector('.' + box + 'Explosion', "hideExplosion");
+    document.querySelector('.' + box + 'Explosion').src = './gifs/' + type + '.gif';
+    setTimeout(function () {
+      explodingBoxes.pop();
+      taks.addClassByClassName(box + 'Explosion', "hideExplosion");
+    }, seconds);
+  },
+  explodeLockBoxIfHit: function explodeLockBoxIfHit(box) {
+    if (boxInfo.isALockBox(box)) {
+      var _index3 = void 0;
+      lockBombLocations.forEach(function (data, i) {
+        if (data.box === box) {
+          _index3 = i;
+        }
+      });
+      if (_index3 || _index3 === 0) {
+        lockBombLocations[_index3].toughness--;
+        if (lockBombLocations[_index3].toughness <= 0) {
+          setTimeout(function () {
+            var newIndex = void 0;
+            lockBombLocations.forEach(function (data, index) {
+              if (data.box === box) {
+                newIndex = index;
+              }
+            });
+            lockBombLocations.splice(newIndex, 1);
+            gametask.removeClassByQuerySelector('.box.' + box, "locked");
+          }, 300);
+        }
+      }
+    };
+  },
+  placeBomb: function placeBomb(boxNumber) {
+    //wait for explosions to stop before placing bomb
+    if (bomb.isExploding.length === 0) {
+      setTimeout(function () {
+        var explosion = bomb.types[0];
+        var number = Math.floor(Math.random() * 100);
+        if (number > 66) {
+          explosion = bomb.types[0];
+        } else if (number > 33) {
+          explosion = bomb.types[1];
+        } else {
+          explosion = bomb.types[2];
+        }
+        if (!bomb.isExplosionBox(boxNumber) && !boxInfo.isALockBox(boxNumber) && !boxInfo.isABomb(boxNumber)) {
+          // track.decrementBombCount();
+          soundEffects.playShowBombSound();
+          document.getElementsByClassName(boxNumber)[0].classList.add(explosion.class);
+          bomb.showSpriteSmoke(boxNumber);
+          setTimeout(function () {
+            gameBoard[boxNumber][explosion.key] = true;
+            ui.populateTheUI();
+          }, 100);
+        } else {
+          // track.incrementMissedBombCount();
+          var missedBox = {
+            missedBox: true,
+            box: boxNumber
+          };
+        }
+      }, 400);
+    } else {
+      bomb.placeBomb();
+    }
+  },
+  explodeBoxes: function explodeBoxes(box) {
+    if (gameBoard[box].isLionExplosion) {
+      var _explodingBoxes;
+
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isLionExplosion = false;
+
+      var _animalExplosions$lio = animalExplosions.lion.boxes(box),
+          boxesToExplode = _animalExplosions$lio.boxesToExplode,
+          linesToRemove = _animalExplosions$lio.linesToRemove;
+
+      (_explodingBoxes = explodingBoxes).push.apply(_explodingBoxes, _toConsumableArray(boxesToExplode));
+      // make boxes explode
+      bomb.explodeBoxesFromArray(linesToRemove, box);
+      bomb.checkForChainReactions(boxesToExplode);
+      soundEffects.playExplosionSound();
+    } else if (gameBoard[box].isCheetahExplosion) {
+      var _explodingBoxes2;
+
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isCheetahExplosion = false;
+
+      var _animalExplosions$che = animalExplosions.cheetah.boxes(box),
+          _boxesToExplode = _animalExplosions$che.boxesToExplode,
+          _linesToRemove = _animalExplosions$che.linesToRemove;
+
+      (_explodingBoxes2 = explodingBoxes).push.apply(_explodingBoxes2, _toConsumableArray(_boxesToExplode));
+      // make boxes explode
+      bomb.explodeBoxesFromArray(_linesToRemove, box);
+      bomb.checkForChainReactions(_boxesToExplode);
+      soundEffects.playExplosionSound();
+    } else if (gameBoard[box].isPantherExplosion) {
+      var _explodingBoxes3;
+
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isPantherExplosion = false;
+
+      var _animalExplosions$pan = animalExplosions.panther.boxes(box),
+          _boxesToExplode2 = _animalExplosions$pan.boxesToExplode,
+          _linesToRemove2 = _animalExplosions$pan.linesToRemove;
+
+      (_explodingBoxes3 = explodingBoxes).push.apply(_explodingBoxes3, _toConsumableArray(_boxesToExplode2));
+      // make boxes explode
+      bomb.explodeBoxesFromArray(_linesToRemove2, box);
+      bomb.checkForChainReactions(_boxesToExplode2);
+      soundEffects.playExplosionSound();
+    } else if (gameBoard[box].isQueenMakedaExplosion) {
+      var _explodingBoxes4;
+
+      // removes the bomb image from the box after the ui is populated
+      gameBoard[box].isQueenMakedaExplosion = false;
+
+      var _animalExplosions$que = animalExplosions.queen_makeda.boxes(box),
+          _boxesToExplode3 = _animalExplosions$que.boxesToExplode,
+          _linesToRemove3 = _animalExplosions$que.linesToRemove;
+
+      (_explodingBoxes4 = explodingBoxes).push.apply(_explodingBoxes4, _toConsumableArray(_boxesToExplode3));
+      // make boxes explode
+      bomb.explodeBoxesFromArray(_linesToRemove3, box);
+      bomb.checkForChainReactions(_boxesToExplode3);
+      soundEffects.playExplosionSound();
+    }
+    ui.populateTheUI();
+  },
+  checkForChainReactions: function checkForChainReactions(boxesToCheck) {
+    setTimeout(function () {
+      boxesToCheck.forEach(function (box) {
+        if (box) {
+          bomb.explodeBoxes(box);
+        }
+      });
+    }, 80 * 4);
+  },
+  allExplodingBoxes: [],
+  fillExplodingBoxes: function fillExplodingBoxes(box) {
+    bomb.allExplodingBoxes.push(box);
+    setTimeout(function () {
+      bomb.allExplodingBoxes.pop();
+    });
+  },
+  explodeBoxesFromArray: function explodeBoxesFromArray(linesToRemove, box) {
+    linesToRemove.forEach(function (item) {
+      if (item.box) {
+        bomb.fillExplodingBoxes(item.box);
+        lineClickAction.removeBorders(item.box, item.lines);
+        ui.removeScoreColorIfRemovingBorder(item.box);
+        if (!bomb.isExploding.includes(item.box)) {
+          bomb.isExploding.push(item.box);
+          bomb.showSpriteExplosion(item.box);
+        }
+      }
+    });
+  },
+  isExploding: [],
+  showSpriteExplosion: function showSpriteExplosion(box) {
+    gametask.removeClassByQuerySelector('.' + box + ' > .spriteSheet', "smokeGif");
+    setTimeout(function () {
+      gametask.addClassByQuerySelector('.' + box + ' > .spriteSheet', "explosionGif");
+    });
+    setTimeout(function () {
+      gametask.removeClassByQuerySelector('.' + box + ' > .spriteSheet', "explosionGif");
+      // remove the box from the exploding array
+      bomb.isExploding.pop();
+    }, 800);
+    bomb.explodeLockBoxIfHit(box);
+  },
+  showSpriteSmoke: function showSpriteSmoke(box) {
+    gametask.addClassByQuerySelector('.' + box + ' > .spriteSheet', "smokeGif");
+    setTimeout(function () {
+      gametask.removeClassByQuerySelector('.' + box + ' > .spriteSheet', "smokeGif");
+    }, 800);
+  }
+};
+
+window.lockBoxes = [2, 3, 4, 5, 5, 7, 9, 10, 8, 12, 14];
+
+// this file contains the exploding patterns of the animal bombs
+window.animalExplosions = {
+  lion: { // exploding pattern for the lion
+    boxes: function boxes(box) {
+      /*
+        explodes around animal
+        ex:    6   7   8
+              12  13  14
+              18  19  20
+      */
+
+      // cache every box that will be exploded
+      var temp = lionSquares[box].filter(function (data) {
+        return data !== null;
+      });
+      var boxesToExplode = temp.map(function (data) {
+        return 'box' + data;
+      });
+
+      var topLeftBoxNumber = lionSquares[box][0];
+      var topBox = lionSquares[box][1];
+      var topRightBoxNumber = lionSquares[box][2];
+      var leftBox = lionSquares[box][3];
+      var thisBox = lionSquares[box][4];
+      var rightBox = lionSquares[box][5];
+      var bottomLeftBoxNumber = lionSquares[box][6];
+      var bottomBox = lionSquares[box][7];
+      var bottomRightBoxNumber = lionSquares[box][8];
+
+      // match the boxes with the lines that will be remove and a result of the explosion
+      var linesToRemove = [{ box: 'box' + topRightBoxNumber, lines: ["bottom", "left"] }, { box: 'box' + topLeftBoxNumber, lines: ["bottom", "right"] }, { box: 'box' + bottomRightBoxNumber, lines: ["top", "left"] }, { box: 'box' + bottomLeftBoxNumber, lines: ["top", "right"] }, { box: 'box' + topBox, lines: ["right", "bottom", "left"] }, { box: 'box' + rightBox, lines: ["top", "bottom", "left"] }, { box: 'box' + bottomBox, lines: ["top", "right", "left"] }, { box: 'box' + leftBox, lines: ["top", "right", "bottom"] }, { box: 'box' + thisBox, lines: ["top", "right", "bottom", "left"] }].filter(function (data) {
+        return data.box !== "boxnull";
+      });
+
+      return {
+        linesToRemove: linesToRemove,
+        boxesToExplode: boxesToExplode
+      };
+    }
+  },
+  cheetah: {
+    boxes: function boxes(box) {
+      /*
+        explodes animal column
+        ex:    0 1 2 3 4 5
+      */
+
+      var temp = cheetahSquares[box].filter(function (data) {
+        return data !== null;
+      });
+      var boxesToExplode = temp.map(function (data) {
+        return 'box' + data;
+      });
+
+      var linesToRemove = [];
+      boxesToExplode.forEach(function (data) {
+        linesToRemove.push({
+          box: data,
+          lines: ["right", "left"]
+        });
+      });
+
+      return {
+        linesToRemove: linesToRemove,
+        boxesToExplode: boxesToExplode
+      };
+    }
+  },
+  panther: {
+    boxes: function boxes(box) {
+      /*
+        explodes animal row
+        ex:    0
+               6
+              12
+              18
+              24
+              30
+      */
+
+      var temp = pantherSquares[box].filter(function (data) {
+        return data !== null;
+      });
+      var boxesToExplode = temp.map(function (data) {
+        return 'box' + data;
+      });
+
+      var linesToRemove = [];
+      boxesToExplode.forEach(function (data) {
+        linesToRemove.push({
+          box: data,
+          lines: ["top", "bottom"]
+        });
+      });
+
+      return {
+        linesToRemove: linesToRemove,
+        boxesToExplode: boxesToExplode
+      };
+    }
+  },
+  queen_makeda: {
+    boxes: function boxes(box) {
+      var temp = queen_makedaSquares[box].filter(function (data) {
+        return data !== null;
+      });
+      var boxesToExplode = temp.map(function (data) {
+        return 'box' + data;
+      });
+
+      var linesToRemove = [];
+      boxesToExplode.forEach(function (data, index) {
+        var lines = index < 6 ? ["left", "right"] : ["top", "bottom"];
+        linesToRemove.push({
+          box: data,
+          lines: lines
+        });
+      });
+
+      return {
+        linesToRemove: linesToRemove,
+        boxesToExplode: boxesToExplode
+      };
+    }
+  }
+};
+
+window.boardText = {
+  text: {
+    // bad: ["Oh Nah", "You drawlin", "Haah... got em", "You tripin", "Bruh"],
+    bad: ["Haah... got em"],
+    // good: ["I see u", "Lets get it", "Chill", "Iiight"],
+    good: ["I see u"],
+    // excellent: ["Okurrrr", "Yarrrrpp", "Aaaaaa", "You hyyyype"]
+    excellent: ["Ooo Yes"]
+  },
+  getBadText: function getBadText() {
+    return gametask.getRandomIndexInArray(boardText.text.bad);
+  },
+  getGoodText: function getGoodText() {
+    return gametask.getRandomIndexInArray(boardText.text.good);
+  },
+  getExcellentText: function getExcellentText() {
+    return gametask.getRandomIndexInArray(boardText.text.excellent);
+  },
+  showText: function showText(type) {
+    var text = void 0;
+    if (type === "bad") {
+      if (textType === "bad") return null;
+      text = boardText.getBadText();
+      soundEffects.play("got em/got em.m4a");
+    } else if (type === "good") {
+      if (textType === "good") return null;
+      text = boardText.getGoodText();
+      soundEffects.play("jasmin/i see u.m4a");
+    } else if (type === "excellent") {
+      if (textType === "excellent") return null;
+      text = boardText.getExcellentText();
+      soundEffects.play("jasmin/yes.m4a");
+    }
+    textType = type;
+    boardText.showOnBoard(text, 2000);
+  },
+  showOnBoard: function showOnBoard(text, adjustTimeout) {
+    gametask.addTextByQuerySelector(".interactiveText p", text);
+    gametask.addClassByQuerySelector(".interactiveText p", "showText");
+    setTimeout(function () {
+      gametask.addTextByQuerySelector(".interactiveText p", "");
+      gametask.removeClassByQuerySelector(".interactiveText p", "showText");
+    }, adjustTimeout || 2000);
+  }
+};
+
+window.track = {
+  turn: 0,
+  incrementTurn: function incrementTurn() {
+    track.turn++;
+  },
+  goToPage: function goToPage(page) {
+    tools = null;
+    currentPage = page;
+    var allPages = document.getElementsByClassName("page");
+    for (var i = 0; i < allPages.length; i++) {
+      allPages[i].classList.add("removePage");
+    }
+    var pageToShow = document.getElementsByClassName(page)[0];
+    pageToShow.classList.remove("removePage");
+    ui.setSettingsIfOnSettingsPage(page);
+    if (page === "gameBoardPage") {
+      gametask.resizeBoard();
+      ui.populateBombSelectionScreen();
+    } else {
+      on_game_board = false;
+    }
+
+    if (page === "storePage") {
+      ui.populateStore();
+    }
+  },
+  youLose: function youLose() {
+    console.log("you lose");
+  },
+  setScores: function setScores() {
+    playerOneScore = 0;
+    playerTwoScore = 0;
+    for (var box in gameBoard) {
+      var personToScore = gameBoard[box].whoScored;
+      if (personToScore === "firstPlayerScored") {
+        playerOneScore++;
+      } else if (personToScore === "secondPlayerScored") {
+        playerTwoScore++;
+      }
+    }
+  },
+  adjustScore: function adjustScore(boxNumber, adjacentBoxNumber) {
+    track.setScores();
+
+    document.getElementsByClassName("playerOneScore")[0].innerText = playerOneScore;
+    document.getElementsByClassName("playerTwoScore")[0].innerText = playerTwoScore;
+
+    var score = function score(box) {
+      if (!track.hasScored(box)) return null; // check to see if player scored a point
+      bomb.explodeBoxes(box);
+    };
+
+    if (boxNumber) score(boxNumber);
+    if (adjacentBoxNumber) score(adjacentBoxNumber);
+  },
+  hasScored: function hasScored(boxNumber) {
+    var isTopClicked = gameBoard[boxNumber].borders.top;
+    var isRightClicked = gameBoard[boxNumber].borders.right;
+    var isBottomClicked = gameBoard[boxNumber].borders.bottom;
+    var isLeftClicked = gameBoard[boxNumber].borders.left;
+    return isTopClicked && isRightClicked && isBottomClicked && isLeftClicked;
+  },
+  decrementBombCount: function decrementBombCount() {
+    bombsToLay--;
+    // track.setRemainingBombs();
+  },
+  setRemainingBombs: function setRemainingBombs() {
+    gametask.addTextByQuerySelector(".remainingBombs", bombsToLay);
+  },
+  incrementMissedBombCount: function incrementMissedBombCount() {
+    var text = gametask.getTextByQuerySelector(".missedBombs");
+    var missedBombs = parseInt(text);
+    missedBombs++;
+    gametask.addTextByQuerySelector(".missedBombs", missedBombs);
+    track.decrementBombCount();
+  },
+  screenText: function screenText() {
+    showTextUsed = true;
+    setTimeout(function () {
+      showTextUsed = false; // prevents multiple calls for screen text
+    }, timeToWaitBetweenText);
+  }
+
+  // will contain boxes with no lines clicked
+};var noBorders = [];
+// will contain boxes with one line clicked
+var oneBorderBoxes = [];
+// will contain boxes with two lines clicked
+var twoBorderBoxes = [];
+// will contain boxes with three lines clicked
+var threeBorderBoxes = [];
+
+//store item selected
+var storeItemSelected = {};
+
+// offset from line to be considered a line click
+var lineClickOffset = 12;
+
+// tracks who click the line
+var whoClickedLine = gametask.breakRefAndCopy(whoClickTheLine);
+
+// this is the selected animal to be placed on the board from the help section
+var selectedBombFunction = void 0;
+
+// these are the players' scores
+var playerOneScore = 0;
+var playerTwoScore = 0;
+
+// the amount of boxes on the board
+var gameBoardLength = void 0;
+//tot maximum amount of the boxes in each row
+var rowLength = 6;
+// the ibformtaion for each box on the game board
+var gameBoard = void 0;
+// the current game level we are on
+var gameLevel = void 0;
+// all infoemation for the current level
+var getGameLevelObj = void 0;
+
+// trcak if a play has score (used to determin the player turn)
+var takeAnotherTurn = false;
+// will be tru if first player turn
+var isFirstPlayerTurn = true;
+// disable the computer while debugging
+var disableComputer = false;
+// track previously used boardtext type to avoid resaying the same type in a row
+var textType = void 0;
+// help to take another turn after laying a bomb
+var layedBomb = void 0;
+// has clicked a bomb
+var clickedExplosion = void 0;
+// help to passTurn during computer move
+var computerHasScored = false;
+
+// tracks points scored and used with gameBoardLength to determine if the game is over
+var totalPointsScored = 0;
+// tools that are being use in game
+var tools = void 0;
+// this is the currently exploding boex
+var explodingBoxes = [];
+// amount aof bomb that will be layed in the game
+var bombsToLay = 0;
+// all lock box locations on the board
+var lockBombLocations = [];
+// possible bombs to lay
+var possibleBombs = [];
+// initial bomb on the screen
+var initialBombs = void 0;
+// number of points scored in a row by isFirstPlayerTurn
+var pointsInArow = 0;
+
+// current page we are on
+var currentPage = "homePage";
+
+// used for difficulty
+var chanceToGiveAWayPoint = void 0;
+
+var reset_settings = true;
+//determines if we are on the game board
+var on_game_board = false;
+
+// used to prevent multiple game board text showing on board
+var showTextUsed = false;
+// time to wait before show more game board text
+var timeToWaitBetweenText = 8000;
+
+// help text shown when learning on the game board
+var helpText = void 0;
+
+// traning helping variable
+var restrictionLineClicks = void 0;
+var restrictionClickBox = void 0;
+var restrictionLayBomb = void 0;
+var nextRestriction = void 0;
+
+$(document).ready(function () {
+  // set any saved field in local storage
+  gametask.setFromLocalStorage();
+
+  // adjust click event for edge boxes
+  lineClickAction.setEdgeBoxClickEvent();
+
+  // star of on the home screen
+  track.goToPage("homePage");
+
+  // set game music event listener
+  soundEffects.playGameMusic();
+
+  // animal text on home screen
+  gametask.changeTitleColor();
+
+  // animate the board selecting page stars
+  ui.animateStars();
+  // ui.animateDots();
+
+  gametask.setToolClickEvent();
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(143), __webpack_require__(142), __webpack_require__(144), __webpack_require__(132), __webpack_require__(134), __webpack_require__(135), __webpack_require__(136), __webpack_require__(137), __webpack_require__(138), __webpack_require__(139), __webpack_require__(140), __webpack_require__(141), __webpack_require__(133)))
 
 /***/ },
-/* 144 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9438,7 +8465,7 @@ var level1 = {
 module.exports = level1;
 
 /***/ },
-/* 145 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10432,7 +9459,7 @@ var level10 = {
 module.exports = level10;
 
 /***/ },
-/* 146 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11492,7 +10519,7 @@ var level2 = {
 module.exports = level2;
 
 /***/ },
-/* 147 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12500,7 +11527,7 @@ var level3 = {
 module.exports = level3;
 
 /***/ },
-/* 148 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13520,7 +12547,7 @@ var level4 = {
 module.exports = level4;
 
 /***/ },
-/* 149 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14536,7 +13563,7 @@ var level5 = {
 module.exports = level5;
 
 /***/ },
-/* 150 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15532,7 +14559,7 @@ var level6 = {
 module.exports = level6;
 
 /***/ },
-/* 151 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16484,7 +15511,7 @@ var level7 = {
 module.exports = level7;
 
 /***/ },
-/* 152 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17472,7 +16499,7 @@ var level8 = {
 module.exports = level8;
 
 /***/ },
-/* 153 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18472,7 +17499,7 @@ var level9 = {
 module.exports = level9;
 
 /***/ },
-/* 154 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18665,18 +17692,875 @@ var helpTextArray = [{
 module.exports = helpTextArray;
 
 /***/ },
-/* 155 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var lockBoxes = [2, 3, 4, 5, 5, 7, 9, 10, 8, 12, 14];
+var _ref;
 
-module.exports = lockBoxes;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var settings = {
+  version: 1,
+  difficulty: "easy", // options: easy, medium, hard
+  hasMutedMusic: false,
+  hasMutedSound: false,
+  startUpPage: "gameBoardPage",
+  level_data: [{
+    computerSpeed: 1500,
+    isLocked: false,
+    levelNumber: 1,
+    stars: 0,
+    starRating: [{ stars: 1, score: 8 }, { stars: 2, score: 9 }, { stars: 3, score: 10 }],
+    help: {
+      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
+        return regeneratorRuntime.wrap(function gen$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return "create a <span class='highlightText'>box</span> to score";
+
+              case 2:
+                _context.next = 4;
+                return "take <span class='highlightText'>another turn</span> because you scored!";
+
+              case 4:
+                _context.next = 6;
+                return "your turn!";
+
+              case 6:
+                _context.next = 8;
+                return "";
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, gen, this);
+      }),
+      // helpTurns: [0, 2, 4, 5, 6]
+      helpTurns: [4, 5, 7, 8]
+    },
+    trainingRestrictions: {
+      restrictions: [{
+        type: "highLightLine",
+        turn: 0,
+        boxOne: {
+          box: "box15",
+          side: "left"
+        },
+        boxTwo: {
+          box: "box14",
+          side: "right"
+        }
+      }, {
+        type: "highLightLine",
+        turn: 2,
+        boxOne: {
+          box: "box20",
+          side: "bottom"
+        },
+        boxTwo: {
+          box: "box26",
+          side: "top"
+        }
+      }, {
+        type: "highLightLine",
+        turn: 4,
+        boxOne: {
+          box: "box15",
+          side: "right"
+        },
+        boxTwo: {
+          box: "box16",
+          side: "left"
+        }
+      }, {
+        type: "highLightLine",
+        turn: 5,
+        boxOne: {
+          box: "box21",
+          side: "bottom"
+        },
+        boxTwo: {
+          box: "box27",
+          side: "top"
+        }
+      }]
+    },
+    computerMoves: [{
+      turn: 1,
+      box: "box9",
+      line: "bottom"
+    }, {
+      turn: 3,
+      box: "box15",
+      line: "bottom"
+    }],
+    tipsPage: {
+      heading: "how to",
+      text: "Complete a box to score. You get another turn by scoring.",
+      img_src: "./img/tips/howto.gif",
+      height: "30%"
+    }
+  }, {
+    computerSpeed: 1000,
+    isLocked: true,
+    levelNumber: 2,
+    stars: 0,
+    prefilledBoxes: ["box7", "box8", "box10", "box25", "box27", "box28"],
+    hasLargePrize: {
+      prize: "cheetah",
+      quantity: 1,
+      hasClaimed: false
+    },
+    initialBombs: [{
+      box: "box9",
+      bombType: "isCheetahExplosion"
+    }, {
+      box: "box26",
+      bombType: "isCheetahExplosion"
+    }],
+    starRating: [{ stars: 1, score: 8 }, { stars: 2, score: 9 }, { stars: 3, score: 10 }],
+    help: {
+      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
+        return regeneratorRuntime.wrap(function gen$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return "the cheetah explodes the <span class='highlightText'>row</span>";
+
+              case 2:
+                _context2.next = 4;
+                return "if the cheetah is in a <span class='highlightText'>box</span> it explodes";
+
+              case 4:
+                _context2.next = 6;
+                return "";
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, gen, this);
+      }),
+      // helpTurns: [0, 1, 3, 5]
+      helpTurns: [0, 1, 3, 5]
+    },
+    trainingRestrictions: {
+      restrictions: [{
+        type: "clickBox",
+        turn: 0,
+        clickBox: ["box9"]
+      }, {
+        type: "highLightLine",
+        turn: 2,
+        boxOne: {
+          box: "box20",
+          side: "bottom"
+        },
+        boxTwo: {
+          box: "box26",
+          side: "top"
+        }
+      }]
+    },
+    computerMoves: [{
+      turn: 1,
+      box: "box26",
+      line: "bottom"
+    }],
+    tipsPage: {
+      heading: "how to",
+      text: "Exploding opponent's boxes decrease their score",
+      img_src: "./img/tips/bomb_example.gif",
+      height: "30%"
+    }
+  }, {
+    isLocked: true,
+    levelNumber: 3,
+    stars: 0,
+    prefilledBoxes: ["box9", "box15", "box27"],
+    clickAnimal: "panther",
+    hasLargePrize: {
+      prize: "panther",
+      quantity: 1,
+      hasClaimed: false
+    },
+    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 11 }, { stars: 3, score: 12 }],
+    tools: [{
+      name: "panther",
+      src: "./img/color_animals/asset_panther.png",
+      count: 1
+    }],
+    help: {
+      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
+        return regeneratorRuntime.wrap(function gen$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return "the panther explodes the <span class='highlightText'>column</span>";
+
+              case 2:
+                _context3.next = 4;
+                return "";
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, gen, this);
+      }),
+      helpTurns: [2, 4]
+    },
+    trainingRestrictions: {
+      restrictions: [{
+        type: "layBomb",
+        turn: 0,
+        clickBox: ["box21"],
+        clickWhenLayed: true
+      }]
+    },
+    tipsPage: {
+      heading: "how to",
+      text: "place the bomb on the board by selecting it first. Then selecting a box",
+      img_src: "./img/tips/drop_example.png",
+      height: "64%"
+    }
+  }, {
+    isLocked: true,
+    levelNumber: 4,
+    stars: 0,
+    initialBombs: [{
+      box: "box21",
+      bombType: "isLionExplosion"
+    }],
+    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 12 }, { stars: 3, score: 16 }],
+    hasLargePrize: {
+      prize: "lion",
+      quantity: 1,
+      hasClaimed: false
+    },
+    tools: [{
+      name: "cheetah",
+      src: "./img/color_animals/asset_cheetah.png",
+      count: 1
+    }],
+    clickAnimal: "cheetah",
+    help: {
+      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
+        return regeneratorRuntime.wrap(function gen$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return "that was a <span class='highlightText'>chain explosion</span>!";
+
+              case 2:
+                _context4.next = 4;
+                return "the <span class='highlightText'>lion</span> explodes surrounding boxes!";
+
+              case 4:
+                _context4.next = 6;
+                return "";
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, gen, this);
+      }),
+      helpTurns: [1, 3, 5]
+    },
+    trainingRestrictions: {
+      restrictions: [{
+        type: "layBomb",
+        turn: 0,
+        clickBox: ["box14", "box15", "box16", "box20", "box22", "box26", "box27", "box28"],
+        then: {
+          type: "clickBox",
+          clickBox: ["box21"]
+          // withClickBox: true
+        }
+      }]
+    }
+  }, {
+    isLocked: true,
+    levelNumber: 5,
+    stars: 0,
+    lockBoxes: [{
+      box: "box14",
+      toughness: 1
+    }, {
+      box: "box15",
+      toughness: 1
+    }, {
+      box: "box20",
+      toughness: 1
+    }, {
+      box: "box21",
+      toughness: 1
+    }],
+    initialBombs: [{
+      box: "box27",
+      bombType: "isPantherExplosion"
+    }],
+    starRating: [{ stars: 1, score: 14 }, { stars: 2, score: 18 }, { stars: 3, score: 24 }],
+    help: {
+      boardHelpText: /*#__PURE__*/regeneratorRuntime.mark(function gen() {
+        return regeneratorRuntime.wrap(function gen$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return "explode the <span class='highlightText'>Foot Of Oppression</span>";
+
+              case 2:
+                _context5.next = 4;
+                return "You <span class='highlightText'>cannot</span> click lines <span class='highlightText'>around</span> The Foot Of Oppression";
+
+              case 4:
+                _context5.next = 6;
+                return "If The Foot Of Oppression <span class='highlightText'>is not</span> destroyed You Lose";
+
+              case 6:
+                _context5.next = 8;
+                return "";
+
+              case 8:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, gen, this);
+      }),
+      helpTurns: [0, 1, 3, 5]
+    },
+    tools: [{
+      name: "lion",
+      src: "./img/color_animals/asset_lion.png",
+      count: 1
+    }, {
+      name: "cheetah",
+      src: "./img/color_animals/asset_cheetah.png",
+      count: 1
+    }],
+    trainingRestrictions: {
+      restrictions: [{
+        type: "clickBox",
+        turn: 0,
+        clickBox: ["box27"]
+      }]
+    },
+    tipsPage: {
+      heading: "how to",
+      text: "There comes a time when people get tired of being trampled by the iron foot of oppression. - MLK Jr.",
+      img_src: "./img/tips/foot.png",
+      height: "50%"
+    }
+  }, {
+    isLocked: true,
+    levelNumber: 6,
+    stars: 0,
+    lockBoxes: [{
+      box: "box28",
+      toughness: 1
+    }, {
+      box: "box29",
+      toughness: 1
+    }, {
+      box: "box34",
+      toughness: 1
+    }, {
+      box: "box35",
+      toughness: 1
+    }],
+    initialBombs: [],
+    bombsToLay: 0,
+    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 14 }, { stars: 3, score: 16 }],
+    tipsPage: {
+      heading: "how to",
+      text: "Go to the store to purchase items when you need to win",
+      img_src: "./img/tips/store.png",
+      height: "74%"
+    },
+    tools: [{
+      name: "cheetah",
+      src: "./img/color_animals/asset_cheetah.png",
+      count: 1
+    }]
+  }, {
+    isLocked: true,
+    levelNumber: 7,
+    stars: 0,
+    lockBoxes: [{
+      box: "box0",
+      toughness: 1
+    }, {
+      box: "box30",
+      toughness: 1
+    }],
+    initialBombs: [],
+    bombsToLay: 0,
+    starRating: [{ stars: 1, score: 10 }, { stars: 2, score: 12 }, { stars: 3, score: 14 }],
+    tools: [{
+      name: "panther",
+      src: "./img/color_animals/asset_panther.png",
+      count: 1
+    }]
+  }, {
+    isLocked: true,
+    levelNumber: 8,
+    stars: 0,
+    lockBoxes: [{
+      box: "box20",
+      toughness: 1
+    }, {
+      box: "box21",
+      toughness: 1
+    }, {
+      box: "box26",
+      toughness: 1
+    }, {
+      box: "box27",
+      toughness: 1
+    }, {
+      box: "box32",
+      toughness: 1
+    }, {
+      box: "box33",
+      toughness: 1
+    }],
+    initialBombs: [],
+    bombsToLay: 0,
+    starRating: [{ stars: 1, score: 14 }, { stars: 2, score: 16 }, { stars: 3, score: 20 }],
+    tools: [{
+      name: "lion",
+      src: "./img/color_animals/asset_lion.png",
+      count: 1
+    }]
+  }, {
+    isLocked: true,
+    levelNumber: 9,
+    stars: 0,
+    lockBoxes: [{
+      box: "box24",
+      toughness: 1
+    }, {
+      box: "box30",
+      toughness: 1
+    }, {
+      box: "box29",
+      toughness: 1
+    }, {
+      box: "box35",
+      toughness: 1
+    }],
+    initialBombs: [],
+    bombsToLay: 0,
+    starRating: [{ stars: 1, score: 12 }, { stars: 2, score: 14 }, { stars: 3, score: 16 }],
+    tools: [{
+      name: "cheetah",
+      src: "./img/color_animals/asset_cheetah.png",
+      count: 1
+    }]
+  }, (_ref = {
+    isLocked: true,
+    levelNumber: 10,
+    stars: 0,
+    lockBoxes: [],
+    initialBombs: [],
+    bombsToLay: 0,
+    starRating: [{ stars: 1, score: 16 }, { stars: 2, score: 18 }, { stars: 3, score: 20 }],
+    tools: [{
+      count: 1,
+      name: "queen_makeda",
+      src: "./img/queens/asset_queen_makeda.png"
+    }, {
+      name: "panther",
+      src: "./img/color_animals/asset_panther.png",
+      count: 1
+    }]
+  }, _defineProperty(_ref, "lockBoxes", [{
+    box: "box7",
+    toughness: 1
+  }, {
+    box: "box8",
+    toughness: 1
+  }, {
+    box: "box9",
+    toughness: 1
+  }, {
+    box: "box10",
+    toughness: 1
+  }, {
+    box: "box11",
+    toughness: 1
+  }, {
+    box: "box12",
+    toughness: 1
+  }, {
+    box: "box13",
+    toughness: 1
+  }, {
+    box: "box14",
+    toughness: 1
+  }, {
+    box: "box15",
+    toughness: 1
+  }, {
+    box: "box17",
+    toughness: 1
+  }, {
+    box: "box19",
+    toughness: 1
+  }, {
+    box: "box20",
+    toughness: 1
+  }, {
+    box: "box21",
+    toughness: 1
+  }, {
+    box: "box22",
+    toughness: 1
+  }, {
+    box: "box23",
+    toughness: 1
+  }]), _defineProperty(_ref, "tipsPage", {
+    heading: "history",
+    text: "Queen Makeda could make a small kingdom the most revered kingdom in the world",
+    img_src: "./img/tips/asset_queen_makeda.png",
+    height: "40%"
+  }), _ref)],
+  store: {
+    cheetah: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_cheetah",
+      lockedImgClass: "buy_cheetah_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isCheetahExplosion"
+    },
+    lion: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_lion",
+      lockedImgClass: "buy_lion_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isLionExplosion"
+    },
+    panther: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_panther",
+      lockedImgClass: "buy_panther_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isPantherExplosion"
+    },
+    elephant: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_elephant",
+      lockedImgClass: "buy_elephant_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isElephantExplosion"
+    },
+    giraffe: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_giraffe",
+      lockedImgClass: "buy_giraffe_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isGiraffeExplosion"
+    },
+    gorilla: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_gorilla",
+      lockedImgClass: "buy_gorilla_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isGorillaExplosion"
+    },
+    redtailedmonkey: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_redtailedmonkey",
+      lockedImgClass: "buy_redtailedmonkey_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isRedTailedMonkeyExplosion"
+    },
+    rhino: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_rhino",
+      lockedImgClass: "buy_rhino_dark",
+      cost: "10",
+      quantity: 0,
+      imgBackgroundClass: "isRhinoExplosion"
+    },
+    queen_candace: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_queen_candace",
+      lockedImgClass: "buy_queen_candace_dark",
+      cost: "50",
+      quantity: 0,
+      imgBackgroundClass: "isQueenCandaceExplosion"
+    },
+    queen_makeda: {
+      hasUnlocked: false,
+      unlockedImgClass: "buy_queen_makeda",
+      lockedImgClass: "buy_queen_makeda_dark",
+      cost: "50",
+      quantity: 0,
+      imgBackgroundClass: "isQueenMakedaExplosion"
+    }
+  },
+  gold: 0,
+  itemsPurchased: [],
+  itemsSelected: []
+};
+
+module.exports = settings;
 
 /***/ },
-/* 156 */
+/* 144 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// tracks who clicked on each line
+var whoClickTheLine = {
+  box0: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box1: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box2: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box3: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box4: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box5: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box6: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box7: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box8: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box9: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box10: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box11: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box12: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box13: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box14: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box15: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box16: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box17: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box18: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box19: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box20: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box21: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box22: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box23: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box24: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box25: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box26: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box27: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box28: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box29: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box30: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box31: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box32: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box33: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box34: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  },
+  box35: {
+    top: null,
+    right: null,
+    bottom: null,
+    left: null
+  }
+};
+
+module.exports = whoClickTheLine;
+
+/***/ },
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19386,27 +19270,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // object, this seems to be the most reliable technique that does not
 // use indirect eval (which violates Content Security Policy).
 (typeof global === "undefined" ? "undefined" : _typeof(global)) === "object" ? global : (typeof window === "undefined" ? "undefined" : _typeof(window)) === "object" ? window : (typeof self === "undefined" ? "undefined" : _typeof(self)) === "object" ? self : undefined);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(141), __webpack_require__(357)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(130), __webpack_require__(346)(module)))
 
 /***/ },
-/* 157 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(164);
+__webpack_require__(153);
 module.exports = __webpack_require__(19).RegExp.escape;
 
 /***/ },
-/* 158 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var isObject = __webpack_require__(4);
-var isArray = __webpack_require__(63);
+var isArray = __webpack_require__(55);
 var SPECIES = __webpack_require__(5)('species');
 
 module.exports = function (original) {
@@ -19423,7 +19307,7 @@ module.exports = function (original) {
 };
 
 /***/ },
-/* 159 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19453,7 +19337,7 @@ module.exports = fails(function () {
 } : $toISOString;
 
 /***/ },
-/* 160 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19469,16 +19353,16 @@ module.exports = function (hint) {
 };
 
 /***/ },
-/* 161 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(38);
-var gOPS = __webpack_require__(67);
-var pIE = __webpack_require__(54);
+var getKeys = __webpack_require__(36);
+var gOPS = __webpack_require__(59);
+var pIE = __webpack_require__(49);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -19494,16 +19378,16 @@ module.exports = function (it) {
 };
 
 /***/ },
-/* 162 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(55)('native-function-to-string', Function.toString);
+module.exports = __webpack_require__(50)('native-function-to-string', Function.toString);
 
 /***/ },
-/* 163 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19519,7 +19403,7 @@ module.exports = function (regExp, replace) {
 };
 
 /***/ },
-/* 164 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19527,14 +19411,14 @@ module.exports = function (regExp, replace) {
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(0);
-var $re = __webpack_require__(163)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+var $re = __webpack_require__(152)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', { escape: function escape(it) {
     return $re(it);
   } });
 
 /***/ },
-/* 165 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19543,12 +19427,12 @@ $export($export.S, 'RegExp', { escape: function escape(it) {
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Array', { copyWithin: __webpack_require__(106) });
+$export($export.P, 'Array', { copyWithin: __webpack_require__(95) });
 
-__webpack_require__(30)('copyWithin');
+__webpack_require__(29)('copyWithin');
 
 /***/ },
-/* 166 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19565,7 +19449,7 @@ $export($export.P + $export.F * !__webpack_require__(21)([].every, true), 'Array
 });
 
 /***/ },
-/* 167 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19574,12 +19458,12 @@ $export($export.P + $export.F * !__webpack_require__(21)([].every, true), 'Array
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Array', { fill: __webpack_require__(76) });
+$export($export.P, 'Array', { fill: __webpack_require__(67) });
 
-__webpack_require__(30)('fill');
+__webpack_require__(29)('fill');
 
 /***/ },
-/* 168 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19596,7 +19480,7 @@ $export($export.P + $export.F * !__webpack_require__(21)([].filter, true), 'Arra
 });
 
 /***/ },
-/* 169 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19616,10 +19500,10 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(30)(KEY);
+__webpack_require__(29)(KEY);
 
 /***/ },
-/* 170 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19639,10 +19523,10 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(30)(KEY);
+__webpack_require__(29)(KEY);
 
 /***/ },
-/* 171 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19660,7 +19544,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 });
 
 /***/ },
-/* 172 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19669,13 +19553,13 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 var ctx = __webpack_require__(20);
 var $export = __webpack_require__(0);
 var toObject = __webpack_require__(9);
-var call = __webpack_require__(117);
-var isArrayIter = __webpack_require__(84);
+var call = __webpack_require__(106);
+var isArrayIter = __webpack_require__(75);
 var toLength = __webpack_require__(6);
-var createProperty = __webpack_require__(78);
-var getIterFn = __webpack_require__(100);
+var createProperty = __webpack_require__(69);
+var getIterFn = __webpack_require__(91);
 
-$export($export.S + $export.F * !__webpack_require__(65)(function (iter) {
+$export($export.S + $export.F * !__webpack_require__(57)(function (iter) {
   Array.from(iter);
 }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
@@ -19706,14 +19590,14 @@ $export($export.S + $export.F * !__webpack_require__(65)(function (iter) {
 });
 
 /***/ },
-/* 173 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $indexOf = __webpack_require__(60)(false);
+var $indexOf = __webpack_require__(52)(false);
 var $native = [].indexOf;
 var NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 
@@ -19727,7 +19611,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(21)($nati
 });
 
 /***/ },
-/* 174 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19736,10 +19620,10 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(21)($nati
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Array', { isArray: __webpack_require__(63) });
+$export($export.S, 'Array', { isArray: __webpack_require__(55) });
 
 /***/ },
-/* 175 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19751,14 +19635,14 @@ var toIObject = __webpack_require__(17);
 var arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(53) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(48) != Object || !__webpack_require__(21)(arrayJoin)), 'Array', {
   join: function join(separator) {
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
 });
 
 /***/ },
-/* 176 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19788,7 +19672,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(21)($nati
 });
 
 /***/ },
-/* 177 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19805,14 +19689,14 @@ $export($export.P + $export.F * !__webpack_require__(21)([].map, true), 'Array',
 });
 
 /***/ },
-/* 178 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var createProperty = __webpack_require__(78);
+var createProperty = __webpack_require__(69);
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * __webpack_require__(3)(function () {
@@ -19832,14 +19716,14 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 179 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $reduce = __webpack_require__(108);
+var $reduce = __webpack_require__(97);
 
 $export($export.P + $export.F * !__webpack_require__(21)([].reduceRight, true), 'Array', {
   // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
@@ -19849,14 +19733,14 @@ $export($export.P + $export.F * !__webpack_require__(21)([].reduceRight, true), 
 });
 
 /***/ },
-/* 180 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $reduce = __webpack_require__(108);
+var $reduce = __webpack_require__(97);
 
 $export($export.P + $export.F * !__webpack_require__(21)([].reduce, true), 'Array', {
   // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
@@ -19866,16 +19750,16 @@ $export($export.P + $export.F * !__webpack_require__(21)([].reduce, true), 'Arra
 });
 
 /***/ },
-/* 181 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var html = __webpack_require__(82);
+var html = __webpack_require__(73);
 var cof = __webpack_require__(18);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 var toLength = __webpack_require__(6);
 var arraySlice = [].slice;
 
@@ -19900,7 +19784,7 @@ $export($export.P + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 182 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19917,7 +19801,7 @@ $export($export.P + $export.F * !__webpack_require__(21)([].some, true), 'Array'
 });
 
 /***/ },
-/* 183 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19945,16 +19829,16 @@ $export($export.P + $export.F * (fails(function () {
 });
 
 /***/ },
-/* 184 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(41)('Array');
+__webpack_require__(39)('Array');
 
 /***/ },
-/* 185 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19968,7 +19852,7 @@ $export($export.S, 'Date', { now: function now() {
   } });
 
 /***/ },
-/* 186 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19976,7 +19860,7 @@ $export($export.S, 'Date', { now: function now() {
 
 // 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 var $export = __webpack_require__(0);
-var toISOString = __webpack_require__(159);
+var toISOString = __webpack_require__(148);
 
 // PhantomJS / old WebKit has a broken implementations
 $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'Date', {
@@ -19984,7 +19868,7 @@ $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'D
 });
 
 /***/ },
-/* 187 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20008,7 +19892,7 @@ $export($export.P + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 188 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20017,10 +19901,10 @@ $export($export.P + $export.F * __webpack_require__(3)(function () {
 var TO_PRIMITIVE = __webpack_require__(5)('toPrimitive');
 var proto = Date.prototype;
 
-if (!(TO_PRIMITIVE in proto)) __webpack_require__(11)(proto, TO_PRIMITIVE, __webpack_require__(160));
+if (!(TO_PRIMITIVE in proto)) __webpack_require__(11)(proto, TO_PRIMITIVE, __webpack_require__(149));
 
 /***/ },
-/* 189 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20040,7 +19924,7 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 }
 
 /***/ },
-/* 190 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20049,10 +19933,10 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 var $export = __webpack_require__(0);
 
-$export($export.P, 'Function', { bind: __webpack_require__(109) });
+$export($export.P, 'Function', { bind: __webpack_require__(98) });
 
 /***/ },
-/* 191 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20073,7 +19957,7 @@ if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(8).f(FunctionProto, HA
   } });
 
 /***/ },
-/* 192 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20097,7 +19981,7 @@ NAME in FProto || __webpack_require__(7) && dP(FProto, NAME, {
 });
 
 /***/ },
-/* 193 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20105,7 +19989,7 @@ NAME in FProto || __webpack_require__(7) && dP(FProto, NAME, {
 
 // 20.2.2.3 Math.acosh(x)
 var $export = __webpack_require__(0);
-var log1p = __webpack_require__(120);
+var log1p = __webpack_require__(109);
 var sqrt = Math.sqrt;
 var $acosh = Math.acosh;
 
@@ -20120,7 +20004,7 @@ $export($export.S + $export.F * !($acosh
 });
 
 /***/ },
-/* 194 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20138,7 +20022,7 @@ function asinh(x) {
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', { asinh: asinh });
 
 /***/ },
-/* 195 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20156,7 +20040,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 });
 
 /***/ },
-/* 196 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20164,7 +20048,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 
 // 20.2.2.9 Math.cbrt(x)
 var $export = __webpack_require__(0);
-var sign = __webpack_require__(88);
+var sign = __webpack_require__(79);
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x) {
@@ -20173,7 +20057,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 197 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20189,7 +20073,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 198 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20206,7 +20090,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 199 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20214,12 +20098,12 @@ $export($export.S, 'Math', {
 
 // 20.2.2.14 Math.expm1(x)
 var $export = __webpack_require__(0);
-var $expm1 = __webpack_require__(87);
+var $expm1 = __webpack_require__(78);
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 });
 
 /***/ },
-/* 200 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20228,10 +20112,10 @@ $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 
 // 20.2.2.16 Math.fround(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { fround: __webpack_require__(119) });
+$export($export.S, 'Math', { fround: __webpack_require__(108) });
 
 /***/ },
-/* 201 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20265,7 +20149,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 202 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20290,7 +20174,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 203 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20306,7 +20190,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 204 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20315,10 +20199,10 @@ $export($export.S, 'Math', {
 // 20.2.2.20 Math.log1p(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { log1p: __webpack_require__(120) });
+$export($export.S, 'Math', { log1p: __webpack_require__(109) });
 
 /***/ },
-/* 205 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20334,7 +20218,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 206 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20343,10 +20227,10 @@ $export($export.S, 'Math', {
 // 20.2.2.28 Math.sign(x)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { sign: __webpack_require__(88) });
+$export($export.S, 'Math', { sign: __webpack_require__(79) });
 
 /***/ },
-/* 207 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20354,7 +20238,7 @@ $export($export.S, 'Math', { sign: __webpack_require__(88) });
 
 // 20.2.2.30 Math.sinh(x)
 var $export = __webpack_require__(0);
-var expm1 = __webpack_require__(87);
+var expm1 = __webpack_require__(78);
 var exp = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
@@ -20367,7 +20251,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 208 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20375,7 +20259,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 
 // 20.2.2.33 Math.tanh(x)
 var $export = __webpack_require__(0);
-var expm1 = __webpack_require__(87);
+var expm1 = __webpack_require__(78);
 var exp = Math.exp;
 
 $export($export.S, 'Math', {
@@ -20387,7 +20271,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 209 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20403,7 +20287,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 210 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20412,19 +20296,19 @@ $export($export.S, 'Math', {
 var global = __webpack_require__(2);
 var has = __webpack_require__(14);
 var cof = __webpack_require__(18);
-var inheritIfRequired = __webpack_require__(83);
+var inheritIfRequired = __webpack_require__(74);
 var toPrimitive = __webpack_require__(26);
 var fails = __webpack_require__(3);
-var gOPN = __webpack_require__(37).f;
+var gOPN = __webpack_require__(35).f;
 var gOPD = __webpack_require__(15).f;
 var dP = __webpack_require__(8).f;
-var $trim = __webpack_require__(50).trim;
+var $trim = __webpack_require__(46).trim;
 var NUMBER = 'Number';
 var $Number = global[NUMBER];
 var Base = $Number;
 var proto = $Number.prototype;
 // Opera ~12 has broken Object#toString
-var BROKEN_COF = cof(__webpack_require__(36)(proto)) == NUMBER;
+var BROKEN_COF = cof(__webpack_require__(34)(proto)) == NUMBER;
 var TRIM = 'trim' in String.prototype;
 
 // 7.1.3 ToNumber(argument)
@@ -20481,7 +20365,7 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
 }
 
 /***/ },
-/* 211 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20493,7 +20377,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', { EPSILON: Math.pow(2, -52) });
 
 /***/ },
-/* 212 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20510,7 +20394,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ },
-/* 213 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20519,10 +20403,10 @@ $export($export.S, 'Number', {
 // 20.1.2.3 Number.isInteger(number)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Number', { isInteger: __webpack_require__(116) });
+$export($export.S, 'Number', { isInteger: __webpack_require__(105) });
 
 /***/ },
-/* 214 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20539,7 +20423,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ },
-/* 215 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20547,7 +20431,7 @@ $export($export.S, 'Number', {
 
 // 20.1.2.5 Number.isSafeInteger(number)
 var $export = __webpack_require__(0);
-var isInteger = __webpack_require__(116);
+var isInteger = __webpack_require__(105);
 var abs = Math.abs;
 
 $export($export.S, 'Number', {
@@ -20557,7 +20441,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ },
-/* 216 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20569,7 +20453,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
 /***/ },
-/* 217 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20581,31 +20465,31 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
 /***/ },
-/* 218 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $parseFloat = __webpack_require__(128);
+var $parseFloat = __webpack_require__(117);
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
 
 /***/ },
-/* 219 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $parseInt = __webpack_require__(129);
+var $parseInt = __webpack_require__(118);
 // 20.1.2.13 Number.parseInt(string, radix)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
 
 /***/ },
-/* 220 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20613,8 +20497,8 @@ $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { pars
 
 var $export = __webpack_require__(0);
 var toInteger = __webpack_require__(22);
-var aNumberValue = __webpack_require__(105);
-var repeat = __webpack_require__(95);
+var aNumberValue = __webpack_require__(94);
+var repeat = __webpack_require__(86);
 var $toFixed = 1.0.toFixed;
 var floor = Math.floor;
 var data = [0, 0, 0, 0, 0, 0];
@@ -20721,7 +20605,7 @@ $export($export.P + $export.F * (!!$toFixed && (0.00008.toFixed(3) !== '0.000' |
 });
 
 /***/ },
-/* 221 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20729,7 +20613,7 @@ $export($export.P + $export.F * (!!$toFixed && (0.00008.toFixed(3) !== '0.000' |
 
 var $export = __webpack_require__(0);
 var $fails = __webpack_require__(3);
-var aNumberValue = __webpack_require__(105);
+var aNumberValue = __webpack_require__(94);
 var $toPrecision = 1.0.toPrecision;
 
 $export($export.P + $export.F * ($fails(function () {
@@ -20746,7 +20630,7 @@ $export($export.P + $export.F * ($fails(function () {
 });
 
 /***/ },
-/* 222 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20755,10 +20639,10 @@ $export($export.P + $export.F * ($fails(function () {
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(0);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(122) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(111) });
 
 /***/ },
-/* 223 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20766,10 +20650,10 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(122) });
 
 var $export = __webpack_require__(0);
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', { create: __webpack_require__(36) });
+$export($export.S, 'Object', { create: __webpack_require__(34) });
 
 /***/ },
-/* 224 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20777,10 +20661,10 @@ $export($export.S, 'Object', { create: __webpack_require__(36) });
 
 var $export = __webpack_require__(0);
 // 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-$export($export.S + $export.F * !__webpack_require__(7), 'Object', { defineProperties: __webpack_require__(123) });
+$export($export.S + $export.F * !__webpack_require__(7), 'Object', { defineProperties: __webpack_require__(112) });
 
 /***/ },
-/* 225 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20791,7 +20675,7 @@ var $export = __webpack_require__(0);
 $export($export.S + $export.F * !__webpack_require__(7), 'Object', { defineProperty: __webpack_require__(8).f });
 
 /***/ },
-/* 226 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20799,7 +20683,7 @@ $export($export.S + $export.F * !__webpack_require__(7), 'Object', { definePrope
 
 // 19.1.2.5 Object.freeze(O)
 var isObject = __webpack_require__(4);
-var meta = __webpack_require__(32).onFreeze;
+var meta = __webpack_require__(31).onFreeze;
 
 __webpack_require__(25)('freeze', function ($freeze) {
   return function freeze(it) {
@@ -20808,7 +20692,7 @@ __webpack_require__(25)('freeze', function ($freeze) {
 });
 
 /***/ },
-/* 227 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20825,7 +20709,7 @@ __webpack_require__(25)('getOwnPropertyDescriptor', function () {
 });
 
 /***/ },
-/* 228 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20833,11 +20717,11 @@ __webpack_require__(25)('getOwnPropertyDescriptor', function () {
 
 // 19.1.2.7 Object.getOwnPropertyNames(O)
 __webpack_require__(25)('getOwnPropertyNames', function () {
-  return __webpack_require__(124).f;
+  return __webpack_require__(113).f;
 });
 
 /***/ },
-/* 229 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20854,7 +20738,7 @@ __webpack_require__(25)('getPrototypeOf', function () {
 });
 
 /***/ },
-/* 230 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20870,7 +20754,7 @@ __webpack_require__(25)('isExtensible', function ($isExtensible) {
 });
 
 /***/ },
-/* 231 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20886,7 +20770,7 @@ __webpack_require__(25)('isFrozen', function ($isFrozen) {
 });
 
 /***/ },
-/* 232 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20902,7 +20786,7 @@ __webpack_require__(25)('isSealed', function ($isSealed) {
 });
 
 /***/ },
-/* 233 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20910,10 +20794,10 @@ __webpack_require__(25)('isSealed', function ($isSealed) {
 
 // 19.1.3.10 Object.is(value1, value2)
 var $export = __webpack_require__(0);
-$export($export.S, 'Object', { is: __webpack_require__(132) });
+$export($export.S, 'Object', { is: __webpack_require__(121) });
 
 /***/ },
-/* 234 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20921,7 +20805,7 @@ $export($export.S, 'Object', { is: __webpack_require__(132) });
 
 // 19.1.2.14 Object.keys(O)
 var toObject = __webpack_require__(9);
-var $keys = __webpack_require__(38);
+var $keys = __webpack_require__(36);
 
 __webpack_require__(25)('keys', function () {
   return function keys(it) {
@@ -20930,7 +20814,7 @@ __webpack_require__(25)('keys', function () {
 });
 
 /***/ },
-/* 235 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20938,7 +20822,7 @@ __webpack_require__(25)('keys', function () {
 
 // 19.1.2.15 Object.preventExtensions(O)
 var isObject = __webpack_require__(4);
-var meta = __webpack_require__(32).onFreeze;
+var meta = __webpack_require__(31).onFreeze;
 
 __webpack_require__(25)('preventExtensions', function ($preventExtensions) {
   return function preventExtensions(it) {
@@ -20947,7 +20831,7 @@ __webpack_require__(25)('preventExtensions', function ($preventExtensions) {
 });
 
 /***/ },
-/* 236 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20955,7 +20839,7 @@ __webpack_require__(25)('preventExtensions', function ($preventExtensions) {
 
 // 19.1.2.17 Object.seal(O)
 var isObject = __webpack_require__(4);
-var meta = __webpack_require__(32).onFreeze;
+var meta = __webpack_require__(31).onFreeze;
 
 __webpack_require__(25)('seal', function ($seal) {
   return function seal(it) {
@@ -20964,7 +20848,7 @@ __webpack_require__(25)('seal', function ($seal) {
 });
 
 /***/ },
-/* 237 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20972,17 +20856,17 @@ __webpack_require__(25)('seal', function ($seal) {
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = __webpack_require__(0);
-$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(92).set });
+$export($export.S, 'Object', { setPrototypeOf: __webpack_require__(83).set });
 
 /***/ },
-/* 238 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
 
-var classof = __webpack_require__(47);
+var classof = __webpack_require__(43);
 var test = {};
 test[__webpack_require__(5)('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
@@ -20992,52 +20876,52 @@ if (test + '' != '[object z]') {
 }
 
 /***/ },
-/* 239 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $parseFloat = __webpack_require__(128);
+var $parseFloat = __webpack_require__(117);
 // 18.2.4 parseFloat(string)
 $export($export.G + $export.F * (parseFloat != $parseFloat), { parseFloat: $parseFloat });
 
 /***/ },
-/* 240 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $parseInt = __webpack_require__(129);
+var $parseInt = __webpack_require__(118);
 // 18.2.5 parseInt(string, radix)
 $export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt });
 
 /***/ },
-/* 241 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var LIBRARY = __webpack_require__(31);
+var LIBRARY = __webpack_require__(30);
 var global = __webpack_require__(2);
 var ctx = __webpack_require__(20);
-var classof = __webpack_require__(47);
+var classof = __webpack_require__(43);
 var $export = __webpack_require__(0);
 var isObject = __webpack_require__(4);
 var aFunction = __webpack_require__(10);
-var anInstance = __webpack_require__(34);
-var forOf = __webpack_require__(35);
-var speciesConstructor = __webpack_require__(56);
-var task = __webpack_require__(97).set;
-var microtask = __webpack_require__(89)();
-var newPromiseCapabilityModule = __webpack_require__(90);
-var perform = __webpack_require__(130);
-var userAgent = __webpack_require__(73);
-var promiseResolve = __webpack_require__(131);
+var anInstance = __webpack_require__(32);
+var forOf = __webpack_require__(33);
+var speciesConstructor = __webpack_require__(51);
+var task = __webpack_require__(88).set;
+var microtask = __webpack_require__(80)();
+var newPromiseCapabilityModule = __webpack_require__(81);
+var perform = __webpack_require__(119);
+var userAgent = __webpack_require__(65);
+var promiseResolve = __webpack_require__(120);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
 var process = global.process;
@@ -21211,7 +21095,7 @@ if (!USE_NATIVE) {
     this._h = 0; // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
     this._n = false; // <- notify
   };
-  Internal.prototype = __webpack_require__(40)($Promise.prototype, {
+  Internal.prototype = __webpack_require__(38)($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected) {
       var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
@@ -21240,8 +21124,8 @@ if (!USE_NATIVE) {
 }
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
-__webpack_require__(49)($Promise, PROMISE);
-__webpack_require__(41)(PROMISE);
+__webpack_require__(45)($Promise, PROMISE);
+__webpack_require__(39)(PROMISE);
 Wrapper = __webpack_require__(19)[PROMISE];
 
 // statics
@@ -21260,7 +21144,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(65)(function (iter) {
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(57)(function (iter) {
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -21306,7 +21190,7 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(65)(function
 });
 
 /***/ },
-/* 242 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21330,7 +21214,7 @@ $export($export.S + $export.F * !__webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 243 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21338,12 +21222,12 @@ $export($export.S + $export.F * !__webpack_require__(3)(function () {
 
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
 var $export = __webpack_require__(0);
-var create = __webpack_require__(36);
+var create = __webpack_require__(34);
 var aFunction = __webpack_require__(10);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
 var fails = __webpack_require__(3);
-var bind = __webpack_require__(109);
+var bind = __webpack_require__(98);
 var rConstruct = (__webpack_require__(2).Reflect || {}).construct;
 
 // MS Edge supports only 2 arguments and argumentsList argument is optional
@@ -21390,7 +21274,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 });
 
 /***/ },
-/* 244 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21421,7 +21305,7 @@ $export($export.S + $export.F * __webpack_require__(3)(function () {
 });
 
 /***/ },
-/* 245 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21440,7 +21324,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 246 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21458,7 +21342,7 @@ var Enumerate = function Enumerate(iterated) {
     keys.push(key);
   }
 };
-__webpack_require__(85)(Enumerate, 'Object', function () {
+__webpack_require__(76)(Enumerate, 'Object', function () {
   var that = this;
   var keys = that._k;
   var key;
@@ -21475,7 +21359,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 247 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21493,7 +21377,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 248 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21511,7 +21395,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 249 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21536,7 +21420,7 @@ function get(target, propertyKey /* , receiver */) {
 $export($export.S, 'Reflect', { get: get });
 
 /***/ },
-/* 250 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21552,7 +21436,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 251 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21571,7 +21455,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 252 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21580,10 +21464,10 @@ $export($export.S, 'Reflect', {
 // 26.1.11 Reflect.ownKeys(target)
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Reflect', { ownKeys: __webpack_require__(127) });
+$export($export.S, 'Reflect', { ownKeys: __webpack_require__(116) });
 
 /***/ },
-/* 253 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21607,7 +21491,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 254 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21615,7 +21499,7 @@ $export($export.S, 'Reflect', {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export = __webpack_require__(0);
-var setProto = __webpack_require__(92);
+var setProto = __webpack_require__(83);
 
 if (setProto) $export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto) {
@@ -21630,7 +21514,7 @@ if (setProto) $export($export.S, 'Reflect', {
 });
 
 /***/ },
-/* 255 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21642,7 +21526,7 @@ var gOPD = __webpack_require__(15);
 var getPrototypeOf = __webpack_require__(16);
 var has = __webpack_require__(14);
 var $export = __webpack_require__(0);
-var createDesc = __webpack_require__(39);
+var createDesc = __webpack_require__(37);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
 
@@ -21671,18 +21555,18 @@ function set(target, propertyKey, V /* , receiver */) {
 $export($export.S, 'Reflect', { set: set });
 
 /***/ },
-/* 256 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var global = __webpack_require__(2);
-var inheritIfRequired = __webpack_require__(83);
+var inheritIfRequired = __webpack_require__(74);
 var dP = __webpack_require__(8).f;
-var gOPN = __webpack_require__(37).f;
-var isRegExp = __webpack_require__(64);
-var $flags = __webpack_require__(52);
+var gOPN = __webpack_require__(35).f;
+var isRegExp = __webpack_require__(56);
+var $flags = __webpack_require__(47);
 var $RegExp = global.RegExp;
 var Base = $RegExp;
 var proto = $RegExp.prototype;
@@ -21720,10 +21604,10 @@ if (__webpack_require__(7) && (!CORRECT_NEW || __webpack_require__(3)(function (
   __webpack_require__(12)(global, 'RegExp', $RegExp);
 }
 
-__webpack_require__(41)('RegExp');
+__webpack_require__(39)('RegExp');
 
 /***/ },
-/* 257 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21731,11 +21615,11 @@ __webpack_require__(41)('RegExp');
 
 var anObject = __webpack_require__(1);
 var toLength = __webpack_require__(6);
-var advanceStringIndex = __webpack_require__(75);
-var regExpExec = __webpack_require__(68);
+var advanceStringIndex = __webpack_require__(66);
+var regExpExec = __webpack_require__(60);
 
 // @@match logic
-__webpack_require__(62)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
+__webpack_require__(54)('match', 1, function (defined, MATCH, $match, maybeCallNative) {
   return [
   // `String.prototype.match` method
   // https://tc39.github.io/ecma262/#sec-string.prototype.match
@@ -21768,7 +21652,7 @@ __webpack_require__(62)('match', 1, function (defined, MATCH, $match, maybeCallN
 });
 
 /***/ },
-/* 258 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21778,8 +21662,8 @@ var anObject = __webpack_require__(1);
 var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
 var toInteger = __webpack_require__(22);
-var advanceStringIndex = __webpack_require__(75);
-var regExpExec = __webpack_require__(68);
+var advanceStringIndex = __webpack_require__(66);
+var regExpExec = __webpack_require__(60);
 var max = Math.max;
 var min = Math.min;
 var floor = Math.floor;
@@ -21791,7 +21675,7 @@ var maybeToString = function maybeToString(it) {
 };
 
 // @@replace logic
-__webpack_require__(62)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
+__webpack_require__(54)('replace', 2, function (defined, REPLACE, $replace, maybeCallNative) {
   return [
   // `String.prototype.replace` method
   // https://tc39.github.io/ecma262/#sec-string.prototype.replace
@@ -21895,18 +21779,18 @@ __webpack_require__(62)('replace', 2, function (defined, REPLACE, $replace, mayb
 });
 
 /***/ },
-/* 259 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var anObject = __webpack_require__(1);
-var sameValue = __webpack_require__(132);
-var regExpExec = __webpack_require__(68);
+var sameValue = __webpack_require__(121);
+var regExpExec = __webpack_require__(60);
 
 // @@search logic
-__webpack_require__(62)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
+__webpack_require__(54)('search', 1, function (defined, SEARCH, $search, maybeCallNative) {
   return [
   // `String.prototype.search` method
   // https://tc39.github.io/ecma262/#sec-string.prototype.search
@@ -21931,19 +21815,19 @@ __webpack_require__(62)('search', 1, function (defined, SEARCH, $search, maybeCa
 });
 
 /***/ },
-/* 260 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isRegExp = __webpack_require__(64);
+var isRegExp = __webpack_require__(56);
 var anObject = __webpack_require__(1);
-var speciesConstructor = __webpack_require__(56);
-var advanceStringIndex = __webpack_require__(75);
+var speciesConstructor = __webpack_require__(51);
+var advanceStringIndex = __webpack_require__(66);
 var toLength = __webpack_require__(6);
-var callRegExpExec = __webpack_require__(68);
-var regexpExec = __webpack_require__(91);
+var callRegExpExec = __webpack_require__(60);
+var regexpExec = __webpack_require__(82);
 var fails = __webpack_require__(3);
 var $min = Math.min;
 var $push = [].push;
@@ -21958,7 +21842,7 @@ var SUPPORTS_Y = !fails(function () {
 });
 
 // @@split logic
-__webpack_require__(62)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
+__webpack_require__(54)('split', 2, function (defined, SPLIT, $split, maybeCallNative) {
   var internalSplit;
   if ('abbc'[$SPLIT](/(b)*/)[1] == 'c' || 'test'[$SPLIT](/(?:)/, -1)[LENGTH] != 4 || 'ab'[$SPLIT](/(?:ab)*/)[LENGTH] != 2 || '.'[$SPLIT](/(.?)(.?)/)[LENGTH] != 4 || '.'[$SPLIT](/()()/)[LENGTH] > 1 || ''[$SPLIT](/.?/)[LENGTH]) {
     // based on es5-shim implementation, need to rework it
@@ -22054,15 +21938,15 @@ __webpack_require__(62)('split', 2, function (defined, SPLIT, $split, maybeCallN
 });
 
 /***/ },
-/* 261 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(138);
+__webpack_require__(127);
 var anObject = __webpack_require__(1);
-var $flags = __webpack_require__(52);
+var $flags = __webpack_require__(47);
 var DESCRIPTORS = __webpack_require__(7);
 var TO_STRING = 'toString';
 var $toString = /./[TO_STRING];
@@ -22087,7 +21971,7 @@ if (__webpack_require__(3)(function () {
 }
 
 /***/ },
-/* 262 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22101,7 +21985,7 @@ __webpack_require__(13)('anchor', function (createHTML) {
 });
 
 /***/ },
-/* 263 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22115,7 +21999,7 @@ __webpack_require__(13)('big', function (createHTML) {
 });
 
 /***/ },
-/* 264 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22129,7 +22013,7 @@ __webpack_require__(13)('blink', function (createHTML) {
 });
 
 /***/ },
-/* 265 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22143,14 +22027,14 @@ __webpack_require__(13)('bold', function (createHTML) {
 });
 
 /***/ },
-/* 266 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(71)(false);
+var $at = __webpack_require__(63)(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos) {
@@ -22159,7 +22043,7 @@ $export($export.P, 'String', {
 });
 
 /***/ },
-/* 267 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22168,11 +22052,11 @@ $export($export.P, 'String', {
 
 var $export = __webpack_require__(0);
 var toLength = __webpack_require__(6);
-var context = __webpack_require__(94);
+var context = __webpack_require__(85);
 var ENDS_WITH = 'endsWith';
 var $endsWith = ''[ENDS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(81)(ENDS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(72)(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /* , endPosition = @length */) {
     var that = context(this, searchString, ENDS_WITH);
     var endPosition = arguments.length > 1 ? arguments[1] : undefined;
@@ -22184,7 +22068,7 @@ $export($export.P + $export.F * __webpack_require__(81)(ENDS_WITH), 'String', {
 });
 
 /***/ },
-/* 268 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22198,7 +22082,7 @@ __webpack_require__(13)('fixed', function (createHTML) {
 });
 
 /***/ },
-/* 269 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22212,7 +22096,7 @@ __webpack_require__(13)('fontcolor', function (createHTML) {
 });
 
 /***/ },
-/* 270 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22226,14 +22110,14 @@ __webpack_require__(13)('fontsize', function (createHTML) {
 });
 
 /***/ },
-/* 271 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 var fromCharCode = String.fromCharCode;
 var $fromCodePoint = String.fromCodePoint;
 
@@ -22255,7 +22139,7 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 });
 
 /***/ },
-/* 272 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22263,17 +22147,17 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 
 
 var $export = __webpack_require__(0);
-var context = __webpack_require__(94);
+var context = __webpack_require__(85);
 var INCLUDES = 'includes';
 
-$export($export.P + $export.F * __webpack_require__(81)(INCLUDES), 'String', {
+$export($export.P + $export.F * __webpack_require__(72)(INCLUDES), 'String', {
   includes: function includes(searchString /* , position = 0 */) {
     return !!~context(this, searchString, INCLUDES).indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
 
 /***/ },
-/* 273 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22287,16 +22171,16 @@ __webpack_require__(13)('italics', function (createHTML) {
 });
 
 /***/ },
-/* 274 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var $at = __webpack_require__(71)(true);
+var $at = __webpack_require__(63)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(86)(String, 'String', function (iterated) {
+__webpack_require__(77)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0; // next index
   // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -22311,7 +22195,7 @@ __webpack_require__(86)(String, 'String', function (iterated) {
 });
 
 /***/ },
-/* 275 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22325,7 +22209,7 @@ __webpack_require__(13)('link', function (createHTML) {
 });
 
 /***/ },
-/* 276 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22351,7 +22235,7 @@ $export($export.S, 'String', {
 });
 
 /***/ },
-/* 277 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22361,11 +22245,11 @@ var $export = __webpack_require__(0);
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
-  repeat: __webpack_require__(95)
+  repeat: __webpack_require__(86)
 });
 
 /***/ },
-/* 278 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22379,7 +22263,7 @@ __webpack_require__(13)('small', function (createHTML) {
 });
 
 /***/ },
-/* 279 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22388,11 +22272,11 @@ __webpack_require__(13)('small', function (createHTML) {
 
 var $export = __webpack_require__(0);
 var toLength = __webpack_require__(6);
-var context = __webpack_require__(94);
+var context = __webpack_require__(85);
 var STARTS_WITH = 'startsWith';
 var $startsWith = ''[STARTS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(81)(STARTS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(72)(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /* , position = 0 */) {
     var that = context(this, searchString, STARTS_WITH);
     var index = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length));
@@ -22402,7 +22286,7 @@ $export($export.P + $export.F * __webpack_require__(81)(STARTS_WITH), 'String', 
 });
 
 /***/ },
-/* 280 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22416,7 +22300,7 @@ __webpack_require__(13)('strike', function (createHTML) {
 });
 
 /***/ },
-/* 281 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22430,7 +22314,7 @@ __webpack_require__(13)('sub', function (createHTML) {
 });
 
 /***/ },
-/* 282 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22444,21 +22328,21 @@ __webpack_require__(13)('sup', function (createHTML) {
 });
 
 /***/ },
-/* 283 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 21.1.3.25 String.prototype.trim()
 
-__webpack_require__(50)('trim', function ($trim) {
+__webpack_require__(46)('trim', function ($trim) {
   return function trim() {
     return $trim(this, 3);
   };
 });
 
 /***/ },
-/* 284 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22472,26 +22356,26 @@ var has = __webpack_require__(14);
 var DESCRIPTORS = __webpack_require__(7);
 var $export = __webpack_require__(0);
 var redefine = __webpack_require__(12);
-var META = __webpack_require__(32).KEY;
+var META = __webpack_require__(31).KEY;
 var $fails = __webpack_require__(3);
-var shared = __webpack_require__(55);
-var setToStringTag = __webpack_require__(49);
-var uid = __webpack_require__(43);
+var shared = __webpack_require__(50);
+var setToStringTag = __webpack_require__(45);
+var uid = __webpack_require__(41);
 var wks = __webpack_require__(5);
-var wksExt = __webpack_require__(135);
-var wksDefine = __webpack_require__(99);
-var enumKeys = __webpack_require__(161);
-var isArray = __webpack_require__(63);
+var wksExt = __webpack_require__(124);
+var wksDefine = __webpack_require__(90);
+var enumKeys = __webpack_require__(150);
+var isArray = __webpack_require__(55);
 var anObject = __webpack_require__(1);
 var isObject = __webpack_require__(4);
 var toIObject = __webpack_require__(17);
 var toPrimitive = __webpack_require__(26);
-var createDesc = __webpack_require__(39);
-var _create = __webpack_require__(36);
-var gOPNExt = __webpack_require__(124);
+var createDesc = __webpack_require__(37);
+var _create = __webpack_require__(34);
+var gOPNExt = __webpack_require__(113);
 var $GOPD = __webpack_require__(15);
 var $DP = __webpack_require__(8);
-var $keys = __webpack_require__(38);
+var $keys = __webpack_require__(36);
 var gOPD = $GOPD.f;
 var dP = $DP.f;
 var gOPN = gOPNExt.f;
@@ -22617,11 +22501,11 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(37).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(54).f = $propertyIsEnumerable;
-  __webpack_require__(67).f = $getOwnPropertySymbols;
+  __webpack_require__(35).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(49).f = $propertyIsEnumerable;
+  __webpack_require__(59).f = $getOwnPropertySymbols;
 
-  if (DESCRIPTORS && !__webpack_require__(31)) {
+  if (DESCRIPTORS && !__webpack_require__(30)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -22708,21 +22592,21 @@ setToStringTag(Math, 'Math', true);
 setToStringTag(global.JSON, 'JSON', true);
 
 /***/ },
-/* 285 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $typed = __webpack_require__(72);
-var buffer = __webpack_require__(98);
+var $typed = __webpack_require__(64);
+var buffer = __webpack_require__(89);
 var anObject = __webpack_require__(1);
-var toAbsoluteIndex = __webpack_require__(42);
+var toAbsoluteIndex = __webpack_require__(40);
 var toLength = __webpack_require__(6);
 var isObject = __webpack_require__(4);
 var ArrayBuffer = __webpack_require__(2).ArrayBuffer;
-var speciesConstructor = __webpack_require__(56);
+var speciesConstructor = __webpack_require__(51);
 var $ArrayBuffer = buffer.ArrayBuffer;
 var $DataView = buffer.DataView;
 var $isView = $typed.ABV && ArrayBuffer.isView;
@@ -22758,150 +22642,150 @@ $export($export.P + $export.U + $export.F * __webpack_require__(3)(function () {
   }
 });
 
-__webpack_require__(41)(ARRAY_BUFFER);
+__webpack_require__(39)(ARRAY_BUFFER);
 
 /***/ },
-/* 286 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-$export($export.G + $export.W + $export.F * !__webpack_require__(72).ABV, {
-  DataView: __webpack_require__(98).DataView
+$export($export.G + $export.W + $export.F * !__webpack_require__(64).ABV, {
+  DataView: __webpack_require__(89).DataView
 });
 
 /***/ },
-/* 287 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Float32', 4, function (init) {
+__webpack_require__(28)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 288 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Float64', 8, function (init) {
+__webpack_require__(28)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 289 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Int16', 2, function (init) {
+__webpack_require__(28)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 290 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Int32', 4, function (init) {
+__webpack_require__(28)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 291 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Int8', 1, function (init) {
+__webpack_require__(28)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 292 */
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Uint16', 2, function (init) {
+__webpack_require__(28)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 293 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Uint32', 4, function (init) {
+__webpack_require__(28)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 294 */
+/* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Uint8', 1, function (init) {
+__webpack_require__(28)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 });
 
 /***/ },
-/* 295 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(29)('Uint8', 1, function (init) {
+__webpack_require__(28)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
 }, true);
 
 /***/ },
-/* 296 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var weak = __webpack_require__(112);
-var validate = __webpack_require__(44);
+var weak = __webpack_require__(101);
+var validate = __webpack_require__(42);
 var WEAK_SET = 'WeakSet';
 
 // 23.4 WeakSet Objects
-__webpack_require__(61)(WEAK_SET, function (get) {
+__webpack_require__(53)(WEAK_SET, function (get) {
   return function WeakSet() {
     return get(this, arguments.length > 0 ? arguments[0] : undefined);
   };
@@ -22913,7 +22797,7 @@ __webpack_require__(61)(WEAK_SET, function (get) {
 }, weak, false, true);
 
 /***/ },
-/* 297 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22921,11 +22805,11 @@ __webpack_require__(61)(WEAK_SET, function (get) {
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap
 
 var $export = __webpack_require__(0);
-var flattenIntoArray = __webpack_require__(113);
+var flattenIntoArray = __webpack_require__(102);
 var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
 var aFunction = __webpack_require__(10);
-var arraySpeciesCreate = __webpack_require__(77);
+var arraySpeciesCreate = __webpack_require__(68);
 
 $export($export.P, 'Array', {
   flatMap: function flatMap(callbackfn /* , thisArg */) {
@@ -22939,10 +22823,10 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(30)('flatMap');
+__webpack_require__(29)('flatMap');
 
 /***/ },
-/* 298 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22950,11 +22834,11 @@ __webpack_require__(30)('flatMap');
 // https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatten
 
 var $export = __webpack_require__(0);
-var flattenIntoArray = __webpack_require__(113);
+var flattenIntoArray = __webpack_require__(102);
 var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
 var toInteger = __webpack_require__(22);
-var arraySpeciesCreate = __webpack_require__(77);
+var arraySpeciesCreate = __webpack_require__(68);
 
 $export($export.P, 'Array', {
   flatten: function flatten() /* depthArg = 1 */{
@@ -22967,10 +22851,10 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(30)('flatten');
+__webpack_require__(29)('flatten');
 
 /***/ },
-/* 299 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22978,7 +22862,7 @@ __webpack_require__(30)('flatten');
 // https://github.com/tc39/Array.prototype.includes
 
 var $export = __webpack_require__(0);
-var $includes = __webpack_require__(60)(true);
+var $includes = __webpack_require__(52)(true);
 
 $export($export.P, 'Array', {
   includes: function includes(el /* , fromIndex = 0 */) {
@@ -22986,10 +22870,10 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(30)('includes');
+__webpack_require__(29)('includes');
 
 /***/ },
-/* 300 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22997,7 +22881,7 @@ __webpack_require__(30)('includes');
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export = __webpack_require__(0);
-var microtask = __webpack_require__(89)();
+var microtask = __webpack_require__(80)();
 var process = __webpack_require__(2).process;
 var isNode = __webpack_require__(18)(process) == 'process';
 
@@ -23009,7 +22893,7 @@ $export($export.G, {
 });
 
 /***/ },
-/* 301 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23026,7 +22910,7 @@ $export($export.S, 'Error', {
 });
 
 /***/ },
-/* 302 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23038,27 +22922,27 @@ var $export = __webpack_require__(0);
 $export($export.G, { global: __webpack_require__(2) });
 
 /***/ },
-/* 303 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(69)('Map');
+__webpack_require__(61)('Map');
 
 /***/ },
-/* 304 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(70)('Map');
+__webpack_require__(62)('Map');
 
 /***/ },
-/* 305 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23067,10 +22951,10 @@ __webpack_require__(70)('Map');
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = __webpack_require__(0);
 
-$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(111)('Map') });
+$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(100)('Map') });
 
 /***/ },
-/* 306 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23086,7 +22970,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 307 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23098,7 +22982,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', { DEG_PER_RAD: Math.PI / 180 });
 
 /***/ },
-/* 308 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23115,7 +22999,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 309 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23123,8 +23007,8 @@ $export($export.S, 'Math', {
 
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = __webpack_require__(0);
-var scale = __webpack_require__(121);
-var fround = __webpack_require__(119);
+var scale = __webpack_require__(110);
+var fround = __webpack_require__(108);
 
 $export($export.S, 'Math', {
   fscale: function fscale(x, inLow, inHigh, outLow, outHigh) {
@@ -23133,7 +23017,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 310 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23152,7 +23036,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 311 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23176,7 +23060,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 312 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23195,7 +23079,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 313 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23207,7 +23091,7 @@ var $export = __webpack_require__(0);
 $export($export.S, 'Math', { RAD_PER_DEG: 180 / Math.PI });
 
 /***/ },
-/* 314 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23224,7 +23108,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 315 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23233,10 +23117,10 @@ $export($export.S, 'Math', {
 // https://rwaldron.github.io/proposal-math-extensions/
 var $export = __webpack_require__(0);
 
-$export($export.S, 'Math', { scale: __webpack_require__(121) });
+$export($export.S, 'Math', { scale: __webpack_require__(110) });
 
 /***/ },
-/* 316 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23251,7 +23135,7 @@ $export($export.S, 'Math', { signbit: function signbit(x) {
   } });
 
 /***/ },
-/* 317 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23275,7 +23159,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ },
-/* 318 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23287,14 +23171,14 @@ var aFunction = __webpack_require__(10);
 var $defineProperty = __webpack_require__(8);
 
 // B.2.2.2 Object.prototype.__defineGetter__(P, getter)
-__webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(58), 'Object', {
   __defineGetter__: function __defineGetter__(P, getter) {
     $defineProperty.f(toObject(this), P, { get: aFunction(getter), enumerable: true, configurable: true });
   }
 });
 
 /***/ },
-/* 319 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23306,14 +23190,14 @@ var aFunction = __webpack_require__(10);
 var $defineProperty = __webpack_require__(8);
 
 // B.2.2.3 Object.prototype.__defineSetter__(P, setter)
-__webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(58), 'Object', {
   __defineSetter__: function __defineSetter__(P, setter) {
     $defineProperty.f(toObject(this), P, { set: aFunction(setter), enumerable: true, configurable: true });
   }
 });
 
 /***/ },
-/* 320 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23321,7 +23205,7 @@ __webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object',
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(0);
-var $entries = __webpack_require__(126)(true);
+var $entries = __webpack_require__(115)(true);
 
 $export($export.S, 'Object', {
   entries: function entries(it) {
@@ -23330,7 +23214,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ },
-/* 321 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23338,10 +23222,10 @@ $export($export.S, 'Object', {
 
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
 var $export = __webpack_require__(0);
-var ownKeys = __webpack_require__(127);
+var ownKeys = __webpack_require__(116);
 var toIObject = __webpack_require__(17);
 var gOPD = __webpack_require__(15);
-var createProperty = __webpack_require__(78);
+var createProperty = __webpack_require__(69);
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
@@ -23360,7 +23244,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ },
-/* 322 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23373,7 +23257,7 @@ var getPrototypeOf = __webpack_require__(16);
 var getOwnPropertyDescriptor = __webpack_require__(15).f;
 
 // B.2.2.4 Object.prototype.__lookupGetter__(P)
-__webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(58), 'Object', {
   __lookupGetter__: function __lookupGetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -23385,7 +23269,7 @@ __webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object',
 });
 
 /***/ },
-/* 323 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23398,7 +23282,7 @@ var getPrototypeOf = __webpack_require__(16);
 var getOwnPropertyDescriptor = __webpack_require__(15).f;
 
 // B.2.2.5 Object.prototype.__lookupSetter__(P)
-__webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object', {
+__webpack_require__(7) && $export($export.P + __webpack_require__(58), 'Object', {
   __lookupSetter__: function __lookupSetter__(P) {
     var O = toObject(this);
     var K = toPrimitive(P, true);
@@ -23410,7 +23294,7 @@ __webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object',
 });
 
 /***/ },
-/* 324 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23418,7 +23302,7 @@ __webpack_require__(7) && $export($export.P + __webpack_require__(66), 'Object',
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(0);
-var $values = __webpack_require__(126)(false);
+var $values = __webpack_require__(115)(false);
 
 $export($export.S, 'Object', {
   values: function values(it) {
@@ -23427,7 +23311,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ },
-/* 325 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23437,14 +23321,14 @@ $export($export.S, 'Object', {
 var $export = __webpack_require__(0);
 var global = __webpack_require__(2);
 var core = __webpack_require__(19);
-var microtask = __webpack_require__(89)();
+var microtask = __webpack_require__(80)();
 var OBSERVABLE = __webpack_require__(5)('observable');
 var aFunction = __webpack_require__(10);
 var anObject = __webpack_require__(1);
-var anInstance = __webpack_require__(34);
-var redefineAll = __webpack_require__(40);
+var anInstance = __webpack_require__(32);
+var redefineAll = __webpack_require__(38);
 var hide = __webpack_require__(11);
-var forOf = __webpack_require__(35);
+var forOf = __webpack_require__(33);
 var RETURN = forOf.RETURN;
 
 var getMethod = function getMethod(fn) {
@@ -23640,10 +23524,10 @@ hide($Observable.prototype, OBSERVABLE, function () {
 
 $export($export.G, { Observable: $Observable });
 
-__webpack_require__(41)('Observable');
+__webpack_require__(39)('Observable');
 
 /***/ },
-/* 326 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23653,8 +23537,8 @@ __webpack_require__(41)('Observable');
 var $export = __webpack_require__(0);
 var core = __webpack_require__(19);
 var global = __webpack_require__(2);
-var speciesConstructor = __webpack_require__(56);
-var promiseResolve = __webpack_require__(131);
+var speciesConstructor = __webpack_require__(51);
+var promiseResolve = __webpack_require__(120);
 
 $export($export.P + $export.R, 'Promise', { 'finally': function _finally(onFinally) {
     var C = speciesConstructor(this, core.Promise || global.Promise);
@@ -23671,7 +23555,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function _finally(onFinal
   } });
 
 /***/ },
-/* 327 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23679,8 +23563,8 @@ $export($export.P + $export.R, 'Promise', { 'finally': function _finally(onFinal
 // https://github.com/tc39/proposal-promise-try
 
 var $export = __webpack_require__(0);
-var newPromiseCapability = __webpack_require__(90);
-var perform = __webpack_require__(130);
+var newPromiseCapability = __webpack_require__(81);
+var perform = __webpack_require__(119);
 
 $export($export.S, 'Promise', { 'try': function _try(callbackfn) {
     var promiseCapability = newPromiseCapability.f(this);
@@ -23690,13 +23574,13 @@ $export($export.S, 'Promise', { 'try': function _try(callbackfn) {
   } });
 
 /***/ },
-/* 328 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -23706,13 +23590,13 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
   } });
 
 /***/ },
-/* 329 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -23729,15 +23613,15 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
   } });
 
 /***/ },
-/* 330 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Set = __webpack_require__(139);
-var from = __webpack_require__(107);
-var metadata = __webpack_require__(28);
+var Set = __webpack_require__(128);
+var from = __webpack_require__(96);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(16);
 var ordinaryOwnMetadataKeys = metadata.keys;
@@ -23756,13 +23640,13 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
   } });
 
 /***/ },
-/* 331 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(16);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -23781,13 +23665,13 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
   } });
 
 /***/ },
-/* 332 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -23797,13 +23681,13 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
   } });
 
 /***/ },
-/* 333 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -23813,13 +23697,13 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
   } });
 
 /***/ },
-/* 334 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(16);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -23837,13 +23721,13 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
   } });
 
 /***/ },
-/* 335 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var metadata = __webpack_require__(28);
+var metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -23853,13 +23737,13 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
   } });
 
 /***/ },
-/* 336 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var $metadata = __webpack_require__(28);
+var $metadata = __webpack_require__(27);
 var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(10);
 var toMetaKey = $metadata.key;
@@ -23872,27 +23756,27 @@ $metadata.exp({ metadata: function metadata(metadataKey, metadataValue) {
   } });
 
 /***/ },
-/* 337 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
-__webpack_require__(69)('Set');
+__webpack_require__(61)('Set');
 
 /***/ },
-/* 338 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
-__webpack_require__(70)('Set');
+__webpack_require__(62)('Set');
 
 /***/ },
-/* 339 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23901,10 +23785,10 @@ __webpack_require__(70)('Set');
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = __webpack_require__(0);
 
-$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(111)('Set') });
+$export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(100)('Set') });
 
 /***/ },
-/* 340 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23912,7 +23796,7 @@ $export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(111)('Set') 
 // https://github.com/mathiasbynens/String.prototype.at
 
 var $export = __webpack_require__(0);
-var $at = __webpack_require__(71)(true);
+var $at = __webpack_require__(63)(true);
 
 $export($export.P, 'String', {
   at: function at(pos) {
@@ -23921,7 +23805,7 @@ $export($export.P, 'String', {
 });
 
 /***/ },
-/* 341 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23931,8 +23815,8 @@ $export($export.P, 'String', {
 var $export = __webpack_require__(0);
 var defined = __webpack_require__(24);
 var toLength = __webpack_require__(6);
-var isRegExp = __webpack_require__(64);
-var getFlags = __webpack_require__(52);
+var isRegExp = __webpack_require__(56);
+var getFlags = __webpack_require__(47);
 var RegExpProto = RegExp.prototype;
 
 var $RegExpStringIterator = function $RegExpStringIterator(regexp, string) {
@@ -23940,7 +23824,7 @@ var $RegExpStringIterator = function $RegExpStringIterator(regexp, string) {
   this._s = string;
 };
 
-__webpack_require__(85)($RegExpStringIterator, 'RegExp String', function next() {
+__webpack_require__(76)($RegExpStringIterator, 'RegExp String', function next() {
   var match = this._r.exec(this._s);
   return { value: match, done: match === null };
 });
@@ -23958,7 +23842,7 @@ $export($export.P, 'String', {
 });
 
 /***/ },
-/* 342 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23966,8 +23850,8 @@ $export($export.P, 'String', {
 // https://github.com/tc39/proposal-string-pad-start-end
 
 var $export = __webpack_require__(0);
-var $pad = __webpack_require__(133);
-var userAgent = __webpack_require__(73);
+var $pad = __webpack_require__(122);
+var userAgent = __webpack_require__(65);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -23979,7 +23863,7 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 });
 
 /***/ },
-/* 343 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23987,8 +23871,8 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 // https://github.com/tc39/proposal-string-pad-start-end
 
 var $export = __webpack_require__(0);
-var $pad = __webpack_require__(133);
-var userAgent = __webpack_require__(73);
+var $pad = __webpack_require__(122);
+var userAgent = __webpack_require__(65);
 
 // https://github.com/zloirock/core-js/issues/280
 var WEBKIT_BUG = /Version\/10\.\d+(\.\d+)?( Mobile\/\w+)? Safari\//.test(userAgent);
@@ -24000,53 +23884,53 @@ $export($export.P + $export.F * WEBKIT_BUG, 'String', {
 });
 
 /***/ },
-/* 344 */
+/* 333 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
 
-__webpack_require__(50)('trimLeft', function ($trim) {
+__webpack_require__(46)('trimLeft', function ($trim) {
   return function trimLeft() {
     return $trim(this, 1);
   };
 }, 'trimStart');
 
 /***/ },
-/* 345 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
 
-__webpack_require__(50)('trimRight', function ($trim) {
+__webpack_require__(46)('trimRight', function ($trim) {
   return function trimRight() {
     return $trim(this, 2);
   };
 }, 'trimEnd');
 
 /***/ },
-/* 346 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(99)('asyncIterator');
+__webpack_require__(90)('asyncIterator');
 
 /***/ },
-/* 347 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(99)('observable');
+__webpack_require__(90)('observable');
 
 /***/ },
-/* 348 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24058,58 +23942,58 @@ var $export = __webpack_require__(0);
 $export($export.S, 'System', { global: __webpack_require__(2) });
 
 /***/ },
-/* 349 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
-__webpack_require__(69)('WeakMap');
+__webpack_require__(61)('WeakMap');
 
 /***/ },
-/* 350 */
+/* 339 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
-__webpack_require__(70)('WeakMap');
+__webpack_require__(62)('WeakMap');
 
 /***/ },
-/* 351 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
-__webpack_require__(69)('WeakSet');
+__webpack_require__(61)('WeakSet');
 
 /***/ },
-/* 352 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
-__webpack_require__(70)('WeakSet');
+__webpack_require__(62)('WeakSet');
 
 /***/ },
-/* 353 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var $iterators = __webpack_require__(101);
-var getKeys = __webpack_require__(38);
+var $iterators = __webpack_require__(92);
+var getKeys = __webpack_require__(36);
 var redefine = __webpack_require__(12);
 var global = __webpack_require__(2);
 var hide = __webpack_require__(11);
-var Iterators = __webpack_require__(48);
+var Iterators = __webpack_require__(44);
 var wks = __webpack_require__(5);
 var ITERATOR = wks('iterator');
 var TO_STRING_TAG = wks('toStringTag');
@@ -24166,21 +24050,21 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 }
 
 /***/ },
-/* 354 */
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var $export = __webpack_require__(0);
-var $task = __webpack_require__(97);
+var $task = __webpack_require__(88);
 $export($export.G + $export.B, {
   setImmediate: $task.set,
   clearImmediate: $task.clear
 });
 
 /***/ },
-/* 355 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24189,7 +24073,7 @@ $export($export.G + $export.B, {
 // ie9- setTimeout & setInterval additional parameters fix
 var global = __webpack_require__(2);
 var $export = __webpack_require__(0);
-var userAgent = __webpack_require__(73);
+var userAgent = __webpack_require__(65);
 var slice = [].slice;
 var MSIE = /MSIE .\./.test(userAgent); // <- dirty ie9- check
 var wrap = function wrap(set) {
@@ -24208,54 +24092,38 @@ $export($export.G + $export.B + $export.F * MSIE, {
 });
 
 /***/ },
-/* 356 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(284);
+__webpack_require__(273);
+__webpack_require__(212);
+__webpack_require__(214);
+__webpack_require__(213);
+__webpack_require__(216);
+__webpack_require__(218);
 __webpack_require__(223);
+__webpack_require__(217);
+__webpack_require__(215);
 __webpack_require__(225);
 __webpack_require__(224);
-__webpack_require__(227);
-__webpack_require__(229);
-__webpack_require__(234);
-__webpack_require__(228);
-__webpack_require__(226);
-__webpack_require__(236);
-__webpack_require__(235);
-__webpack_require__(231);
-__webpack_require__(232);
-__webpack_require__(230);
-__webpack_require__(222);
-__webpack_require__(233);
-__webpack_require__(237);
-__webpack_require__(238);
-__webpack_require__(190);
-__webpack_require__(192);
-__webpack_require__(191);
-__webpack_require__(240);
-__webpack_require__(239);
-__webpack_require__(210);
 __webpack_require__(220);
 __webpack_require__(221);
-__webpack_require__(211);
-__webpack_require__(212);
-__webpack_require__(213);
-__webpack_require__(214);
-__webpack_require__(215);
-__webpack_require__(216);
-__webpack_require__(217);
-__webpack_require__(218);
 __webpack_require__(219);
-__webpack_require__(193);
-__webpack_require__(194);
-__webpack_require__(195);
-__webpack_require__(196);
-__webpack_require__(197);
-__webpack_require__(198);
+__webpack_require__(211);
+__webpack_require__(222);
+__webpack_require__(226);
+__webpack_require__(227);
+__webpack_require__(179);
+__webpack_require__(181);
+__webpack_require__(180);
+__webpack_require__(229);
+__webpack_require__(228);
 __webpack_require__(199);
+__webpack_require__(209);
+__webpack_require__(210);
 __webpack_require__(200);
 __webpack_require__(201);
 __webpack_require__(202);
@@ -24265,156 +24133,172 @@ __webpack_require__(205);
 __webpack_require__(206);
 __webpack_require__(207);
 __webpack_require__(208);
-__webpack_require__(209);
-__webpack_require__(271);
-__webpack_require__(276);
-__webpack_require__(283);
-__webpack_require__(274);
-__webpack_require__(266);
-__webpack_require__(267);
-__webpack_require__(272);
-__webpack_require__(277);
-__webpack_require__(279);
-__webpack_require__(262);
-__webpack_require__(263);
-__webpack_require__(264);
-__webpack_require__(265);
-__webpack_require__(268);
-__webpack_require__(269);
-__webpack_require__(270);
-__webpack_require__(273);
-__webpack_require__(275);
-__webpack_require__(278);
-__webpack_require__(280);
-__webpack_require__(281);
-__webpack_require__(282);
-__webpack_require__(185);
-__webpack_require__(187);
-__webpack_require__(186);
-__webpack_require__(189);
-__webpack_require__(188);
-__webpack_require__(174);
-__webpack_require__(172);
-__webpack_require__(178);
-__webpack_require__(175);
-__webpack_require__(181);
-__webpack_require__(183);
-__webpack_require__(171);
-__webpack_require__(177);
-__webpack_require__(168);
 __webpack_require__(182);
-__webpack_require__(166);
-__webpack_require__(180);
-__webpack_require__(179);
-__webpack_require__(173);
-__webpack_require__(176);
-__webpack_require__(165);
-__webpack_require__(167);
-__webpack_require__(170);
-__webpack_require__(169);
+__webpack_require__(183);
 __webpack_require__(184);
-__webpack_require__(101);
-__webpack_require__(256);
-__webpack_require__(137);
-__webpack_require__(261);
-__webpack_require__(138);
-__webpack_require__(257);
-__webpack_require__(258);
-__webpack_require__(259);
+__webpack_require__(185);
+__webpack_require__(186);
+__webpack_require__(187);
+__webpack_require__(188);
+__webpack_require__(189);
+__webpack_require__(190);
+__webpack_require__(191);
+__webpack_require__(192);
+__webpack_require__(193);
+__webpack_require__(194);
+__webpack_require__(195);
+__webpack_require__(196);
+__webpack_require__(197);
+__webpack_require__(198);
 __webpack_require__(260);
-__webpack_require__(241);
-__webpack_require__(136);
-__webpack_require__(139);
-__webpack_require__(140);
-__webpack_require__(296);
-__webpack_require__(285);
-__webpack_require__(286);
-__webpack_require__(291);
-__webpack_require__(294);
-__webpack_require__(295);
-__webpack_require__(289);
-__webpack_require__(292);
-__webpack_require__(290);
-__webpack_require__(293);
-__webpack_require__(287);
-__webpack_require__(288);
-__webpack_require__(242);
-__webpack_require__(243);
-__webpack_require__(244);
-__webpack_require__(245);
-__webpack_require__(246);
-__webpack_require__(249);
-__webpack_require__(247);
-__webpack_require__(248);
-__webpack_require__(250);
+__webpack_require__(265);
+__webpack_require__(272);
+__webpack_require__(263);
+__webpack_require__(255);
+__webpack_require__(256);
+__webpack_require__(261);
+__webpack_require__(266);
+__webpack_require__(268);
 __webpack_require__(251);
 __webpack_require__(252);
 __webpack_require__(253);
-__webpack_require__(255);
 __webpack_require__(254);
-__webpack_require__(299);
-__webpack_require__(297);
-__webpack_require__(298);
-__webpack_require__(340);
-__webpack_require__(343);
-__webpack_require__(342);
-__webpack_require__(344);
-__webpack_require__(345);
-__webpack_require__(341);
-__webpack_require__(346);
-__webpack_require__(347);
-__webpack_require__(321);
-__webpack_require__(324);
-__webpack_require__(320);
-__webpack_require__(318);
-__webpack_require__(319);
-__webpack_require__(322);
-__webpack_require__(323);
-__webpack_require__(305);
-__webpack_require__(339);
-__webpack_require__(304);
-__webpack_require__(338);
-__webpack_require__(350);
-__webpack_require__(352);
-__webpack_require__(303);
-__webpack_require__(337);
-__webpack_require__(349);
-__webpack_require__(351);
-__webpack_require__(302);
-__webpack_require__(348);
-__webpack_require__(301);
-__webpack_require__(306);
-__webpack_require__(307);
-__webpack_require__(308);
-__webpack_require__(309);
-__webpack_require__(310);
-__webpack_require__(312);
-__webpack_require__(311);
-__webpack_require__(313);
-__webpack_require__(314);
-__webpack_require__(315);
-__webpack_require__(317);
-__webpack_require__(316);
-__webpack_require__(326);
-__webpack_require__(327);
-__webpack_require__(328);
+__webpack_require__(257);
+__webpack_require__(258);
+__webpack_require__(259);
+__webpack_require__(262);
+__webpack_require__(264);
+__webpack_require__(267);
+__webpack_require__(269);
+__webpack_require__(270);
+__webpack_require__(271);
+__webpack_require__(174);
+__webpack_require__(176);
+__webpack_require__(175);
+__webpack_require__(178);
+__webpack_require__(177);
+__webpack_require__(163);
+__webpack_require__(161);
+__webpack_require__(167);
+__webpack_require__(164);
+__webpack_require__(170);
+__webpack_require__(172);
+__webpack_require__(160);
+__webpack_require__(166);
+__webpack_require__(157);
+__webpack_require__(171);
+__webpack_require__(155);
+__webpack_require__(169);
+__webpack_require__(168);
+__webpack_require__(162);
+__webpack_require__(165);
+__webpack_require__(154);
+__webpack_require__(156);
+__webpack_require__(159);
+__webpack_require__(158);
+__webpack_require__(173);
+__webpack_require__(92);
+__webpack_require__(245);
+__webpack_require__(126);
+__webpack_require__(250);
+__webpack_require__(127);
+__webpack_require__(246);
+__webpack_require__(247);
+__webpack_require__(248);
+__webpack_require__(249);
+__webpack_require__(230);
+__webpack_require__(125);
+__webpack_require__(128);
+__webpack_require__(129);
+__webpack_require__(285);
+__webpack_require__(274);
+__webpack_require__(275);
+__webpack_require__(280);
+__webpack_require__(283);
+__webpack_require__(284);
+__webpack_require__(278);
+__webpack_require__(281);
+__webpack_require__(279);
+__webpack_require__(282);
+__webpack_require__(276);
+__webpack_require__(277);
+__webpack_require__(231);
+__webpack_require__(232);
+__webpack_require__(233);
+__webpack_require__(234);
+__webpack_require__(235);
+__webpack_require__(238);
+__webpack_require__(236);
+__webpack_require__(237);
+__webpack_require__(239);
+__webpack_require__(240);
+__webpack_require__(241);
+__webpack_require__(242);
+__webpack_require__(244);
+__webpack_require__(243);
+__webpack_require__(288);
+__webpack_require__(286);
+__webpack_require__(287);
 __webpack_require__(329);
-__webpack_require__(331);
-__webpack_require__(330);
-__webpack_require__(333);
 __webpack_require__(332);
+__webpack_require__(331);
+__webpack_require__(333);
 __webpack_require__(334);
+__webpack_require__(330);
 __webpack_require__(335);
 __webpack_require__(336);
+__webpack_require__(310);
+__webpack_require__(313);
+__webpack_require__(309);
+__webpack_require__(307);
+__webpack_require__(308);
+__webpack_require__(311);
+__webpack_require__(312);
+__webpack_require__(294);
+__webpack_require__(328);
+__webpack_require__(293);
+__webpack_require__(327);
+__webpack_require__(339);
+__webpack_require__(341);
+__webpack_require__(292);
+__webpack_require__(326);
+__webpack_require__(338);
+__webpack_require__(340);
+__webpack_require__(291);
+__webpack_require__(337);
+__webpack_require__(290);
+__webpack_require__(295);
+__webpack_require__(296);
+__webpack_require__(297);
+__webpack_require__(298);
+__webpack_require__(299);
+__webpack_require__(301);
 __webpack_require__(300);
+__webpack_require__(302);
+__webpack_require__(303);
+__webpack_require__(304);
+__webpack_require__(306);
+__webpack_require__(305);
+__webpack_require__(315);
+__webpack_require__(316);
+__webpack_require__(317);
+__webpack_require__(318);
+__webpack_require__(320);
+__webpack_require__(319);
+__webpack_require__(322);
+__webpack_require__(321);
+__webpack_require__(323);
+__webpack_require__(324);
 __webpack_require__(325);
-__webpack_require__(355);
-__webpack_require__(354);
-__webpack_require__(353);
+__webpack_require__(289);
+__webpack_require__(314);
+__webpack_require__(344);
+__webpack_require__(343);
+__webpack_require__(342);
 module.exports = __webpack_require__(19);
 
 /***/ },
-/* 357 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24446,11 +24330,11 @@ module.exports = function (module) {
 };
 
 /***/ },
-/* 358 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
-__webpack_require__(103);
-module.exports = __webpack_require__(102);
+__webpack_require__(93);
+module.exports = __webpack_require__(131);
 
 
 /***/ }

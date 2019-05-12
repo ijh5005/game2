@@ -43,9 +43,9 @@ const soundEffects = {
         return;
       };
       if(!hasCancelledMusic){
-        task.addClassByQuerySelector(".title img", "big");
+        gametask.addClassByQuerySelector(".title img", "big");
         setTimeout(() => {
-          task.removeClassByQuerySelector(".title img", "big");
+          gametask.removeClassByQuerySelector(".title img", "big");
         }, 200)
       }
     }

@@ -3,31 +3,31 @@ const ui = {
     const selectBombScreen = document.getElementsByClassName("selectBombScreen")[0];
     selectBombScreen.classList.remove("playGame")
 
-    task.removeClassByClassName("helpTextP", "showHelpText");
+    gametask.removeClassByClassName("helpTextP", "showHelpText");
 
-    restrictionLineClicks = null;
-    restrictionClickBox = null;
-    restrictionLayBomb = null;
-    nextRestriction =  null;
+    app.restrictionLineClicks = null;
+    app.restrictionClickBox = null;
+    app.restrictionLayBomb = null;
+    app.nextRestriction =  null;
 
     settings.itemsSelected = [];
 
-    task.startEndGameInterval();
+    gametask.startEndGameInterval();
     track.turn = 0;
     pointsInArow = 0;
-    whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
+    app.whoClickedLine = gametask.breakRefAndCopy(whoClickTheLine);
     textType = null;
     app.on_game_board = true;
-    task.resetPlayerTurn();
-    task.resetScore();
+    gametask.resetPlayerTurn();
+    gametask.resetScore();
     track.goToPage(settings.startUpPage);
-    task.setDifficulty(settings.difficulty);
-    initialBombs = getGameLevelObj.initialBombs ? task.breakRefAndCopy(getGameLevelObj.initialBombs) : [];
-    bombsToLay = getGameLevelObj.bombsToLay ? task.breakRefAndCopy(getGameLevelObj.bombsToLay) : 0;
+    gametask.setDifficulty(settings.difficulty);
+    initialBombs = getGameLevelObj.initialBombs ? gametask.breakRefAndCopy(getGameLevelObj.initialBombs) : [];
+    bombsToLay = getGameLevelObj.bombsToLay ? gametask.breakRefAndCopy(getGameLevelObj.bombsToLay) : 0;
     // track.setRemainingBombs();
-    lockBombLocations = getGameLevelObj.lockBoxes ? task.breakRefAndCopy(getGameLevelObj.lockBoxes) : [];
+    lockBombLocations = getGameLevelObj.lockBoxes ? gametask.breakRefAndCopy(getGameLevelObj.lockBoxes) : [];
 
-    gameBoard = task.breakRefAndCopy(ui.gameBoardMapperObj[`level${gameLevel + 1}`]);
+    gameBoard = gametask.breakRefAndCopy(ui.gameBoardMapperObj[`level${gameLevel + 1}`]);
     gameBoardLength = ui.getGameBoardLength();
 
     const lockBoxesAmount = lockBoxes[gameLevel];
@@ -39,7 +39,7 @@ const ui = {
 
     possibleBombs.forEach((data, index) => {
       if(index < lockBoxesAmount){
-        const box = task.getRandomIndexInArray(possibleBombs);
+        const box = gametask.getRandomIndexInArray(possibleBombs);
         const index = possibleBombs.indexOf(box);
         possibleBombs.splice(index, 1);
       }
@@ -52,7 +52,7 @@ const ui = {
     ui.startLevelText();
   },
   redo: () => {
-    task.clearBoard();
+    gametask.clearBoard();
     track.goToPage('gameBoardPage');
   },
   gameBoardMapperObj: {
@@ -138,13 +138,13 @@ const ui = {
       }
     }
     track.setScores();
-    boxInfo.adjustBorderCountArrays(); // add boxes with one border to the oneBorderBoxes array, etc...
+    boxInfo.adjustBorderCountArrays(); // add boxes with one border to the app.oneBorderBoxes array, etc...
     ui.populateHelpers();
   },
   populateHelpers: () => {
     //set helpers
     if(!tools){
-      tools = task.getTools();
+      tools = gametask.getTools();
     }
 
     //empty any helpers still on the board
@@ -160,14 +160,14 @@ const ui = {
         const node = document.getElementsByClassName("bombToolsBar")[0];
         node.insertAdjacentHTML('beforeend', tool);
       } else if (data.count !== 0) {
-        task.addTextByQuerySelector(`.${data.name}p`, data.count);
+        gametask.addTextByQuerySelector(`.${data.name}p`, data.count);
       } else if (data.count === 0 && toolExists) {
         tool[0].remove();
       }
     })
   },
   removeAllLockBoxes: () => {
-    task.removeClassByClassName("box", "locked");
+    gametask.removeClassByClassName("box", "locked");
     for(let data in gameBoard){
       gameBoard[data].isLocked = false;
     }
@@ -179,8 +179,8 @@ const ui = {
   },
   removeScoreColorIfRemovingBorder: (box) => {
     gameBoard[box].whoScored = null;
-    task.removeClassByClassName(`.${box}`, "firstPlayerScored");
-    task.removeClassByClassName(`.${box}`, "secondPlayerScored");
+    gametask.removeClassByClassName(`.${box}`, "firstPlayerScored");
+    gametask.removeClassByClassName(`.${box}`, "secondPlayerScored");
   },
   closeTheBoxConnection: (closeTheBoxConnectionParams) => {
     const {
@@ -198,15 +198,15 @@ const ui = {
     if(hasSelected && keepSelected){
       const helperDisabled = keepSelected.length > 0;
       if(helperDisabled) return null;
-      task.removeClassByClassName("tool", "selected");
+      gametask.removeClassByClassName("tool", "selected");
     } else {
-      task.removeClassByClassName("tool", "selected");
-      task.addClassByQuerySelector(`.tool[class*=${bombFunction}]`, "selected");
-      selectedBombFunction = bombFunction;
+      gametask.removeClassByClassName("tool", "selected");
+      gametask.addClassByQuerySelector(`.tool[class*=${bombFunction}]`, "selected");
+      app.selectedBombFunction = bombFunction;
     }
   },
   populateStore: () => {
-    task.addTextByQuerySelector("#goldAmount", settings.gold);
+    gametask.addTextByQuerySelector("#goldAmount", settings.gold);
     const merchHolder = document.getElementsByClassName("merchHolder")[0];
     merchHolder.innerHTML = "";
     const { store } = settings;
@@ -238,7 +238,7 @@ const ui = {
         stars += `<img class="star${i}" src="./img/star.png" alt="">`;
       }
       return (`
-        <div class="level flexCol playBoardButton" onclick="task.setGameLevelAndTips(${data.levelNumber})">
+        <div class="level flexCol playBoardButton" onclick="gametask.setGameLevelAndTips(${data.levelNumber})">
           <p>${data.levelNumber}</p>
           <div class="stars flexRow">
             ${stars}
@@ -301,7 +301,7 @@ const ui = {
       animalBox.addEventListener("click", () => {
         const animal = item.unlockedImgClass.replace("buy_", "");
         const cost = (price.innerText === "?") ? 10000000 : parseInt(item.cost);
-        task.selectStoreItem(animal, cost);
+        gametask.selectStoreItem(animal, cost);
       });
 
       return animalBox;
@@ -335,45 +335,45 @@ const ui = {
   ],
   changeDifficulty: (diff) => {
     settings.difficulty = diff;
-    task.saveToLocalStorage("settings", settings);
+    gametask.saveToLocalStorage("settings", settings);
     ui.setDifficulty();
   },
   setDifficulty: () => {
-    task.removeClassByClassName("diff", "selectedSetting");
-    task.addClassByClassName(settings.difficulty, "selectedSetting");
+    gametask.removeClassByClassName("diff", "selectedSetting");
+    gametask.addClassByClassName(settings.difficulty, "selectedSetting");
   },
   toggleSound: () => {
     settings.hasMutedSound = !settings.hasMutedSound;
-    task.saveToLocalStorage("settings", settings);
+    gametask.saveToLocalStorage("settings", settings);
     ui.setSound();
   },
   setSound: () => {
-    task.removeClassByClassName("sound", "selectedSetting");
+    gametask.removeClassByClassName("sound", "selectedSetting");
     if(settings.hasMutedSound){
-      task.addClassByQuerySelector(".sound.sOptions.off", "selectedSetting");
+      gametask.addClassByQuerySelector(".sound.sOptions.off", "selectedSetting");
     } else {
-      task.addClassByQuerySelector(".sound.sOptions.on", "selectedSetting");
+      gametask.addClassByQuerySelector(".sound.sOptions.on", "selectedSetting");
     }
   },
   toggleMusic: () => {
     settings.hasMutedMusic = !settings.hasMutedMusic;
-    task.saveToLocalStorage("settings", settings);
+    gametask.saveToLocalStorage("settings", settings);
     ui.setMusic();
   },
   setMusic: () => {
-    task.removeClassByClassName("music", "selectedSetting");
+    gametask.removeClassByClassName("music", "selectedSetting");
     if(settings.hasMutedMusic){
-      task.addClassByQuerySelector(".music.mOptions.off", "selectedSetting");
+      gametask.addClassByQuerySelector(".music.mOptions.off", "selectedSetting");
     } else {
-      task.addClassByQuerySelector(".music.mOptions.on", "selectedSetting");
+      gametask.addClassByQuerySelector(".music.mOptions.on", "selectedSetting");
     }
   },
   showHint: () => {
-    const index = task.getRandomIndexInArray(noBorders);
-    const box = noBorders[index];
-    task.addClassByClassName(box, "hint");
+    const index = gametask.getRandomIndexInArray(app.noBorders);
+    const box = app.noBorders[index];
+    gametask.addClassByClassName(box, "hint");
     setTimeout(() => {
-      task.removeClassByClassName(box, "hint");
+      gametask.removeClassByClassName(box, "hint");
     }, 600);
   },
   setSettingsIfOnSettingsPage: (page) => {
@@ -384,16 +384,16 @@ const ui = {
     }
   },
   animateScore: (prize, starTimeout) => {
-    let remainingGold = parseInt(task.getTextByQuerySelector(".remainingGold"));
+    let remainingGold = parseInt(gametask.getTextByQuerySelector(".remainingGold"));
     const hasScore = remainingGold !== 0;
     if(hasScore){
       const changeNumber = () => {
         const gold = remainingGold;
         starTimeout += 100;
         setTimeout(() => {
-          // task.addTextByQuerySelector(".remainingGold", gold);
-          const currectGold = parseInt(task.getTextByQuerySelector(".currentGoldCount")) + 1;
-          task.addTextByQuerySelector(".currentGoldCount", currectGold)
+          // gametask.addTextByQuerySelector(".remainingGold", gold);
+          const currectGold = parseInt(gametask.getTextByQuerySelector(".currentGoldCount")) + 1;
+          gametask.addTextByQuerySelector(".currentGoldCount", currectGold)
           settings.gold = currectGold;
         }, starTimeout)
         remainingGold--;
@@ -412,11 +412,11 @@ const ui = {
       setTimeout(() => {
         const hasClaimed = getGameLevelObj.hasLargePrize && getGameLevelObj.hasLargePrize.hasClaimed;
         if(!getGameLevelObj.hasLargePrize || hasClaimed){
-          task.addClassByClassName("goldScreen", "smallPrize");
+          gametask.addClassByClassName("goldScreen", "smallPrize");
         } else {
           settings.level_data[gameLevel].hasLargePrize.hasClaimed = true;
-          task.saveToLocalStorage("settings", settings);
-          task.removeClassByClassName("goldScreen", "smallPrize");
+          gametask.saveToLocalStorage("settings", settings);
+          gametask.removeClassByClassName("goldScreen", "smallPrize");
           const prize = getGameLevelObj.hasLargePrize.prize;
           const img = document.querySelector(".goldScreen img")
           img.src = `./img/rewards/${prize}_reward.png`;
@@ -427,26 +427,26 @@ const ui = {
           const currentQuantity = settings.store[prize].quantity;
           settings.store[prize].quantity = currentQuantity + 1;
           settings.itemsPurchased.push(prize);
-          task.saveToLocalStorage("settings", settings);
+          gametask.saveToLocalStorage("settings", settings);
         }
-        task.addClassByClassName("rewardScreen", "showPrice");
+        gametask.addClassByClassName("rewardScreen", "showPrice");
         setTimeout(() => {
-          task.addClassByQuerySelector("svg.redoBtn", "showBtn");
+          gametask.addClassByQuerySelector("svg.redoBtn", "showBtn");
           if(settings.level_data[gameLevel + 1]){
-            task.addClassByQuerySelector("svg.nextBtn", "showBtn");
+            gametask.addClassByQuerySelector("svg.nextBtn", "showBtn");
           }
         }, 1000)
       }, 200);
     }
   },
   showEndGameScreen: (stars, yourScore, computerScore, currentGoldCount, prize) => {
-    task.resetPlayerTurn();
-    task.removeClassByClassName("gameCompleteBox", "hideGameComplete");
-    task.addTextByQuerySelector(".yourScore", yourScore);
-    task.addTextByQuerySelector(".computerScore", computerScore);
+    gametask.resetPlayerTurn();
+    gametask.removeClassByClassName("gameCompleteBox", "hideGameComplete");
+    gametask.addTextByQuerySelector(".yourScore", yourScore);
+    gametask.addTextByQuerySelector(".computerScore", computerScore);
     const remainingGold = parseInt(yourScore) - parseInt(computerScore);
-    task.addTextByQuerySelector(".remainingGold", remainingGold);
-    task.addTextByQuerySelector(".currentGoldCount", currentGoldCount);
+    gametask.addTextByQuerySelector(".remainingGold", remainingGold);
+    gametask.addTextByQuerySelector(".currentGoldCount", currentGoldCount);
     setTimeout(() => {
       document.getElementsByClassName("rewardScreen")[0].style.opacity = 1;
     }, 1000);
@@ -467,9 +467,9 @@ const ui = {
   },
   showCompleteScreen: () => {
     setTimeout(() => {
-      const stars = task.getStarsForWinner(playerOneScore);
-      task.setStarsForWinner(stars);
-      task.openNextBoard(stars);
+      const stars = gametask.getStarsForWinner(playerOneScore);
+      gametask.setStarsForWinner(stars);
+      gametask.openNextBoard(stars);
       const yourScore = playerOneScore;
       const computerScore = playerTwoScore;
       const currentGoldCount = settings.gold;
@@ -479,16 +479,16 @@ const ui = {
   },
   showTextTimeout: 0,
   showText: (text) => {
-    task.removeClassByClassName("helpTextP", "showHelpText");
+    gametask.removeClassByClassName("helpTextP", "showHelpText");
     clearTimeout(ui.showTextTimeout);
     ui.showTextTimeout = setTimeout(() => {
-      task.addHTMLByQuerySelector(".helpTextP", text);
-      task.addClassByClassName("helpTextP", "showHelpText");
+      gametask.addHTMLByQuerySelector(".helpTextP", text);
+      gametask.addClassByClassName("helpTextP", "showHelpText");
     }, 500)
   },
   startLevelText: () => {
     if(!getGameLevelObj["help"]) {
-      task.removeClassByQuerySelector(".helpTextP", "showHelpText");
+      gametask.removeClassByQuerySelector(".helpTextP", "showHelpText");
       return null
     };
 
@@ -496,14 +496,14 @@ const ui = {
     const turnsToShowText = levelText ? getGameLevelObj["help"]["helpTurns"] : [];
 
     if(track.turn === 0){
-      helpText = levelText;
+      app.helpText = levelText;
     }
 
-    if(!helpText && levelText && turnsToShowText.includes(track.turn)){
-      const text = helpText.next().value;
+    if(!app.helpText && levelText && turnsToShowText.includes(track.turn)){
+      const text = app.helpText.next().value;
       ui.showText(text || "");
-    } else if(helpText && turnsToShowText.includes(track.turn)) {
-      const text = helpText.next().value;
+    } else if(app.helpText && turnsToShowText.includes(track.turn)) {
+      const text = app.helpText.next().value;
       ui.showText(text || "");
     }
     if(turnsToShowText.indexOf(track.turn) === turnsToShowText.length - 1){
@@ -537,18 +537,18 @@ const ui = {
     }
   },
   undoFinishScreen: () => {
-    task.addClassByClassName("gameCompleteBox", "hideGameComplete");
-    task.addTextByQuerySelector(".yourScore", 0);
-    task.addTextByQuerySelector(".computerScore", 0);
-    task.addTextByQuerySelector(".remainingGold", 0);
-    task.addTextByQuerySelector(".currentGoldCount", 0);
+    gametask.addClassByClassName("gameCompleteBox", "hideGameComplete");
+    gametask.addTextByQuerySelector(".yourScore", 0);
+    gametask.addTextByQuerySelector(".computerScore", 0);
+    gametask.addTextByQuerySelector(".remainingGold", 0);
+    gametask.addTextByQuerySelector(".currentGoldCount", 0);
     document.getElementsByClassName("rewardScreen")[0].style.opacity = 0;
     document.getElementsByClassName(`completeStar1`)[0].style.opacity = 0;
     document.getElementsByClassName(`completeStar2`)[0].style.opacity = 0;
     document.getElementsByClassName(`completeStar3`)[0].style.opacity = 0;
-    task.removeClassByClassName("rewardScreen", "showPrice");
-    task.removeClassByQuerySelector("svg.redoBtn", "showBtn");
-    task.removeClassByQuerySelector("svg.nextBtn", "showBtn");
+    gametask.removeClassByClassName("rewardScreen", "showPrice");
+    gametask.removeClassByQuerySelector("svg.redoBtn", "showBtn");
+    gametask.removeClassByQuerySelector("svg.nextBtn", "showBtn");
   },
   redoBorder: () => {
     if(currentPage !== "gameBoardPage") return null;
@@ -556,7 +556,7 @@ const ui = {
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
     gameLevel++;
-    task.setGameLevelAndTips(gameLevel);
+    gametask.setGameLevelAndTips(gameLevel);
   },
   nextBoard: () => {
     const notOnBoard = currentPage !== "gameBoardPage";
@@ -566,7 +566,7 @@ const ui = {
     const click = ui.click();
     document.getElementsByClassName("boardBackButton")[0].dispatchEvent(click);
     gameLevel+=2;
-    task.setGameLevelAndTips(gameLevel);
+    gametask.setGameLevelAndTips(gameLevel);
   },
   click: () => {
     return clickEvent = new MouseEvent("click", {
@@ -630,9 +630,9 @@ const ui = {
       nums.forEach(num => {
         timeoutToNext += 100;
         setTimeout(() => {
-          task.addClassByClassName(`star${num}`, `up`);
+          gametask.addClassByClassName(`star${num}`, `up`);
           setTimeout(() => {
-            task.removeClassByClassName(`star${num}`, `up`);
+            gametask.removeClassByClassName(`star${num}`, `up`);
           }, 400)
         }, timeoutToNext)
       })
@@ -662,9 +662,9 @@ const ui = {
   },
   displayNoClickIndicator: (boxNumber, lineClicked) => {
     const incorrectLineClick = (box, classToAdd) => {
-      task.addClassByClassName(box, classToAdd);
+      gametask.addClassByClassName(box, classToAdd);
       setTimeout(() => {
-        task.removeClassByClassName(box, classToAdd);
+        gametask.removeClassByClassName(box, classToAdd);
       }, 1000);
     }
 
@@ -699,10 +699,10 @@ const ui = {
     }
   },
   togglePregameScreen: () => {
-    if(task.hasClassByQuerySelector(".silverScreen", "hidePregameScreen")){
-      task.removeClassByClassName("silverScreen", "hidePregameScreen")
+    if(gametask.hasClassByQuerySelector(".silverScreen", "hidePregameScreen")){
+      gametask.removeClassByClassName("silverScreen", "hidePregameScreen")
     } else {
-      task.addClassByClassName("silverScreen", "hidePregameScreen")
+      gametask.addClassByClassName("silverScreen", "hidePregameScreen")
     }
   },
   uiPopulater: null,
@@ -716,23 +716,23 @@ const ui = {
         ui.populateBoard();
       });
     }
-    task.setTurnRestrictions();
+    gametask.setTurnRestrictions();
     track.adjustScore();
   },
   showHelper: (boxNumber) => {
     tools.forEach(data => {
-      if(data.name === selectedBombFunction) data.count--;
+      if(data.name === app.selectedBombFunction) data.count--;
     });
     let explosionType;
-    if(selectedBombFunction === "lion") explosionType = "isLionExplosion";
-    if (selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
-    if (selectedBombFunction === "panther") explosionType = "isPantherExplosion";
-    if (selectedBombFunction === "queen_makeda") explosionType = "isQueenMakedaExplosion";
+    if(app.selectedBombFunction === "lion") explosionType = "isLionExplosion";
+    if (app.selectedBombFunction === "cheetah") explosionType = "isCheetahExplosion";
+    if (app.selectedBombFunction === "panther") explosionType = "isPantherExplosion";
+    if (app.selectedBombFunction === "queen_makeda") explosionType = "isQueenMakedaExplosion";
     if(explosionType) gameBoard[boxNumber][explosionType] = true;
   },
   addHighlightToClickBox: (clickBox) => {
     setTimeout(() => {
-      task.addClassByClassName(clickBox, "clickBox");
+      gametask.addClassByClassName(clickBox, "clickBox");
     }, 500)
   },
   toggleBombSelected: () => {
@@ -749,7 +749,7 @@ const ui = {
     selectBombScreen.classList.remove("showBoard");
     selectBombScreen.classList.add("playGame");
     if(!tools){
-      tools = task.getTools();
+      tools = gametask.getTools();
     }
     const used = [];
     settings.itemsSelected.forEach(item => {
@@ -789,26 +789,26 @@ const ui = {
       const currentQuantity = settings.store[animalName].quantity;
       settings.store[animalName].quantity = currentQuantity - 1;
     })
-    task.saveToLocalStorage("settings", settings);
+    gametask.saveToLocalStorage("settings", settings);
     settings.itemsSelected = [];
     ui.populateHelpers();
   },
   selectPregameBomb: (selected) => {
     const animal = document.querySelector(`.${selected}.selectedBombForBoard`);
     if(animal){
-      task.removeClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
+      gametask.removeClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
       const index = settings.itemsSelected.indexOf(selected);
       settings.itemsSelected.splice(index, 1)
     } else {
-      task.addClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
+      gametask.addClassByQuerySelector(`.animalBombSelectBox.${selected}`, "selectedBombForBoard");
       settings.itemsSelected.push(selected);
     }
   },
   toggleConfirmScreen: () => {
-    if(task.hasClassByClassName("buyItemContainer", "hidePurchaseScreen")){
-      task.removeClassByClassName("buyItemContainer", "hidePurchaseScreen")
+    if(gametask.hasClassByClassName("buyItemContainer", "hidePurchaseScreen")){
+      gametask.removeClassByClassName("buyItemContainer", "hidePurchaseScreen")
     } else {
-      task.addClassByClassName("buyItemContainer", "hidePurchaseScreen")
+      gametask.addClassByClassName("buyItemContainer", "hidePurchaseScreen")
     }
   }
 }

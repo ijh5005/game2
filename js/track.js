@@ -14,7 +14,7 @@ const track = {
     pageToShow.classList.remove("removePage");
     ui.setSettingsIfOnSettingsPage(page);
     if(page === "gameBoardPage"){
-      task.resizeBoard();
+      gametask.resizeBoard();
       ui.populateBombSelectionScreen();
     } else {
       app.on_game_board = false;
@@ -65,20 +65,20 @@ const track = {
     // track.setRemainingBombs();
   },
   setRemainingBombs: () => {
-    task.addTextByQuerySelector(".remainingBombs", bombsToLay);
+    gametask.addTextByQuerySelector(".remainingBombs", bombsToLay);
   },
   incrementMissedBombCount: () => {
-    const text = task.getTextByQuerySelector(".missedBombs");
+    const text = gametask.getTextByQuerySelector(".missedBombs");
     let missedBombs = parseInt(text);
     missedBombs++;
-    task.addTextByQuerySelector(".missedBombs", missedBombs);
+    gametask.addTextByQuerySelector(".missedBombs", missedBombs);
     track.decrementBombCount();
   },
   screenText: () => {
-    showTextUsed = true;
+    app.showTextUsed = true;
     setTimeout(() => {
-      showTextUsed = false; // prevents multiple calls for screen text
-    }, timeToWaitBetweenText)
+      app.showTextUsed = false; // prevents multiple calls for screen text
+    }, app.timeToWaitBetweenText)
   }
 }
 

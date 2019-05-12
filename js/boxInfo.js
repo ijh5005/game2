@@ -24,9 +24,9 @@ const boxInfo = {
   },
   getSafeBoxes: () => {
     const safeClickBoxWithSide = [];
-    const oneBorder = [...oneBorderBoxes];
+    const oneBorder = [...app.oneBorderBoxes];
     oneBorder.forEach(box => {
-      oneBorderBoxes.splice(oneBorderBoxes.indexOf(box), 1);
+      app.oneBorderBoxes.splice(app.oneBorderBoxes.indexOf(box), 1);
       const edgeBox = boxInfo.edgeBox(box);
       if (edgeBox.hasEdgeBox) { // task takes care of the corner cases by clicked its empty side
         safeClickBoxWithSide.push({
@@ -34,7 +34,7 @@ const boxInfo = {
           clickSide: edgeBox.clickSide
         });
       } else {
-        const surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(data => oneBorderBoxes.includes(data));
+        const surroundingOnBorderBoxes = boxInfo.getSurroundingBoxes(box).filter(data => app.oneBorderBoxes.includes(data));
         surroundingOnBorderBoxes.forEach(data => {
           const adjObj = boxInfo.isAdjacentBoxesConnected(box, data);
           if (adjObj.isConnected) {
@@ -52,28 +52,28 @@ const boxInfo = {
     const classesToAdd = ["box", "flexRow", box];
 
     if (gameBoard[box].borders.top){
-      if(whoClickedLine[box].top === "computer"){
+      if(app.whoClickedLine[box].top === "computer"){
         classesToAdd.push("borderTopComputer")
       } else {
         classesToAdd.push("borderTop")
       }
     }
     if (gameBoard[box].borders.right){
-      if(whoClickedLine[box].right === "computer"){
+      if(app.whoClickedLine[box].right === "computer"){
         classesToAdd.push("borderRightComputer")
       } else {
         classesToAdd.push("borderRight")
       }
     }
     if (gameBoard[box].borders.bottom){
-      if(whoClickedLine[box].bottom === "computer"){
+      if(app.whoClickedLine[box].bottom === "computer"){
         classesToAdd.push("borderBottomComputer")
       } else {
         classesToAdd.push("borderBottom")
       }
     }
     if (gameBoard[box].borders.left){
-      if(whoClickedLine[box].left === "computer"){
+      if(app.whoClickedLine[box].left === "computer"){
         classesToAdd.push("borderLeftComputer")
       } else {
         classesToAdd.push("borderLeft")
@@ -136,10 +136,10 @@ const boxInfo = {
     for (let box in gameBoard) {
       if(!boxInfo.isBoxDisabled(box)){
         const borderCount = boxInfo.getBorderCount(box);
-        if (boxInfo.countsAsNoBorders(box, borderCount)) noBorders.push(box);
-        else if (boxInfo.countsAsOneBorders(box, borderCount)) oneBorderBoxes.push(box);
-        else if (boxInfo.countsAsTwoBorders(box, borderCount)) twoBorderBoxes.push(box)
-        else if (boxInfo.countsAsThreeBorders(box, borderCount)) threeBorderBoxes.push(box);
+        if (boxInfo.countsAsNoBorders(box, borderCount)) app.noBorders.push(box);
+        else if (boxInfo.countsAsOneBorders(box, borderCount)) app.oneBorderBoxes.push(box);
+        else if (boxInfo.countsAsTwoBorders(box, borderCount)) app.twoBorderBoxes.push(box)
+        else if (boxInfo.countsAsThreeBorders(box, borderCount)) app.threeBorderBoxes.push(box);
       }
     }
   },
@@ -183,10 +183,10 @@ const boxInfo = {
     return allBombs.includes(box);
   },
   clearBorderArrays: () => {
-    noBorders.length = 0;
-    oneBorderBoxes.length = 0;
-    twoBorderBoxes.length = 0
-    threeBorderBoxes.length = 0;
+    app.noBorders.length = 0;
+    app.oneBorderBoxes.length = 0;
+    app.twoBorderBoxes.length = 0
+    app.threeBorderBoxes.length = 0;
   },
   isAdjacentBoxesConnected: (box1, box2) => {
     const adjObj = {
@@ -482,10 +482,10 @@ const boxInfo = {
         const zoom = 0.96;
         const gameBoardPositionX = box[0].getBoundingClientRect().x * zoom;
         const gameBoardPositionY = box[0].getBoundingClientRect().y * zoom;
-        const height = task.getHeightWithClassName(thisBox);
-        const width = task.getWidthWithClassName(thisBox);
-        const boardHolderWidth = task.getWidthWithId("boardHolder");
-        const offset = lineClickOffset;
+        const height = gametask.getHeightWithClassName(thisBox);
+        const width = gametask.getWidthWithClassName(thisBox);
+        const boardHolderWidth = gametask.getWidthWithId("boardHolder");
+        const offset = app.lineClickOffset;
 
         const topClickOffset = {
           xRange: {min: gameBoardPositionX, max: gameBoardPositionX + width},
@@ -605,7 +605,7 @@ const boxInfo = {
   },
   setLineColor: (boxNumber, lineClicked) => {
     if(!isFirstPlayerTurn){
-      whoClickedLine[boxNumber][lineClicked] = "computer"
+      app.whoClickedLine[boxNumber][lineClicked] = "computer"
     }
   },
   highlightBoxIfScored: (boxNumber) => {

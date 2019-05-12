@@ -1008,3 +1008,5 @@ const level4 = {
     disabled: true
   }
 }
+
+module.exports = level4;

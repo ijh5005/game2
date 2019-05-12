@@ -996,3 +996,5 @@ const level3 = {
     isBottomLeftCornerBox: true
   }
 }
+
+module.exports = level3;

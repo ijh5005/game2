@@ -4,8 +4,8 @@ const track = {
     track.turn++;
   },
   goToPage: (page) => {
-    tools = null;
-    currentPage = page;
+    app.tools = null;
+    app.currentPage = page;
     const allPages = document.getElementsByClassName("page");
     for(let i = 0; i < allPages.length; i++){
       allPages[i].classList.add("removePage");
@@ -17,7 +17,7 @@ const track = {
       task.resizeBoard();
       ui.populateBombSelectionScreen();
     } else {
-      on_game_board = false;
+      app.on_game_board = false;
     }
 
     if(page === "storePage"){
@@ -81,3 +81,5 @@ const track = {
     }, timeToWaitBetweenText)
   }
 }
+
+module.exports = track;

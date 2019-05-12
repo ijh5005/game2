@@ -984,3 +984,5 @@ const level6 = {
     isBottomRightCornerBox: true
   }
 }
+
+module.exports = level6;

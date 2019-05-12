@@ -263,3 +263,5 @@ const computerMove = {
     return (Math.random() < chanceToGiveAWayPoint);
   }
 }
+
+module.exports = computerMove;

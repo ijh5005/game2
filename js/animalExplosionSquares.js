@@ -240,3 +240,11 @@ const template = {
   box34: [],
   box35: [],
 }
+
+
+module.exports = {
+  lionSquares,
+  pantherSquares,
+  cheetahSquares,
+  queen_makedaSquares
+}

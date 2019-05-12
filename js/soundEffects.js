@@ -53,7 +53,7 @@ const soundEffects = {
     let count = 1;
     const run = () => {
       count++;
-      if(count <= 17 && !on_game_board){
+      if(count <= 17 && !app.on_game_board){
         timeOuts.forEach(time => {
           setTimeout(() => {speaker()}, time);
         })
@@ -129,3 +129,5 @@ const soundEffects = {
     document.getElementById("gameScreen").addEventListener("click",  clickFunction);
   }
 }
+
+module.exports = soundEffects;

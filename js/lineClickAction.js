@@ -177,3 +177,5 @@ const lineClickAction = {
     ui.populateTheUI();
   },
 }
+
+module.exports = lineClickAction;

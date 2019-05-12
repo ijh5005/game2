@@ -624,3 +624,5 @@ const boxInfo = {
     }
   }
 }
+
+module.exports = boxInfo;

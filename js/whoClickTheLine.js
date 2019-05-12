@@ -217,3 +217,5 @@ const whoClickTheLine = {
     left: null
   }
 }
+
+module.exports = whoClickTheLine;

@@ -17,7 +17,7 @@ const ui = {
     pointsInArow = 0;
     whoClickedLine = task.breakRefAndCopy(whoClickTheLine);
     textType = null;
-    on_game_board = true;
+    app.on_game_board = true;
     task.resetPlayerTurn();
     task.resetScore();
     track.goToPage(settings.startUpPage);
@@ -56,7 +56,6 @@ const ui = {
     track.goToPage('gameBoardPage');
   },
   gameBoardMapperObj: {
-    thirtysix,
     level1,
     level2,
     level3,
@@ -813,3 +812,5 @@ const ui = {
     }
   }
 }
+
+module.exports = ui;

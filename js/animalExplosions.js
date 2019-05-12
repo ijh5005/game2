@@ -1,5 +1,4 @@
 // this file contains the exploding patterns of the animal bombs
-
 const animalExplosions = {
   lion: { // exploding pattern for the lion
     boxes: (box) => {
@@ -117,3 +116,5 @@ const animalExplosions = {
     }
   }
 }
+
+module.exports = animalExplosions;

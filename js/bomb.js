@@ -210,3 +210,5 @@ const bomb = {
     }, 800);
   }
 }
+
+module.exports = bomb;

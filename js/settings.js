@@ -642,3 +642,5 @@ let settings = {
   itemsPurchased: [],
   itemsSelected: []
 }
+
+module.exports = settings;

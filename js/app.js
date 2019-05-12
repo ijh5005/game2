@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 'use strict';
 // will contain boxes with no lines clicked
 const noBorders = [];
@@ -75,7 +77,7 @@ let chanceToGiveAWayPoint;
 
 let reset_settings = true;
 //determines if we are on the game board
-let on_game_board = false;
+let app.on_game_board = false;
 
 // used to prevent multiple game board text showing on board
 let showTextUsed = false;

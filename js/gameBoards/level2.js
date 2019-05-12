@@ -1048,3 +1048,5 @@ const level2 = {
     disabled: true
   }
 }
+
+module.exports = level2;

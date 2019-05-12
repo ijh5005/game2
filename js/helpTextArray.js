@@ -110,3 +110,5 @@ const helpTextArray = [
       levelNumber: 10,
     }
   ];
+
+module.exports = helpTextArray;

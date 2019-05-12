@@ -43,3 +43,5 @@ const boardText = {
     }, adjustTimeout || 2000);
   }
 }
+
+module.exports = boardText;

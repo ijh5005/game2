@@ -560,3 +560,5 @@ const task = {
     ui.populateStore();
   }
 }
+
+module.exports = task;
